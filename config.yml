@@ -1,0 +1,23 @@
+baseURL: 'https://new.ianmuchina.com/'
+languageCode: en-us
+title: "Ian's blog"
+theme: purple
+
+pluralizeListTitles: false
+
+# Disable Tags page 
+disableKinds:
+- taxonomy
+- term
+
+params:
+  author: Ian Muchina
+  description: "Hey, I’m Ian. Welcome to my blog, mostly tech related"
+  #Contact
+  twitter: much1na
+  github: IanMuchina
+  email: https://aemail.com/OYLG
+
+  og_image: "/images/og.png"
+
+PygmentsUseClasses: true
