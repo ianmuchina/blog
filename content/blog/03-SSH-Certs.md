@@ -19,7 +19,7 @@ SSH is a protocol used by system administrators and developers to communicate se
 
 We all know passwords and have used them at some point. Those secret string of characters you have to remember to prove your identity.
 
-![How many times have you forgotten your password?](/img/posts/ssh_certs/2fYbsnl.png.webp)
+![How many times have you forgotten your password?](/img/ssh_certs/2fYbsnl.png.webp)
 
 Passwords are good and better than nothing, but securing a server with just a password is not recommended especially on critical systems.
 
@@ -37,7 +37,7 @@ Keys are the default authentication method on most cloud providers eg: Digital O
 
 > SSH keys are a matching set of cryptographic keys which can be used for authentication.
 
-![Keys are awesome](/img/posts/ssh_certs/jC5HqKn.png.webp)
+![Keys are awesome](/img/ssh_certs/jC5HqKn.png.webp)
 
 > Each set contains a public and a private key. The public key can be shared freely without concern, while the private key must be vigilantly guarded and never exposed to anyone. source
 
@@ -57,7 +57,7 @@ When creating keys, it is a good idea to encrypt them with a password. So that e
 To connect to a server using keys, a user’s public key has to be in the authorized_keys file on every server they want to connect to.
 
 This method of managing keys is the most common and works okay for small teams but it can be a burden for large organizations with many users.
-![Managing keys is a pain](/img/posts/ssh_certs/RHoK5W9.png.webp)
+![Managing keys is a pain](/img/ssh_certs/RHoK5W9.png.webp)
 
 > But growth creeps upon you, and before you know it you are securing significant assets with sub-standard methods
 
@@ -72,7 +72,7 @@ The task of updating the `authorized_keys` file can and should be automated for 
 ## SSH Certificates
 
 This is where public keys are signed by a Certificate Authority(CA). This method scales very well across thousands of machines. It can be used for both user and host verification. This method eliminates the Trust on first use requirement.
-![Certificates are never talked about that much](/img/posts/ssh_certs/KnaoAHm.png.webp)
+![Certificates are never talked about that much](/img/ssh_certs/KnaoAHm.png.webp)
 
 ### Advantages of certificates
 
@@ -105,7 +105,7 @@ You can also use [this site](https://gravitational.com/resources/ssh-certificate
 ## Open Source Implementations
 
 There are many solutions to giving users SSH access. All these are available on GitHub. Note that documentation is not that good for some tools though
-![](/img/posts/ssh_certs/uphOO5p.png.webp)
+![](/img/ssh_certs/uphOO5p.png.webp)
 
 ### 1. [Keybase Certificate Authority bot](https://keybase.io/blog/keybase-ssh-ca)
 
@@ -169,7 +169,7 @@ I'm not the first one to write about this topic, so here's related content cover
 - [ How to SSH Properly](https://gravitational.com/blog/how-to-ssh-properly/)
 - [If you’re not using SSH certificates you’re doing SSH wrong](https://smallstep.com/blog/use-ssh-certificates/)
 
-![](/img/posts/ssh_certs/YqKOBwg.png.webp)
+![](/img/ssh_certs/YqKOBwg.png.webp)
 
 ### Whitepapers and Manuals
 

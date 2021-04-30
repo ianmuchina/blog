@@ -11,7 +11,7 @@ draft: false
 
 Debian is a good operating system. Forming the basis for Ubuntu, Kali Linux and many others it is one of the most stable operating systems out there.
 
-![Image of the Debian Logo](/img/posts/deb-updates/debian.png)
+![Image of the Debian Logo](/img/deb-updates/debian.png)
 
 In this post, I will go over how to configure automatic security updates on Debian, which are not enabled by default.
 
@@ -32,7 +32,7 @@ In 2017 there was a ransomware attack named [Wannacry](https://www.kaspersky.com
 
 Updating a system regularly can prevent lots of attacks.
 
-![Ilustration of a Hacker](/img/posts/deb-updates/hacker.webp)
+![Ilustration of a Hacker](/img/deb-updates/hacker.webp)
 
 ## Why Automate?
 
@@ -95,7 +95,7 @@ If server uptime is important to you, a good solution is [Livepatch](https://ubu
 
 > **Livepatch** allows you to install some critical kernel security updates without rebooting your system, by directly patching the running kernel. ... It's mainly intended for servers which are supposed to have months and years of continuous uptime without reboots
 
-You can read more on kernel live patching [here](https://mkyong.com/linux/an-introduction-to-kernel-live-patching-on-linux/).
+[More info on kernel live patching](https://mkyong.com/linux/an-introduction-to-kernel-live-patching-on-linux/).
 
 ## Alerts on update failure
 
@@ -133,7 +133,7 @@ If you use Gmail, a good way to control access is by using app passwords. I use 
 2. Under _Signing into Google_ , Select App Passwords
 3. Generate a custom App password, name it to something relevant like _server-x email alerts_ and copy it. We'll need it later.
 
-![](/img/posts/deb-updates/app-passwords.webp)
+![](/img/deb-updates/app-passwords.webp)
 
 ### Install and Configure Postfix
 
@@ -147,7 +147,7 @@ $ apt install postfix libsasl2-modules bsd-mailx
 
 When prompted, select Internet site.
 
-![](/img/posts/deb-updates/postfix.webp)
+![](/img/deb-updates/postfix.webp)
 
 ### Configure postfix
 

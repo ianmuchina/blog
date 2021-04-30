@@ -13,7 +13,7 @@ This website costs me almost nothing to run. I take advantage of a few free serv
 
 ## 1. DNS : Cloudflare
 
-![](/img/posts/site-cost/cloudflare.svg)
+![](/img/site-cost/cloudflare.svg)
 
 DNS is what enables the translation of website names to IP addresses.
 I use Cloudflare to manage the DNS of my domain at `ianmuchina.com`. I can have unlimited subdomains.
@@ -21,7 +21,7 @@ I use Cloudflare to manage the DNS of my domain at `ianmuchina.com`. I can have 
 ## 2. CDN: Cloudflare
 
 Cloudflare have over 200 datacenters worldwide meant for just this purpose.
-![](/img/posts/site-cost/cloudflare-network.webp)
+![](/img/site-cost/cloudflare-network.webp)
 
 When using Cloudflare's Content Delivery Network, someone in Nairobi gets the site assets from a datacenter in Mombasa instead of somewhere further like France or USA.
 
@@ -29,25 +29,25 @@ A content delivery network greatly improves speed.
 
 ## 4. Framework : Hugo
 
-![](/img/posts/site-cost/jekyll.svg)
+![](/img/site-cost/jekyll.svg)
 
 I use Jekyll to generate the static files of my website. Jekyll has some awesome free themes. However it can take a bit of time to configure for those not familiar with it.
 
 ## 5. Hosting: Cloudflare + GitHub
 
-![](/img/posts/site-cost/Netlify_logo.svg)
+![](/img/site-cost/Netlify_logo.svg)
 
 Netlify is what builds my site from the configuration files of my site. I use netlify with github. The static content is regenerated anytime I modify the config files
 
 ## 6. Domain Registrar - CLoudflare
 
-![](/img/posts/site-cost/Namecheap-Logo.svg)
+![](/img/site-cost/Namecheap-Logo.svg)
 
 One gets a domain from a domain registrar. You can get a free one from [Freenom](https://www.freenom.com). I have a freenom domain that I dont use at muchina.gq, but I abandoned it in favor of ianmuchina.com. Most .com domains are not that expensive and cost around $12 per year.
 
 ## 7. SSL: Cloudflare
 
-![](/img/posts/site-cost/ssl.svg)
+![](/img/site-cost/ssl.svg)
 
 A site with SSL correctly configured has a padlock alongside the domain name. When using the cloudflare CDN, your site automatically gets free SSL
 

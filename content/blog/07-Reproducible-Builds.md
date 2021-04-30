@@ -69,7 +69,8 @@ Many open-source projects have reproducible builds to assure users of their inte
 3. [F-Droid](https://f-droid.org/docs/Reproducible_Builds/?title=Deterministic,_Reproducible_Builds)
 4. [Signal](https://signal.org/blog/reproducible-android/.)
 5. [Telegram](https://core.telegram.org/reproducible-builds)
-6. [_more_](https://reproducible-builds.org/projects/)
+
+You can find more at [reproducible-builds](https://reproducible-builds.org/projects/)
 
 ### Linux distros
 
@@ -87,7 +88,6 @@ I'll conclude by quoting Mike Perry of the Tor project. He [described](https://m
 
 This statement is true to this day.
 
-![Deontay Wilder saying Till this day](https://memegenerator.net/img/instances/82411119/till-this-day.jpg)
 
 ---
 
@@ -95,7 +95,7 @@ This statement is true to this day.
 
 Many people have written about reproducible builds and have gone into more detail than I have in this post. Here are some of them.
 
-#### [reproducible-builds.org](https://reproducible-builds.org)
+### [reproducible-builds.org](https://reproducible-builds.org)
 
 A website with technical information on reproducible builds. It also has status updates on Linux distributions.
 
@@ -107,7 +107,7 @@ A paper by Ken Thompson. He asks us what if compilers had backdoors. Would it po
 
 David A. Wheeler answers the above question. He proposes a method called Diverse Double-Compiling.
 
-#### [The Octopus Scanner Malware](https://securitylab.github.com/research/octopus-scanner-malware-open-source-supply-chain)
+### [The Octopus Scanner Malware](https://securitylab.github.com/research/octopus-scanner-malware-open-source-supply-chain)
 
 Writeup on the discovery of a supply chain attack that targeted developer's machines.
 

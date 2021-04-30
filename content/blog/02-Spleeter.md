@@ -42,7 +42,7 @@ You can use <a href="https://ezstems.com" target="_blank">ezstems.com</a> as an 
 ## 2. The App Method
 
 This second method is simmilar to the first, but only uses the computer's resources.
-![](/img/posts/spleeter/uJrx7GI.jpg)
+![Screenshot of image](/img/spleeter/uJrx7GI.jpg)
 
 ### Steps
 
@@ -75,7 +75,7 @@ $ python3 -m spleeter -i your_song.mp3 -p spleeter:2stems -o output
 
 ## How Does it Work?
 
-![xkcd comic](/img/posts/spleeter//machine-learning.webp)
+![xkcd comic](/img/spleeter/machine-learning.webp)
 
 Machine learning is artificial intelligence that can automatically learn from past data. You give it enough data and it can literally learn like humans, through practice
 

@@ -12,6 +12,7 @@ comments: true
 ## What is Docker?
 
 ![Docker Logo](/img/docker-lab/docker.svg)
+
 Docker is a container platform that is similar to a Hypervisor like Virtualbox. Containers use less storage and RAM and are portable.
 
 Docker can run on:
@@ -36,9 +37,8 @@ The Docker engine is in the official repositories of most Linux distributions.
 ![](/img/docker-lab/ubuntu.svg)
 
 Anything that uses `apt` to install software is Debian based.
-Find a complete list [here](https://en.wikipedia.org/wiki/List_of_Linux_distributions#Debian-based)
 
-To install on Ubuntu :
+To install docker:
 
 ```console
 $ sudo apt install docker.io
@@ -86,32 +86,6 @@ $ sudo systemctl start docker.service
 $ sudo systemctl enable docker.service
 ```
 
----
-
-### Windows
-
-To run docker in windows, install [Docker desktop](https://docs.docker.com/docker-for-windows/install/).
-
-![](/img/docker-lab/windows10.svg)
-
-Docker Desktop is an awesome app with a graphical interface. It can run Linux containers from windows. However, there's one major deal-breaker.
-
-Docker Desktop cannot co-exist with VirtualBox or VMware, because it requires Hyper-V to run Linux containers😤[^1].
-
-> Hyper-V is Microsoft's hardware virtualization product
-
-As a workaround.
-
-- Use [Docker Toolbox](Use https://docs.docker.com/toolbox/) 👨‍💻
-- Learn Hyper-V 📚
-- Install Linux 🤷‍♀️
-
-> This is also the same reason [WSL](https://blogs.windows.com/windowsdeveloper/2016/07/22/fun-with-the-windows-subsystem-for-linux/) cannot co-exist with VMware/Virtualbox.
-
-Now I'm starting to see why people hate Microsoft. They lock users to their ecosystem.
-
----
-
 ## Hello World
 
 After you have installed docker, run this command as a test
@@ -138,7 +112,7 @@ $ sudo docker network create vulnerable --attachable --subnet 10.0.0.0/24
 
 For this, I will use Parrot OS. It's docker images are better Kali Linux Images.
 
-![](/img/posts/docker-lab/cyberr.svg)
+![](/img/docker-lab/cyberr.svg)
 
 First download the Parrot OS Docker image. This command will take a while depending on your internet connection.
 
@@ -174,7 +148,7 @@ $ sudo docker start -a parrot
 
 ## Target container:Metasploitable2
 
-![](/img/posts/docker-lab/Target-pana.svg)
+![](/img/docker-lab/Target-pana.svg)
 
 This is a very vulnerable test machine. It is what I recommend for anyone starting out.
 
@@ -229,7 +203,7 @@ root@metasploitable2:/# services.sh
 
 There are tons of free guides out there on metasploitable.
 
-![](/img/posts/docker-lab/read.svg)
+![](/img/docker-lab/read.svg)
 
 1. [The Easiest Metasploit Guide You’ll Ever Read](https://www.exploit-db.com/docs/english/44040-the-easiest-metasploit-guide-you%E2%80%99ll-ever-read.pdf)
 2. [Metasploit Unleashed](https://www.offensive-security.com/metasploit-unleashed/)
@@ -240,7 +214,7 @@ If you don't know what guide to use, I recommend [this one](https://metasploit.h
 
 ## More vulnerable containers 🧑‍💻
 
-![](/img/posts/docker-lab/hacker.svg)
+![](/img/docker-lab/hacker.svg)
 
 You can extend the lab with any of these containers depending on your learning goal.
 
@@ -248,7 +222,7 @@ You can extend the lab with any of these containers depending on your learning g
 
 This container focusses on web application security.
 
-![](/img/posts/docker-lab/juiceshop.svg)
+![](/img/docker-lab/juiceshop.svg)
 
 To create and start the juiceshop container for the first time
 
@@ -291,7 +265,7 @@ docker start juiceshop
 
 [Webgoat](<(https://owasp.org/www-project-webgoat/)>) is a ctf-style vulnerable container focused on web application security.
 
-![](/img/posts/docker-lab/goat.svg)
+![](/img/docker-lab/goat.svg)
 
 Create and run the container for the first time
 
@@ -414,12 +388,7 @@ $ apt install firefox ca-certificates
 ## Credits
 
 Illustrations from [Freepik](https://stories.freepik.com/)
-![](/img/posts/freepik.svg)
 
 ## Further reading/research
 
 Jess Frazelle has written an awesome [blog post](https://blog.jessfraz.com/post/docker-containers-on-the-desktop/) with details on running graphical apps inside Docker containers. She's also given this awesome [Talk/Demo](https://youtu.be/cYsVvV1aVss) on running various applications and retro games inside docker containers.
-
-## Footnotes
-
-[^1]: Docker requires a Linux kernel to run Linux containers on Windows. Docker accomplishes this by running a Linux Virtual Machine inside Hyper-V. This is still more resource-efficient than full VM's. Plus there's the added benefit of running both Windows and Linux containers. This is not possible on Linux
