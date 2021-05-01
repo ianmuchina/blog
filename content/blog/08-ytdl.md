@@ -1,6 +1,6 @@
 ---
 title: Some youtube-dl aliases
-description: bash aliases
+description: Making youtube-dl easy to use
 permalink: /blog/youtube-dl-aliases
 author: Ian Muchina
 date: 2021-03-26 08:00:00 +03:00
