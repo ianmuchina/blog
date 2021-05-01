@@ -21,3 +21,4 @@ params:
   og_image: "https://ianmuchina.com/site.jpg"
 
 PygmentsUseClasses: true
+pygmentsCodefences: true
