@@ -18,6 +18,6 @@ params:
   github: IanMuchina
   email: https://aemail.com/OYLG
 
-  og_image: "/img/og.png"
+  og_image: "https://ianmuchina.com/site.jpg"
 
 PygmentsUseClasses: true
