@@ -64,6 +64,8 @@ The advice is basically this:
 
 ![Meme showing a gate-no-wall.](/img/apt-key/gate-no-walls.jpg)
 
+Don't add repos you don't trust. It's hard to do so securely.
+
 ## More on Linux security
 
 [Untrusted Debs](https://wiki.debian.org/UntrustedDebs) - Debian Wiki
