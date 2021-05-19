@@ -9,7 +9,7 @@ date: 2021-05-19
 
 `apt-key` is a tool for managing the keys `apt` uses to verify packages. It is a command-line wrapper around `gpg`.
 
-You cannot install `apt-key`, It is already there, as part `apt`.
+You cannot install `apt-key`, It is already there, as part of `apt`.
 
 ```
 root@debian:~# apt install apt-key
