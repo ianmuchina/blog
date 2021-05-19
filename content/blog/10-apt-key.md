@@ -1,10 +1,10 @@
 ---
 title: apt-key is not being deprecated for security reasons
-description:
+description: 
 url: blog/apt-key-deprecated
 author: Ian Muchina
 image: "https://i.imgur.com/z6vWzNg.jpg"
-date: 2021-05-17
+date: 2021-05-19
 ---
 
 `apt-key` is a tool for managing the keys `apt` uses to verify packages. It is a command-line wrapper around `gpg`.
