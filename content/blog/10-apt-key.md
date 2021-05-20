@@ -71,3 +71,5 @@ Don't add repos you don't trust. It's hard to do so securely.
 [Untrusted Debs](https://wiki.debian.org/UntrustedDebs) - Debian Wiki
 
 [Linux Server "best practices"](https://youtu.be/fKuqYQdqRIs) - Live Overflow
+
+[Attacks against GPG signed APT repositories](https://blog.packagecloud.io/eng/2018/02/21/attacks-against-secure-apt-repositories/) - packagecloud.io
