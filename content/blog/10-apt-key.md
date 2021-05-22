@@ -20,8 +20,6 @@ Why is it not a separate package? IDK.
 
 ## Why it was deprecated
 
-**TLDR:** `apt-key` is not being deprecated for security reasons, but a more boring one, dependencies.
-
 A while back [gpg was removed](https://github.com/Debian/apt/commit/87d468fe355c87325c943c40043a0bb236b2407f) from the list of dependencies in `apt`. This change meant `apt-key` could not work out of the box on a fresh Debian install. Users would have to manually `apt install gpg` if they wanted to use `apt-key`.
 
 [The commit message](https://github.com/Debian/apt/commit/87d468fe355c87325c943c40043a0bb236b2407f) gives the following reason.
@@ -29,7 +27,9 @@ A while back [gpg was removed](https://github.com/Debian/apt/commit/87d468fe355c
 > most users will never use apt-key.
 > `apt-key` depends on `gpg` to function. However, `apt` only depends on the smaller `gpgv` tool to verify packages.
 
-Pretty self-explanatory. The developers wanted to reduce the install size of `apt`.
+Pretty self-explanatory. The developers wanted to reduce the install size of `apt`. 
+
+I'm not really sure if dependencies & install size is the reason. I think there's another justified reason apt is being deprecated. Haven't found it yet. 
 
 ## The alternative
 
