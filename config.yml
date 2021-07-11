@@ -1,14 +1,14 @@
-baseURL: 'https://ianmuchina.com/'
+baseURL: "https://ianmuchina.com/"
 languageCode: en-us
 title: "Ian's blog"
 theme: purple
 
 pluralizeListTitles: false
 
-# Disable Tags page 
+# Disable Tags page
 disableKinds:
-- taxonomy
-- term
+  - taxonomy
+  - term
 
 params:
   author: Ian Muchina
