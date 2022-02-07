@@ -1,4 +1,4 @@
-baseURL: "http://localhost:8000/"
+baseURL: "/"
 languageCode: en-us
 title: "Ian's blog"
 
