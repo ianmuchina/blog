@@ -1,0 +1,46 @@
+{{/*  Get Data from API  */}}
+{{ $urlPre := "https://cdn.syndication.twimg.com/tweet?id="}}
+{{ $id := .Get 0 }}
+{{ $json := getJSON $urlPre $id }}
+{{ $text := .Page.RenderString $json.text }}
+
+{{ if isset $json "entities" }}
+  {{/*  @User Mentions  */}}
+  {{ if isset $json.entities "user_mentions"  }}
+    {{ range $user := $json.entities.user_mentions}}
+      {{ $text = replace $text (printf "@%s" $user.screen_name) (printf "<a href='https://twitter.com/%s'>@%s</a>" $user.screen_name $user.screen_name) }}
+    {{ end }}
+  {{ end }}
+
+  {{/*  Media  */}}
+  {{ if isset $json.entities "media"  }}
+    {{ range $media := $json.entities.media }}
+      {{ $text = replace $text $media.url "" }}
+    {{ end }}
+  {{ end }}
+
+  {{/*  Urls  */}}
+  {{ if isset $json.entities "urls"  }}
+    {{ range $url := $json.entities.urls}}
+      {{ $text = replace $text $url.url (printf "<a href='%s'>%s</a>" $url.url $url.display_url) }}
+    {{ end }}
+  {{ end }}
+
+  {{/*  Symbols  */}}
+{{ end }}
+
+<blockquote style="margin-left:0px;width:100%;border-color:#1DA1F2;background:rgba(29, 161, 242, 0.1)">
+  {{ .Page.RenderString $text }}
+  {{ if isset $json "photos" }}
+    {{ range $item := $json.photos }}
+        <img src="{{ $item.url }}" />
+    {{ end }}
+  {{ end }}
+  <br />
+  <p>
+    &mdash; {{ $json.user.name }}(@{{ $json.user.screen_name }})
+    <a href='https://twitter.com/{{ $json.user.screen_name }}/status/{{ $json.id_str }}'>
+      {{ dateFormat "January 2, 2006" $json.created_at }}
+    </a>
+  </p>
+</blockquote>

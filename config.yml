@@ -1,7 +1,6 @@
-baseURL: "https://ianmuchina.com/"
+baseURL: "http://localhost:8000/"
 languageCode: en-us
 title: "Ian's blog"
-theme: purple
 
 pluralizeListTitles: false
 

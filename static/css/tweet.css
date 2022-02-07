@@ -1,0 +1,423 @@
+:root {
+  --tw-accent-050: #f0fdfa;
+  --tw-accent-100: #ccfbf1;
+  --tw-accent-200: #99f6e4;
+  --tw-accent-300: #5eead4;
+  --tw-accent-400: #2dd4bf;
+  --tw-accent-500: #14b8a6;
+  --tw-accent-600: #0d9488;
+  --tw-accent-700: #0f766e;
+  --tw-accent-800: #115e59;
+  --tw-accent-900: #134e4a;
+  --tw-accent-bg: rgba(20, 184, 166, 0.2);
+}
+
+[data-accent="blue"] {
+  --tw-accent-050: #ecfeff;
+  --tw-accent-100: #cffafe;
+  --tw-accent-200: #a5f3fc;
+  --tw-accent-300: #67e8f9;
+  --tw-accent-400: #22d3ee;
+  --tw-accent-500: #06b6d4;
+  --tw-accent-600: #0891b2;
+  --tw-accent-700: #0e7490;
+  --tw-accent-800: #155e75;
+  --tw-accent-900: #164e63;
+  --tw-accent-bg: rgba(6, 182, 212, 0.2);
+}
+
+[data-accent="yellow"] {
+  --tw-accent-050: #fefce8;
+  --tw-accent-100: #fef9c3;
+  --tw-accent-200: #fef08a;
+  --tw-accent-300: #fde047;
+  --tw-accent-400: #facc15;
+  --tw-accent-500: #eab308;
+  --tw-accent-600: #ca8a04;
+  --tw-accent-700: #a16207;
+  --tw-accent-800: #854d0e;
+  --tw-accent-900: #713f12;
+  --tw-accent-bg: rgba(234, 179, 8, 0.2);
+}
+
+[data-accent="pink"] {
+  --tw-accent-050: #faf5ff;
+  --tw-accent-100: #f3e8ff;
+  --tw-accent-200: #e9d5ff;
+  --tw-accent-300: #d8b4fe;
+  --tw-accent-400: #c084fc;
+  --tw-accent-500: #a855f7;
+  --tw-accent-600: #9333ea;
+  --tw-accent-700: #7e22ce;
+  --tw-accent-800: #6b21a8;
+  --tw-accent-900: #581c87;
+  --tw-accent-bg: rgba(168, 85, 247, 0.2);
+}
+
+[data-accent="purple"] {
+  --tw-accent-050: #fff1f2;
+  --tw-accent-100: #ffe4e6;
+  --tw-accent-200: #fecdd3;
+  --tw-accent-300: #fda4af;
+  --tw-accent-400: #fb7185;
+  --tw-accent-500: #f43f5e;
+  --tw-accent-600: #e11d48;
+  --tw-accent-700: #be123c;
+  --tw-accent-800: #9f1239;
+  --tw-accent-900: #881337;
+  --tw-accent-bg: rgba(244, 63, 94, 0.2);
+}
+
+[data-accent="orange"] {
+  --tw-accent-050: #fff7ed;
+  --tw-accent-100: #ffedd5;
+  --tw-accent-200: #fed7aa;
+  --tw-accent-300: #fdba74;
+  --tw-accent-400: #fb923c;
+  --tw-accent-500: #f97316;
+  --tw-accent-600: #ea580c;
+  --tw-accent-700: #c2410c;
+  --tw-accent-800: #9a3412;
+  --tw-accent-900: #7c2d12;
+  --tw-accent-bg: rgba(249, 115, 22, 0.2);
+}
+
+[data-accent="green"] {
+  --tw-accent-050: #f0fdf4;
+  --tw-accent-100: #dcfce7;
+  --tw-accent-200: #bbf7d0;
+  --tw-accent-300: #86efac;
+  --tw-accent-400: #4ade80;
+  --tw-accent-500: #22c55e;
+  --tw-accent-600: #16a34a;
+  --tw-accent-700: #15803d;
+  --tw-accent-800: #166534;
+  --tw-accent-900: #14532d;
+  --tw-accent-bg: rgba(34, 197, 94, 0.2);
+}
+
+[data-accent="indigo"] {
+  --tw-accent-050: #eef2ff;
+  --tw-accent-100: #e0e7ff;
+  --tw-accent-200: #c7d2fe;
+  --tw-accent-300: #a5b4fc;
+  --tw-accent-400: #818cf8;
+  --tw-accent-500: #6366f1;
+  --tw-accent-600: #4f46e5;
+  --tw-accent-700: #4338ca;
+  --tw-accent-800: #3730a3;
+  --tw-accent-900: #312e81;
+  --tw-accent-bg: rgba(99, 102, 241, 0.2);
+}
+
+:root {
+  --tw-bg: white;
+  --tw-text: #0f172a;
+  --tw-text-secondary: #334155;
+  --tw-border: #cbd5e1;
+  --tw-checkmark: #0ea5e9;
+  --tw-likes-text-hover: #ef4444;
+  --tw-likes-bg-hover: #fee2e2;
+  --tw-link-text-hover: var(--tw-accent-700);
+  --tw-link-bg-hover: var(--tw-accent-100);
+  --tw-border-radius: 6px;
+  --tw-poll-bar: #e2e8f0;
+  --tw-poll-bar-win: var(--tw-accent-300);
+  --tw-accent-text: var(--tw-accent-500);
+}
+
+.darka {
+  --tw-bg: var(--code-bg);
+  --tw-text: white;
+  --tw-text-secondary: #d4d4d4;
+  --tw-border: var(--border);
+  --tw-checkmark: var(--text);
+  --tw-likes-bg-hover: rgba(239, 68, 68, 0.1);
+  --tw-likes-text-hover: #ef4444;
+  --tw-link-bg-hover: var(--tw-accent-bg);
+  --tw-link-text-hover: var(--accent);
+  --tw-poll-bar: #171717;
+  --tw-poll-bar-win: var(--accent-alt);
+  --tw-accent-text: var(--accent);
+}
+
+.light {
+  --tw-bg: white;
+  --tw-text: #0f172a;
+  --tw-text-secondary: #334155;
+  --tw-border: #cbd5e1;
+  --tw-checkmark: #0ea5e9;
+  --tw-likes-text-hover: #ef4444;
+  --tw-likes-bg-hover: #fee2e2;
+  --tw-link-text-hover: var(--tw-accent-700);
+  --tw-link-bg-hover: var(--tw-accent-100);
+  --tw-poll-bar: #e2e8f0;
+  --tw-poll-bar-win: var(--tw-accent-300);
+  --tw-accent-text: var(--tw-accent-500);
+}
+
+.dark {
+  --tw-bg: #1a202c;
+  --tw-text: #f9fafb;
+  --tw-text-secondary: #d1d5db;
+  --tw-border: #374151;
+  --tw-checkmark: #f9fafb;
+  --tw-likes-text-hover: #f87171;
+  --tw-likes-bg-hover: rgba(248, 113, 113, 0.1);
+  --tw-link-text-hover: var(--tw-accent-400);
+  --tw-link-bg-hover: var(--tw-accent-bg);
+  --tw-poll-bar: #374151;
+  --tw-poll-bar-win: var(--tw-accent-900);
+  --tw-accent-text: var(--tw-accent-400);
+}
+
+.tweet {
+  border-radius: var(--tw-size-1);
+  padding: var(--tw-size-2);
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  max-width: 512px;
+  margin: auto;
+  margin-bottom: 4px;
+  font-size: var(--tw-font-size-2);
+  color: var(--tw-text);
+  background-color: var(--tw-bg);
+  border: solid 1px var(--tw-border);
+  border-radius: var(--tw-border-radius);
+}
+
+/* Top Section */
+.userInfo {
+  display: flex;
+  /* Vertical align */
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.userInfo div {
+  display: flex;
+  flex-direction: column;
+}
+
+.profilePhoto {
+  width: 40px;
+  height: 40px;
+  border-radius: 100%;
+}
+
+.userName {
+  display: flex;
+  /* Vertical align */
+  align-items: center;
+  /*  */
+  font-weight: 500;
+  overflow-x: clip;
+  /* Remove default <a> styles */
+  color: var(--tw-text) !important;
+  text-decoration: none !important;
+}
+
+.userName:hover {
+  text-decoration: underline !important;
+}
+
+.screenName {
+  color: var(--tw-text-secondary);
+  font-size: 16px;
+  overflow-x: clip;
+}
+
+.checkmark {
+  margin-left: 4px;
+  width: 18px;
+  color: var(--tw-checkmark);
+  /* w-4 h-4 text-primary-500 dark:text-white */
+}
+
+.fullText {
+  margin: 0px;
+  padding: 0px;
+  white-space: pre-wrap;
+  line-height: var(--tw-font-lineheight-2);
+}
+.fullText a {
+  color: var(--tw-accent-text);
+  text-decoration: none;
+}
+.fullText a:hover {
+  text-decoration: underline;
+}
+
+.meta {
+  display: flex;
+  align-content: center;
+  font-size: 1rem;
+  gap: 8px;
+}
+
+.meta a {
+  margin: 0px;
+  padding: 0px;
+  display: flex;
+  align-items: center;
+  color: var(--tw-text-secondary);
+  text-decoration: none;
+  gap: 4px;
+}
+
+.meta a:hover {
+  text-decoration: underline;
+}
+
+.meta a svg {
+  border-radius: 100%;
+  padding: 4px;
+  width: 1.8rem;
+}
+
+/* Likes */
+.likes {
+  color: var(--tw-likes-text);
+  background-color: var(--tw-likes-bg);
+}
+
+.likes:hover {
+  color: var(--tw-likes-text-hover);
+}
+
+.likes:hover svg {
+  background: var(--tw-likes-bg-hover);
+}
+
+.link {
+  color: var(--tw-link-text);
+  background: var(--tw-link-bg);
+}
+
+.link:hover {
+  color: var(--tw-link-text-hover);
+}
+
+.link:hover svg {
+  background: var(--tw-link-bg-hover);
+}
+
+/* Cards */
+/* Photos */
+/* 1. Global Styles */
+.gallery {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 1fr 1fr;
+  gap: 2px;
+  overflow: clip;
+  border-radius: var(--tw-border-radius);
+}
+.gallery img {
+  width: 100%;
+  object-fit: cover;
+}
+
+/* Specific Styles */
+/* 1 Image */
+.gallery-1 img {
+  grid-row: span 2;
+  grid-column: span 2;
+}
+
+/* 2 Images */
+.gallery-2 img {
+  grid-row: span 2;
+}
+
+/* 3 Images */
+.gallery-3 {
+  max-height: 300px;
+}
+.gallery-3 :nth-child(1) {
+  grid-row: span 2;
+  min-height: 100%;
+}
+.gallery-3 img {
+  object-fit: cover;
+  min-height: 150px;
+}
+@supports (aspect-ratio: 16/9) {
+  .gallery-3 img {
+    aspect-ratio: 16/9;
+  }
+}
+
+/* 4 Images  */
+@supports (aspect-ratio: 16/9) {
+  .gallery-4 {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: repeat(2, 1fr);
+  }
+  .gallery-4 img {
+    width: 100%;
+    height: 100%;
+    aspect-ratio: 16/9;
+  }
+}
+.gallery-4 {
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: column;
+  max-height: 310px;
+}
+.gallery-4 img {
+  max-height: 150px;
+  max-width: 50%;
+}
+
+video {
+  width: 100%;
+  border-radius: var(--tw-border-radius);
+}
+
+.poll_container {
+  position: relative;
+  width: 100%;
+  height: 36px;
+  margin: 8px 0px;
+}
+
+.progress_container_text {
+  position: absolute;
+  left: 0;
+  right: 0;
+  height: 100%;
+}
+
+.progress_container_text_align_center {
+  font-size: 1rem;
+  display: flex;
+  height: 100%;
+  justify-content: space-between;
+  align-items: center;
+  padding: 4px 10px;
+}
+
+.progress_bar {
+  height: 100%;
+  border-radius: var(--tw-border-radius);
+  background-color: var(--tw-poll-bar);
+}
+
+.win {
+  font-weight: bold;
+  font-weight: 500;
+}
+
+.win_bar {
+  background-color: var(--tw-poll-bar-win);
+}
+
+.text-secondary {
+  color: var(--tw-text-secondary);
+}
+
+/*# sourceMappingURL=tweet.css.map */
