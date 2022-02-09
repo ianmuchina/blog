@@ -1,0 +1,135 @@
+{{ $res := ""}}
+{{- $id := .Get "id" -}}
+<!-- Load Tweet Data -->
+{{- $res = getJSON "https://cdn.syndication.twimg.com/tweet?id=" $id -}}
+<!-- WARNING: This is very unsafe, and will cause xss if malicious input is
+entered -->
+<!-- Process FullText by replacing entitity text with anchor links. -->
+{{ $text := $res.text}}
+<!-- User Mentions -->
+{{ range $user := $res.entities.user_mentions}}
+  {{ $u := $user.screen_name }}
+  {{ $1 := printf "@%s" $u }}
+  {{ $2 := printf "<a href='https://twitter.com/%s'>@%s</a>" $u $u }}
+  {{ $text = replace $text $1 $2 }}
+{{ end }}
+
+<!-- Media -->
+{{ range $media := $res.entities.media }}
+  {{ $text = replace $text $media.url "" }}
+{{ end }}
+
+<!-- Urls-->
+{{ range $res.entities.urls}}
+  {{ $text = replace $text .url (printf "<a href='%s'>%s</a>" .expanded_url .display_url) }}
+{{ end }}
+
+<!-- Hashtags -->
+{{ range $res.entities.hashtags }}
+  {{ $1 := printf "#%s" .text }}
+  {{ $2 := printf "<a target='_blank' rel='noopener noreferrer' href='https://twitter.com/hashtag/%s'>#%s</a>" .text .text }}
+  {{ $text = replace $text $1 $2  }}
+{{ end }}
+<!-- Entity: Symbol -->
+{{ range $res.entities.symbols }}
+  {{ $1 := printf "$%s" .text }}
+  {{ $2 := printf "<a target='_blank' rel='noopener noreferrer' href='https://twitter.com/search?q=%24%s'>$%s</a>" .text .text }}
+  {{ $text = replace $text $1 $2 }}
+{{ end }}
+<!-- Compact notation for likes
+       eg: 1734 to 1.7K -->
+{{ $likes := $res.favorite_count }}
+{{ $k := math.Floor	(div $likes 1000) }}
+{{ $h := math.Floor	(mul .01 (mod $likes 1000)) }}
+
+{{if (gt $k 0) }}
+  {{$likes = print $k "K" }}
+{{end}}
+ 
+{{if and (gt $k 0) (gt $h 0) }}
+  {{$likes = print $k "." $h "K" }}
+{{ end }}
+{{- with $res -}}
+  {{- $host := "https://twitter.com/" -}}
+  {{- $tweetUrl := print $host (printf "i/web/status/%s" .id_str) -}}
+  {{- $replyUrl := print $host (printf "intent/like?in_reply_to=%s" .id_str) -}}
+  {{- $likeUrl  := print $host (printf "intent/like?tweet_id=%s" .id_str) -}}
+  {{- $userUrl  := print $host (printf "i/user/%s" .user.id_str) -}}
+  <article
+    class="tweet" lang="{{.lang}}"> <!-- User Info -->
+    <div class="userInfo">
+      <!-- Profile Pic -->
+      <!-- Twitter url schemes for profile pics _normal "48x48", _bigger "73x73",
+      _mini "24x24", "" "original" -->
+      <img loading="lazy" src={{replace .user.profile_image_url_https "_normal" "_normal" }} class="profilePhoto"/> <div>
+        <!-- UserName -->
+        <a target="_blank" rel="noopener noreferrer" class="userName" href={{$userUrl}}>
+          <span class="tw-name">{{- .user.name -}}</span>
+          <!-- Checkmark -->
+          {{- if .user.verified -}}
+            {{ resources.Get "tw-checkmark.svg" | safeHTML }}
+          <!-- TODO -->
+          {{- end -}}
+        </a>
+        <!-- Screen Name -->
+        <span class="screenName">@<span>{{.user.screen_name}}</span>
+        </span>
+      </div>
+    </div>
+    <!-- FullText -->
+    <p class="fullText">
+      {{- $text | safeHTML -}}
+    </p>
+    <!-- Gallery -->
+    {{ if .photos }}
+      {{ $photosCount := len .photos }}
+      <div class="gallery gallery-{{$photosCount}}">
+        {{ range .photos }}
+          <img loading="lazy" src="{{.url}}:small" {{ if .accessibilityLabel }} alt={{ .accessibilityLabel }} {{end}}/>
+        {{ end }}
+      </div>
+    {{ end }}
+    <!-- End Gallery -->
+    <!-- Videos & Gifs -->
+    {{ if .video }}
+      <section>
+        <!-- Gif -->
+        {{if eq .video.contentType "gif"}}
+          <video loop muted autoplay poster={{.video.poster}}>
+            {{ range .video.variants }}
+              <source src={{.src}} type={{.type}}/>
+            {{ end }}
+          </video>
+        {{ end }}
+        <!-- Video -->
+        {{ if eq .video.contentType "media_entity" }}
+          <video controls loop poster={{.video.poster}}>
+            {{ range .video.variants }}
+              <source src={{.src}} type={{.type}}/>
+            {{ end }}
+          </video>
+        {{ end }}
+      </section>
+    {{ end }}
+    <!-- End Videos & Gifs -->
+    <!-- Date -->
+    {{$date := "10:13 AM · Jul 04, 2021"}}
+    <a class="tw-date" aria-label="Posted on {{$date}}" href={{ $tweetUrl }}>{{ time.Format "3:04 PM · Jan 2, 2006 UTC" .created_at  }}</a>
+    
+    <!-- Metadata: Likes, Link to tweet -->
+    <section
+      class="meta">
+      <!-- Likes -->
+      <a class="likes" href="{{ $likeUrl }}" target="_blank" rel="noopener noreferrer" >
+        
+        {{ partial "inline-svg" "twitter/like"}}          
+        {{$likes}}
+      </a>
+      <!-- Link To Tweet -->
+      <a href={{ $tweetUrl }} target="_blank" rel="noopener noreferrer" class="link">
+        {{ partial "inline-svg" "twitter/link"}}
+        Link to Tweet
+      </a>
+    </section>
+  </article>
+{{- end -}}

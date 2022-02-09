@@ -1,0 +1,77 @@
+@use "light";
+@use "dim";
+@use "dark";
+@use "default";
+@use "accents";
+html {
+    --bg: #{default.$bg};
+    --text: #{default.$text};
+    --text-secondary: #{default.$text-secondary};
+    --border: #{default.$border};
+    --checkmark: #{default.$checkmark};
+    --likes-text-hover: #{default.$likes-text-hover};
+    --likes-bg-hover: #{default.$likes-bg-hover};
+    --link-text-hover: #{default.$link-text-hover};
+    --link-bg-hover: #{default.$link-bg-hover};
+    --border-radius: #{default.$border-radius};
+    --poll-bar: #{default.$poll-bar};
+    --poll-bar-win: #{default.$poll-bar-win};
+    --accent-text: #{default.$accent-text};
+}
+
+[data-bg="dark"] {
+    --bg: #{dark.$bg};
+    --text: #{dark.$text};
+    --text-secondary: #{dark.$text-secondary};
+    --border: #{dark.$border};
+    --checkmark: #{dark.$checkmark};
+    --likes-bg-hover: #{dark.$likes-bg-hover};
+    --likes-text-hover: #{dark.$likes-text-hover};
+    --link-bg-hover: #{dark.$link-bg-hover};
+    --link-text-hover: #{dark.$link-text-hover};
+    --poll-bar: #{dark.$poll-bar};
+    --poll-bar-win: #{dark.$poll-bar-win};
+    --accent-text: #{dark.$accent-text};
+
+    // --likes-text: inherit;
+    // --link-text: inherit;
+    // --link-bg: transparent;
+    // --likes-bg: transparent;
+}
+
+[data-bg="light"] {
+    --bg: #{light.$bg};
+    --text: #{light.$text};
+    --text-secondary: #{light.$text-secondary};
+    --border: #{light.$border};
+    --checkmark: #{light.$checkmark};
+
+    --likes-text-hover: #{light.$likes-text-hover};
+    --likes-bg-hover: #{light.$likes-bg-hover};
+
+    --link-text-hover: #{light.$link-text-hover};
+    --link-bg-hover: #{light.$link-bg-hover};
+    --poll-bar: #{light.$poll-bar};
+    --poll-bar-win: #{light.$poll-bar-win};
+    --accent-text: #{light.$accent-text};
+
+    // --likes-text: inherit;
+    // --likes-bg: transparent;
+    // --link-text: inherit;
+    // --link-bg: transparent;
+}
+
+[data-bg="dim"] {
+    --bg: #{dim.$bg};
+    --text: #{dim.$text};
+    --text-secondary: #{dim.$text-secondary};
+    --border: #{dim.$border};
+    --checkmark: #{dim.$checkmark};
+    --likes-text-hover: #{dim.$likes-text-hover};
+    --likes-bg-hover: #{dim.$likes-bg-hover};
+    --link-text-hover: #{dim.$link-text-hover};
+    --link-bg-hover: #{dim.$link-bg-hover};
+    --poll-bar: #{dim.$poll-bar};
+    --poll-bar-win: #{dim.$poll-bar-win};
+    --accent-text: #{dim.$accent-text};
+}

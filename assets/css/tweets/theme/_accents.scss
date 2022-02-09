@@ -1,0 +1,109 @@
+@import "tailwind";
+
+:root {
+    --accent-050: #{$teal-050};
+    --accent-100: #{$teal-100};
+    --accent-200: #{$teal-200};
+    --accent-300: #{$teal-300};
+    --accent-400: #{$teal-400};
+    --accent-500: #{$teal-500};
+    --accent-600: #{$teal-600};
+    --accent-700: #{$teal-700};
+    --accent-800: #{$teal-800};
+    --accent-900: #{$teal-900};
+    --accent-bg: rgba(#{red($teal-500)}, #{green($teal-500)}, #{blue($teal-500), 0.2});
+}
+
+[data-accent="blue"] {
+    --accent-050: #{$cyan-050};
+    --accent-100: #{$cyan-100};
+    --accent-200: #{$cyan-200};
+    --accent-300: #{$cyan-300};
+    --accent-400: #{$cyan-400};
+    --accent-500: #{$cyan-500};
+    --accent-600: #{$cyan-600};
+    --accent-700: #{$cyan-700};
+    --accent-800: #{$cyan-800};
+    --accent-900: #{$cyan-900};
+    --accent-bg: rgba(#{red($cyan-500)}, #{green($cyan-500)}, #{blue($cyan-500), 0.2});
+}
+[data-accent="yellow"] {
+    --accent-050: #{$yellow-050};
+    --accent-100: #{$yellow-100};
+    --accent-200: #{$yellow-200};
+    --accent-300: #{$yellow-300};
+    --accent-400: #{$yellow-400};
+    --accent-500: #{$yellow-500};
+    --accent-600: #{$yellow-600};
+    --accent-700: #{$yellow-700};
+    --accent-800: #{$yellow-800};
+    --accent-900: #{$yellow-900};
+    --accent-bg: rgba(#{red($yellow-500)}, #{green($yellow-500)}, #{blue($yellow-500), 0.2});
+}
+[data-accent="pink"] {
+    --accent-050: #{$purple-050};
+    --accent-100: #{$purple-100};
+    --accent-200: #{$purple-200};
+    --accent-300: #{$purple-300};
+    --accent-400: #{$purple-400};
+    --accent-500: #{$purple-500};
+    --accent-600: #{$purple-600};
+    --accent-700: #{$purple-700};
+    --accent-800: #{$purple-800};
+    --accent-900: #{$purple-900};
+    --accent-bg: rgba(#{red($purple-500)}, #{green($purple-500)}, #{blue($purple-500), 0.2});
+}
+[data-accent="purple"] {
+    --accent-050: #{$rose-050};
+    --accent-100: #{$rose-100};
+    --accent-200: #{$rose-200};
+    --accent-300: #{$rose-300};
+    --accent-400: #{$rose-400};
+    --accent-500: #{$rose-500};
+    --accent-600: #{$rose-600};
+    --accent-700: #{$rose-700};
+    --accent-800: #{$rose-800};
+    --accent-900: #{$rose-900};
+    --accent-bg: rgba(#{red($rose-500)}, #{green($rose-500)}, #{blue($rose-500), 0.2});
+}
+[data-accent="orange"] {
+    --accent-050: #{$orange-050};
+    --accent-100: #{$orange-100};
+    --accent-200: #{$orange-200};
+    --accent-300: #{$orange-300};
+    --accent-400: #{$orange-400};
+    --accent-500: #{$orange-500};
+    --accent-600: #{$orange-600};
+    --accent-700: #{$orange-700};
+    --accent-800: #{$orange-800};
+    --accent-900: #{$orange-900};
+    --accent-bg: rgba(#{red($orange-500)}, #{green($orange-500)}, #{blue($orange-500), 0.2});
+}
+
+[data-accent="green"] {
+    --accent-050: #{$green-050};
+    --accent-100: #{$green-100};
+    --accent-200: #{$green-200};
+    --accent-300: #{$green-300};
+    --accent-400: #{$green-400};
+    --accent-500: #{$green-500};
+    --accent-600: #{$green-600};
+    --accent-700: #{$green-700};
+    --accent-800: #{$green-800};
+    --accent-900: #{$green-900};
+    --accent-bg: rgba(#{red($green-500)}, #{green($green-500)}, #{blue($green-500), 0.2});
+}
+
+[data-accent="indigo"] {
+    --accent-050: #{$indigo-050};
+    --accent-100: #{$indigo-100};
+    --accent-200: #{$indigo-200};
+    --accent-300: #{$indigo-300};
+    --accent-400: #{$indigo-400};
+    --accent-500: #{$indigo-500};
+    --accent-600: #{$indigo-600};
+    --accent-700: #{$indigo-700};
+    --accent-800: #{$indigo-800};
+    --accent-900: #{$indigo-900};
+    --accent-bg: rgba(#{red($indigo-500)}, #{green($indigo-500)}, #{blue($indigo-500), 0.2});
+}
