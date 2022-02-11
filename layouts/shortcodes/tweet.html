@@ -213,9 +213,9 @@
         {{ end }}
         <!-- Video -->
         {{ if eq .video.contentType "media_entity" }}
-          <video controls loop poster={{.video.poster}}>
+          <video preload="metadata" controls loop poster={{.video.poster}}>
             {{ range .video.variants }}
-              <source src={{.src}} type={{.type}}/>
+              <source  src={{.src}} type={{.type}}/>
             {{ end }}
           </video>
         {{ end }}
