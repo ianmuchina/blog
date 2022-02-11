@@ -292,3 +292,38 @@ video {
   flex-direction: column;
   justify-content: center;
 }
+
+.quote_tweet {
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  line-height: unset;
+  outline: solid 1px var(--border);
+  padding: 0px;
+  border-radius: var(--tw-border-radius);
+  font-size: 1rem;
+  .userInfo,
+  .fullText {
+    padding: 8px;
+  }
+  .userInfo {
+    display: flex;
+    .userName,
+    .screenName {
+      font-size: 16px;
+    }
+    img {
+      width: 24px;
+      height: 24px;
+    }
+    div {
+      display: flex;
+      flex-direction: row;
+      gap: 4px;
+    }
+  }
+  video {
+    width: 100%;
+    border-radius: 0px;
+  }
+}
