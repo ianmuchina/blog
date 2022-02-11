@@ -1,0 +1,38 @@
+@import "../colors/chakra";
+
+$gray-050: $Gray-050;
+$gray-100: $Gray-100;
+$gray-200: $Gray-200;
+$gray-300: $Gray-300;
+$gray-400: $Gray-400;
+$gray-500: $Gray-500;
+$gray-600: $Gray-600;
+$gray-700: $Gray-700;
+$gray-800: $Gray-800;
+$gray-900: $Gray-900;
+
+$accent-050: $Green-050;
+$accent-100: $Green-100;
+$accent-200: $Green-200;
+$accent-300: $Green-300;
+$accent-400: $Green-400;
+$accent-500: $Green-500;
+$accent-600: $Green-600;
+$accent-700: $Green-700;
+$accent-800: $Green-800;
+$accent-900: $Green-900;
+
+.dark {
+    --bg: $gray-900;
+    --code-bg: #1a202c;
+    --alt-bg: #2d3748;
+    --code-frame-bg: #2f394b;
+    --code-border: #2d3748;
+    --border: #4a5568;
+    --text: #e2e8f0;
+    --headers: #edf2f7;
+    --text-secondary: #cbd5e0;
+    --accent: #9ae6b4;
+    --accent-raw: 154, 230, 180;
+    --accent-alt: #bde2cb;
+}
