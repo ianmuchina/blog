@@ -22,22 +22,12 @@ params:
 PygmentsUseClasses: true
 pygmentsCodefences: true
 
-caches:
-  assets:
-    dir: :resourceDir/_gen
-    maxAge: -1
-  getcsv:
-    dir: :cacheDir/:project
-    maxAge: -1
-  getjson:
-    dir: :cacheDir/:project
-    maxAge: 24h
-  getresource:
-    dir: :cacheDir/:project
-    maxAge: -1
-  images:
-    dir: :resourceDir/_gen
-    maxAge: -1
-  modules:
-    dir: :cacheDir/modules
-    maxAge: -1
+module:
+  imports:
+    - path: github.com/ianmuchina/hashflagArchive
+      mounts:
+        - source: img/
+          target: assets/twitter/hashflags
+
+        - source: data
+          target: data

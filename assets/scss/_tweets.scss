@@ -10,6 +10,12 @@
   gap: 12px;
   border-radius: var(--tw-border-radius);
 }
+.emoji {
+  height: 1.3em;
+  width: 1.3em;
+  margin: 0 .05em 0 .1em;
+  vertical-align: -0.1em;
+}
 
 // Top Section
 .userInfo {
@@ -57,9 +63,10 @@
 .checkmark {
   margin-left: 4px;
   width: 18px;
+}
+.checkmark >svg {
   color: var(--tw-checkmark);
 }
-
 .fullText {
   margin: 0px;
   padding: 0px;

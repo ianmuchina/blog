@@ -1,0 +1,12 @@
+
+    
+{{ $data := index .ctx.Site.Data.hashtags .hashtag }}
+<a style="color: var(--accent);" href="#{{.hashtag}}">    
+    #{{.hashtag}}
+</a>
+    {{ with $data }}
+    {{ $img := index . 0 }}
+    {{ $src := (print "twitter/hashflags/" $img ".png") }}
+    {{ $h := resources.Get $src }}
+    <img class="emoji" src="{{$h.RelPermalink}}" alt="">
+{{ end }}

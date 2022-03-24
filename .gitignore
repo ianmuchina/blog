@@ -1,3 +1,4 @@
 public/
 components/
 node_modules
+_vendor/
