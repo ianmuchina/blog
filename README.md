@@ -28,7 +28,7 @@ params:
 
 - public api (cdn.syndication.twimg.com)
 - private api (V2)
-- optional backup json responses to data/ folder
+- optional) backup/ append json responses to data/ folder
 - (optional) backup mages & videos locally to assets folder
 - video quality detection
 - Emoji on all browsers
@@ -36,5 +36,7 @@ params:
 - Twitter spaces
 - Twitter recordings
 - semantic markup
-- minimal well documented css & templates
+- themeing api with css custom properties
+- minimal well documented css & html templates
 - exampleSite folder with every type of tweet
+- rwdu
