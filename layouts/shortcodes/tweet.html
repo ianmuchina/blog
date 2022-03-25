@@ -284,9 +284,9 @@ Profile Pic resoultions
     <section style="font-size: small;">
       <!-- Gif -->
       {{if eq .video.contentType "gif"}}
-        <video controls loop muted autoplay poster={{.video.poster}}>
-          {{ range .video.variants }}
-            <source src={{.src}} type={{.type}}/>
+      {{ range .video.variants }}
+      
+      <video loop muted autoplay src="{{.src}}">
           {{ end }}
         </video>
       {{ end }}
@@ -377,6 +377,20 @@ Profile Pic resoultions
         </div>
 
         <p class="fullText"> {{- $text | safeHTML -}} </p>
+
+        {{ if .photos }}
+        {{ $photosCount := len .photos }}
+        <div class="gallery gallery-{{$photosCount}}">
+          {{ range .photos }}
+          <img 
+            loading="lazy"
+            src="{{.url}}:small"
+            {{if .accessibilityLabel}}
+              alt='{{.accessibilityLabel}}'
+            {{end}}/>
+          {{ end }}
+        </div>
+      {{ end }}
 
         <!-- Gif -->
         {{if eq .video.contentType "gif"}}
