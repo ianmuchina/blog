@@ -35,3 +35,9 @@ caches:
   getjson:
     dir: :resourceDir/
     maxAge: -1
+  getresource:
+    dir: :resourceDir/
+    maxAge: -1
+  images:
+    dir: :resourceDir/_gen
+    maxAge: -1
