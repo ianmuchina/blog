@@ -3,7 +3,7 @@ A Hugo Theme.
 
 ## Installation
 ```console
-git submodule add https://github.com/ianmuchina/purple themes/purple
+git submodu le add https://github.com/ianmuchina/purple themes/purple
 ```
 
 ## Configuration
@@ -23,3 +23,20 @@ params:
 # TODO
 - [ ] 404 Page
 - [ ] Proper Footer
+
+## static tweet
+
+- public api (cdn.syndication.twimg.com)
+- private api (V2)
+- optional) backup/ append json responses to data/ folder
+- (optional) backup mages & videos locally to assets folder
+- video quality detection
+- Emoji on all browsers
+- hashflags
+- Twitter spaces
+- Twitter recordings
+- semantic markup
+- themeing api with css custom properties
+- minimal well documented css & html templates
+- exampleSite folder with every type of tweet
+- rwdu
