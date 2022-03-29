@@ -21,7 +21,6 @@ params:
 
 PygmentsUseClasses: true
 pygmentsCodefences: true
-
 module:
   imports:
     - path: github.com/ianmuchina/hashflagArchive
@@ -31,3 +30,8 @@ module:
 
         - source: data
           target: data
+# cache json forever
+caches:
+  getjson:
+    dir: :resourceDir/
+    maxAge: -1

@@ -1,7 +1,6 @@
 {{- define "main" -}}
     {{- partial "nav.html" .}}
     <main class="post">
-        <link href="/css/syntax.css" rel="stylesheet" type="text/css">
         {{- partial "date.html" . -}}
         <h1 class="accent">{{- .Title -}}</h1>
         {{- partial "tags.html" . -}}
