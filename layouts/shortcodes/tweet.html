@@ -323,7 +323,7 @@ Profile Pic resoultions
       {{ range .video.variants }}
       {{- $gif := resources.GetRemote .src -}}
 
-      <video loop muted autoplay src="{{$gif.RelPermalink}}">
+      <video loop muted playsinline autoplay src="{{$gif.RelPermalink}}">
           {{ end }}
         </video>
       {{ end }}
@@ -336,7 +336,7 @@ Profile Pic resoultions
             {{$src = .src}}
             {{ end }}
         {{ end }}
-        <video preload="metadata" controls poster="{{.poster}}" src="{{$src}}"></video>
+        <video preload="none" controls poster="{{.poster}}" src="{{$src}}"></video>
       {{ end }}
     </section>
     {{ end }}
