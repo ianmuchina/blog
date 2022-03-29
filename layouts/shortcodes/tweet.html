@@ -1,4 +1,10 @@
 {{ $hashtags := .Site.Data.hashtags }}
+{{ $emojiMap := .Site.Data.emoji }}
+
+{{ $hz := newScratch }}
+
+{{/* <!-- Emojis that are already replaced -->  */}}
+
 <!-- Load Tweet Data -->
 {{ $res := getJSON "https://cdn.syndication.twimg.com/tweet?id=" (.Get "id") }}
 
@@ -9,7 +15,7 @@
 <!-- Variables -->
 {{- $text := $res.text -}}
 
-{{ $hz := newScratch }}
+
 <!-- Media -->
 <!-- Remove all media Links -->
 {{- range $media := $res.entities.media -}}
@@ -45,7 +51,8 @@
     {{ $img = index . 0 }}
     {{ $src := (print "twitter/hashflags/" $img ".png") }}
     {{ $h := resources.Get $src }}
-    {{ $img = printf "<img class='emoji' src='%s' alt=''>" $h.RelPermalink }}
+    
+    {{ $img = printf "<img class='emoji' src='%s' alt=''>" (print "data:image/png;base64," ($h.Content | base64Encode)) }}
   {{ end }}
 
   {{ $1 := printf "#%s" .text }}
@@ -54,6 +61,27 @@
   {{ $hz.Set .text "true" }}
   {{ end }}
 {{ end }}
+
+{{/*  Emojify adds an emoji class to all emojis */}}
+{{ define "partials/emojify-text.html" }}
+  {{ $text := .text }}
+  {{ $seen_emoji := newScratch }}
+  {{ $emojiMap := .emojiMap }}
+  {{ range split $text "" }} 
+    {{ with index $emojiMap . }}
+      {{ if not ($seen_emoji.Get .character) }}
+        {{ $1 := .character }}
+        {{ $2 := printf "<span class='emoji'>%s</span>" .character }}
+        {{ $text = replace $text .character $2  }}
+        {{ $seen_emoji.Set .character "true" }}
+      {{end}}
+    {{ end }}
+  {{ end }}
+  {{return $text}}
+{{ end }}
+
+{{/*  Emojify Text */}}
+{{ $text = partial "partials/emojify-text.html" (dict "text" $text "emojiMap" $emojiMap) }}
 
 <!-- Symbols -->
 <!-- Replace symbols($) with link to symbol search page -->
@@ -160,16 +188,20 @@ Profile Pic resoultions
 '_bigger' => '73x73'
 ''        => 'original'
 -->
-{{$profilePic := replace $res.user.profile_image_url_https "_normal" "_bigger"}}
+{{- $ProfilePicSrc := replace $res.user.profile_image_url_https "_normal" "_bigger" -}}
+{{- $profilePic := resources.GetRemote $ProfilePicSrc -}}
 
 <article class="tweet" lang="{{.lang}}"> 
   <!-- User Info -->
   <div class="userInfo">
     <!-- Profile Pic -->
-    <img loading="lazy" src={{ $profilePic}} class="profilePhoto"/> <div>
+    <img loading="lazy" src="data:image/jpeg;base64,{{ $profilePic.Content | base64Encode }}" class="profilePhoto"/> <div>
       <!-- username && verified badge -->
       <a target="_blank" rel="noopener noreferrer" class="userName" href={{$userUrl}}>
         <!-- username -->
+        
+        {{ $text = partial "partials/emojify-text.html" (dict "text" $text "emojiMap" $emojiMap) }}
+
         <span class="tw-name"> {{- .user.name -}} </span>
         <!-- verified badge -->
         {{ if .user.verified }}
@@ -237,6 +269,8 @@ Profile Pic resoultions
       <a href="{{$url}}" class="overlay"></a>
     
       <!-- Thumbnail -->
+
+
       <img class="card_thumbnail" src="{{.thumbnail_image_large.image_value.url}}" alt="">
     
       <!-- Text Content -->
@@ -253,7 +287,7 @@ Profile Pic resoultions
         <!-- Description. Truncated to 110 characters. Will not break on words -->
         <!-- TODO: Make this shorter on mobile -->
         <p class="description">
-          {{.description.string_value | truncate 110 }}
+          {{.description.string_value }}
         </p>
       </div>
     </section>
@@ -267,9 +301,11 @@ Profile Pic resoultions
     {{ $photosCount := len .photos }}
     <div class="gallery gallery-{{$photosCount}}">
       {{ range .photos }}
+      {{- $img := resources.GetRemote .url -}}
+
       <img 
         loading="lazy"
-        src="{{.url}}:small"
+        src="{{$img.RelPermalink}}"
         {{if .accessibilityLabel}}
           alt='{{.accessibilityLabel}}'
         {{end}}/>
@@ -285,8 +321,9 @@ Profile Pic resoultions
       <!-- Gif -->
       {{if eq .video.contentType "gif"}}
       {{ range .video.variants }}
-      
-      <video loop muted autoplay src="{{.src}}">
+      {{- $gif := resources.GetRemote .src -}}
+
+      <video loop muted autoplay src="{{$gif.RelPermalink}}">
           {{ end }}
         </video>
       {{ end }}
@@ -380,7 +417,7 @@ Profile Pic resoultions
 
         {{ if .photos }}
         {{ $photosCount := len .photos }}
-        <div class="gallery gallery-{{$photosCount}}">
+        <div style="overflow: visible" class="gallery gallery-{{$photosCount}}">
           {{ range .photos }}
           <img 
             loading="lazy"
