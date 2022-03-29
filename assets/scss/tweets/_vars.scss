@@ -1,0 +1,29 @@
+@import "../colors/tailwind";
+
+:root {
+    --tw-border-radius: 8px;
+
+    --tw-text: var(--text);
+    --tw-text-secondary: var(--text-secondary);
+    --tw-accent-text: var(--accent);
+    --tw-link-text-hover: var(--accent);
+    --tw-link-bg-hover: rgba(var(--accent-raw), 0.1);
+    --tw-border: var(--code-border);
+    --tw-poll-bar-win: var(--accent-800);
+}
+
+.light {
+    --tw-bg: white;
+    --tw-poll-bar: #e2e8f0;
+    --tw-likes-text-hover: #ef4444;
+    --tw-likes-bg-hover: #fee2e2;
+    --tw-checkmark: var(--accent);
+}
+
+.dark {
+    --tw-bg: var(--code-bg);
+    --tw-checkmark: var(--text);
+    --tw-likes-bg-hover: rgba(248, 113, 113, 0.1);
+    --tw-likes-text-hover: #f87171;
+    --tw-poll-bar: #374151;
+}
