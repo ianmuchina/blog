@@ -3,4 +3,5 @@ components/
 node_modules
 _vendor/
 .hugo_build.lock
-resources/
+resources/_gen
+resources/filecache/assets/
