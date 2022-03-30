@@ -3,20 +3,22 @@
   all: unset;
   width: 1.5rem;
   justify-self: end;
-  transition: var(--transition);
 }
 
 #toggle:active {
   transform: rotate(30deg);
+  transition: all 0.3s;
 }
 
+html {
+  transition: var(--transition);
+}
 // Globals
 body {
   color: var(--text);
   background-color: var(--bg);
   font-family: var(--sans-font);
   font-size: 18px;
-  transition: var(--transition);
 }
 
 // Make the main element a nice central block

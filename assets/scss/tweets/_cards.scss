@@ -3,6 +3,13 @@
     border-radius: var(--tw-border-radius);
     overflow: clip;
     position: relative;
+    max-width: 260px;
+}
+
+@media screen and (min-width: 420px) {
+    .card {
+        max-width: 410px;
+    }
 }
 
 .card:hover {

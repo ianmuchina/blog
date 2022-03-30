@@ -24,6 +24,8 @@
 }
 
 .gallery-1 img {
+    height: unset;
+    min-height: 250px;
     max-height: 640px;
     max-width: max-content;
     object-fit: contain;

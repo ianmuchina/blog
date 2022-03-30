@@ -1,66 +1,153 @@
-{{ $hashtags := .Site.Data.hashtags }}
-{{ $emojiMap := .Site.Data.emoji }}
+<!-- config to set class of tweet -->
+{{ $mode := "focus" }}
 
-{{ $hz := newScratch }}
-
-{{/* <!-- Emojis that are already replaced -->  */}}
-
-<!-- Load Tweet Data -->
+<!-- GET tweet data data from public API -->
 {{ $res := getJSON "https://cdn.syndication.twimg.com/tweet?id=" (.Get "id") }}
 
-<!-- Process Tweet FullText by replacing entitity text with anchor links. -->
-<!-- developer.twitter.com/en/docs/twitter-api/v1/data-dictionary/object-model/entities -->
-<!-- WARNING: Very unsafe, will cause xss if malicious input is entered  -->
 
-<!-- Variables -->
+<!-- Map of hashtags with valid Hashflag 
+     src: github.com/ianmuchina/HashflagArchive  -->
+{{ $hashtags := .Site.Data.hashtags }}
+<!-- Map of Unicode v14 emojis 
+     src: github.com/forPelevin/gomoji -->
+{{ $emojiMap := .Site.Data.emoji }}
+<!-- HashTags that are already replaced -->
+{{ $seen_hashtag := newScratch }}
+<!-- Tweet text as modifiable variable -->
 {{- $text := $res.text -}}
 
 
-<!-- Media -->
-<!-- Remove all media Links -->
+<!-- Entities -->
+
+<!-- 1. Media -->
+<!-- Remove all media links -->
 {{- range $media := $res.entities.media -}}
   {{- $text = replace $text $media.url "" -}}
 {{- end -}}
 
-<!-- Urls -->
-<!-- Replace all urls with their expanded version -->
+
+<!-- 2. Urls -->
+<!-- TODO: Sanitize -->
 {{- range $res.entities.urls -}}
-  {{- $1 := .url -}}
-  {{- $2 := printf "<a target='_blank' rel='noopener noreferrer' href='%s'>%s</a>" .expanded_url .display_url -}}
-  {{ $text = replace $text $1 $2  }}
+  <!-- Link to expanded url -->
+  {{- $new := printf "<a target='_blank' rel='noopener noreferrer' href='%s'>%s</a>" .expanded_url .display_url -}}
+  <!-- if url points to quote tweet, remove it -->
+  {{ if in .expanded_url $res.quoted_tweet.id_str }}
+    {{ $new = ""}}
+  {{ end }}  
+  <!-- Replace t.co text with clickable link -->
+  {{ $text = replace $text .url $new  }}
 {{ end }}
 
-<!-- User Mentions -->
-<!-- Replace user mentions (@) with link to users profile -->
+<!-- 3. Mentions -->
 {{- range $res.entities.user_mentions -}}
-  {{- $1 := printf "@%s" .screen_name -}}
-  {{- $2 := printf "<a href='https://twitter.com/intent/user?user_id=%s'>@%s</a>" .id_str .screen_name -}}
-  {{- $text = replace $text $1 $2 -}}
+  <!-- Prefix username with @ -->
+  {{- $old := printf "@%s" .screen_name -}}
+  <!-- Link pointing to user profile. Works even if user changes username -->
+  {{- $new := printf "<a href='https://twitter.com/intent/user?user_id=%s'>@%s</a>" .id_str .screen_name -}}
+  <!-- Replace text with clickable link -->
+  {{- $text = replace $text $old $new -}}
 {{- end -}}
 
-
-<!-- Hashtags -->
-<!-- Replace hashtags (#) with link to hashtag search page -->
+<!-- 3. Hashtags -->
+<!-- TODO: Handle hashtags with multiple campaigns  -->
 {{ range $res.entities.hashtags }}
-
-  {{ if $hz.Get .text }}
-  {{ else }}
-  {{ $img := ""}}
-  {{ $data := index $hashtags (lower .text) }}
-  {{ with $data }}
-    {{ $img = index . 0 }}
-    {{ $src := (print "twitter/hashflags/" $img ".png") }}
-    {{ $h := resources.Get $src }}
-    
-    {{ $img = printf "<img class='emoji' src='%s' alt=''>" (print "data:image/png;base64," ($h.Content | base64Encode)) }}
-  {{ end }}
-
-  {{ $1 := printf "#%s" .text }}
-  {{ $2 := printf "<a target='_blank' rel='noopener noreferrer' href='https://twitter.com/hashtag/%s'>#%s</a> %s" .text .text $img }}
-  {{ $text = replace $text $1 $2  }}
-  {{ $hz.Set .text "true" }}
+  {{ if not ($seen_hashtag.Get .text) }}
+    <!-- Initialize hashflag variables -->
+    {{ $hashflag := ""}}
+    <!-- If hashtag has valid hashflag campaign -->
+    {{ with  index $hashtags (lower .text) }}
+      <!-- Select hashflag image based on the campaign name -->
+      {{ $h := resources.Get (print "twitter/hashflags/" (index . 0) ".png") }}
+      <!-- Encode hashflag image to base64 -->
+      {{ $h64 := (print "data:image/png;base64," ($h.Content | base64Encode))}}
+      <!-- Make img link -->
+      {{ $hashflag = printf "<img class='emoji' src='%s' alt=''>" $h64 }}
+    {{ end }}
+    <!-- Prefix hashtag with # -->
+    {{ $old := printf "#%s" .text }}
+    <!-- Make hashtag link + optional hashflag -->
+    {{ $new := printf "<a target='_blank' rel='noopener noreferrer' href='https://twitter.com/hashtag/%s'>#%s</a> %s" .text .text $hashflag }}
+    <!-- Replace text with clickable link -->
+    {{ $text = replace $text $old $new }}
+    <!-- Mark hasshtag as seen -->
+    {{ $seen_hashtag.Set .text "true" }}
   {{ end }}
 {{ end }}
+
+<!-- 4. Symbols/Cashflags -->
+{{ range $res.entities.symbols }}
+  {{ $old := printf "$%s" .text }}
+  {{ $new := printf "<a target='_blank' rel='noopener noreferrer' href='https://twitter.com/search?q=%24%s'>$%s</a>" .text .text }}
+  {{ $text = replace $text $old $new }}
+{{ end }}
+
+<!-- Compact notation for likes
+     eg: 1234 => 1.2K -->
+{{ $likes := $res.favorite_count }}
+{{ $k := math.Floor	(div $likes 1000) }}
+{{ $h := math.Floor	(mul .01 (mod $likes 1000)) }}
+
+<!-- If Hundreds value is zero -->
+<!-- eg: 12,000 => 12K  -->
+{{ if (gt $k 0) }} {{$likes = print $k "K" }} {{end}}
+
+<!-- If Hundreds value is >100 -->
+<!-- eg: 12,345 => 12.3K  -->
+{{ if and (gt $k 0) (gt $h 0) }}
+  {{$likes = print $k "." $h "K" }}
+{{ end }}
+
+<!-- Simplify the verbose poll schema to an array & some variables -->
+<!-- Initialize Variables -->
+{{ $pollVal1 := 0 }} {{ $pollStr1 := ""}}
+{{ $pollVal2 := 0 }} {{ $pollStr2 := ""}} 
+{{ $pollVal3 := 0 }} {{ $pollStr3 := ""}}
+{{ $pollVal4 := 0 }} {{ $pollStr4 := ""}}
+
+{{ $maxCount := 0 }} {{ $totalCount := 0 }}
+
+{{ $isFinal := $res.card.binding_values.counts_are_final.boolean_value }}
+
+<!-- Slice of maps with a 'count' & 'label' key -->
+{{ $polls := slice }}
+
+<!-- If tweet has a poll, start adding data to $polls -->
+{{- if $res.card.binding_values.choice1_count.string_value -}}
+  <!-- 1 (Required) -->
+  {{ $pollVal1 = int $res.card.binding_values.choice1_count.string_value }}
+  {{ $pollStr1 = $res.card.binding_values.choice1_label.string_value }}
+  <!-- Make map & append to slice -->
+  {{ $polls = $polls | append (dict "count" $pollVal1 "label" $pollStr1) }}
+  
+  <!-- 2 (Required) -->
+  {{ $pollVal2 = int $res.card.binding_values.choice2_count.string_value }}
+  {{ $pollStr2 = $res.card.binding_values.choice2_label.string_value }}
+  <!-- Make map & append to slice -->
+  {{ $polls = $polls | append (dict "count" $pollVal2 "label" $pollStr2) }}
+  
+
+  <!-- 3 (Optional)  -->
+  {{ if $res.card.binding_values.choice3_count.string_value }}
+    {{ $pollVal3 = int $res.card.binding_values.choice3_count.string_value}}
+    {{ $pollStr3 = $res.card.binding_values.choice3_label.string_value }}
+    <!-- Make map & append to slice -->
+    {{ $polls = $polls | append (dict "count" $pollVal3 "label" $pollStr3) }}
+  {{ end }}
+
+  <!--  4 (Optional)  -->
+  {{ if $res.card.binding_values.choice4_count.string_value }}
+    {{ $pollVal4 = int $res.card.binding_values.choice4_count.string_value}}
+    {{ $pollStr4 = $res.card.binding_values.choice4_label.string_value }}
+    <!-- Make map & append to slice -->
+    {{ $polls = $polls | append (dict "count" $pollVal4 "label" $pollStr4) }}
+  {{- end -}}
+{{- end -}}
+
+<!-- Poll voter count -->
+{{ $totalCount = (add (add $pollVal1 $pollVal2) (add $pollVal3 $pollVal4 )) }}
+<!-- Highest score -->
+{{ $maxCount = int (math.Max (math.Max $pollVal1 $pollVal2) (math.Max $pollVal3 $pollVal4 ))}}
 
 {{/*  Emojify adds an emoji class to all emojis */}}
 {{ define "partials/emojify-text.html" }}
@@ -80,221 +167,140 @@
   {{return $text}}
 {{ end }}
 
-{{/*  Emojify Text */}}
 {{ $text = partial "partials/emojify-text.html" (dict "text" $text "emojiMap" $emojiMap) }}
 
-<!-- Symbols -->
-<!-- Replace symbols($) with link to symbol search page -->
-{{ range $res.entities.symbols }}
-  {{ $1 := printf "$%s" .text }}
-  {{ $2 := printf "<a target='_blank' rel='noopener noreferrer' href='https://twitter.com/search?q=%24%s'>$%s</a>" .text .text }}
-  {{ $text = replace $text $1 $2 }}
-{{ end }}
-
-<!-- Compact notation for likes -->
-<!-- eg: 1234 => 1.2K -->
-{{ $likes := $res.favorite_count }}
-{{ $k := math.Floor	(div $likes 1000) }}
-{{ $h := math.Floor	(mul .01 (mod $likes 1000)) }}
-
-<!-- Hundreds value is zero -->
-<!-- eg: 12,000 => 12K  -->
-{{if (gt $k 0) }}
-  {{$likes = print $k "K" }}
-{{end}}
-
-<!-- Hundreds value is >100 -->
-<!-- eg: 12,345 => 12.3K  -->
-{{if and (gt $k 0) (gt $h 0) }}
-  {{$likes = print $k "." $h "K" }}
-{{ end }}
-
-
-<!-- cdn.syndication.twimg.com has a very verbose schema for polls -->
-<!-- The code below converts it into something more DRY -->
-
-{{ $pollVal1 := 0 }}
-{{ $pollVal2 := 0 }}
-{{ $pollVal3 := 0 }}
-{{ $pollVal4 := 0 }}
-
-{{ $pollStr1 := ""}}
-{{ $pollStr2 := ""}}
-{{ $pollStr3 := ""}}
-{{ $pollStr4 := ""}}
-
-{{ $maxCount := 0 }}
-{{ $totalCount := 0 }}
-
-<!-- Initialize Poll data as an array of dictionaries -->
-<!-- Each dictionary has a 'count' and 'label' key -->
-{{ $polls := slice }}
-
-<!-- If tweet has a poll, start adding data to $polls -->
-{{- if $res.card.binding_values.choice1_count.string_value -}}
-
-  <!-- 1 (Required) -->
-  {{ $pollVal1 = int $res.card.binding_values.choice1_count.string_value }}
-  {{ $pollStr1 = $res.card.binding_values.choice1_label.string_value }}
-  <!-- Make map & append to slice -->
-  {{ $polls = $polls | append (dict "count" $pollVal1 "label" $pollStr1) }}
-  
-
-  <!-- 2 (Required) -->
-  {{ $pollVal2 = int $res.card.binding_values.choice2_count.string_value }}
-  {{ $pollStr2 = $res.card.binding_values.choice2_label.string_value }}
-  <!-- Make map & append to slice -->
-  {{ $polls = $polls | append (dict "count" $pollVal2 "label" $pollStr2) }}
-  
-
-  <!-- 3 (Optional)  -->
-  {{ if $res.card.binding_values.choice3_count.string_value }}
-    {{ $pollVal3 = int $res.card.binding_values.choice3_count.string_value}}
-    {{ $pollStr3 = $res.card.binding_values.choice3_label.string_value }}
-    
-    <!-- Make map & append to slice -->
-    {{ $polls = $polls | append (dict "count" $pollVal3 "label" $pollStr3) }}
-  {{ end }}
-
-
-  <!--  4 Optional  -->
-  {{ if $res.card.binding_values.choice4_count.string_value }}
-    {{ $pollVal4 = int $res.card.binding_values.choice4_count.string_value}}
-    {{ $pollStr4 = $res.card.binding_values.choice4_label.string_value }}
-    
-    <!-- Make map & append to slice -->
-    {{ $polls = $polls | append (dict "count" $pollVal4 "label" $pollStr4) }}
-  {{- end -}}
-{{- end -}}
-
-<!-- Calculate totals -->
-{{ $totalCount = (add (add $pollVal1 $pollVal2) (add $pollVal3 $pollVal4 )) }}
-
-<!-- Get max value -->
-{{ $maxCount = int (math.Max (math.Max $pollVal1 $pollVal2) (math.Max $pollVal3 $pollVal4 ))}}
-
+<!-- Render Tweet -->
 {{- with $res -}}
-  <!-- Tweet urls -->
-  {{- $host := "https://twitter.com/" -}}
-  {{- $tweetUrl := print $host (printf "%s/status/%s" .user.screen_name $res.id_str) -}}
-  {{- $replyUrl := print $host (printf "intent/like?in_reply_to=%s" .id_str) -}}
-  {{- $likeUrl  := print $host (printf "intent/like?tweet_id=%s" .id_str) -}}
-  {{- $userUrl  := print $host (printf "intent/user?user_id=%s" .user.id_str) -}}
+<!-- Tweet urls -->
+{{- $host := "https://twitter.com/" -}}
+{{- $tweetUrl := print $host (printf "%s/status/%s" .user.screen_name $res.id_str) -}}
+{{- $replyUrl := print $host (printf "intent/like?in_reply_to=%s" .id_str) -}}
+{{- $likeUrl  := print $host (printf "intent/like?tweet_id=%s" .id_str) -}}
+{{- $userUrl  := print $host (printf "intent/user?user_id=%s" .user.id_str) -}}
 
 <!-- 
-Profile Pic resoultions
-'_mini'   => '24x24' 
-'_normal' => '48x48'
-'_bigger' => '73x73'
-''        => 'original'
+  Profile Pic resoultions
+  '_mini'   => '24x24' 
+  '_normal' => '48x48'
+  '_bigger' => '73x73'
+  ''        => 'original'
 -->
-{{- $ProfilePicSrc := replace $res.user.profile_image_url_https "_normal" "_bigger" -}}
-{{- $profilePic := resources.GetRemote $ProfilePicSrc -}}
+{{- $profilePicSrc := replace $res.user.profile_image_url_https "_normal" "_bigger" -}}
+{{- $profilePic := resources.GetRemote $profilePicSrc -}}
 
-<article class="tweet" lang="{{.lang}}"> 
+<article class="tweet {{$mode}}" lang="{{.lang}}"> 
+  <!-- Profile Pic Wrapper -->
+  <div class="profile-pic">
+    <!-- Profile Pic Image -->
+    <img
+      width="42"
+      height="42"
+      loading="lazy"
+      alt=""
+      src='data:image/jpg;base64,{{ $profilePic.Content | base64Encode }}'
+    />
+    <!-- TODO: Thread lines -->
+  </div>
+  
   <!-- User Info -->
-  <div class="userInfo">
-    <!-- Profile Pic -->
-    <img loading="lazy" src="data:image/jpeg;base64,{{ $profilePic.Content | base64Encode }}" class="profilePhoto"/> <div>
-      <!-- username && verified badge -->
-      <a target="_blank" rel="noopener noreferrer" class="userName" href={{$userUrl}}>
-        <!-- username -->
-        
-        {{ $text = partial "partials/emojify-text.html" (dict "text" $text "emojiMap" $emojiMap) }}
+  <div class="user-info">
+    <a class="name" href={{$userUrl}} >        
+      <!-- Full Name -->
+      <!-- Emojify User's name -->
+      {{ .user.name }}
+      <!-- Checkmark (Optional) -->
+      {{ if .user.verified }}
+        <span class="checkmark">
+          {{ partial "inline-svg" "twitter/checkmark"}}
+        </span>
+      {{ end }}
+    </a>
 
-        <span class="tw-name"> {{- .user.name -}} </span>
-        <!-- verified badge -->
-        {{ if .user.verified }}
-          <span class="checkmark">
-            <svg viewBox="0 0 24 24" aria-label="Verified account" fill="currentColor"><g><path d="M22.5 12.5c0-1.58-.875-2.95-2.148-3.6.154-.435.238-.905.238-1.4 0-2.21-1.71-3.998-3.818-3.998-.47 0-.92.084-1.336.25C14.818 2.415 13.51 1.5 12 1.5s-2.816.917-3.437 2.25c-.415-.165-.866-.25-1.336-.25-2.11 0-3.818 1.79-3.818 4 0 .494.083.964.237 1.4-1.272.65-2.147 2.018-2.147 3.6 0 1.495.782 2.798 1.942 3.486-.02.17-.032.34-.032.514 0 2.21 1.708 4 3.818 4 .47 0 .92-.086 1.335-.25.62 1.334 1.926 2.25 3.437 2.25 1.512 0 2.818-.916 3.437-2.25.415.163.865.248 1.336.248 2.11 0 3.818-1.79 3.818-4 0-.174-.012-.344-.033-.513 1.158-.687 1.943-1.99 1.943-3.484zm-6.616-3.334l-4.334 6.5c-.145.217-.382.334-.625.334-.143 0-.288-.04-.416-.126l-.115-.094-2.415-2.415c-.293-.293-.293-.768 0-1.06s.768-.294 1.06 0l1.77 1.767 3.825-5.74c.23-.345.696-.436 1.04-.207.346.23.44.696.21 1.04z"></path></g></svg>
-           </span>
-          {{ end }}
-        </a>
-      <!-- ScreenName -->
-      <span class="screenName">@<span>{{.user.screen_name}}</span></span>
-    </div>
+    <!-- Screen Name -->
+    <span class="scr-name">@<span>{{.user.screen_name}}</span></span>
+    <!-- Date Compact (Optional) -->
+    <!-- TODO: Implement -->
+    <div class="date-compact">Jul 14 1970</div>
   </div>
 
-  <!-- FullText -->
-  <p class="fullText">
-    {{- $text | safeHTML -}}
-  </p>
+  <section class="content">
+    <!-- FullText -->
+    <p class="text"> {{- $text | safeHTML -}} </p>
 
-  <!-- Polls -->
-  {{ if (gt (len $polls) 0) }}
-  <section class="polls">
-    {{ range $polls }}
-      {{ $percent := (math.Round ( mul ( div ( add .count 0.0 ) $totalCount) 100)) }}  
-      <div class="poll_container {{if eq .count $maxCount}}win{{end}}">
-      <!--  Text -->
-        <div class="progress_container_text">          
-          <!-- Label + Votes Count -->
-          <span> {{ .label }} &nbsp; {{ .count }} </span>  
-          <!-- Percentage -->
-          <span> {{ $percent }}%</span>
+    <!-- Polls -->
+    {{ if (gt (len $polls) 0) }}
+      <section class="polls">
+        {{ range $polls }}
+          {{ $percent := (math.Round ( mul ( div ( add .count 0.0 ) $totalCount) 100)) }}  
+          <div class="poll_container {{if eq .count $maxCount}}win{{end}}">
+          <!--  Text -->
+            <div class="progress_container_text">          
+              <!-- Label + Votes Count -->
+              <span> {{ .label }} &nbsp; {{ .count }} </span>  
+              <!-- Percentage -->
+              <span> {{ $percent }}%</span>
+            </div>
+            <!-- Progress bar -->
+            <!-- Inline style to set width, winner has 'win_bar' class -->
+            <div
+              style="width: {{$percent}}%;"
+              class="progress_bar {{if eq .count $maxCount}}win_bar{{end}}"
+              aria-hidden="true">
+            </div>
+          </div>
+        {{ end }}
+        <div class="text-secondary">
+          <!-- Total Votes Cast -->
+          {{$totalCount}} votes 
+          <!-- If results are Final -->
+          {{if $isFinal }} <span>· Final results</span> {{end}}
         </div>
-        
-        <!-- Progress bar -->
-        <!-- Inline style to set width, winner has 'win_bar' class -->
-        <div 
-          style="width: {{$percent}}%;"
-          class="progress_bar {{if eq .count $maxCount}}win_bar{{end}}"
-          aria-hidden="true">
-        </div>
-      </div>
-    {{ end }}
-    <!-- Total Votes Cast -->
-    <div class="text-secondary"> {{$totalCount}} votes </div>
-    </section>
+      </section>
     {{ end }}
     <!-- End Polls -->
-  
+
 
   <!-- OpenGraph -->
   {{ if .card.binding_values.domain }}
-  {{ with .card.binding_values }}
-  <!-- Large Card -->
-  <section class="card {{ if .summary_photo_image_large }}card_large {{else}}card_small{{end}}">
-    <!-- Declare variables -->
-    {{ $url := .card_url.string_value }}    
+    {{ with .card.binding_values }}
+    <!-- Large Card -->
+    <section class="card {{ if .summary_photo_image_large }}card_large {{else}}card_small{{end}}">
+      {{ $url := .card_url.string_value }}    
     
-    <!-- Replace twitter url with expanded url  -->
-    {{ range $res.entities.urls}}
-    {{ if (eq $url .url) }}
-        {{ $url = .expanded_url}}
-      {{ end }}  
-    {{ end }}
+      <!-- Replace twitter url with expanded url  -->
+      {{ range $res.entities.urls}}
+        {{ if (eq $url .url) }}
+          {{ $url = .expanded_url}}
+        {{ end }}  
+      {{ end }}
     
       <!-- Overlay to make entire card clickable -->
       <a href="{{$url}}" class="overlay"></a>
     
       <!-- Thumbnail -->
-
-
       <img class="card_thumbnail" src="{{.thumbnail_image_large.image_value.url}}" alt="">
     
-      <!-- Text Content -->
-      <div class="card_content">
-        <!-- Hostname -->
-        <div class="vanity_url">
-          {{.vanity_url.string_value}}
-        </div>
+        <!-- Text Content -->
+        <div class="card_content">
+          <!-- Hostname -->
+          <div class="vanity_url">
+            {{.vanity_url.string_value}}
+          </div>
 
-        <!-- Title -->
-        <div class="title">
-          {{.title.string_value}}
+          <!-- Title -->
+          <div class="title">
+            {{.title.string_value}}
+          </div>
+          <!-- Description. Truncated to 110 characters. Will not break on words -->
+          <!-- TODO: Make this shorter on mobile -->
+          <p class="description">
+            {{.description.string_value }}
+          </p>
         </div>
-        <!-- Description. Truncated to 110 characters. Will not break on words -->
-        <!-- TODO: Make this shorter on mobile -->
-        <p class="description">
-          {{.description.string_value }}
-        </p>
-      </div>
-    </section>
-  {{ end }}
+      </section>
+    {{ end }}
   {{ end }}
   <!-- End OpenGraph -->
-
 
   <!-- Gallery -->
   {{ if .photos }}
@@ -302,13 +308,13 @@ Profile Pic resoultions
     <div class="gallery gallery-{{$photosCount}}">
       {{ range .photos }}
       {{- $img := resources.GetRemote .url -}}
-      
       <img 
       loading="lazy"
       src="{{$img.RelPermalink}}"
-      src="{{.url}}:small"
+      src="{{.url}}"
 
       {{ if eq 1 $photosCount }}
+        height="{{.height}}px"
         style="aspect-ratio: {{.width}}/{{.height}}"
       {{ end }}
 
@@ -321,7 +327,6 @@ Profile Pic resoultions
   {{ end }}
   <!-- End Gallery -->
 
-
   <!-- Videos & Gifs -->
   {{ if .video }}
     <section style="font-size: small;">
@@ -329,7 +334,6 @@ Profile Pic resoultions
       {{ if eq .video.contentType "gif"}}
         {{$gif := ""}}
 
-        {{.video.variants}}
         {{ range .video.variants }}
           {{ $gif = resources.GetRemote .src }}
         {{ end }}
@@ -337,7 +341,7 @@ Profile Pic resoultions
         <video loop muted playsinline autoplay src="{{$gif.RelPermalink}}"></video>
       {{ end }}
       <!-- Video -->
-      <!-- TODO: More qulauty options -->
+      <!-- TODO: More quality options. -->
       {{ if eq .video.contentType "media_entity" }}
         {{ $src := "" }}  
         {{ range sort .video.variants "src" }}
@@ -357,11 +361,11 @@ Profile Pic resoultions
 
     <!--  Quoted Tweet  -->
     {{ if .quoted_tweet }}
-    {{ with .quoted_tweet }}
-    <!-- Process FullText by replacing entitity text with anchor links. -->
-    {{- $text := .text -}}
-    <!-- Tweet urls -->
-    {{- $userUrl  := print $host (printf "intent/user?user_id=%s" .user.id_str) -}}
+      {{ with .quoted_tweet }}
+      <!-- Process FullText by replacing entitity text with anchor links. -->
+      {{- $text := .text -}}
+      <!-- Tweet urls -->
+      {{- $userUrl  := print $host (printf "intent/user?user_id=%s" .user.id_str) -}}
     
       <!--  TODO: Make this a function or sth. It's repeated twice -->
       <!-- Media -->
@@ -404,21 +408,28 @@ Profile Pic resoultions
       {{ end }}
 
       <!-- Tweet container -->
-      <article lang="{{.lang}}" class="quote_tweet" >
-        <div class="userInfo">
+      <article lang="{{.lang}}" class="tweet quoted" >
+        
+        <div class="profile-pic">
+          {{ $profilePic := replace .user.profile_image_url_https "_normal" "_mini" }}
+          <img class="profilePhoto" loading="lazy" src={{$profilePic}} /> 
+        </div>
+      
+        <div class="user-info">
           <!-- Profile Pic -->
           <!-- Use smallest image for profile pic in quote tweet -->
           <!-- TODO: If user is quoting themselves, skip & reuse the same image -->
-          {{$profilePic := replace .user.profile_image_url_https "_normal" "_mini"}}
-          <img class="profilePhoto" loading="lazy" src={{$profilePic}} /> 
-          
-            <!-- UserName -->
-            <a target="_blank" rel="noopener noreferrer" class="userName" href={{$userUrl}}>
-              <span class="tw-name">{{- .user.name -}}</span>
+          <!-- UserName -->
+          <a target="_blank" rel="noopener noreferrer" class="name" href={{$userUrl}}>
+                {{ $name := partial "partials/emojify-text.html" (dict "text" .user.name "emojiMap" $emojiMap) }}
+                <span>
+                  {{ $name | safeHTML }}
+                </span>
                 <!-- Checkmark -->
                 {{- if .user.verified -}}
-                  {{ resources.Get "tw-checkmark.svg" | safeHTML }}
-                <!-- TODO -->
+                <span class="checkmark">
+                  {{ partial "inline-svg" "twitter/checkmark"}}
+                </span>
                 {{- end -}}
               </a>
               <!-- Screen Name -->
@@ -426,67 +437,68 @@ Profile Pic resoultions
             </span>
         </div>
 
-        <p class="fullText"> {{- $text | safeHTML -}} </p>
+        <div class="content">
+
+        <p class="text"> {{- $text | safeHTML -}} </p>
 
         {{ if .photos }}
-        {{ $photosCount := len .photos }}
-        <div style="overflow: visible" class="gallery gallery-{{$photosCount}}">
-          {{ range .photos }}
-          <img 
-            loading="lazy"
-            src="{{.url}}:small"
-            width="{{.width}}"
-            height="{{.height}}"
+          {{ $photosCount := len .photos }}
+          <div style="overflow: visible" class="gallery gallery-{{$photosCount}}">
+            {{ range .photos }}
+              <img 
+                loading="lazy"
+                src="{{.url}}:small"
+                width="{{.width}}"
+                height="{{.height}}"
 
-            style="aspect-ratio: {{.width}}/{{.height}};"
-            {{if .accessibilityLabel}}
-              alt='{{.accessibilityLabel}}'
-            {{end}}/>
+                style="aspect-ratio: {{.width}}/{{.height}};"
+            
+                {{if .accessibilityLabel}} alt='{{.accessibilityLabel}}'{{end}}
+              />
+            {{ end }}
+            </div>
+        {{ end }}
+
+          <!-- Gif -->
+          {{if eq .video.contentType "gif"}}
+            <video preload="metadata" loop muted autoplay poster={{.video.poster}}>
+              {{ range .video.variants }}
+                <source src={{.src}} type={{.type}}/>
+              {{ end }}
+            </video>
           {{ end }}
-        </div>
+          <!-- End Gif -->
+
+          <!-- Video -->
+          {{ if eq .video.contentType "media_entity" }}
+            <video loop controls preload="metadata" poster='{{.video.poster}}'>
+              {{ range .video.variants }}
+                <source  src='{{.src}}' type="{{.type}}" />
+              {{ end }}
+            </video>
+          {{ end }}
+          <!-- End Video -->
+        </article>
+        {{ end }}
       {{ end }}
 
-        <!-- Gif -->
-        {{if eq .video.contentType "gif"}}
-          <video preload="metadata" loop muted autoplay poster={{.video.poster}}>
-            {{ range .video.variants }}
-              <source src={{.src}} type={{.type}}/>
-            {{ end }}
-          </video>
-        {{ end }}
-        <!-- End Gif -->
-
-        <!-- Video -->
-        {{ if eq .video.contentType "media_entity" }}
-          <video loop controls preload="metadata" poster='{{.video.poster}}'>
-            {{ range .video.variants }}
-              <source  src='{{.src}}' type="{{.type}}" />
-            {{ end }}
-          </video>
-        {{ end }}
-        <!-- End Video -->
-      </article>
-    {{ end }}
-    {{ end }}
-
-
-    <!-- Date -->
-    {{$date := "10:13 AM · Jul 04, 2021"}}
-    <a class="tw-date" aria-label="Posted on {{$date}}" href={{ $tweetUrl }}>{{ time.Format "3:04 PM · Jan 2, 2006 UTC" .created_at  }}</a>
+      <!-- Date -->
+      {{$date := "10:13 AM · Jul 04, 2021"}}
+      <a class="tw-date" aria-label="Posted on {{$date}}" href={{ $tweetUrl }}>{{ time.Format "3:04 PM · Jan 2, 2006 UTC" .created_at  }}</a>
     
-
-    <!-- Metadata: Likes, Link to tweet -->
-    <section class="meta">
-      <!-- Likes -->
-      <a class="likes" href="{{ $likeUrl }}" target="_blank" rel="noopener noreferrer" > 
+      <!-- Metadata: Likes, Link to tweet -->
+      <div class="meta">
+        <!-- Likes -->
+        <a class="likes" href="{{ $likeUrl }}" target="_blank" rel="noopener noreferrer" > 
         <!-- Icon -->
         {{ partial "inline-svg" "twitter/like"}} {{ $likes }}
-      </a>
-      <!-- Link To Tweet -->
-      <a href={{ $tweetUrl }} target="_blank" rel="noopener noreferrer" class="link">
-        <!-- Icon -->
-        {{ partial "inline-svg" "twitter/link"}} Link to Tweet
-      </a>
+        </a>
+        <!-- Link To Tweet -->
+        <a href={{ $tweetUrl }} target="_blank" rel="noopener noreferrer" class="link">
+          {{ partial "inline-svg" "twitter/link"}} Link to Tweet
+        </a>
+      </div>
     </section>
-  </article>
+  </div>
+</article>
 {{- end -}}
