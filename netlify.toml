@@ -1,6 +1,3 @@
 [build]
 publish = "public"
-command = "hugo"
-[context.production.environment]
-HUGO_VERSION = "0.96.0"
-HUGO_ENV = "production"
+command = "npm install hugo-extended --save-dev && $(npm bin)/hugo "
