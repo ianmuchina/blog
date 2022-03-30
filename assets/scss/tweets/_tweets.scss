@@ -158,3 +158,7 @@ a.tw-date:hover {
 .text-secondary {
   color: var(--tw-text-secondary);
 }
+
+.tweet video {
+  object-fit: cover;
+}

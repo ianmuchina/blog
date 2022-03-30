@@ -44,7 +44,7 @@
 {{ range $res.entities.hashtags }}
 
   {{ if $hz.Get .text }}
-  {{ else }}      
+  {{ else }}
   {{ $img := ""}}
   {{ $data := index $hashtags (lower .text) }}
   {{ with $data }}
@@ -302,13 +302,20 @@ Profile Pic resoultions
     <div class="gallery gallery-{{$photosCount}}">
       {{ range .photos }}
       {{- $img := resources.GetRemote .url -}}
-
+      
       <img 
-        loading="lazy"
-        src="{{$img.RelPermalink}}"
-        {{if .accessibilityLabel}}
-          alt='{{.accessibilityLabel}}'
-        {{end}}/>
+      loading="lazy"
+      src="{{$img.RelPermalink}}"
+      src="{{.url}}:small"
+
+      {{ if eq 1 $photosCount }}
+        style="aspect-ratio: {{.width}}/{{.height}}"
+      {{ end }}
+
+      {{if .accessibilityLabel}}
+        alt='{{.accessibilityLabel}}'
+      {{end}}
+      />
       {{ end }}
     </div>
   {{ end }}
@@ -319,24 +326,30 @@ Profile Pic resoultions
   {{ if .video }}
     <section style="font-size: small;">
       <!-- Gif -->
-      {{if eq .video.contentType "gif"}}
-      {{ range .video.variants }}
-      {{- $gif := resources.GetRemote .src -}}
+      {{ if eq .video.contentType "gif"}}
+        {{$gif := ""}}
 
-      <video loop muted playsinline autoplay src="{{$gif.RelPermalink}}">
-          {{ end }}
-        </video>
+        {{.video.variants}}
+        {{ range .video.variants }}
+          {{ $gif = resources.GetRemote .src }}
+        {{ end }}
+
+        <video loop muted playsinline autoplay src="{{$gif.RelPermalink}}"></video>
       {{ end }}
       <!-- Video -->
       <!-- TODO: More qulauty options -->
       {{ if eq .video.contentType "media_entity" }}
-      {{$src := ""}}  
-      {{ range sort .video.variants "src" }}
+        {{ $src := "" }}  
+        {{ range sort .video.variants "src" }}
           {{ if (eq .type "video/mp4") }}
-            {{$src = .src}}
-            {{ end }}
+            {{ $src = .src }}
+          {{ end }}
         {{ end }}
-        <video preload="none" controls poster="{{.poster}}" src="{{$src}}"></video>
+        
+        {{ $width  := (index .video.aspectRatio 0) }}
+        {{ $height := (index .video.aspectRatio 1) }}
+
+        <video style="aspect-ratio: {{$width}}/{{$height}}"  preload="metadata" controls poster="{{.video.poster}}" src="{{$src}}"></video>
       {{ end }}
     </section>
     {{ end }}
@@ -422,6 +435,10 @@ Profile Pic resoultions
           <img 
             loading="lazy"
             src="{{.url}}:small"
+            width="{{.width}}"
+            height="{{.height}}"
+
+            style="aspect-ratio: {{.width}}/{{.height}};"
             {{if .accessibilityLabel}}
               alt='{{.accessibilityLabel}}'
             {{end}}/>
@@ -441,7 +458,7 @@ Profile Pic resoultions
 
         <!-- Video -->
         {{ if eq .video.contentType "media_entity" }}
-          <video preload="metadata" loop poster='{{.video.poster}}'  controls>
+          <video loop controls preload="metadata" poster='{{.video.poster}}'>
             {{ range .video.variants }}
               <source  src='{{.src}}' type="{{.type}}" />
             {{ end }}

@@ -19,12 +19,15 @@
 // Specific Styles
 // 1 Image
 .gallery-1 {
-    min-height: 300px;
-    max-width: max-content;
+    display: flex;
+    border-radius: unset;
 }
+
 .gallery-1 img {
-    grid-row: span 2;
-    grid-column: span 2;
+    max-height: 640px;
+    max-width: max-content;
+    object-fit: contain;
+    border-radius: var(--tw-border-radius);
 }
 
 .quote_tweet .gallery-1 {
