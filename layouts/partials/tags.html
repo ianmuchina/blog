@@ -1,0 +1,8 @@
+{{- with .Params.tags -}}
+    <div class="tag-container">
+        {{- range . -}}
+            <span class="tags">
+            {{- . -}}</span>
+    {{- end -}}
+</div>
+{{- end -}}

@@ -1,0 +1,34 @@
+.inline-svg {
+    display: inline-block;
+    vertical-align: middle;
+
+    svg {
+        width: 1em;
+        height: 1em;
+        fill: currentColor;
+        display: inline-block;
+    }
+}
+
+// Misc
+.hidden {
+    display: none;
+}
+
+.accent {
+    color: var(--accent);
+}
+
+/* Emoji  */
+@font-face {
+    font-family: emoji;
+    font-display: block;
+    src: url("/twemoji-cff2_colr_1.otf");
+}
+
+/* Emoji */
+.emoji {
+    height: 1em;
+    width: 1em;
+    font-family: emoji, sans-serif;
+}

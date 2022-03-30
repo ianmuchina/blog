@@ -1,0 +1,38 @@
+.poll_container {
+    position: relative;
+    width: 100%;
+    height: 36px;
+    margin: 8px 0px;
+}
+
+.progress_container_text {
+    // Fill up entire container
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+
+    // Space items
+    display: flex;
+    font-size: 1rem;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0px 8px;
+}
+
+.progress_bar {
+    height: 100%;
+    border-radius: var(--tw-border-radius);
+    background-color: var(--tw-poll-bar);
+}
+
+.win {
+    font-weight: bold;
+    font-weight: 700;
+}
+
+.win_bar {
+    z-index: 0;
+    background-color: var(--tw-poll-bar-win);
+}

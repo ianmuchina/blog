@@ -1,0 +1,10 @@
+{{- define "main" -}}
+    {{- partial "nav.html" .}}
+    <main class="post">
+        {{- partial "date.html" . -}}
+        <h1 class="accent">{{- .Title -}}</h1>
+        {{- partial "tags.html" . -}}
+        {{- .Content -}}
+    </main>
+
+{{- end -}}

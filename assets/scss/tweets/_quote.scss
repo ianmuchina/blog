@@ -1,0 +1,45 @@
+.quote_tweet {
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    line-height: unset;
+    outline: solid 1px var(--border);
+    padding: 0px;
+    border-radius: var(--tw-border-radius);
+    font-size: 1rem;
+
+    .userInfo,
+    .fullText {
+        padding: 8px;
+    }
+
+    .userInfo {
+        display: flex;
+    }
+
+    .userInfo {
+        .userName,
+        .screenName {
+            font-size: 1rem;
+        }
+
+        img {
+            width: 20px;
+            height: 20px;
+        }
+
+        div {
+            display: flex;
+            flex-direction: row;
+            gap: 4px;
+        }
+    }
+
+    video {
+        width: 100%;
+        border-radius: 0px;
+    }
+    .gallery-1 {
+        justify-content: center;
+    }
+}

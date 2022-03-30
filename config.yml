@@ -1,7 +1,6 @@
-baseURL: "https://ianmuchina.com/"
+baseURL: "/"
 languageCode: en-us
 title: "Ian's blog"
-theme: purple
 
 pluralizeListTitles: false
 
@@ -22,3 +21,22 @@ params:
 
 PygmentsUseClasses: true
 pygmentsCodefences: true
+module:
+  imports:
+    - path: github.com/ianmuchina/hashflagArchive
+      mounts:
+        - source: img/
+          target: assets/twitter/hashflags
+
+        - source: data
+          target: data
+caches:
+  getjson:
+    dir: :resourceDir/
+    maxAge: -1
+  modules:
+    dir: :cacheDir/modules
+    maxAge: 0
+  getresource:
+    dir: :cacheDir/:project
+    maxAge: -1

@@ -1,0 +1,281 @@
+@import "cards";
+@import "gallery";
+@import "polls";
+@import "quote";
+@import "vars";
+
+// Layout (Macro)
+.tweet {
+  display: grid;
+  grid-template-columns: var(--profile-pic-width) auto;
+  grid-template-rows: auto auto;
+  gap: 0 0.5rem;
+  outline: solid 1px var(--border);
+  padding: 0.875rem;
+  border-radius: 6px;
+  background-color: var(--tw-bg);
+  max-width: 480px;
+  overflow: hidden;
+}
+
+/* Reset */
+.tweet p {
+  margin: unset;
+}
+
+/* Default Layout is focus */
+.profile-pic {
+  grid-row: 1/2;
+  grid-column: 1/2;
+}
+
+.focus .profile-pic,
+.quoted .profile-pic {
+  display: flex;
+  align-items: center;
+}
+
+.user-info {
+  align-self: center;
+  font-size: 1rem;
+  display: grid;
+  width: max-content;
+  grid-template-columns: auto auto;
+}
+
+.user-info > .name {
+  grid-column: 1/2;
+}
+
+.user-info > .scr-name {
+  display: block;
+  grid-column: 1/3;
+}
+
+.checkmark {
+  padding: 0 4px;
+  height: max-content;
+}
+
+.content {
+  grid-column: span 2;
+}
+
+/* Hidden by default */
+.date-compact {
+  display: none;
+}
+
+.quoted {
+  /* Reduce gap */
+  gap: 2px 6px;
+  /* Reduce profile pic size */
+  --profile-pic-width: 1.2rem;
+}
+
+.quoted > .user-info {
+  /* Put everything on one row */
+  display: flex;
+  /* Reduce font size */
+  font-size: 1rem;
+  gap: 0.625rem;
+}
+
+/* Make date visible */
+.quoted > .user-info > .date-compact {
+  display: initial;
+}
+
+/* Reduce font size */
+.quoted > .content > .text {
+  font-size: 1rem;
+}
+
+.thread > .profile-pic {
+  grid-row: span 2;
+}
+
+.thread > .user-info {
+  display: flex;
+  align-items: baseline;
+  gap: 0.4rem;
+}
+
+.thread .meta,
+.thread .tw-date {
+  display: none;
+}
+
+/* Center the checkmark */
+a.name {
+  text-decoration: none;
+  color: var(--headers);
+  display: flex;
+  align-items: center;
+}
+
+.checkmark {
+  display: inline-flex;
+}
+.checkmark > svg {
+  width: 1.1rem;
+  color: var(--tw-checkmark);
+  height: 1.1rem;
+}
+
+.thread > .content {
+  font-size: 1rem;
+  grid-column: span 1;
+}
+
+.thread .date-compact {
+  display: initial;
+}
+
+/* content */
+.content {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  padding: 4px 0;
+}
+
+.profile-pic > img {
+  width: var(--profile-pic-width);
+  height: var(--profile-pic-width);
+}
+
+/* Color & font sizes */
+.profile-pic > img {
+  border-radius: 100%;
+}
+
+.name {
+  color: unset;
+  text-decoration: none;
+  font-weight: bold;
+  font-weight: 500;
+}
+
+.name:hover {
+  text-decoration: underline;
+}
+
+.scr-name {
+  color: var(--tw-text-secondary);
+}
+
+.date-compact {
+  color: var(--tw-text-secondary);
+}
+
+.checkmark {
+  color: var(--tw-checkmark);
+}
+
+.text {
+  white-space: pre-wrap;
+}
+
+.thread .text {
+  font-size: 1rem;
+}
+
+.text a {
+  text-decoration: none;
+}
+
+.text a:hover {
+  text-decoration: underline;
+}
+
+.text-secondary {
+  color: var(--tw-text-secondary);
+}
+
+a.tw-date {
+  font-size: 1rem;
+  color: var(--tw-text-secondary);
+  text-decoration: none;
+}
+a.tw-date:hover {
+  text-decoration: underline;
+}
+
+.meta {
+  display: flex;
+  flex-direction: row;
+  align-content: center;
+  font-size: 1rem;
+  gap: 8px;
+  margin-left: -4px;
+}
+
+.meta a {
+  margin: 0px;
+  padding: 0px;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  text-decoration: none;
+  color: unset;
+}
+
+.meta a svg {
+  color: unset;
+  border-radius: 100%;
+  padding: 4px;
+  width: 24px;
+  height: max-content;
+}
+
+// Likes
+.meta .likes {
+  color: var(--tw-likes-text);
+  background-color: var(--tw-likes-bg);
+}
+
+.likes:hover {
+  color: var(--tw-likes-text-hover);
+}
+
+.likes:hover svg {
+  background: var(--tw-likes-bg-hover);
+}
+
+.link {
+  color: var(--tw-link-text);
+  background: var(--tw-link-bg);
+}
+
+.link:hover {
+  color: var(--tw-link-text-hover);
+}
+
+.link:hover svg {
+  background: var(--tw-link-bg-hover);
+}
+
+.tweet video {
+  width: 100%;
+  border-radius: var(--tw-border-radius);
+  object-fit: cover;
+}
+
+.quoted {
+  padding: unset;
+  padding-top: 8px;
+  .profile-pic,
+  .user-info,
+  .text {
+    margin-left: 8px;
+  }
+
+  .user-info {
+    margin-right: 8px;
+  }
+
+  video {
+    border-radius: unset;
+  }
+}

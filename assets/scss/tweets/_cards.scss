@@ -1,0 +1,86 @@
+.card {
+    border: solid 1px var(--border);
+    border-radius: var(--tw-border-radius);
+    overflow: clip;
+    position: relative;
+    max-width: 260px;
+}
+
+@media screen and (min-width: 420px) {
+    .card {
+        max-width: 410px;
+    }
+}
+
+.card:hover {
+    background-color: var(--alt-bg);
+}
+.card img {
+    border-radius: unset;
+}
+.card_large > .card_thumbnail {
+    border-bottom: solid 1px var(--border);
+}
+
+.card_content {
+    padding: 1rem;
+    font-size: 1rem;
+    font-weight: 400;
+}
+
+.vanity_url,
+.description {
+    color: var(--text-secondary);
+}
+
+// Truncate text
+// see css-tricks.com/line-clampin/
+.title,
+.vanity_url {
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+}
+
+.description {
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    word-break: var(--word-break, "none");
+    overflow: hidden;
+    hyphens: auto;
+    text-align: left;
+}
+
+.title {
+    color: var(--headers);
+}
+
+.card .overlay {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    left: 0;
+}
+
+.card_small {
+    display: grid;
+    grid-template-columns: max-content 1fr;
+}
+
+.card_small img {
+    max-height: 150px;
+    // aspect-ratio: 1/1;
+    object-fit: cover;
+    border-right: solid 1px var(--border);
+}
+
+.card_small .card_content {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+@media screen and (max-width: 320px) {
+}
