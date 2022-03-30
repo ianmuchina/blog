@@ -25,12 +25,14 @@ html {
   --c7: #c5c5c2;
   --comment: var(--c5);
 }
+
 .highlight .chroma,
 pre {
   padding: 0.625rem 1.4rem;
   max-width: 100%;
   border-radius: 8px;
   background: var(--code-bg);
+  white-space: pre-wrap; /* css-3 */
 }
 
 pre code {

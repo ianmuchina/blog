@@ -30,7 +30,6 @@ module:
 
         - source: data
           target: data
-# cache json forever
 caches:
   getjson:
     dir: :resourceDir/

@@ -2,18 +2,10 @@
     {{- partial "meta.html" .}}
     {{- $sass := resources.Get "scss/main.scss" -}}
     {{- $styles := $sass | resources.ToCSS | resources.Fingerprint | -}} 
-    <link rel="stylesheet" href="{{- $styles.Permalink -}}" integrity="{{- $styles.Data.Integrity -}}"/>
-
-    <link rel="preconnect" href="https://pbs.twimg.com/">
+    <link 
+        rel="stylesheet"
+        href="{{- $styles.Permalink -}}"
+        integrity="{{- $styles.Data.Integrity -}}"
+    />
     <script src="/js/critical.js"></script>
 </head>
-
-<style>
-
-@font-face {
-    font-family: emoji;
-    src: url("https://xem.github.io/unicode13/Twemoji.ttf");
-    font-display: swap;
-}
-
-</style>

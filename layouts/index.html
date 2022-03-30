@@ -1,12 +1,6 @@
 {{define "main"}} {{partial "nav.html" .}}
-<main>
-  <div class="emoji">
-    🦄⚡
-  </div>
-  <br>
-  
+<main>  
   <h2>Posts</h2>
-
   {{- range .Site.RegularPages.ByDate.Reverse -}}
   <article>
     {{- partial "date.html" . -}}
