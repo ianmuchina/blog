@@ -1,0 +1,13 @@
+@import "colors";
+:root {
+  --bg: #{$gray-100};
+  --txt: #{$gray-900};
+  --code-border: #{$gray-200};
+  font-size: 16px;
+}
+@media (prefers-color-scheme: dark) {
+  :root {
+    --c-bg: #111;
+    --code-border: #{$gray-900};
+  }
+}

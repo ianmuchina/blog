@@ -1,0 +1,7 @@
+<li{{ if or (eq .RelPermalink "/blog/") (eq .Type "blog") }} class="font-bold" {{ end }}>
+	<a href="{{ "/blog" | absURL }}">Blog</a>
+</li>
+
+<li{{ if eq .RelPermalink "/about/" }} class="font-bold" {{ end }}>
+	<a href="{{ "/about" | absURL }}">About</a>
+</li>

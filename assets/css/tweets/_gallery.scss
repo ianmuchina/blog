@@ -1,0 +1,65 @@
+// Cards
+// Photos
+// 1. Global Styles
+.gallery {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr 1fr;
+    gap: 2px;
+    overflow: clip;
+    border-radius: var(--tw-border-radius);
+    outline: solid 1px var(--border);
+}
+.gallery img {
+    background-color: rgba(255, 255, 255, 0.1);
+    border-radius: 0;
+    width: 100%;
+    object-fit: cover;
+}
+
+// Specific Styles
+// 1 Image
+.gallery-1 {
+    display: flex;
+    border-radius: unset;
+    border-radius: var(--tw-border-radius);
+}
+
+.gallery-1 img {
+    height: unset;
+    max-height: 640px;
+    max-width: max-content;
+    object-fit: contain;
+}
+
+.quote_tweet .gallery-1 {
+    max-width: 640px;
+}
+
+// 2 Images
+.gallery-2 img {
+    grid-row: span 2;
+}
+
+// 3 Images
+.gallery-3 {
+    max-height: 512px;
+}
+.gallery-3 > img {
+    height: 100%;
+    max-height: 250px;
+    aspect-ratio: 16/9;
+}
+
+.gallery-3 :nth-child(1) {
+    grid-row: span 2;
+    max-height: 100%;
+}
+
+// 4 Images
+
+.gallery-4 img {
+    // max-width: 320px;
+    max-height: 180px;
+    aspect-ratio: 16 / 9;
+}

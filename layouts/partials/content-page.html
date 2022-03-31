@@ -1,0 +1,7 @@
+<article class="prose prose-slate dark:prose-invert pb-12">
+  {{ if not .Params.noTitle }}
+  <h1>
+    {{ if eq .Kind "taxonomy" }}Articles on {{ end }}{{ .Title | htmlUnescape }}
+  </h1>
+  {{ end }} {{ .Content }}
+</article>

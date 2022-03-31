@@ -1,0 +1,51 @@
+@import "../colors";
+.tweet {
+  --tw-border-radius: 0px;
+  --tw-card-border-radius: 8px;
+  --profile-pic-radius: 100%;
+  --profile-pic-width: 2.7rem;
+
+  --tw-bg: white;
+  --tw-alt-bg: #{$gray-100};
+
+  --text: #{$gray-800};
+  --tw-text-secondary: #{$gray-500};
+  --text-secondary: #{$gray-500};
+
+  --accent-text: #{$blue-500};
+  --accent: #{$blue-500};
+
+  --tw-checkmark: #{$blue-500};
+  --tw-border: #{$gray-200};
+
+  --tw-likes-text-hover: #{$red-500};
+  --tw-likes-bg-hover: #{$red-100};
+
+  --tw-link-text-hover: #{$blue-700};
+  --tw-link-bg-hover: #{$blue-100};
+
+  --tw-poll-bar: #{$gray-200};
+  --tw-poll-bar-win: #{$blue-300};
+}
+
+// Dark mode
+@media (prefers-color-scheme: dark) {
+  .tweet {
+    --tw-bg: black;
+    --tw-alt-bg: #{$gray-900};
+    --text: #{$gray-100};
+    --text-secondary: #{$gray-100};
+    --tw-text-secondary: #{$gray-300};
+    --accent-text: #{$blue-400};
+    --accent: #{$blue-400};
+    --tw-link-text-hover: #{$blue-400};
+    --tw-link-bg-hover: #{$blue-900}5a;
+
+    --tw-border: #{$gray-800};
+    --tw-poll-bar: #{$gray-800};
+    --tw-poll-bar-win: #{$blue-900};
+    --tw-checkmark: white;
+    --tw-likes-text-hover: #{$red-500};
+    --tw-likes-bg-hover: #{$red-900}5a;
+  }
+}

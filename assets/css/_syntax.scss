@@ -1,0 +1,175 @@
+$night-owl-dark: (
+  cbg: #000000,
+  comment: #575656,
+  ctxt: #d6deeb,
+  c1: #ef5350,
+  c2: #22da6e,
+  c3: #ffeb95,
+  c4: #82aaff,
+  c5: #c792ea,
+  c6: #7fdbca,
+  0F: #ef5350,
+  09: #ffeb95,
+);
+
+$night-owl-light: (
+  cbg: #fbfbfb,
+  ctxt: #403f53,
+  c1: #721c1a,
+  c3: #705c15,
+  c2: #08916a,
+  c6: #2aa298,
+  c4: #288ed7,
+  c5: #881c50,
+  comment: #403f53,
+);
+
+$ayu-dark: (
+  cbg: #0b0e14,
+  ctxt: white,
+  base01: #0b0e14,
+  base02: #1e232b,
+  comment: #686868,
+  base04: #bfbdb6,
+  base05: #bfbdb6,
+  base06: #bfbdb6,
+  base08: #f07178,
+  base09: #ffb454,
+  base0A: #ffb454,
+  base0B: #aad94c,
+  base0C: #95e6cb,
+  base0D: #59c2ff,
+  base0E: #d2a6ff,
+  base0F: #d95757,
+);
+
+html {
+  @each $k, $v in $night-owl-dark {
+    --#{$k}: #{$v};
+  }
+}
+
+.highlight .chroma,
+pre {
+  padding: 0.625rem 1.4rem;
+  max-width: 100%;
+  border: solid 1px var(--code-border);
+  border-radius: 8px;
+  color: var(--ctxt) !important;
+  background: var(--cbg) !important;
+  white-space: pre-wrap; /* css-3 */
+}
+
+pre code {
+  display: block;
+  z-index: 1;
+  font-size: 1rem;
+  font-family: var(--mono-font);
+  color: var(--headers);
+}
+
+/* Code Block Frame: Top Bar */
+.code-frame {
+  position: relative;
+  margin-bottom: -1.2rem;
+  padding: 0.125rem 1rem;
+  text-align: center;
+  font-family: var(--sans-font);
+  font-weight: 500;
+  background-color: var(--code-frame-bg);
+  border-radius: 1rem 1rem 0 0;
+}
+
+.hll {
+  background-color: var(--c3);
+}
+.gd {
+  color: #8b080b;
+}
+.ge {
+  text-decoration: underline;
+}
+.gi,
+.gh,
+.gu {
+  font-weight: bold;
+}
+
+.go {
+  color: var(--ctxt);
+}
+
+.bp {
+  font-style: italic;
+}
+
+/* 1 */
+.k,
+.o,
+.cp,
+.kc,
+.kn,
+.kp,
+.kr,
+.nt,
+.ow {
+  color: var(--c1);
+}
+/* 2 */
+.s,
+.na,
+.nc,
+.nf,
+.fm {
+  color: var(--c2);
+}
+/* 3 */
+.sa,
+.sb,
+.sc,
+.dl,
+.sd,
+.s2,
+.se,
+.sh,
+.si,
+.sx,
+.sr,
+.s1,
+.ss {
+  color: var(--c3);
+}
+/* 4 */
+.kt {
+  color: var(--c4);
+}
+.kd,
+.nb,
+.nl,
+.nv,
+.vc,
+.vg,
+.vi,
+.vm {
+  color: var(--c4);
+  font-style: italic;
+}
+/* 5 */
+.c,
+.mb,
+.mf,
+.mh,
+.mi,
+.mo,
+.il,
+.m,
+.ch,
+.cm,
+.cpf,
+.cs {
+  color: var(--c5);
+}
+
+.c1 {
+  color: var(--comment);
+}

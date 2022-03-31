@@ -1,0 +1,20 @@
+@import "syntax";
+@import "./tweets/tweets";
+@import "colors";
+@import "var";
+
+body {
+  color: var(--txt);
+  background-color: var(--bg);
+  max-width: 768px;
+  margin: auto;
+  padding: 2rem 1rem;
+  min-height: 100vh;
+}
+
+.post-title {
+  max-width: 80%;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+}
