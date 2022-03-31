@@ -178,7 +178,7 @@
   <div class="user-info">
     <a class="name" href={{$userUrl}} >        
       <!-- Full Name -->
-      <span >{{ .user.name }}</span>
+      <span>{{ .user.name }}</span>
       <!-- Checkmark (Optional) -->
       {{ if .user.verified }}
         <span class="checkmark">
@@ -188,7 +188,7 @@
     </a>
 
     <!-- Screen Name -->
-    <span class="scr-name">@<span>{{.user.screen_name}}</span></span>
+    <span class="scr-name font-mono ">@<span>{{.user.screen_name}}</span></span>
     <!-- Date Compact (Optional) -->
     <!-- TODO: Implement -->
     {{ $date_compact :=  time.Format "· Jan 2 2006" .created_at }}
@@ -250,8 +250,17 @@
       <!-- Overlay to make entire card clickable -->
       <a href="{{$url}}" class="overlay"></a>
     
+      
       <!-- Thumbnail -->
-      <img width="360px" height="200px" class="card_thumbnail" src="{{.thumbnail_image_large.image_value.url}}" alt="">
+      <img 
+      {{ if .summary_photo_image_large }}
+      width="640"
+      height="360"
+      style="aspect-ratio: 16/9; width: 100%; height: auto;"
+      {{else}}
+      style="aspect-ratio: 1/1; width: 100%; height: auto;"
+      {{end}}
+      class="card_thumbnail" src="{{.thumbnail_image_large.image_value.url}}" alt="">
     
         <!-- Text Content -->
         <div class="card_content">
@@ -283,14 +292,12 @@
       {{- $img := resources.GetRemote .url -}}
       <img 
       loading="lazy"
-      width="360px"
-      height="120px"
       src="{{$img.RelPermalink}}"
-      src="{{.url}}"
-
+      width="{{.width}}"
+      height="{{.height}}"
+      
       {{ if eq 1 $photosCount }}
-        height="{{.height}}px"
-        style="aspect-ratio: {{.width}}/{{.height}}"
+      style="aspect-ratio: {{.width}}/{{.height}}; height: auto;"
       {{ end }}
 
       {{if .accessibilityLabel}}
@@ -458,7 +465,7 @@
 
       <!-- Date -->
       {{$date :=  time.Format "3:04 PM · Jan 2, 2006 UTC" .created_at }}
-      <a class="tw-date" aria-label="Posted on {{$date}}" href={{ $tweetUrl }}>{{ $date }}</a>
+      <a class="tw-date " aria-label="Posted on {{$date}}" href={{ $tweetUrl }}>{{ $date }}</a>
     
       <!-- Metadata: Likes, Link to tweet -->
       <div class="meta">
