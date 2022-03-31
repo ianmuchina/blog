@@ -24,10 +24,9 @@
     <!-- prettier-ignore -->
     {{- $sass := resources.Get "css/main.scss" -}}
     <!-- resources.Minify | resources.Fingerprint -->
-    {{- $styles := $sass | resources.ToCSS -}}
-    <!--  -->
-
-    {{ $tailwind := resources.Get "css/tailwind.css" }}
+    {{- $options := (dict "includePaths" (slice "node_modules")) -}} {{- $styles
+    := $sass | resources.ToCSS $options -}} {{ $tailwind := resources.Get
+    "css/tailwind.css" }}
     <!--  -->
     {{ $all := slice $tailwind $styles | resources.Concat "styles.css" }}
     <link
