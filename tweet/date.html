@@ -1,0 +1,9 @@
+{{ with .created_at }}
+{{ $date :=  time.Format "3:04 PM · Jan 2, 2006 UTC" .created_at }}
+<a 
+    class="tw-date"
+    aria-label="Posted on {{$date}}"
+    href={{ $tweetUrl }}>
+    {{ $date }}
+</a>
+{{ end }}    

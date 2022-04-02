@@ -1,0 +1,25 @@
+<!-- 
+    Profile Pic resoultions
+    '_mini'   => '24x24' 
+    '_normal' => '48x48'
+  '_bigger' => '73x73'
+  ''        => 'original'
+-->
+{{- $profilePicSrc := 
+    replace $res.user.profile_image_url_https "_normal" "_bigger" -}}
+
+{{- $profilePic := resources.GetRemote $profilePicSrc -}}
+
+<!-- Profile Pic Wrapper -->
+<div class="profile-pic">
+    <!-- Profile Pic Image -->
+    <img
+    src='{{$profilePic.RelPermalink}}'
+    width="42"
+    height="42"
+    loading="lazy"
+    alt=""
+    />
+</div>
+
+<!-- TODO: Thread lines -->

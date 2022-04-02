@@ -1,0 +1,56 @@
+  <!-- OpenGraph -->
+  {{ if .card.binding_values.domain }}
+    {{ with .card.binding_values }}
+    <!-- Large Card -->
+    <section class="card {{ if .summary_photo_image_large }}card_large {{else}}card_small{{end}}">
+      {{ $url := .card_url.string_value }}    
+    
+      <!-- Replace twitter url with expanded url  -->
+      {{ range $res.entities.urls}}
+        {{ if (eq $url .url) }}
+          {{ $url = .expanded_url}}
+        {{ end }}  
+      {{ end }}
+    
+      <!-- Overlay to make entire card clickable -->
+      <a href="{{$url}}" class="overlay"></a>
+          
+      <!-- Thumbnail -->
+      <img
+        loading="lazy"
+        class="card_thumbnail"
+        alt=""
+      {{ if .summary_photo_image_large }}
+        src="{{.thumbnail_image_large.image_value.url}}"
+        width="640"
+        height="360"
+        style="aspect-ratio: 16/9; width: 100%; height: auto;"
+      {{else}}
+        src="{{.thumbnail_image_large.image_value.url}}"
+        width="150"
+        height="150"
+        style="aspect-ratio: 1/1; width: 100%; height: auto;"
+      {{end}}
+      >
+    
+        <!-- Text Content -->
+        <div class="card_content">
+          <!-- Hostname -->
+          <div class="vanity_url">
+            {{.vanity_url.string_value}}
+          </div>
+
+          <!-- Title -->
+          <div class="title">
+            {{.title.string_value}}
+          </div>
+          <!-- Description. Truncated to 110 characters. Will not break on words -->
+          <!-- TODO: Make this shorter on mobile -->
+          <p class="description">
+            {{.description.string_value }}
+          </p>
+        </div>
+      </section>
+    {{ end }}
+  {{ end }}
+  <!-- End OpenGraph -->

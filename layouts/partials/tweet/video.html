@@ -1,0 +1,53 @@
+<!--
+  Renders a video from a tweet or quote tweet
+  Only shows the highest quality video
+-->
+
+{{- with .ctx.video -}}
+  {{ $poster := .poster}}
+  {{ if eq .contentType "media_entity" }}
+
+    {{- $maxW := 0 -}}
+    {{- $maxH := 0 -}}
+    {{- $best_video := "" -}}
+
+    {{- range sort .variants "src" -}}
+      {{- if (eq .type "video/mp4") -}}
+
+        <!-- Get quality using regex from the url --->
+        {{- $quality := findRE `\d{3,4}x\d{3,4}` .src -}}
+
+        <!-- Split to width & height  --->
+        {{- $q := split (index $quality 0) "x" -}}
+
+        <!-- Cast to int  --->
+        {{- $w := int (index $q 0) -}}
+        {{- $h := int (index $q 1) -}}
+
+        {{- if (gt $w $maxW) -}}
+          {{- $maxW = $w -}}
+          {{- $maxH = $h -}}
+          {{- $best_video = . -}}
+        {{- end -}}
+
+      {{ end }}
+    {{ end }}
+
+    <!---  2. Get width & height --->
+    {{- $width  := (index .aspectRatio 0) -}}
+    {{- $height := (index .aspectRatio 1) -}}
+
+    <!---  3. Render Video --->
+    {{ with $best_video }}
+      <video
+        src="{{.src}}"
+        class="tweet-video"
+        style="aspect-ratio: {{$maxW}}/{{$maxH}}; width: 100%; height: auto;"
+        preload="metadata"
+        controls 
+        poster="{{$poster}}"
+        >
+      </video>
+    {{ end }}
+  {{- end -}}
+{{ end }}

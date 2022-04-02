@@ -1,9 +1,8 @@
 @import "../colors/tailwind";
 
 :root {
-    --tw-border-radius: 8px;
+    --tw-border-radius: 0px;
     --profile-pic-width: 3rem;
-
     --tw-text: var(--text);
     --tw-text-secondary: var(--text-secondary);
     --tw-accent-text: var(--accent);
@@ -11,9 +10,11 @@
     --tw-link-bg-hover: rgba(var(--accent-raw), 0.1);
     --tw-border: var(--code-border);
     --tw-poll-bar-win: var(--accent-800);
+    --og-bg: ;
 }
 
 .light {
+    --og-no-img: var(--code-bg);
     --tw-bg: white;
     --tw-poll-bar: #e2e8f0;
     --tw-likes-text-hover: #ef4444;
@@ -22,6 +23,7 @@
 }
 
 .dark {
+    --og-no-img: var(--border);
     --tw-bg: var(--code-bg);
     --tw-checkmark: var(--text);
     --tw-likes-bg-hover: rgba(248, 113, 113, 0.1);

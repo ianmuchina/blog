@@ -1,0 +1,38 @@
+<!--
+  Renders images from a tweet object
+  Size values:
+    `:thumb`
+    `:small`
+    `:medium`
+    `:large`
+    `:orig`
+
+  TODO: Custom quality based on above.
+
+ TODO params loading:
+    size: {small, medium, large, original}
+    backup: {true, false, }
+-->
+
+{{ with .ctx.photos }}
+  {{ $count := len . }}
+    <div class="gallery gallery-{{- $count -}}">
+    {{ range . }}
+      <img
+      loading="lazy"
+      src="{{ .url }}:medium"
+
+      {{ if eq 1 $count }}
+      width="{{ .width }}"
+      height="{{ .height }}"
+      {{ end }}
+
+      {{ if .accessibilityLabel }}
+        alt='{{.accessibilityLabel}}'
+      {{ else }}
+        alt=""
+    {{ end }}
+  />
+  {{ end }}
+  </div>
+{{ end }}

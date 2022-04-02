@@ -10,12 +10,14 @@
   grid-template-columns: var(--profile-pic-width) auto;
   grid-template-rows: auto auto;
   gap: 0 0.5rem;
-  outline: solid 1px var(--border);
+  outline: solid 1px var(--tw-border);
   padding: 0.875rem;
-  border-radius: 6px;
+  border-radius: var(--tw-border-radius);
   background-color: var(--tw-bg);
-  max-width: 480px;
+  max-width: 640px;
   overflow: hidden;
+  margin: 1rem 0;
+  color: var(--text);
 }
 
 /* Reset */
@@ -107,16 +109,23 @@
 }
 
 /* Center the checkmark */
-a.name {
-  text-decoration: none;
+.user-info .name {
   color: var(--headers);
+  font-weight: 600;
   display: flex;
   align-items: center;
+  text-decoration: none;
+}
+// Underline
+.user-info .name:hover {
+  text-decoration-color: var(--text-secondary);
+  text-decoration: underline;
 }
 
 .checkmark {
   display: inline-flex;
 }
+
 .checkmark > svg {
   width: 1.1rem;
   color: var(--tw-checkmark);
@@ -150,17 +159,6 @@ a.name {
   border-radius: 100%;
 }
 
-.name {
-  color: unset;
-  text-decoration: none;
-  font-weight: bold;
-  font-weight: 500;
-}
-
-.name:hover {
-  text-decoration: underline;
-}
-
 .scr-name {
   color: var(--tw-text-secondary);
 }
@@ -183,6 +181,10 @@ a.name {
 
 .text a {
   text-decoration: none;
+}
+
+.text a.tw-url {
+  text-decoration: underline;
 }
 
 .text a:hover {
@@ -258,8 +260,11 @@ a.tw-date:hover {
 
 .tweet video {
   width: 100%;
+  height: auto;
+  background-color: black;
+  max-height: 640px;
+  object-fit: contain;
   border-radius: var(--tw-border-radius);
-  object-fit: cover;
 }
 
 .quoted {

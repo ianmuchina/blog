@@ -1,0 +1,26 @@
+<!-- Gallery -->
+{{ if .photos }}
+  {{ $photosCount := len .photos }}
+  <div class="gallery gallery-{{$photosCount}}">
+    {{ range .photos }}
+    {{- $img := resources.GetRemote .url -}}
+    <img 
+      loading="lazy"
+      src="{{$img.RelPermalink}}"
+      width="{{.width}}"
+      height="{{.height}}"
+    
+      {{ if eq 1 $photosCount }}
+        style="aspect-ratio: {{.width}}/{{.height}}; height: auto;"
+      {{ end }}
+      
+      {{if .accessibilityLabel}}
+        alt='{{.accessibilityLabel}}'
+      {{else}}
+        alt=""
+      {{end}}
+    />
+    {{ end }}
+  </div>
+{{ end }}
+<!-- End Gallery -->

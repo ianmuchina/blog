@@ -1,0 +1,41 @@
+<!-- Compact notation for likes
+     eg: 1234 => 1.2K -->
+{{ $likes := $res.favorite_count }}
+
+<!-- Get Thousands value  -->
+{{ $K := math.Floor	(div $likes 1000) }}
+<!-- Get Hundreds value  -->
+{{ $H := math.Floor	(mul .01 (mod $likes 1000)) }}     
+
+<!-- If Hundreds value is zero -->
+<!-- eg: 12,000 => 12K  -->
+{{ if (gt $K 0) }} {{$likes = print $K "K" }} {{end}}
+
+<!-- If Hundreds value is >100 -->
+<!-- eg: 12,345 => 12.3K  -->
+{{ if and (gt $K 0) (gt $H 0) }}
+  {{$likes = print $K "." $H "K" }}
+{{ end }}
+
+
+<div class="meta">
+  <!-- Link to like tweet -->
+  <a 
+    class="likes"
+    href="{{ $likeUrl }}" 
+    target="_blank" rel="noopener noreferrer"
+  > 
+  <!-- Icon -->
+  {{ partial "inline-svg" "twitter/like"}} {{ $likes }}
+  </a>
+
+  <!-- Link To Tweet -->
+  <a 
+    class="link"
+    href="{{ $tweetUrl }}"
+    target="_blank" rel="noopener noreferrer"
+    >
+    
+    {{ partial "inline-svg" "twitter/link"}} Link to Tweet
+  </a>
+</div>

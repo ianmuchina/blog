@@ -1,0 +1,31 @@
+<!--
+    Renders profile Picture
+
+    params:
+    "ctx" - valid tweet object
+    "use_base64" - flag to inline the image as base64 data uri
+    "size" size based on the following
+
+    valid size values:
+    '_mini'   -> '24x24' 
+    '_normal' -> '48x48'
+    '_bigger' -> '73x73'
+    ''        -> 'original' || 400x400
+-->
+
+{{ with .ctx }}
+    {{ $url := replace .user.profile_image_url_https "_normal" $.size }}
+    <img
+    width="42"
+    height="42"
+    loading="lazy"
+    alt=""
+
+    {{ if $.base64 }}
+        {{ $data := resources.GetRemote $url }}
+        src='data:image/jpg;base64,{{ $data.Content | base64Encode }}'
+    {{ else }}
+        src="{{$url}}"
+    {{ end }}
+    />
+{{ end }}

@@ -1,0 +1,64 @@
+
+<!-- Entities -->
+
+<!-- 1. Media -->
+<!-- Remove all media links -->
+{{- range $media := $res.entities.media -}}
+  {{- $text = replace $text $media.url "" -}}
+{{- end -}}
+
+
+<!-- 2. Urls -->
+<!-- TODO: Sanitize -->
+{{- range $res.entities.urls -}}
+  <!-- Link to expanded url -->
+  {{- $new := printf 
+    "<a class='tw-url' target='_blank' rel='noopener noreferrer' href='%s'>%s</a>"
+     .expanded_url 
+     .display_url
+  -}}
+  <!-- if url points to quote tweet, remove it -->
+  {{ if in .expanded_url $res.quoted_tweet.id_str }}
+    {{ $new = ""}}
+  {{ end }}  
+  <!-- Replace t.co text with clickable link -->
+  {{ $text = replace $text .url $new  }}
+{{ end }}
+
+<!-- 3. Mentions -->
+{{- range $res.entities.user_mentions -}}
+  <!-- Prefix username with @ -->
+  {{- $old := printf "@%s" .screen_name -}}
+  <!-- Link pointing to user profile. Works even if user changes username -->
+  {{- $new := printf "<a href='https://twitter.com/intent/user?user_id=%s'>@%s</a>" .id_str .screen_name -}}
+  <!-- Replace text with clickable link -->
+  {{- $text = replace $text $old $new -}}
+{{- end -}}
+
+<!-- 3. Hashtags -->
+<!-- TODO: Handle hashtags with multiple campaigns  -->
+{{ range $res.entities.hashtags }}
+  {{ if not ($seen_hashtag.Get .text) }}
+    <!-- Initialize hashflag variables -->
+    {{ $hashflag := ""}}
+    <!-- If hashtag has valid hashflag campaign -->
+
+    <!-- Prefix hashtag with # -->
+    {{ $old := printf "#%s" .text }}
+    <!-- Make hashtag link + optional hashflag -->
+    {{ $new := printf "<a target='_blank' rel='noopener noreferrer' href='https://twitter.com/hashtag/%s'>#%s</a> %s" .text .text $hashflag }}
+    <!-- Replace text with clickable link -->
+    {{ $text = replace $text $old $new }}
+    <!-- Mark hasshtag as seen -->
+    {{ $seen_hashtag.Set .text "true" }}
+  {{ end }}
+{{ end }}
+
+<!-- 4. Symbols/Cashflags -->
+{{ range $res.entities.symbols }}
+  {{ $old := printf "$%s" .text }}
+  {{ $new := printf "<a target='_blank' rel='noopener noreferrer' href='https://twitter.com/search?q=%24%s'>$%s</a>" .text .text }}
+  {{ $text = replace $text $old $new }}
+{{ end }}
+
+<!-- return modified text -->
