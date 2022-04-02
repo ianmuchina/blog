@@ -1,10 +1,11 @@
 {{- define "main" -}}
 
-  {{- partial "nav.html" . -}}
-  {{- .Site.Params.Description -}}
-  {{- partial "social-links.html" . -}}   
+{{- partial "nav.html" . -}}
+<main>
 
-  <main>
+  {{- .Site.Params.Description -}}
+  {{- partial "social-links.html" . -}} 
+
     <h2>Posts</h2>
     {{- range .Site.RegularPages.ByDate.Reverse -}}
       <article>
