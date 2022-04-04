@@ -1,7 +1,5 @@
 ---
 title: Extra Tweets
-description: Tests for tweet shortcode
-url: tests/tweet-extras
 date: 2022-04-01
 draft: true
 ---

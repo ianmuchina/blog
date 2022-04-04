@@ -16,11 +16,11 @@
   </div>
 
   <div class="content">
-    {{ partial "tweet/text"      (dict "ctx" $data "hfs" .Site.Data.hashtags) }}
-    {{ partial "tweet/opengraph" (dict "ctx" $data) }}
-    {{ partial "tweet/poll"      (dict "ctx" $data) }}
-    {{ partial "tweet/gallery"   (dict "ctx" $data) }}
-    {{ partial "tweet/video"     (dict "ctx" $data) }}
+    {{- partial "tweet/text"      (dict "ctx" $data "hfs" .Site.Data.hashtags) -}}
+    {{- partial "tweet/opengraph" (dict "ctx" $data) -}}
+    {{- partial "tweet/poll"      (dict "ctx" $data) -}}
+    {{- partial "tweet/gallery"   (dict "ctx" $data) -}}
+    {{- partial "tweet/video"     (dict "ctx" $data) -}}
 
     {{ with $data.quoted_tweet }}
     <article lang="{{.lang}}" class="tweet quoted" >
@@ -33,10 +33,9 @@
       </div>
 
       <div class="content">
-        {{- partial "tweet/text" (dict "ctx" . "hfs" $.Site.Data.hashtags) -}}
-
-        {{ partial "tweet/gallery"   (dict "ctx" .) }}
-        {{ partial "tweet/video"     (dict "ctx" .) }}
+        {{- partial "tweet/text"    (dict "ctx" . "hfs" $.Site.Data.hashtags) -}}
+        {{- partial "tweet/gallery" (dict "ctx" .) -}}
+        {{- partial "tweet/video"   (dict "ctx" .) -}}
       </div>
     </article>
     {{ end }}

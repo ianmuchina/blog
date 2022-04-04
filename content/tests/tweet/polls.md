@@ -1,7 +1,5 @@
 ---
 title: Poll tweets
-description: Tests for tweet shortcode
-url: tests/polls
 date: 2022-04-01
 draft: true
 ---

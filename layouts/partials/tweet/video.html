@@ -4,7 +4,7 @@
 -->
 
 {{- with .ctx.video -}}
-  {{ $poster := .poster}}
+
   {{ if eq .contentType "media_entity" }}
 
     {{- $maxW := 0 -}}
@@ -37,17 +37,40 @@
     {{- $width  := (index .aspectRatio 0) -}}
     {{- $height := (index .aspectRatio 1) -}}
 
+    {{/*  Self host Poster Image */}}
+    {{ $poster := .poster }}
+    {{/*  a. GET Image from twitter cdn  */}}
+    {{ $img := resources.GetRemote .poster }}
+    {{/*  b. Change poster source if there are no errors */}}
+    {{ if not $img.Err }}
+      {{ $poster = $img.RelPermalink }}
+    {{ end }}
+
     <!---  3. Render Video --->
     {{ with $best_video }}
+      {{/*  Self host Video */}}
+      {{ $src := .src }}
+      {{/* a. Download video from twitter cdn */}}
+      {{ $vid := resources.GetRemote .src }}
+      {{/* b. Change video source if there are no errors */}}
+      {{ if not $vid.Err }}
+        {{ $src = $vid.RelPermalink }}
+      {{ else }}
+        {{ warnf "%s" $vid.Err }}
+      {{ end }}
+
+      {{/*  Render video  */}}
       <video
-        src="{{.src}}"
+        src="{{ $src }}"
         class="tweet-video"
         style="aspect-ratio: {{$maxW}}/{{$maxH}}; width: 100%; height: auto;"
-        preload="metadata"
+        preload="none"
         controls 
-        poster="{{$poster}}"
+        poster="{{ $poster }}"
         >
       </video>
     {{ end }}
-  {{- end -}}
+  {{ else if false }}
+
+  {{ end }}
 {{ end }}

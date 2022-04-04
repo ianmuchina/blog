@@ -1,7 +1,5 @@
 ---
 title: Video Tests
-description: Tests for tweet shortcode
-url: tests/tweet-video
 date: 2022-04-01
 draft: true
 ---
@@ -16,4 +14,4 @@ draft: true
 {{<tweet id="869318041078820864" >}}
 
 <!-- Dr strange (widescreen) -->
-{{<tweet id="1493000412042989568">}}
+<!-- {{<tweet id="1493000412042989568">}} -->

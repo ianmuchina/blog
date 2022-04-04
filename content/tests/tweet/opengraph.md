@@ -1,7 +1,5 @@
 ---
 title: OpenGraph Tests
-description: Tests for tweet shortcode
-url: tests/tweet-opengraph
 date: 2022-04-01
 draft: true
 ---

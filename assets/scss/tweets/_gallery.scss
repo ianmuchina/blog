@@ -8,7 +8,7 @@
   gap: 2px;
   overflow: clip;
   border-radius: var(--tw-border-radius);
-  outline: solid 1px var(--tw-border);
+  outline: solid 1px var(--border);
 }
 
 .gallery img {
@@ -22,6 +22,7 @@
 .gallery-1 {
   display: contents;
   img {
+    outline: solid 1px var(--border);
     width: 100%;
     height: auto;
     max-height: 640px;

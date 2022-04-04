@@ -1,7 +1,5 @@
 ---
 title: Picture Tests
-description: Tests for tweet shortcode
-url: tests/tweet-photos
 date: 2022-04-01
 draft: true
 ---
