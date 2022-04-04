@@ -38,5 +38,5 @@ caches:
     dir: :cacheDir/modules
     maxAge: 0
   getresource:
-    dir: :cacheDir/:project
+    dir: :resourceDir/
     maxAge: -1

@@ -1,0 +1,31 @@
+on:
+  workflow_dispatch:
+
+jobs:
+  get-resources:
+    runs-on: ubuntu-20.04
+    steps:
+      # checkout code
+      - uses: actions/checkout@v2
+      # configure node
+      - uses: actions/setup-node@v3
+        with:
+          node-version: "16"
+
+      # configure git
+      - run: git config user.name "Github Actions"
+      - run: git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+
+      # Install hugo extended
+      - run: npm install hugo-extended --save-dev
+      # Get resources
+      - run: $(npm bin)/hugo -D
+      # Commit
+      - shell: bash
+        run: |
+          git add -f resources/filecache/getjson &&
+          git add -f resources/filecache/getresource &&
+          git commit -m "Add Resources" &&
+          git push origin $GITHUB_REF_NAME &&
+          echo "Done" ||
+          echo "No Changes"
