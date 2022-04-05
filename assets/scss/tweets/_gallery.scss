@@ -21,18 +21,17 @@
 // 1 Image
 
 .gallery-1 {
-  display: flex;
+  display: block;
+  width: 100%;
   outline: unset;
   picture {
-    display: flex;
+    max-height: 640px;
+    display: grid;
+    // Makes
+    margin-bottom: 2px;
   }
-
   img {
-    width: 100%;
-    height: 100%;
-    max-width: max-content;
-    max-height: max;
-    max-height: 620px;
+    outline: unset;
     object-fit: contain;
   }
 }

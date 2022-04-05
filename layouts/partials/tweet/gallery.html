@@ -32,7 +32,10 @@
       {{ $webp_src := replace $src  ".jpg" ".webp" }}
       {{ $avif_src := replace $src  ".jpg" ".avif" }}
 
-      <picture>
+      <picture
+      {{ if eq 1 $count }}
+      style="aspect-ratio: {{.width}}/{{.height}}"
+      {{ end }} >
         <source srcset="{{ $avif_src }}" type="image/avif">
         <source srcset="{{ $webp_src }}" type="image/webp">
 
@@ -41,7 +44,6 @@
           {{ if eq 1 $count }}
           width="{{ .width }}"
           height="{{ .height }}"
-          style="aspect-ratio: {{.width}}/{{.height}};"
           {{ end }}
           {{ if .accessibilityLabel }}
           alt='{{.accessibilityLabel}}'
