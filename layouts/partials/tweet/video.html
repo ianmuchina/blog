@@ -55,6 +55,7 @@
       {{ if not $vid.Err }}
         {{ $src = $vid.RelPermalink }}
       {{ else }}
+        {{ warnf "error loading tweet : %s" $.ctx.id_str}}
         {{ warnf "%s" $vid.Err }}
       {{ end }}
 
@@ -73,26 +74,29 @@
 
   {{ if eq .contentType "gif"}}
     {{ $gif := ""}}
+    {{$src := ""}}
     {{ range .variants }}
-      {{ $gif = resources.GetRemote .src }}
+      {{ $src = .src }}
     {{ end }}
+
+    {{ $gif = resources.GetRemote $src }}
 
     <!---  2. Get width & height --->
     {{- $width  := (index .aspectRatio 0)    -}}
     {{- $height := (index .aspectRatio 1)    -}}
-    {{- $vid    := resources.GetRemote .src  -}}
 
     {{/* Change video source if there are no errors */}}
-    {{ if not $vid.Err }}
-      {{ $src = $vid.RelPermalink }}
+    {{ if not $gif.Err }}
+      {{ $src = $gif.RelPermalink }}
     {{ else }}
-      {{ warnf "%s" $vid.Err }}
+      {{ warnf "Tweet: Err Loading Gif for tweet with id:%s" $.ctx.id_str}}
+      {{ warnf "%s" $gif.Err }}
     {{ end }}
 
     <video 
       width="{{ $width }}"
       height="{{ $height }}"
-      src="{{$gif.RelPermalink}}"
+      src="{{ $src }}"
       playsinline autoplay loop muted
       ></video>
   {{ end }}
