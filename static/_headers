@@ -1,4 +1,4 @@
 /*.avif
   Content-Type: image/avif
   Content-Disposition: inline
-  Cache-Control: max-age=86400, stale-while-revalidate
+  Cache-Control: max-age=31536000, stale-while-revalidate
