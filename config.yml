@@ -40,3 +40,6 @@ caches:
   getresource:
     dir: :resourceDir/
     maxAge: -1
+  images:
+    dir: :resourceDir/
+    maxAge: -1

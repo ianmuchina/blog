@@ -67,13 +67,13 @@
 .card_small {
     display: grid;
     grid-template-columns: 150px 1fr;
-}
 
-.card_small img {
-    height: 150px;
-    // aspect-ratio: 1/1;
-    object-fit: cover;
-    border-right: solid 1px var(--border);
+    img {
+        aspect-ratio: 1/1;
+        height: 150px;
+        object-fit: cover;
+        border-right: solid 1px var(--border);
+    }
 }
 
 .card_small .card_content {

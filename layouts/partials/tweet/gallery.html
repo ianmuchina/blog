@@ -29,18 +29,27 @@
         {{ $src = $img.RelPermalink }}
       {{ end }}
 
-      <img
-        src="{{ $src }}"
-        {{ if eq 1 $count }}
-        width="{{ .width }}"
-        height="{{ .height }}"
-        {{ end }}
-        {{ if .accessibilityLabel }}
-        alt='{{.accessibilityLabel}}'
-        {{ else }}
-        alt=""
-        {{ end }}
-      />
+      {{ $webp_src := replace $src  ".jpg" ".webp" }}
+      {{ $avif_src := replace $src  ".jpg" ".avif" }}
+
+      <picture>
+        <source srcset="{{ $avif_src }}" type="image/avif">
+        <source srcset="{{ $webp_src }}" type="image/webp">
+
+        <img
+          src="{{ $src }}"
+          {{ if eq 1 $count }}
+          width="{{ .width }}"
+          height="{{ .height }}"
+          style="aspect-ratio: {{.width}}/{{.height}};"
+          {{ end }}
+          {{ if .accessibilityLabel }}
+          alt='{{.accessibilityLabel}}'
+          {{ else }}
+          alt=""
+          {{ end }}
+        />
+      </picture>
     {{ end }}
   </div>
 {{ end }}

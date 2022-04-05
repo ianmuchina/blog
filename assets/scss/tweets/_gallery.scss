@@ -10,48 +10,56 @@
   border-radius: var(--tw-border-radius);
   outline: solid 1px var(--border);
 }
-
 .gallery img {
   border-radius: unset;
   object-fit: cover;
+  margin: unset;
+  padding: unset;
 }
 
 // Specific Styles
 // 1 Image
 
 .gallery-1 {
-  display: contents;
+  display: flex;
+  outline: unset;
+  picture {
+    display: flex;
+  }
+
   img {
-    outline: solid 1px var(--border);
     width: 100%;
-    height: auto;
-    max-height: 640px;
+    height: 100%;
+    max-width: max-content;
+    max-height: max;
+    max-height: 620px;
     object-fit: contain;
-    object-position: left;
   }
 }
 // 2 Images
-.gallery-2 img {
+.gallery-2 picture {
   grid-row: span 2;
 }
 
-.gallery-3 img {
+.gallery-3 picture {
   object-fit: cover;
 }
 
-.gallery-3 :nth-child(1),
-.gallery-2 img {
+.gallery img {
+  height: 100%;
+}
+.gallery-3 :first-child,
+.gallery-2 picture {
   grid-row: span 2;
-  max-height: 100%;
 }
 
-.gallery-4 img {
+.gallery-4 picture {
   max-height: 180px;
 }
 
 @supports (aspect-ratio: 16/9) {
   .gallery-2 img,
-  .gallery-3 :nth-child(1) {
+  .gallery-3 img:nth-child(1) img {
     aspect-ratio: 16/18;
   }
 

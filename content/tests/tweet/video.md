@@ -4,6 +4,9 @@ date: 2022-04-01
 draft: true
 ---
 
+<!-- GIF -->
+{{<tweet id="870042717589340160">}}
+
 <!-- Twitterdev announce v -->
 {{<tweet id="1460323737035677698">}}
 
@@ -14,4 +17,3 @@ draft: true
 {{<tweet id="869318041078820864" >}}
 
 <!-- Dr strange (widescreen) -->
-{{<tweet id="1493000412042989568">}}

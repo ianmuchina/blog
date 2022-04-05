@@ -16,7 +16,23 @@
         <a class="overlay" href="{{ $url }}" target="_blank" rel="noopener noreferrer"></a>
 
         {{ if .thumbnail_image_large.image_value }}
-            <img class="card_thumbnail" src="{{ .thumbnail_image_large.image_value.url }}" alt="">
+            {{ $src := ""}}
+            {{ $img := resources.GetRemote .thumbnail_image_large.image_value.url }}
+
+            {{ if not $img.Err }}
+              {{ $src = $img.RelPermalink }}
+              {{ $webp_src := replace $src  ".jpg" ".webp" }}
+              {{ $avif_src := replace $src  ".jpg" ".avif" }}
+
+              <picture>
+                  <source srcset="{{ $avif_src }}" type="image/avif">
+                  <source srcset="{{ $webp_src }}" type="image/webp">
+                  <img class="card_thumbnail" src="{{ .thumbnail_image_large.image_value.url }}" alt="">
+              </picture>
+            {{ else }}
+                <img class="card_thumbnail" src="{{ .thumbnail_image_large.image_value.url }}" alt="">
+            {{ end }}
+
         {{ else if .player_image }}
             <img class="card_thumbnail player" src="{{ .player_image.image_value.url }}" alt="">
         {{ else }}
