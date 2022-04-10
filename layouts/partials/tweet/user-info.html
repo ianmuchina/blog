@@ -1,8 +1,8 @@
 {{/*  Render a user's name & screen name  */}}
-{{- $host := "https://twitter.com/" -}}
-{{- $userUrl  := print $host (printf "intent/user?user_id=%s" .user.id_str) | htmlEscape -}}
 
 {{with .ctx }}
+{{- $host := "https://twitter.com/" -}}
+{{- $userUrl  := print $host (printf "intent/user?user_id=%s" .user.id_str) -}}
     <!-- Full Name -->
     <a class="name" href={{ $userUrl }} >
         <span>{{ .user.name }}</span>

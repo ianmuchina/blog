@@ -7,7 +7,7 @@ cd public || exit
 # For each jpeg image
 for i in *.jpg; do
     SRC="$i"
-    DEST="../static/${i%.*}"
+    DEST="../img/${i%.*}"
 
     # Convert to webp
     if [ ! -f "$DEST.webp" ]; then

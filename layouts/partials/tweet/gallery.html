@@ -32,26 +32,43 @@
       {{ $webp_src := replace $src  ".jpg" ".webp" }}
       {{ $avif_src := replace $src  ".jpg" ".avif" }}
 
-      <picture
-      {{ if eq 1 $count }}
-      style="aspect-ratio: {{.width}}/{{.height}}"
-      {{ end }} >
-        <source srcset="{{ $avif_src }}" type="image/avif">
-        <source srcset="{{ $webp_src }}" type="image/webp">
-
+      {{ if and  (fileExists (print "img/" $webp_src)) (fileExists (print "img/" $avif_src)) }}
+        <picture
+        {{ if eq 1 $count }}
+        style="aspect-ratio: {{.width}}/{{.height}}"
+        {{ end }} >
+          <source srcset="{{ $avif_src }}" type="image/avif">
+          <source srcset="{{ $webp_src }}" type="image/webp">
+          <img
+            src="{{ $src }}"
+            {{ if eq 1 $count }}
+            width="{{ .width }}"
+            height="{{ .height }}"
+            {{ end }}
+            {{ if .accessibilityLabel }}
+            alt='{{.accessibilityLabel}}'
+            {{ else }}
+            alt=""
+            {{ end }}
+          />
+        </picture>
+        {{ else }}
+        {{/*  Image not optimized  */}}
         <img
-          src="{{ $src }}"
-          {{ if eq 1 $count }}
-          width="{{ .width }}"
-          height="{{ .height }}"
-          {{ end }}
-          {{ if .accessibilityLabel }}
-          alt='{{.accessibilityLabel}}'
-          {{ else }}
-          alt=""
-          {{ end }}
-        />
-      </picture>
+        style="aspect-ratio: {{.width}}/{{.height}}"
+        src="{{ $src }}"
+        {{ if eq 1 $count }}
+        width="{{ .width }}"
+        height="{{ .height }}"
+        {{ end }}
+        {{ if .accessibilityLabel }}
+        alt='{{.accessibilityLabel}}'
+        {{ else }}
+        alt=""
+        {{ end }}
+      />
+      {{ end }}
+
     {{ end }}
   </div>
 {{ end }}

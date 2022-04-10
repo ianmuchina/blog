@@ -22,24 +22,63 @@ params:
 PygmentsUseClasses: true
 pygmentsCodefences: true
 module:
+  hugoVersion:
+    extended: true
+
   imports:
+    # Hasflags
     - path: github.com/ianmuchina/hashflagArchive
       mounts:
         - source: img/
           target: assets/twitter/hashflags
-
         - source: data
           target: data
+    # Hero Icons
+    - path: github.com/tailwindlabs/heroicons
+      mounts:
+        - source: optimized/
+          target: assets/icons/heroicons/
+
+    # Bootstrap Icons
+    - path: github.com/twbs/icons
+      mounts:
+        - source: icons
+          target: assets/icons/bootstrap/
+    # Feather Icons
+    - path: github.com/feathericons/feather
+      mounts:
+        - target: assets/icons/feather/
+          source: icons
+    # Octicons
+    - path: github.com/primer/octicons
+      mounts:
+        - target: assets/icons/octicons/
+          source: icons
+    # Box Icons
+    - path: github.com/atisawd/boxicons
+      mounts:
+        - target: assets/icons/box/
+          source: svg
+    # Font Awesome
+    - path: github.com/FortAwesome/Font-Awesome
+      mounts:
+        - target: assets/icons/fa/
+          source: svgs/
+
 caches:
   getjson:
     dir: :resourceDir/
     maxAge: -1
-  modules:
-    dir: :cacheDir/modules
-    maxAge: 0
+  # modules:
+  #   dir: :cacheDir/modules
+  #   maxAge: 0
   getresource:
     dir: :resourceDir/
     maxAge: -1
   images:
     dir: :resourceDir/
     maxAge: -1
+
+staticDir:
+  - static
+  - img
