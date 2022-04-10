@@ -1,0 +1,74 @@
+{{ $seen_hashtag := newScratch }}
+{{ $text := .ctx.text }}
+<!-- Entities -->
+
+<!-- Urls -->
+{{- range .ctx.entities.urls -}}
+  <!-- Link to expanded url -->
+  {{- $new := printf 
+    "<a target='_blank' rel='noopener noreferrer' href='%s'>%s</a>" 
+    (.expanded_url | htmlEscape)
+    (.display_url | htmlEscape )
+  -}}
+  <!-- If url points to quote tweet, remove it -->
+  {{ if in .expanded_url .quoted_tweet.id_str }}
+    {{ $new = ""}}
+  {{ end }}  
+  <!-- Replace t.co text with clickable link -->
+  {{ $text = replace $text .url $new  }}
+{{ end }}
+
+<!-- Hashtags -->
+<!-- TODO: Handle hashtags with multiple campaigns  -->
+{{ range .ctx.entities.hashtags }}
+  {{ if not ($seen_hashtag.Get .text) }}
+    <!-- Initialize hashflag variables -->
+    {{ $hashflag := ""}}
+    <!-- If hashtag has valid hashflag campaign -->
+    {{ with index $.hfs (lower .text) }}
+      <!-- Select hashflag image based on the campaign name -->
+      {{ $h := resources.Get (print "twitter/hashflags/" (index . 0) ".png") }}
+      <!-- Encode hashflag image to base64 -->
+      {{ $h64 := (print "data:image/png;base64," ($h.Content | base64Encode))}}
+      <!-- Make img link -->
+      {{ $hashflag = printf "<img class='emoji' src='%s' alt=''>" $h64 }}
+      {{ end }}
+    <!-- Prefix hashtag with # -->
+    {{ $old := printf "#%s" .text }}
+    <!-- Make hashtag link + optional hashflag -->
+    {{ $new := printf "<a target='_blank' rel='noopener noreferrer' href='https://twitter.com/hashtag/%s'>#%s</a> %s" .text .text $hashflag }}
+    <!-- Replace text with clickable link -->
+    {{ $text = replace $text $old $new }}
+    <!-- Mark hasshtag as seen -->
+    {{ $seen_hashtag.Set .text "true" }}
+  {{ end }}
+{{ end }}
+
+
+<!-- Media -->
+<!-- Remove all media links -->
+{{- range .ctx.entities.media -}}
+  {{- $text = replace $text .url "" -}}
+{{- end -}}
+
+<!-- Mentions -->
+{{- range .ctx.entities.user_mentions -}}
+  <!-- Prefix username with @ -->
+  {{- $old := printf "@%s" .screen_name -}}
+  <!-- Link pointing to user profile. Works even if user changes username -->
+  {{- $new := printf "<a href='https://twitter.com/intent/user?user_id=%s'>@%s</a>" .id_str .screen_name -}}
+  <!-- Replace text with clickable link -->
+  {{- $text = replace $text $old $new -}}
+{{- end -}}
+
+
+<!-- 4. Symbols/Cashflags -->
+{{ range .ctx.entities.symbols }}
+  {{ $old := printf "$%s" .text }}
+  {{ $new := printf "<a target='_blank' rel='noopener noreferrer' href='https://twitter.com/search?q=%24%s'>$%s</a>" .text .text }}
+  {{ $text = replace $text $old $new }}
+{{ end }}
+
+<p class="text">
+    {{- $text | safeHTML -}}
+</p>

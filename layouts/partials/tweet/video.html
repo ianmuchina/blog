@@ -1,0 +1,103 @@
+<!--
+  Renders a video from a tweet or quote tweet
+  Only shows the highest quality video
+-->
+
+{{- with .ctx.video -}}
+{{/*  Normal videos  */}}
+  {{ if eq .contentType "media_entity" }}
+
+    {{- $maxW := 0 -}}
+    {{- $maxH := 0 -}}
+    {{- $best_video := "" -}}
+
+    {{- range sort .variants "src" -}}
+      {{- if (eq .type "video/mp4") -}}
+        <!-- Get quality using regex from the url --->
+        {{- $quality := findRE `\d{3,4}x\d{3,4}` .src -}}
+
+        <!-- Split to width & height  --->
+        {{- $q := split (index $quality 0) "x" -}}
+
+        <!-- Cast to int  --->
+        {{- $w := int (index $q 0) -}}
+        {{- $h := int (index $q 1) -}}
+
+        {{- if (gt $w $maxW) -}}
+          {{- $maxW = $w -}}
+          {{- $maxH = $h -}}
+          {{- $best_video = . -}}
+        {{- end -}}
+
+      {{ end }}
+    {{ end }}
+
+    <!---  2. Get width & height --->
+    {{- $width  := (index .aspectRatio 0) -}}
+    {{- $height := (index .aspectRatio 1) -}}
+
+    {{/*  Self host Poster Image */}}
+    {{ $poster := .poster }}
+    {{/*  a. GET Image from twitter cdn  */}}
+    {{ $img := resources.GetRemote .poster }}
+    {{/*  b. Change poster source if there are no errors */}}
+    {{ if not $img.Err }}
+      {{ $poster = $img.RelPermalink }}
+    {{ end }}
+
+    <!---  3. Render Video --->
+    {{ with $best_video }}
+      {{/*  Self host Video */}}
+      {{ $src := .src }}
+      {{/* a. Download video from twitter cdn */}}
+      {{ $vid := resources.GetRemote .src }}
+      {{/* b. Change video source if there are no errors */}}
+      {{ if not $vid.Err }}
+        {{ $src = $vid.RelPermalink }}
+      {{ else }}
+        {{ warnf "error loading tweet : %s" $.ctx.id_str}}
+        {{ warnf "%s" $vid.Err }}
+      {{ end }}
+
+      {{/*  Render video  */}}
+      <video
+        src="{{ $src }}"
+        class="tweet-video"
+        style="aspect-ratio: {{$maxW}}/{{$maxH}}; width: 100%; height: auto;"
+        preload="metadata"
+        controls
+        poster="{{ $poster }}"
+        >
+      </video>
+    {{ end }}
+  {{ end }}
+
+  {{ if eq .contentType "gif"}}
+    {{ $gif := ""}}
+    {{$src := ""}}
+    {{ range .variants }}
+      {{ $src = .src }}
+    {{ end }}
+
+    {{ $gif = resources.GetRemote $src }}
+
+    <!---  2. Get width & height --->
+    {{- $width  := (index .aspectRatio 0)    -}}
+    {{- $height := (index .aspectRatio 1)    -}}
+
+    {{/* Change video source if there are no errors */}}
+    {{ if not $gif.Err }}
+      {{ $src = $gif.RelPermalink }}
+    {{ else }}
+      {{ warnf "Tweet: Err Loading Gif for tweet with id:%s" $.ctx.id_str}}
+      {{ warnf "%s" $gif.Err }}
+    {{ end }}
+
+    <video 
+      width="{{ $width }}"
+      height="{{ $height }}"
+      src="{{ $src }}"
+      playsinline autoplay loop muted
+      ></video>
+  {{ end }}
+{{ end }}

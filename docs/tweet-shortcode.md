@@ -1,12 +1,6 @@
 # Tweet shortcode
 
-## Tasks
-
-- Make code reusable with partial templates
-- Visual Tests
-
-### Macro Layouts
-
+# Layout
 - [ ] thread
 - [ ] focus
 - [ ] timeline
@@ -24,7 +18,7 @@
 
 ### UserInfo
 
-- [ ] Verified
+- [x] Verified
 - [ ] in-timeline
 - [ ] thread-self
 - [ ] thread-reply
@@ -32,43 +26,42 @@
 ### Content
 
 - Text:
-  - [ ] whitespace
-  - [ ] newlines
-  - [ ] emoji
-  - [ ] entities:
-    - [ ] urls
-    - [ ] hashtags
-      - [ ] hashflags:
-        - [ ] expired
-        - [ ] current
-    - [ ] symbols
-    - [ ] mentions
+  - [x] whitespace & newlines
+  - [ ] twemoji
+  - [ ] entities
+    - [x] urls
+    - [x] Hashtags
+    - [x] Hashflags
+      - [ ] expired
+      - [ ] current
+    - [x] Symbols
+    - [ ] User mentions (not case sensitive)
   - [ ] in-reply-to
 
 - Photos:
-  - [ ] 1-4 images
-  - [ ] Tags
+  - [x] 1-4 images
+  - [ ] GEO Tags
 
 - Gif:
-  - [ ] Gif label
-  - [ ] Hide cast icon
+  - [ ] Gif label with css
+  - [ ] Hide cast icon on mobile
 - Video:
-  - [ ] Handle Multiple qualities
+  - [x] Handle Multiple qualities: only using the best quality
 
 - Cards:
-  - [ ] Summary
-    - [ ] no image
-    - [ ] square image
-    - [ ] wide image
-  - [ ] Player
+  - [x] Summary
+    - [x] no image
+    - [x] square image
+    - [x] wide image
+  - [x] Player
   - [ ] App
-  - [ ] Spaces: not-started ended
-- Voice tweet
-- Poll: final & not-final
+  - [ ] Spaces: not-started & recording
+- [ ]  - Voice tweet
+- [x] - Poll: final & not-final
 
 ### Quote tweet
 
-- Test for most combination
+- Test for all combinations
 
 ### Footer
 
@@ -94,23 +87,29 @@
 
 ## css bugs
 
-- [ ] character truncation.
-- [ ] line truncation
+- [ ] character truncate
+- [ ] line clamp
+  - [ ] Opengraph small
+  - [ ] Opengraph large
+  - [ ] Full Name alongside checkmark
 
-## component
+## Fluff
 
-## Tasks
-
-- size vars
-- color vars
-- layout change via classes with least dom manipulation
+- size variables
+- color variables
+- macro layout change with css classes
 - clean css/scss
 - default colors
+- Separate repo for modularity
 
-## shortcode API
+## Props
 
-Single tweet: id="id_str" mode="focus, timeline, thread" embed="img, video, all"
-(media to base64 encode as data uris) embed_max_quality="sd|360, hd|720,
-uhd|1080"
 
-Thread: start="id_str" end="id_str" mode="default, minimal, prose"
+```ts
+interface tweet {
+  id: string        // Tweet id string
+  mode?: string     // focus, timeline, thread, minimal
+  inline?: string   // video, img, gif, profile, all, none
+  selfHost?: string // video, img, gif, profile, all, none
+}
+```

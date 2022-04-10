@@ -1,0 +1,25 @@
+{{/*  Render a user's name & screen name  */}}
+
+{{with .ctx }}
+{{- $host := "https://twitter.com/" -}}
+{{- $userUrl  := print $host (printf "intent/user?user_id=%s" .user.id_str) -}}
+    <!-- Full Name -->
+    <a class="name" href={{ $userUrl }} >
+        <span>{{ .user.name }}</span>
+        <!-- Checkmark (Optional) -->
+        {{ if .user.verified }}
+            <span class="checkmark">
+                {{ partial "inline-svg" "twitter/checkmark"}}
+            </span>
+        {{ end }}
+    </a>
+
+    <!-- Screen Name -->
+    <span class="scr-name">@{{.user.screen_name}}</span>
+    <!-- Date Compact (Optional)  Mainly for quote tweets -->
+
+    {{ if $.date }}
+        {{ $date_compact :=  time.Format "Jan 2 2006" .created_at }}
+        <div class="date-compact">{{ $date_compact }}</di>
+    {{end}}
+{{ end }}

@@ -1,0 +1,33 @@
+{{ with .ctx  }}
+<!-- Compact notation for likes
+     eg: 1234 => 1.2K -->
+     {{ $likes := .favorite_count }}
+     {{ $k := math.Floor	(div $likes 1000) }}
+     {{ $h := math.Floor	(mul .01 (mod $likes 1000)) }}
+     <!-- If Hundreds value is zero -->
+     <!-- eg: 12,000 => 12K  -->
+     {{ if (gt $k 0) }} {{$likes = print $k "K" }} {{end}}
+
+     <!-- If Hundreds value is >100 -->
+     <!-- eg: 12,345 => 12.3K  -->
+     {{ if and (gt $k 0) (gt $h 0) }}
+       {{$likes = print $k "." $h "K" }}
+     {{ end }}
+    <!-- Tweet urls -->
+    {{- $host := "https://twitter.com/" -}}
+    {{- $tweetUrl := print $host (printf "%s/status/%s" .user.screen_name .id_str) -}}
+    {{- $replyUrl := print $host (printf "intent/like?in_reply_to=%s" .id_str) -}}
+    {{- $likeUrl  := print $host (printf "intent/like?tweet_id=%s" .id_str) -}}
+    <!-- Metadata: Likes, Link to tweet -->
+    <div class="meta">
+      <!-- Likes -->
+      <a class="likes" href="{{ $likeUrl }}" target="_blank" rel="noopener noreferrer" > 
+      <!-- Icon -->
+      {{ partial "inline-svg" "twitter/like"}} {{ $likes }}
+      </a>
+      <!-- Link To Tweet -->
+      <a href={{ $tweetUrl }} target="_blank" rel="noopener noreferrer" class="link">
+        {{ partial "inline-svg" "twitter/link"}} Link to Tweet
+      </a>
+    </div>
+{{ end }}

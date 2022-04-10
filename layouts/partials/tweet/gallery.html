@@ -1,0 +1,74 @@
+<!--
+  Renders images from a tweet object
+  Size values:
+    `:thumb`
+    `:small`
+    `:medium`
+    `:large`
+    `:orig`
+
+  TODO: Custom quality based on above.
+
+ TODO params loading:
+    size: {small, medium, large, original}
+    backup: {true, false, }
+-->
+
+{{ with .ctx.photos }}
+  {{ $count := len . }}
+  <div class="gallery gallery-{{- $count -}}">
+    {{ range . }}
+      {{ $src := printf "%s:medium" .url }}
+      
+      {{/* Self host  Image */}}
+      {{/*  a. GET Image from twitter cdn  */}}
+      {{ $img := resources.GetRemote .url }}
+      {{/*  b. Change Image source if there are no errors */}}
+      {{/*  TODO: Resize and use picture element */}}
+      {{ if not $img.Err }}
+        {{ $src = $img.RelPermalink }}
+      {{ end }}
+
+      {{ $webp_src := replace $src  ".jpg" ".webp" }}
+      {{ $avif_src := replace $src  ".jpg" ".avif" }}
+
+      {{ if and  (fileExists (print "img/" $webp_src)) (fileExists (print "img/" $avif_src)) }}
+        <picture
+        {{ if eq 1 $count }}
+        style="aspect-ratio: {{.width}}/{{.height}}"
+        {{ end }} >
+          <source srcset="{{ $avif_src }}" type="image/avif">
+          <source srcset="{{ $webp_src }}" type="image/webp">
+          <img
+            src="{{ $src }}"
+            {{ if eq 1 $count }}
+            width="{{ .width }}"
+            height="{{ .height }}"
+            {{ end }}
+            {{ if .accessibilityLabel }}
+            alt='{{.accessibilityLabel}}'
+            {{ else }}
+            alt=""
+            {{ end }}
+          />
+        </picture>
+        {{ else }}
+        {{/*  Image not optimized  */}}
+        <img
+        style="aspect-ratio: {{.width}}/{{.height}}"
+        src="{{ $src }}"
+        {{ if eq 1 $count }}
+        width="{{ .width }}"
+        height="{{ .height }}"
+        {{ end }}
+        {{ if .accessibilityLabel }}
+        alt='{{.accessibilityLabel}}'
+        {{ else }}
+        alt=""
+        {{ end }}
+      />
+      {{ end }}
+
+    {{ end }}
+  </div>
+{{ end }}

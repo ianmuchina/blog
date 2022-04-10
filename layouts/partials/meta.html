@@ -92,23 +92,23 @@
     "headline": "{{.Title  -}}",
     "author": {
       "@type": "Person",
-      "name": "{{-  .Site.Params.Author  -}}"
+      "name": "{{ .Site.Params.Author }}"
     },
-    "datePublished": "{{-  .Date.Format "2006-01-02"  -}}",
-    "description": "{{-  htmlEscape .Description  -}}",
-    "wordCount": {{-  .WordCount  -}},
+    "datePublished": "{{ .Date.Format "2006-01-02" }}",
+    "description": "{{ htmlEscape .Description  }}",
+    "wordCount": {{ .WordCount }},
     "mainEntityOfPage": "True",
-    "dateModified": "{{-  .Lastmod.Format "2006-01-02"  -}}",
+    "dateModified": "{{ .Lastmod.Format "2006-01-02" }}",
     "image": {
       "@type": "imageObject",
-      "url": "{{-  with .Params.image  -}}{{.}}{{-  end  -}}"
+      "url": "{{ with .Params.image }} {{.}} {{ end }}"
     },
     "publisher": {
       "@type": "Organization",
-      "name": "{{string .Site.Params.Author  -}}",
+      "name": "{{ string .Site.Params.Author }}",
       "logo": {
         "@type": "imageObject",
-        "url": "{{.Site.BaseURL}}favicons/android-chrome-512x512.png"
+        "url": "{{ .Site.BaseURL }}favicons/android-chrome-512x512.png"
       }
     }
   }

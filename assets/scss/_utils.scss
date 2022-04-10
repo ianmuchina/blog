@@ -19,16 +19,10 @@
     color: var(--accent);
 }
 
-/* Emoji  */
-@font-face {
-    font-family: emoji;
-    font-display: block;
-    src: url("/twemoji-cff2_colr_1.otf");
-}
-
 /* Emoji */
 .emoji {
-    height: 1em;
-    width: 1em;
-    font-family: emoji, sans-serif;
+    display: inline-block;
+    height: 1.5em;
+    width: 1.5em;
+    vertical-align: -20%;
 }

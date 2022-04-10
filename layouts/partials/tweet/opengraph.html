@@ -1,0 +1,64 @@
+{{ with .ctx }}
+{{ if .card.binding_values.domain }}
+{{ with .card.binding_values }}
+    <section 
+        class="card {{ if .summary_photo_image_large }} card_large {{ else }} card_small {{ end }}"
+    >
+        {{ $url := .card_url.string_value }}
+        <!-- Replace twitter url with expanded url  -->
+        {{ range $.ctx.entities.urls }}
+            {{ if (eq $url .url) }}
+                {{ $url = .expanded_url }}
+            {{ end }}
+        {{ end }}
+
+        {{/*  Overlay to make div clickable  */}}
+        <a class="overlay" href="{{ $url }}" target="_blank" rel="noopener noreferrer"></a>
+
+        {{ if .thumbnail_image_large.image_value }}
+            {{ $src := ""}}
+            {{ $img := resources.GetRemote .thumbnail_image_large.image_value.url }}
+
+            {{ if not $img.Err }}
+              {{ $src = $img.RelPermalink }}
+              {{ $webp_src := replace $src  ".jpg" ".webp" }}
+              {{ $avif_src := replace $src  ".jpg" ".avif" }}
+
+              <picture>
+                  <source srcset="{{ $avif_src }}" type="image/avif">
+                  <source srcset="{{ $webp_src }}" type="image/webp">
+                  <img class="card_thumbnail" src="{{ .thumbnail_image_large.image_value.url }}" alt="">
+              </picture>
+            {{ else }}
+                <img class="card_thumbnail" src="{{ .thumbnail_image_large.image_value.url }}" alt="">
+            {{ end }}
+
+        {{ else if .player_image }}
+            {{ $src := ""}}
+            {{ $img := resources.GetRemote .player_image.image_value.url }}
+            {{ if not $img.Err }}
+              {{ $src = $img.RelPermalink }}
+              {{ $webp_src := replace $src  ".jpg" ".webp" }}
+              {{ $avif_src := replace $src  ".jpg" ".avif" }} 
+              <picture>
+                <source srcset="{{ $avif_src }}" type="image/avif">
+                <source srcset="{{ $webp_src }}" type="image/webp">
+                <img class="card_thumbnail" src="{{ .player_image.image_value.url }}" alt="">
+                </picture>
+            {{ else }}
+            <img class="card_thumbnail player" src="{{ .player_image.image_value.url }}" alt="">
+        {{ end }}
+
+        {{ else }}
+        <div class="card-no-image">
+            {{ partial "inline-svg" "twitter/document"}}
+        </div>
+        {{ end }}
+        <div class="card_content">
+        <div class="vanity_url">{{.vanity_url.string_value}} </div>
+        <div class="title">{{.title.string_value}} </div>
+        <p class="description">{{.description.string_value }}</p>
+    </section>
+{{ end }}
+{{ end }}
+{{ end }}
