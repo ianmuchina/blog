@@ -1,6 +1,6 @@
 # Blog
 
-Personal Blog. Built with hugo. Deploys on [vercel](https://vercel.com/)
+Personal Blog. Built with hugo.
 
 ## Directorty structure
 
@@ -11,4 +11,4 @@ Personal Blog. Built with hugo. Deploys on [vercel](https://vercel.com/)
 ## Requirements
 
 - Go 1.11 or later
-- Hugo extended versino
+- Hugo extended version
