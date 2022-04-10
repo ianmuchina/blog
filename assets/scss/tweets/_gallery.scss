@@ -36,8 +36,10 @@
   }
 }
 // 2 Images
-.gallery-2 picture {
+.gallery-2 > picture,
+.gallery-2 > img {
   grid-row: span 2;
+  aspect-ratio: 16/18;
 }
 
 .gallery-3 picture {

@@ -34,7 +34,21 @@
             {{ end }}
 
         {{ else if .player_image }}
+            {{ $src := ""}}
+            {{ $img := resources.GetRemote .player_image.image_value.url }}
+            {{ if not $img.Err }}
+              {{ $src = $img.RelPermalink }}
+              {{ $webp_src := replace $src  ".jpg" ".webp" }}
+              {{ $avif_src := replace $src  ".jpg" ".avif" }} 
+              <picture>
+                <source srcset="{{ $avif_src }}" type="image/avif">
+                <source srcset="{{ $webp_src }}" type="image/webp">
+                <img class="card_thumbnail" src="{{ .player_image.image_value.url }}" alt="">
+                </picture>
+            {{ else }}
             <img class="card_thumbnail player" src="{{ .player_image.image_value.url }}" alt="">
+        {{ end }}
+
         {{ else }}
         <div class="card-no-image">
             {{ partial "inline-svg" "twitter/document"}}

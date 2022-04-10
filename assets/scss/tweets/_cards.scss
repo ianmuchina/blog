@@ -87,6 +87,7 @@
 }
 
 .card-no-image {
+    aspect-ratio: 1/1;
     background-color: var(--og-no-img);
     display: grid;
     place-items: center;
