@@ -24,7 +24,6 @@ twitter's features
 
 ## Showcase
 
-{{<tweet id="1206619392559202309">}}
 {{<tweet id="1502719927265943554">}}
 {{<tweet id="1492869877459259396">}}
 
