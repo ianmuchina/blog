@@ -32,8 +32,8 @@
     - [x] urls
     - [x] Hashtags
     - [x] Hashflags
-      - [ ] expired
-      - [ ] current
+      - [x] expired
+      - [x] current
     - [x] Symbols
     - [ ] User mentions (not case sensitive)
   - [ ] in-reply-to
@@ -41,6 +41,7 @@
 - Photos:
   - [x] 1-4 images
   - [ ] GEO Tags
+  - [ ] Mention Tags
 
 - Gif:
   - [ ] Gif label with css

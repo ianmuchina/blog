@@ -15,18 +15,38 @@
      {{ end }}
     <!-- Tweet urls -->
     {{- $host := "https://twitter.com/" -}}
-    {{- $tweetUrl := print $host (printf "%s/status/%s" .user.screen_name .id_str) -}}
-    {{- $replyUrl := print $host (printf "intent/like?in_reply_to=%s" .id_str) -}}
-    {{- $likeUrl  := print $host (printf "intent/like?tweet_id=%s" .id_str) -}}
+    {{- $tweetUrl := print $host .user.screen_name "/status/" .id_str -}}
+    {{- $replyUrl := print $host "intent/like?in_reply_to=" .id_str -}}
+    {{- $likeUrl  := print $host "intent/like?tweet_id=" .id_str -}}
+
     <!-- Metadata: Likes, Link to tweet -->
+    {{ $date :=  time.Format "3:04 PM · Jan 2, 2006" .created_at }}
+    {{ $uts := time .created_at }}
+    {{ $uts := $uts.Unix }}
+    <span>
+
+      <a
+      data-date="{{$uts}}"
+      class="tw-date"
+      aria-label="Posted on {{ $date }}"
+      href="{{ $tweetUrl }}"
+      >
+      {{- $date -}}
+    </a>
+    {{ with .place }}
+    <a class="tw-place" href="https://twitter.com/places/{{.id}}">
+      from {{.full_name}}
+    </a>
+    </span>
+
+    {{ end }}
     <div class="meta">
       <!-- Likes -->
       <a class="likes" href="{{ $likeUrl }}" target="_blank" rel="noopener noreferrer" > 
-      <!-- Icon -->
-      {{ partial "inline-svg" "twitter/like"}} {{ $likes }}
+        {{ partial "inline-svg" "twitter/like"}} {{ $likes }}
       </a>
       <!-- Link To Tweet -->
-      <a href={{ $tweetUrl }} target="_blank" rel="noopener noreferrer" class="link">
+      <a href="{{ $tweetUrl }}" target="_blank" rel="noopener noreferrer" class="link">
         {{ partial "inline-svg" "twitter/link"}} Link to Tweet
       </a>
     </div>

@@ -13,9 +13,15 @@
     ''        -> 'original' || 400x400
 -->
 
+{{/*
+== TODO ==
+- avif & webp variants (via shell script)
+- save to 'assets/twitter/users/{user-id}.{png|webp|avif} 
+- multiple size variants
+*/}}
 {{ with .ctx }}
-    {{ $url := replace .user.profile_image_url_https "_normal" $.size }}
-    <img
+{{ $url := replace .user.profile_image_url_https "_normal" $.size }}
+<img
     width="42"
     height="42"
     loading="lazy"

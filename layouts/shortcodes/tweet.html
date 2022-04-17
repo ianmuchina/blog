@@ -1,6 +1,7 @@
 {{/*  Get Data from API  */}}
 {{- $data := getJSON "https://cdn.syndication.twimg.com/tweet?id=" (.Get "id") -}}
 
+
 {{ $mode := "focus" }}
 {{ if ne (.Get "mode") ""  }}
   {{ $mode = (.Get "mode") }}
@@ -16,11 +17,11 @@
   </div>
 
   <div class="content">
-    {{- partial "tweet/text"      (dict "ctx" $data "hfs" .Site.Data.hashtags) -}}
-    {{- partial "tweet/opengraph" (dict "ctx" $data) -}}
+    {{- partial "tweet/text"      (dict "ctx" $data "hashtags" .Site.Data.hashtags "campaigns" .Site.Data.campaigns ) -}}
     {{- partial "tweet/poll"      (dict "ctx" $data) -}}
-    {{- partial "tweet/gallery"   (dict "ctx" $data) -}}
     {{- partial "tweet/video"     (dict "ctx" $data) -}}
+    {{- partial "tweet/gallery"   (dict "ctx" $data) -}}
+    {{- partial "tweet/opengraph" (dict "ctx" $data) -}}
 
     {{ with $data.quoted_tweet }}
     <article lang="{{.lang}}" class="tweet quoted" >
@@ -33,7 +34,7 @@
       </div>
 
       <div class="content">
-        {{- partial "tweet/text"    (dict "ctx" . "hfs" $.Site.Data.hashtags) -}}
+        {{- partial "tweet/text"    (dict "ctx" . "hfs" $.Site.Data) -}}
         {{- partial "tweet/gallery" (dict "ctx" .) -}}
         {{- partial "tweet/video"   (dict "ctx" .) -}}
       </div>

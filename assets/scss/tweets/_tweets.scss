@@ -195,12 +195,12 @@
   color: var(--tw-text-secondary);
 }
 
-a.tw-date {
+a.tw-date, a.tw-place {
   font-size: 1rem;
   color: var(--tw-text-secondary);
   text-decoration: none;
 }
-a.tw-date:hover {
+a.tw-date:hover, a.tw-place:hover {
   text-decoration: underline;
 }
 

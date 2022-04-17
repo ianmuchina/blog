@@ -1,0 +1,5 @@
+{
+	"dependencies": {
+		"@squoosh/cli": "^0.7.2"
+	}
+}

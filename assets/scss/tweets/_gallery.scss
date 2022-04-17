@@ -17,9 +17,23 @@
   padding: unset;
 }
 
+.gallery picture {
+  object-position: center center;
+}
+
+// Shared styles
+.gallery-2 img,
+.gallery-3 img:nth-child(1) img {
+  aspect-ratio: 16/18;
+}
+
+.gallery-3 :first-child,
+.gallery-2 picture {
+  grid-row: span 2;
+}
+
 // Specific Styles
 // 1 Image
-
 .gallery-1 {
   display: block;
   width: 100%;
@@ -31,41 +45,39 @@
     margin-bottom: 2px;
   }
   img {
+    height: 100%;
     outline: unset;
     object-fit: contain;
   }
 }
+
 // 2 Images
-.gallery-2 > picture,
-.gallery-2 > img {
-  grid-row: span 2;
-  aspect-ratio: 16/18;
-}
-
-.gallery-3 picture {
-  object-fit: cover;
-}
-
-.gallery img {
-  height: 100%;
-}
-.gallery-3 :first-child,
-.gallery-2 picture {
-  grid-row: span 2;
-}
-
-.gallery-4 picture {
-  max-height: 180px;
-}
-
-@supports (aspect-ratio: 16/9) {
-  .gallery-2 img,
-  .gallery-3 img:nth-child(1) img {
+.gallery-2 {
+  img {
+    height: 100%;
+    grid-row: span 2;
     aspect-ratio: 16/18;
   }
+}
 
-  .gallery-4 img,
-  .gallery-3 img {
-    aspect-ratio: 16 / 9;
+// 3 Images
+.gallery-3 {
+  img {
+    object-position: cover;
+    aspect-ratio: 16/9;
+    height: 100%;
+    width: 100%;
   }
+}
+
+// 4 Images
+.gallery-4 picture {
+  max-height: 180px;
+  img {
+    height: 100%;
+  }
+}
+
+.gallery-4 img {
+  aspect-ratio: 16 / 9;
 }

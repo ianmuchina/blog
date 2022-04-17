@@ -23,23 +23,47 @@
 {{ range .ctx.entities.hashtags }}
   {{ if not ($seen_hashtag.Get .text) }}
     <!-- Initialize hashflag variables -->
-    {{ $hashflag := ""}}
-    <!-- If hashtag has valid hashflag campaign -->
-    {{ with index $.hfs (lower .text) }}
-      <!-- Select hashflag image based on the campaign name -->
-      {{ $h := resources.Get (print "twitter/hashflags/" (index . 0) ".png") }}
-      <!-- Encode hashflag image to base64 -->
-      {{ $h64 := (print "data:image/png;base64," ($h.Content | base64Encode))}}
-      <!-- Make img link -->
-      {{ $hashflag = printf "<img class='emoji' src='%s' alt=''>" $h64 }}
+    {{ $hashflag_markup := "" }}
+    
+    {{ $date :=  time $.ctx.created_at }}
+    {{ $hashtag := (lower .text)}}
+    <!-- If hashtag has >1 campaign -->
+    {{ with index $.hashtags $hashtag }}
+      {{ $campaign := "" }}
+      {{/*  Get tweet date    */}}
+      {{/*  Choose campaign image within date   */}}
+      {{ range $c := . }}
+        {{ with index $.campaigns $c }}
+          {{ if and (gt .endingTimestampMs $date.UnixMilli) (lt .startingTimestampMs $date.UnixMilli) }}
+            {{ $campaign = $c }}
+          {{ end }}
+        {{ end }}
       {{ end }}
+      {{ with resources.Get (print "twitter/hashflags/" $campaign ".png") }}
+        {{ $png_src := .Content | resources.FromString (print "/twitter/hashflags/" $campaign ".png") }}
+        {{ $png_src := $png_src.RelPermalink}}
+        {{ $webp_src := replace .RelPermalink ".png" ".webp" }}
+        {{ $avif_src := replace .RelPermalink ".png" ".avif" }}
+
+        {{ if and 
+          (fileExists (print "img/" $webp_src))
+          (fileExists (print "img/" $avif_src))
+        }}
+        {{ $hashflag_markup = printf "<picture class='emoji'><source srcset='%s' type='image/webp'> <img src='%s'> </picture>" $webp_src $png_src}}
+        {{ else }}
+          {{ warnf "%s " $png_src}}
+          {{ $hashflag_markup = printf "<img class='emoji' src='%s' alt=''>" $png_src }}
+        {{ end }}
+        {{ end }}
+    {{ end }}
+
     <!-- Prefix hashtag with # -->
     {{ $old := printf "#%s" .text }}
     <!-- Make hashtag link + optional hashflag -->
-    {{ $new := printf "<a target='_blank' rel='noopener noreferrer' href='https://twitter.com/hashtag/%s'>#%s</a> %s" .text .text $hashflag }}
+    {{ $new := printf "<a target='_blank' rel='noopener noreferrer' href='https://twitter.com/hashtag/%s'>#%s</a> %s" .text .text $hashflag_markup }}
     <!-- Replace text with clickable link -->
     {{ $text = replace $text $old $new }}
-    <!-- Mark hasshtag as seen -->
+    <!-- Mark hashtag as seen -->
     {{ $seen_hashtag.Set .text "true" }}
   {{ end }}
 {{ end }}
