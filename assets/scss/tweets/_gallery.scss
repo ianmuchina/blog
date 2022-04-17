@@ -10,6 +10,7 @@
   border-radius: var(--tw-border-radius);
   outline: solid 1px var(--border);
 }
+
 .gallery img {
   border-radius: unset;
   object-fit: cover;
@@ -27,8 +28,8 @@
   aspect-ratio: 16/18;
 }
 
-.gallery-3 :first-child,
-.gallery-2 picture {
+.gallery-2 picture,
+.gallery-3 :first-child {
   grid-row: span 2;
 }
 

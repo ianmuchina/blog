@@ -1,28 +1,28 @@
 .inline-svg {
-    display: inline-block;
-    vertical-align: middle;
+  display: inline-block;
+  vertical-align: middle;
 
-    svg {
-        width: 1em;
-        height: 1em;
-        fill: currentColor;
-        display: inline-block;
-    }
+  svg {
+    width: 1em;
+    height: 1em;
+    fill: currentColor;
+    display: inline-block;
+  }
 }
 
 // Misc
 .hidden {
-    display: none;
+  display: none;
 }
 
 .accent {
-    color: var(--accent);
+  color: var(--accent);
 }
 
-/* Emoji */
+// Emoji
 .emoji img {
-    display: inline-block;
-    height: 1.5em;
-    width: 1.5em;
-    vertical-align: -20%;
+  display: inline-block;
+  height: 1.5em;
+  width: 1.5em;
+  vertical-align: -20%;
 }

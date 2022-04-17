@@ -1,95 +1,94 @@
 .card {
-    border: solid 1px var(--tw-border);
-    border-radius: var(--tw-border-radius);
-    overflow: clip;
-    position: relative;
+  border: solid 1px var(--tw-border);
+  border-radius: var(--tw-border-radius);
+  overflow: clip;
+  position: relative;
 
-    img {
-        border-radius: unset;
-    }
-}
+  img {
+    border-radius: unset;
+  }
 
-.card_content {
+  .card_content {
     padding: 1rem;
     font-size: 1rem;
+  }
 }
 
 .vanity_url,
 .description {
-    color: var(--text-secondary);
+  color: var(--text-secondary);
 }
 
-// Truncate text
 // Truncate text
 .vanity_url,
 .title,
 .description {
-    display: -webkit-box;
-    -webkit-box-orient: vertical;
-    word-break: var(--word-break, "none");
-    overflow: hidden;
-    hyphens: auto;
-    text-align: left;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  word-break: var(--word-break, "none");
+  overflow: hidden;
+  hyphens: auto;
+  text-align: left;
 }
 
 .title,
 .vanity_url {
-    -webkit-line-clamp: 1;
+  -webkit-line-clamp: 1;
 }
 
 .description {
-    -webkit-line-clamp: 2;
+  -webkit-line-clamp: 2;
 }
 
 .title {
-    color: var(--text);
+  color: var(--text);
 }
 
 .card .overlay {
-    position: absolute;
-    top: 0;
-    bottom: 0;
-    right: 0;
-    left: 0;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  left: 0;
 }
 
 .card_large {
-    display: flex;
-    flex-direction: column;
+  display: flex;
+  flex-direction: column;
 
-    img {
-        aspect-ratio: 16/9;
-        object-fit: cover;
-        border-bottom: solid 1px var(--border);
-    }
+  img {
+    aspect-ratio: 16/9;
+    object-fit: cover;
+    border-bottom: solid 1px var(--border);
+  }
 }
 
 .card_small {
-    display: grid;
-    grid-template-columns: 150px 1fr;
+  display: grid;
+  grid-template-columns: 150px 1fr;
 
-    img {
-        aspect-ratio: 1/1;
-        height: 150px;
-        object-fit: cover;
-        border-right: solid 1px var(--border);
-    }
+  img {
+    aspect-ratio: 1/1;
+    height: 150px;
+    object-fit: cover;
+    border-right: solid 1px var(--border);
+  }
 }
 
 .card_small .card_content {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
 
 .card:hover {
-    background-color: var(--alt-bg);
+  background-color: var(--alt-bg);
 }
 
 .card-no-image {
-    aspect-ratio: 1/1;
-    background-color: var(--og-no-img);
-    display: grid;
-    place-items: center;
-    border-right: solid 1px var(--border);
+  aspect-ratio: 1/1;
+  background-color: var(--og-no-img);
+  display: grid;
+  place-items: center;
+  border-right: solid 1px var(--border);
 }

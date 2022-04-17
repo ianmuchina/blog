@@ -20,12 +20,12 @@
   color: var(--text);
 }
 
-/* Reset */
+// Reset
 .tweet p {
   margin: unset;
 }
 
-/* Default Layout is focus */
+// Default Layout is focus
 .profile-pic {
   grid-row: 1/2;
   grid-column: 1/2;
@@ -63,32 +63,32 @@
   grid-column: span 2;
 }
 
-/* Hidden by default */
+// Hidden by default
 .date-compact {
   display: none;
 }
 
 .quoted {
-  /* Reduce gap */
+  // Reduce gap
   gap: 2px 6px;
-  /* Reduce profile pic size */
+  // Reduce profile pic size
   --profile-pic-width: 1.2rem;
 }
 
 .quoted > .user-info {
-  /* Put everything on one row */
+  // Put everything on one row
   display: flex;
-  /* Reduce font size */
+  // Reduce font size
   font-size: 1rem;
   gap: 0.625rem;
 }
 
-/* Make date visible */
+// Make date visible
 .quoted > .user-info > .date-compact {
   display: initial;
 }
 
-/* Reduce font size */
+// Reduce font size
 .quoted > .content > .text {
   font-size: 1rem;
 }
@@ -108,7 +108,7 @@
   display: none;
 }
 
-/* Center the checkmark */
+// Center the checkmark
 .user-info .name {
   color: var(--headers);
   font-weight: 600;
@@ -141,7 +141,7 @@
   display: initial;
 }
 
-/* content */
+// content
 .content {
   display: flex;
   flex-direction: column;
@@ -154,7 +154,7 @@
   height: var(--profile-pic-width);
 }
 
-/* Color & font sizes */
+// Color & font sizes
 .profile-pic > img {
   border-radius: 100%;
 }
@@ -178,7 +178,6 @@
 }
 
 @media screen and (max-width: 200px) {
-  
 }
 
 .thread .text {
@@ -201,12 +200,14 @@
   color: var(--tw-text-secondary);
 }
 
-a.tw-date, a.tw-place {
+a.tw-date,
+a.tw-place {
   font-size: 1rem;
   color: var(--tw-text-secondary);
   text-decoration: none;
 }
-a.tw-date:hover, a.tw-place:hover {
+a.tw-date:hover,
+a.tw-place:hover {
   text-decoration: underline;
 }
 
