@@ -172,7 +172,13 @@
 }
 
 .text {
+  max-width: 90vw;
   white-space: pre-wrap;
+  overflow-wrap: break-word;
+}
+
+@media screen and (max-width: 200px) {
+  
 }
 
 .thread .text {
