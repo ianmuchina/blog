@@ -1,8 +1,12 @@
 {{/*  Render a user's name & screen name  */}}
 
-{{with .ctx }}
-{{- $host := "https://twitter.com/" -}}
-{{- $userUrl  := print $host (printf "intent/user?user_id=%s" .user.id_str) -}}
+{{ with .ctx }}
+    {{- $host := "https://twitter.com/" -}}
+    {{- $userUrl  := print $host (printf "intent/user?user_id=%s" .user.id_str) -}}
+    {{/*  Screen name for verified user doesnt change  */}}
+    {{ if .user.verified }}
+        {{- $userUrl = print $host (printf "%s" .user.screen_name) -}}
+    {{ end }}
     <!-- Full Name -->
     <a class="name" href={{ $userUrl }} >
         <span>{{ .user.name }}</span>

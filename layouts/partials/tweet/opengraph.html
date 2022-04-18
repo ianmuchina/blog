@@ -15,49 +15,63 @@
         {{/*  Overlay to make div clickable  */}}
         <a class="overlay" href="{{ $url }}" target="_blank" rel="noopener noreferrer"></a>
 
+        {{/*  Summary Card  */}}
         {{ if .thumbnail_image_large.image_value }}
-            {{ $src := ""}}
-            {{ $img := resources.GetRemote .thumbnail_image_large.image_value.url }}
+            {{ with .thumbnail_image_large.image_value }}
+                {{ $src := ""}}
+                {{ $img := resources.GetRemote .url }}
+                {{ $filename := print "/twitter/media/opengraph/" $.ctx.id_str "." $img.MediaType.SubType }}
+                {{ $img := $img.Content | resources.FromString $filename }}
 
-            {{ if not $img.Err }}
-              {{ $src = $img.RelPermalink }}
-              {{ $webp_src := replace $src  ".jpg" ".webp" }}
-              {{ $avif_src := replace $src  ".jpg" ".avif" }}
-
-              <picture>
-                  <source srcset="{{ $avif_src }}" type="image/avif">
-                  <source srcset="{{ $webp_src }}" type="image/webp">
-                  <img class="card_thumbnail" src="{{ .thumbnail_image_large.image_value.url }}" alt="">
-              </picture>
-            {{ else }}
-                <img class="card_thumbnail" src="{{ .thumbnail_image_large.image_value.url }}" alt="">
+                {{ if not $img.Err }}
+                    {{ $src = $img.RelPermalink }}
+                    {{ $webp_src := replace $src  ".jpg" ".webp" }}
+                    {{ $avif_src := replace $src  ".jpg" ".avif" }}
+                    <picture>
+                        <source srcset="{{ $avif_src }}" type="image/avif">
+                        <source srcset="{{ $webp_src }}" type="image/webp">
+                        <img class="card_thumbnail" src="{{ .url }}" alt="{{.alt}}">
+                    </picture>
+                {{ else }}
+                    <img class="card_thumbnail" src="{{ .url }}" alt="">
+                {{ end }}
             {{ end }}
-
+        {{/*  Player Card  */}}
         {{ else if .player_image }}
             {{ $src := ""}}
             {{ $img := resources.GetRemote .player_image.image_value.url }}
+            {{ $filename := print "/twitter/media/opengraph/" $.ctx.id_str "." $img.MediaType.SubType }}
+            {{ $img := $img.Content | resources.FromString $filename }}
+
             {{ if not $img.Err }}
-              {{ $src = $img.RelPermalink }}
-              {{ $webp_src := replace $src  ".jpg" ".webp" }}
-              {{ $avif_src := replace $src  ".jpg" ".avif" }} 
-              <picture>
-                <source srcset="{{ $avif_src }}" type="image/avif">
-                <source srcset="{{ $webp_src }}" type="image/webp">
-                <img class="card_thumbnail" src="{{ .player_image.image_value.url }}" alt="">
+                {{/*  Change extension from jpeg  */}}
+                {{ $webp := replace $img.RelPermalink $img.MediaType.SubType ".webp" }}
+                {{ $avif := replace $img.RelPermalink $img.MediaType.SubType ".avif" }}
+                <picture>
+                    <source srcset="{{ $avif }}" type="image/avif">
+                    <source srcset="{{ $webp }}" type="image/webp">
+                    <img class="card_thumbnail" src="{{ $img.RelPermalink }}" alt="">
                 </picture>
             {{ else }}
-            <img class="card_thumbnail player" src="{{ .player_image.image_value.url }}" alt="">
+                <img class="card_thumbnail player" src="{{ .player_image.image_value.url }}" alt="">
+            {{ end }}
+        {{/* Card Without Image */}}
+        {{ else }}
+            <div class="card-no-image">
+                {{ partial "inline-svg" "twitter/document"}}
+            </div>
         {{ end }}
 
-        {{ else }}
-        <div class="card-no-image">
-            {{ partial "inline-svg" "twitter/document"}}
-        </div>
-        {{ end }}
         <div class="card_content">
-        <div class="vanity_url">{{.vanity_url.string_value}} </div>
-        <div class="title">{{.title.string_value}} </div>
-        <p class="description">{{.description.string_value }}</p>
+            {{ if .vanity_url }}
+                <div class="vanity_url">{{.vanity_url.string_value}} </div>
+            {{ end }}
+            {{ if .title }}
+                <div class="title {{ if not .description }}title-2{{ end }}">{{.title.string_value}} </div>
+            {{end}}
+            {{ if .description }}
+                <p class="description">{{.description.string_value }}</p>
+            {{ end }}
     </section>
 {{ end }}
 {{ end }}

@@ -30,7 +30,7 @@ module:
     - path: github.com/ianmuchina/hashflagArchive
       mounts:
         - source: img/
-          target: assets/twitter/hashflags
+          target: assets/twitter/media/hashflags
         - source: data
           target: data
     # Hero Icons

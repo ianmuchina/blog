@@ -39,20 +39,16 @@
           {{ end }}
         {{ end }}
       {{ end }}
-      {{ with resources.Get (print "twitter/hashflags/" $campaign ".png") }}
-        {{ $png_src := .Content | resources.FromString (print "/twitter/hashflags/" $campaign ".png") }}
-        {{ $png_src := $png_src.RelPermalink}}
-        {{ $webp_src := replace .RelPermalink ".png" ".webp" }}
-        {{ $avif_src := replace .RelPermalink ".png" ".avif" }}
-
-        {{ if and 
-          (fileExists (print "img/" $webp_src))
-          (fileExists (print "img/" $avif_src))
-        }}
-        {{ $hashflag_markup = printf "<picture class='emoji'><source srcset='%s' type='image/webp'> <img src='%s'> </picture>" $webp_src $png_src}}
+      {{ with resources.Get (print "twitter/media/hashflags/" $campaign ".png") }}
+        {{ $png := .RelPermalink }}
+        {{ $webp := .Resize "72x72 webp q80 drawing" }}
+        {{ $filename := (print "twitter/media/hashflags/" $campaign ".webp") }}
+        {{ $webp = $webp.Content | resources.FromString $filename }}
+        {{ if not $webp.Err }}
+          {{ $hashflag_markup = printf "<picture class='emoji'><source srcset='%s' type='image/webp'> <img src='%s'></picture>" $webp.RelPermalink $png }}
         {{ else }}
-          {{ warnf "%s " $png_src}}
-          {{ $hashflag_markup = printf "<img class='emoji' src='%s' alt=''>" $png_src }}
+          {{ warnf "%s" "Hashflags not Optimized"}}
+          {{ $hashflag_markup = printf "<picture class='emoji'><img src='%s' alt=''></picture>" .RelPermalink }}
         {{ end }}
         {{ end }}
     {{ end }}

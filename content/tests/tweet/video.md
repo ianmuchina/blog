@@ -7,6 +7,9 @@ draft: true
 <!-- GIF -->
 {{<tweet id="870042717589340160">}}
 
+{{<tweet id="1513944715703504914">}}
+
+
 <!-- Twitterdev announce v -->
 {{<tweet id="1460323737035677698">}}
 

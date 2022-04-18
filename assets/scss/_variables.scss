@@ -5,6 +5,7 @@
     helvetica neue, helvetica, Ubuntu, roboto, noto, arial, sans-serif;
   --mono-font: "Ubuntu Mono", Consolas, Menlo, Monaco, "Andale Mono", monospace;
   font-size: 15px;
+  --vw: 720px;
 }
 // Color Variables
 // Light Theme
@@ -18,7 +19,6 @@
   --text: #2d3748;
   --headers: #2d3748;
   --text-secondary: #4a5568;
-
   --accent: #4f46e5;
   --accent-raw: 79, 70, 229;
   --accent-alt: hsl(243, 74%, 67%);

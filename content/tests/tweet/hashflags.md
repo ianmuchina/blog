@@ -6,15 +6,20 @@ draft: true
 
 Hashflags images are retreived with [hashflags.io](https://hashflags.io)
 
+{{<tweet id="1341438954025803777">}}
+
 ## [#wwdc21]()
+
+
+{{<tweet id="1433743632490766337">}}
+
+{{<tweet id="1402022489056759808">}}
 
 {{<tweet id="1400374052087238658">}}
 
 {{<tweet id="1401529638384377861">}}
 
-{{<tweet id="1433743632490766337">}}
 
-{{<tweet id="1402022489056759808">}}
 
 
 ## [#AppleEvent]()
@@ -43,7 +48,6 @@ The hashflag for the animated series was changed weelkly.
 
 {{<tweet id="1438940827703816201">}}
 
-{{<tweet id="1442217414674948096">}}
 
 {{<tweet id="1433822094828134400">}}
 

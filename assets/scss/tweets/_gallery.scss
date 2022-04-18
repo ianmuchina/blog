@@ -13,41 +13,23 @@
 
 .gallery img {
   border-radius: unset;
+  display: block;
   object-fit: cover;
-  margin: unset;
-  padding: unset;
 }
 
 .gallery picture {
   object-position: center center;
 }
 
-// Shared styles
-.gallery-2 img,
-.gallery-3 img:nth-child(1) img {
-  aspect-ratio: 16/18;
-}
-
-.gallery-2 picture,
-.gallery-3 :first-child {
-  grid-row: span 2;
-}
-
 // Specific Styles
 // 1 Image
 .gallery-1 {
   display: block;
-  width: 100%;
-  outline: unset;
-  picture {
-    max-height: 640px;
-    display: grid;
-    // Makes
-    margin-bottom: 2px;
-  }
   img {
-    height: 100%;
-    outline: unset;
+    width: 100%;
+    height: auto;
+    max-height: 640px;
+    display: block;
     object-fit: contain;
   }
 }
@@ -55,20 +37,33 @@
 // 2 Images
 .gallery-2 {
   img {
+    aspect-ratio: 16/18;
     height: 100%;
     grid-row: span 2;
     aspect-ratio: 16/18;
   }
 }
 
+.gallery-2 picture,
+.gallery-3 :first-child {
+  grid-row: span 2;
+}
+
 // 3 Images
 .gallery-3 {
-  img {
-    object-position: cover;
+  picture>img {
     aspect-ratio: 16/9;
-    height: 100%;
-    width: 100%;
   }
+
+  picture:first-child {
+    height: 100%;
+    img {
+      height: 100%;
+      object-fit: cover;
+      aspect-ratio: 16/18;
+    }
+  }
+
 }
 
 // 4 Images

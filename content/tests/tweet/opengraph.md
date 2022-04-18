@@ -6,7 +6,7 @@ draft: true
 
 
 No Description
-{{<tweet mode="thread" id="1501258542258348032">}}
+{{<tweet id="1501258542258348032">}}
 
 
 No image small

@@ -36,6 +36,7 @@
   -webkit-line-clamp: 1;
 }
 
+.title-2,
 .description {
   -webkit-line-clamp: 2;
 }
@@ -55,7 +56,9 @@
 .card_large {
   display: flex;
   flex-direction: column;
-
+  picture {
+    aspect-ratio: 16/9;
+  }
   img {
     aspect-ratio: 16/9;
     object-fit: cover;
@@ -67,9 +70,12 @@
   display: grid;
   grid-template-columns: 150px 1fr;
 
+  picture {
+    height: 150px;
+  }
+
   img {
     aspect-ratio: 1/1;
-    height: 150px;
     object-fit: cover;
     border-right: solid 1px var(--border);
   }

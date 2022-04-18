@@ -40,10 +40,15 @@
     {{ $poster := .poster }}
     {{/*  a. GET Image from twitter cdn  */}}
     {{ $img := resources.GetRemote .poster }}
+    {{ $filename := print "/twitter/media/posters/" $.ctx.id_str "." $img.MediaType.SubType }}
+    
     {{/*  b. Change poster source if there are no errors */}}
     {{ if not $img.Err }}
-      {{ $poster = $img.RelPermalink }}
+    {{ $tmp := $img.Resize "x360 webp q100 picture" }}
+    {{ $tmp = $tmp.Content | resources.FromString $filename }}
+    {{ $poster = $tmp.RelPermalink }}
     {{ end }}
+
 
     <!---  3. Render Video --->
     {{ with $best_video }}
@@ -51,6 +56,9 @@
       {{ $src := .src }}
       {{/* a. Download video from twitter cdn */}}
       {{ $vid := resources.GetRemote .src }}
+      {{ $filename := print "/twitter/media/video/" $.ctx.id_str "." $vid.MediaType.SubType }}
+      {{ $vid = $vid.Content | resources.FromString $filename }}
+
       {{/* b. Change video source if there are no errors */}}
       {{ if not $vid.Err }}
         {{ $src = $vid.RelPermalink }}
@@ -80,6 +88,8 @@
     {{ end }}
 
     {{ $gif = resources.GetRemote $src }}
+    {{ $filename := print "/twitter/media/gifs/" $.ctx.id_str "." $gif.MediaType.SubType }}
+    {{ $gif = $gif.Content | resources.FromString $filename }}
 
     <!---  2. Get width & height --->
     {{- $width  := (index .aspectRatio 0)    -}}
@@ -94,6 +104,7 @@
     {{ end }}
 
     <video 
+      style="aspect-ratio: {{$width}}/{{$height}}; width: 100%; height: auto;"
       width="{{ $width }}"
       height="{{ $height }}"
       src="{{ $src }}"
