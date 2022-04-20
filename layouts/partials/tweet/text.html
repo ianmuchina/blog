@@ -1,15 +1,10 @@
 {{ $seen_hashtag := newScratch }}
 {{ $text := .ctx.text }}
-<!-- Entities -->
 
 <!-- Urls -->
 {{- range .ctx.entities.urls -}}
   <!-- Link to expanded url -->
-  {{- $new := printf 
-    "<a target='_blank' rel='noopener noreferrer' href='%s'>%s</a>" 
-    (.expanded_url | htmlEscape)
-    (.display_url | htmlEscape )
-  -}}
+  {{- $new := printf "<a target='_blank' rel='noopener noreferrer' href='%s'>%s</a>"  (.expanded_url) (.display_url) -}}
   <!-- If url points to quote tweet, remove it -->
   {{ if in .expanded_url .quoted_tweet.id_str }}
     {{ $new = ""}}
@@ -20,11 +15,12 @@
 
 <!-- Hashtags -->
 <!-- TODO: Handle hashtags with multiple campaigns  -->
+
 {{ range .ctx.entities.hashtags }}
   {{ if not ($seen_hashtag.Get .text) }}
     <!-- Initialize hashflag variables -->
     {{ $hashflag_markup := "" }}
-    
+
     {{ $date :=  time $.ctx.created_at }}
     {{ $hashtag := (lower .text)}}
     <!-- If hashtag has >1 campaign -->
@@ -74,9 +70,9 @@
 <!-- Mentions -->
 {{- range .ctx.entities.user_mentions -}}
   <!-- Prefix username with @ -->
-  {{- $old := printf "@%s" .screen_name -}}
+  {{- $old := (slicestr $.ctx.text (index .indices 0) (index .indices 1)) -}}
   <!-- Link pointing to user profile. Works even if user changes username -->
-  {{- $new := printf "<a href='https://twitter.com/intent/user?user_id=%s'>@%s</a>" .id_str .screen_name -}}
+  {{- $new := printf "<a href='https://twitter.com/intent/user?user_id=%s'>%s</a>" .id_str $old -}}
   <!-- Replace text with clickable link -->
   {{- $text = replace $text $old $new -}}
 {{- end -}}
@@ -84,8 +80,8 @@
 
 <!-- 4. Symbols/Cashflags -->
 {{ range .ctx.entities.symbols }}
-  {{ $old := printf "$%s" .text }}
-  {{ $new := printf "<a target='_blank' rel='noopener noreferrer' href='https://twitter.com/search?q=%24%s'>$%s</a>" .text .text }}
+  {{ $old := (slicestr $.ctx.text (index .indices 0) (index .indices 1)) }}
+  {{ $new := printf "<a target='_blank' rel='noopener noreferrer' href='https://twitter.com/search?q=%s'>%s</a>" $old $old }}
   {{ $text = replace $text $old $new }}
 {{ end }}
 
