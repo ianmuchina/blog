@@ -20,33 +20,24 @@
 - multiple size variants
 */}}
 
-
 {{ with .ctx }}
-    {{/* Source */}}
-    {{ $url := replace .user.profile_image_url_https "_normal" "" }}
-    {{/* Download */}}
-    {{ $img  := resources.GetRemote $url }}
-    {{ if eq $.size "_mini" }}
-        {{ $img = $img.Resize "36x36 webp q100 picture" }}
-    {{ else }}
-        {{ $img = $img.Resize "100x100 webp q90" }}
+<picture>
+    {{/* Self host image */}}
+    {{ $image_src := replace .user.profile_image_url_https "_normal" "" }}
+    {{ with resources.GetRemote $image_src }}
+        {{ $img := .}}
+        {{ $filename := print "/twitter/media/profile-photos/" $.ctx.user.id_str "." $img.MediaType.SubType }}
+        {{ $img := $img.Content | resources.FromString $filename }}
+        <source srcset="{{ $img.RelPermalink  }}" type="{{ $img.MediaType }}">
     {{ end }}
 
-    {{/*  Generate filenames */}}
-    {{ $dir  := "/twitter/media/profile_images/"}}
-    {{ $filename      := print $dir .user.id_str $.size "." $img.MediaType.SubType  }}
-    {{/*  Rename  */}}
-    {{ $img = $img.Content | resources.FromString $filename }}
-
-    <picture>
-        {{/*  <source srcset="{{ $webp.RelPermalink }}" type="{{ $webp.MediaType }}">  */}}
-        <source srcset="{{ $img.RelPermalink  }}" type="{{ $img.MediaType  }}">
-        <img
-            width="42"
-            height="42"
-            loading="lazy"
-            alt=""
-            src="{{ $url }}"
-        />
+    {{/* Fallback */}}
+    <img
+        width="42"
+        height="42"
+        loading="lazy"
+        alt=""
+        src="{{ $image_src }}"
+    />
 </picture>
 {{ end }}

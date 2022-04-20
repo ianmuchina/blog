@@ -1,6 +1,18 @@
-{{ with .ctx }}
-{{ if .card.binding_values.domain }}
-{{ with .card.binding_values }}
+{{/*
+valid card.name values
+  - player 
+  - summary 
+  - summary_large_image 
+  - poll4choice_text_only 
+  - promo_image_convo 
+  - 3691233323:audiospace  */}}
+
+{{ if or  (eq .ctx.card.name "player")
+          (eq .ctx.card.name "summary")
+          (eq .ctx.card.name "summary_large_image") }}
+
+
+{{ with .ctx.card.binding_values }}
     <section 
         class="card {{ if .summary_photo_image_large }} card_large {{ else }} card_small {{ end }}"
     >
@@ -73,6 +85,5 @@
                 <p class="description">{{.description.string_value }}</p>
             {{ end }}
     </section>
-{{ end }}
 {{ end }}
 {{ end }}

@@ -1,64 +1,37 @@
-<!--
-  Renders images from a tweet object
-  Size values:
-    `:thumb`
-    `:small`
-    `:medium`
-    `:large`
-    `:orig`
-
-  TODO: Custom quality based on above.
-
- TODO params loading:
-    size: {small, medium, large, original}
-    backup: {true, false, }
--->
+{{/* Renders a gallery of up to 4 photos */}}
 
 {{ with .ctx.photos }}
-  {{ $count := len . }}
-  <div class="gallery gallery-{{- $count -}}">
-    {{ $i := 1 }}
-    {{ range  . }}
-      {{ $src := printf "%s:medium" .url }}
-      {{ $lg_src := printf "%s:medium" .url }}
-      {{ $pic_id := print  "-" $i }} {{ if eq 1 $count }} {{ $pic_id = ""}} {{ end }}
-
-      {{/*  Download Image  */}}
-      {{ $img := resources.GetRemote .url }}
-      {{ $img := $img.Resize "1280x webp q80" }}
-      {{ $filename := print "/twitter/media/photos/" $.ctx.id_str $pic_id "." $img.MediaType.SubType }}
-      {{ $img := $img.Content | resources.FromString $filename }}
-      {{ $webp := $img.Resize "1000x webp q90" }}
-      {{/*
-        {{/*  Webp */}}
-        {{/*
-        {{ $filename2 := print "/twitter/media/photos/" $.ctx.id_str $pic_id ".webp"  }}
-      */}}
-      {{/*  {{ $webp := $webp.Content | resources.FromString $filename }}  */}}
-      {{/*  {{ $webp := slice $webp | resources.Concat $filename2 }}  */}}
-
-      {{ $i = add $i 1 }}
+{{ $photo_count := len . }}
+{{/*  Wrapper with a gallery-n class for styling purposes */}}
+<div class="gallery gallery-{{ $photo_count }}">
+  {{ range $i, $p :=  . }}
       <picture>
-        {{/*  Webp Variant  */}}
-        {{/*  <source srcset="{{ $webp.RelPermalink }}" type="{{$webp.MediaType}}">  */}}
-        {{/*  Default  */}}
-        <source srcset="{{ $img.RelPermalink }}" type="{{$img.MediaType}}">
+        {{/*  Download Image. Block is skipped if not possible */}}
+        {{ with resources.GetRemote .url }}
+        {{ with .Err }}
+        {{ warnf "%s" . }}
+        {{ else }}
+            {{ $img := . }}
+            {{ $filename := print "/twitter/media/photos/" $.ctx.id_str "-" $i "." $img.MediaType.SubType }}
+            {{ $img := $img.Content | resources.FromString $filename }}
+            <source srcset="{{ $img.RelPermalink }}" type="{{ $img.MediaType }}">
+            {{ end }}
+        {{ end }}
 
-        {{/*  Fallback  */}}
-          <img
-            src="{{ .url }}"
-            {{ if eq 1 $count }}
-              width="{{ .width }}"
-              height="{{ .height }}"
-              style="aspect-ratio: {{.width}}/{{.height}}"
-            {{ end }}
-            {{ if .accessibilityLabel }}
-              alt='{{.accessibilityLabel}}'
-            {{ else }}
-              alt=""
-            {{ end }}
-          />
-        </picture>
+        <img
+        src="{{ $p.url}}"
+        {{ if eq 1 $photo_count }}
+          width="{{ $p.width }}"
+          height="{{ $p.height }}"
+          style="aspect-ratio: {{ $p.width}}/{{ $p.height}}" 
+        {{ end }}
+        {{ if $p.accessibilityLabel}}
+          alt='{{ $p.accessibilityLabel }}'
+        {{ else }}
+          alt=""
+        {{ end }}
+        />
+      </picture>
     {{ end }}
   </div>
 {{ end }}

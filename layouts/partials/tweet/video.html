@@ -38,17 +38,13 @@
 
     {{/*  Self host Poster Image */}}
     {{ $poster := .poster }}
-    {{/*  a. GET Image from twitter cdn  */}}
     {{ $img := resources.GetRemote .poster }}
-    {{ $filename := print "/twitter/media/posters/" $.ctx.id_str "." $img.MediaType.SubType }}
-    
-    {{/*  b. Change poster source if there are no errors */}}
-    {{ if not $img.Err }}
-    {{ $tmp := $img.Resize "x360 webp q100 picture" }}
-    {{ $tmp = $tmp.Content | resources.FromString $filename }}
-    {{ $poster = $tmp.RelPermalink }}
-    {{ end }}
 
+    {{ if not $img.Err }}
+      {{ $filename := print "/twitter/media/posters/" $.ctx.id_str "." $img.MediaType.SubType }}
+      {{ $img = $img.Content | resources.FromString $filename }}
+      {{ $poster = $img.RelPermalink }}
+    {{ end }}
 
     <!---  3. Render Video --->
     {{ with $best_video }}

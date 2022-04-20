@@ -21,24 +21,25 @@
     {{- partial "tweet/poll"      (dict "ctx" $data) -}}
     {{- partial "tweet/video"     (dict "ctx" $data) -}}
     {{- partial "tweet/gallery"   (dict "ctx" $data) -}}
-    {{- partial "tweet/opengraph" (dict "ctx" $data) -}}
+    {{- partial "tweet/cards"     (dict "ctx" $data) -}}
 
     {{ with $data.quoted_tweet }}
-    <article lang="{{.lang}}" class="tweet quoted" >
-      <div class="profile-pic">
-        {{ partial "tweet/profile-pic" (dict "ctx" . "base64" true "size" "_mini")}}
-      </div>
+      <article lang="{{.lang}}" class="tweet quoted" >
 
-      <div class="user-info">
-        {{ partial "tweet/user-info" (dict "ctx" .) }}
-      </div>
+        <div class="profile-pic">
+          {{ partial "tweet/profile-pic" (dict "ctx" . "base64" true "size" "_mini")}}
+        </div>
 
-      <div class="content">
-        {{- partial "tweet/text"    (dict "ctx" . "hfs" $.Site.Data) -}}
-        {{- partial "tweet/gallery" (dict "ctx" .) -}}
-        {{- partial "tweet/video"   (dict "ctx" .) -}}
-      </div>
-    </article>
+        <div class="user-info">
+          {{ partial "tweet/user-info" (dict "ctx" .) }}
+        </div>
+
+        <div class="content">
+          {{- partial "tweet/text"    (dict "ctx" . "hfs" $.Site.Data) -}}
+          {{- partial "tweet/gallery" (dict "ctx" .) -}}
+          {{- partial "tweet/video"   (dict "ctx" .) -}}
+        </div>
+      </article>
     {{ end }}
     {{ partial "tweet/meta"      (dict "ctx" $data) }}
   </div>
