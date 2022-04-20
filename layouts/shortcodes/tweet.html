@@ -17,7 +17,7 @@
   </div>
 
   <div class="content">
-    {{- partial "tweet/text"      (dict "ctx" $data "hashtags" .Site.Data.hashtags "campaigns" .Site.Data.campaigns ) -}}
+    {{- partial "tweet/text"      (dict "ctx" $data  "data" .Site.Data ) -}}
     {{- partial "tweet/poll"      (dict "ctx" $data) -}}
     {{- partial "tweet/video"     (dict "ctx" $data) -}}
     {{- partial "tweet/gallery"   (dict "ctx" $data) -}}
