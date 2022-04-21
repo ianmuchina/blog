@@ -1,90 +1,69 @@
+{{/*  TODO: Use slice instead of string replacement */}}
 {{ $seen_hashtag := newScratch }}
 {{ $text := .ctx.text }}
 
-<!-- Urls -->
-{{- range .ctx.entities.urls -}}
-  <!-- Link to expanded url -->
-  {{- $new := printf "<a target='_blank' rel='noopener noreferrer' href='%s'>%s</a>"  (.expanded_url) (.display_url) -}}
-  <!-- If url points to quote tweet, remove it -->
-  {{ if in .expanded_url .quoted_tweet.id_str }}
-    {{ $new = ""}}
-  {{ end }}  
-  <!-- Replace t.co text with clickable link -->
+{{/*  Remove Links to Media */}}
+{{ range .ctx.entities.media }}
+  {{ $text = replace $text .url "" }}
+{{ end }}
+
+{{/* Urls */}}
+{{ range .ctx.entities.urls }}
+  {{ $new := printf "<a target='_blank' rel='noopener noreferrer' href='%s'>%s</a>" .expanded_url .display_url }}
+  {{/* Remove link to quote tweet */}}
+  {{ if in .expanded_url $.ctx.quoted_tweet.id_str }} {{ $new = "" }} {{ end }}
   {{ $text = replace $text .url $new  }}
 {{ end }}
 
-<!-- Hashtags -->
-<!-- TODO: Handle hashtags with multiple campaigns  -->
-
-{{ range .ctx.entities.hashtags }}
-  {{ if not ($seen_hashtag.Get .text) }}
-    <!-- Initialize hashflag variables -->
-    {{ $hashflag_markup := "" }}
-
-    {{ $date :=  time $.ctx.created_at }}
-    {{ $hashtag := (lower .text)}}
-    <!-- If hashtag has >1 campaign -->
-    {{ with index $.data.hashtags $hashtag }}
-      {{ $campaign := "" }}
-      {{/*  Get tweet date    */}}
-      {{/*  Choose campaign image within date   */}}
-      {{ range $c := . }}
-        {{ with index $.data.campaigns $c }}
-          {{ if and (gt .endingTimestampMs $date.UnixMilli) (lt .startingTimestampMs $date.UnixMilli) }}
-            {{ $campaign = $c }}
-          {{ end }}
-        {{ end }}
-      {{ end }}
-      {{ with resources.Get (print "twitter/media/hashflags/" $campaign ".png") }}
-        {{ $png := .RelPermalink }}
-        {{ $webp := .Resize "72x72 webp q80 drawing" }}
-        {{ $filename := (print "twitter/media/hashflags/" $campaign ".webp") }}
-        {{ $webp = $webp.Content | resources.FromString $filename }}
-        {{ if not $webp.Err }}
-          {{ $hashflag_markup = printf "<picture class='emoji'><source srcset='%s' type='image/webp'> <img src='%s'></picture>" $webp.RelPermalink $png }}
-        {{ else }}
-          {{ warnf "%s" "Hashflags not Optimized"}}
-          {{ $hashflag_markup = printf "<picture class='emoji'><img src='%s' alt=''></picture>" .RelPermalink }}
-        {{ end }}
-      {{ end }}
-    {{ end }}
-
-    <!-- Prefix hashtag with # -->
-    {{ $old := printf "#%s" .text }}
-    <!-- Make hashtag link + optional hashflag -->
-    {{ $new := printf "<a target='_blank' rel='noopener noreferrer' href='https://twitter.com/hashtag/%s'>#%s</a> %s" .text .text $hashflag_markup }}
-    <!-- Replace text with clickable link -->
-    {{ $text = replace $text $old $new }}
-    <!-- Mark hashtag as seen -->
-    {{ $seen_hashtag.Set .text "true" }}
-  {{ end }}
+{{/* Mentions */}}
+{{ range .ctx.entities.user_mentions }}
+  {{ $old := (slicestr $.ctx.text (index .indices 0) (index .indices 1)) }}
+  {{ $new := printf "<a target='_blank' rel='noopener noreferrer' href='https://twitter.com/intent/user?user_id=%s'>%s</a>" .id_str $old }}
+  {{ $text = replace $text $old $new }}
 {{ end }}
 
-
-<!-- Media -->
-<!-- Remove all media links -->
-{{- range .ctx.entities.media -}}
-  {{- $text = replace $text .url "" -}}
-{{- end -}}
-
-<!-- Mentions -->
-{{- range .ctx.entities.user_mentions -}}
-  <!-- Prefix username with @ -->
-  {{- $old := (slicestr $.ctx.text (index .indices 0) (index .indices 1)) -}}
-  <!-- Link pointing to user profile. Works even if user changes username -->
-  {{- $new := printf "<a href='https://twitter.com/intent/user?user_id=%s'>%s</a>" .id_str $old -}}
-  <!-- Replace text with clickable link -->
-  {{- $text = replace $text $old $new -}}
-{{- end -}}
-
-
-<!-- 4. Symbols/Cashflags -->
+{{/* 4. Symbols/Cashflags */}}
 {{ range .ctx.entities.symbols }}
   {{ $old := (slicestr $.ctx.text (index .indices 0) (index .indices 1)) }}
   {{ $new := printf "<a target='_blank' rel='noopener noreferrer' href='https://twitter.com/search?q=%s'>%s</a>" $old $old }}
   {{ $text = replace $text $old $new }}
 {{ end }}
 
-<p class="text">
-    {{- $text | safeHTML -}}
-</p>
+{{/* Hashtags */}}
+{{ range .ctx.entities.hashtags }}
+  {{ if not ($seen_hashtag.Get .text) }}
+    {{ $hashflag_markup := "" }}
+
+    {{/*  Get tweet date*/}}
+    {{ $date :=  time $.ctx.created_at }}
+    {{ $hashtag := (lower .text) }}
+    {{/* If hashtag has campaign(s) */}}
+    {{ with index $.data.hashtags $hashtag }}
+      {{ $campaign := "" }}
+      {{/*  Select campaign */}}
+      {{ range $c := . }}
+        {{ with index $.data.campaigns $c }}
+          {{/*  If Tweet falls within campaign dates, use it */}}
+          {{ if and ( lt .startingTimestampMs $date.UnixMilli ) ( gt .endingTimestampMs   $date.UnixMilli ) }}
+            {{ $campaign = $c }}
+          {{ end }}
+        {{ end }}
+      {{ end }}
+
+      {{/*  Select Image  */}}
+      {{ with resources.Get (print "twitter/media/hashflags/" $campaign ".png") }}
+        {{ $hashflag_markup = printf "<picture class='emoji'> <img src='%s' alt=''> </picture>" .RelPermalink }}
+      {{ end }}
+    {{ end }}
+
+    {{ $old := (slicestr $.ctx.text (index .indices 0) (index .indices 1)) }}
+    {{/* Make hashtag link + optional hashflag */}}
+    {{ $new := printf "<a target='_blank' rel='noopener noreferrer' href='https://twitter.com/hashtag/%s'>#%s</a> %s" .text .text $hashflag_markup }}
+    {{/* Replace text with clickable link */}}
+    {{ $text = replace $text $old $new }}
+    {{/* Mark hashtag as seen */}}
+    {{ $seen_hashtag.Set .text "true" }}
+  {{ end }}
+{{ end }}
+
+<p class="text">{{ $text | safeHTML }}</p>

@@ -20,13 +20,13 @@
   {{ $pollStr1 = .card.binding_values.choice1_label.string_value }}
   <!-- Make map & append to slice -->
   {{ $polls = $polls | append (dict "count" $pollVal1 "label" $pollStr1) }}
-  
+
   <!-- 2 (Required) -->
   {{ $pollVal2 = int .card.binding_values.choice2_count.string_value }}
   {{ $pollStr2 = .card.binding_values.choice2_label.string_value }}
   <!-- Make map & append to slice -->
   {{ $polls = $polls | append (dict "count" $pollVal2 "label" $pollStr2) }}
-  
+
 
   <!-- 3 (Optional)  -->
   {{ if .card.binding_values.choice3_count.string_value }}

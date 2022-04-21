@@ -1,6 +1,5 @@
 {{/*  Get Data from API  */}}
-{{- $data := getJSON "https://cdn.syndication.twimg.com/tweet?id=" (.Get "id") -}}
-
+{{ $data := getJSON "https://cdn.syndication.twimg.com/tweet?id=" (.Get "id") }}
 
 {{ $mode := "focus" }}
 {{ if ne (.Get "mode") ""  }}
@@ -9,7 +8,7 @@
 
 <article class="tweet {{ $mode }}">
   <div class="profile-pic">
-    {{ partial "tweet/profile-pic" (dict "ctx" $data "base64" true "size" "_bigger")}}
+    {{ partial "tweet/profile-pic" (dict "ctx" $data "size" "_bigger")}}
   </div>
 
   <div class="user-info">
@@ -17,17 +16,17 @@
   </div>
 
   <div class="content">
-    {{- partial "tweet/text"      (dict "ctx" $data  "data" .Site.Data ) -}}
-    {{- partial "tweet/poll"      (dict "ctx" $data) -}}
-    {{- partial "tweet/video"     (dict "ctx" $data) -}}
-    {{- partial "tweet/gallery"   (dict "ctx" $data) -}}
-    {{- partial "tweet/cards"     (dict "ctx" $data) -}}
+    {{- partial "tweet/text" (dict "ctx" $data  "data" .Site.Data ) -}}
+    {{- partial "tweet/poll" (dict "ctx" $data) -}}
+    {{- partial "tweet/video" (dict "ctx" $data) -}}
+    {{- partial "tweet/gallery" (dict "ctx" $data) -}}
+    {{- partial "tweet/cards" (dict "ctx" $data) -}}
 
     {{ with $data.quoted_tweet }}
       <article lang="{{.lang}}" class="tweet quoted" >
 
         <div class="profile-pic">
-          {{ partial "tweet/profile-pic" (dict "ctx" . "base64" true "size" "_mini")}}
+          {{ partial "tweet/profile-pic" (dict "ctx" .)}}
         </div>
 
         <div class="user-info">
@@ -35,12 +34,13 @@
         </div>
 
         <div class="content">
-          {{- partial "tweet/text"    (dict "ctx" . "hfs" $.Site.Data) -}}
+          {{- partial "tweet/text" (dict "ctx" . "data" $.Site.Data) -}}
           {{- partial "tweet/gallery" (dict "ctx" .) -}}
-          {{- partial "tweet/video"   (dict "ctx" .) -}}
+          {{- partial "tweet/video" (dict "ctx" .) -}}
         </div>
       </article>
     {{ end }}
-    {{ partial "tweet/meta"      (dict "ctx" $data) }}
+
+    {{ partial "tweet/meta" (dict "ctx" $data) }}
   </div>
 </article>

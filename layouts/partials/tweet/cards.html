@@ -7,83 +7,77 @@ valid card.name values
   - promo_image_convo 
   - 3691233323:audiospace  */}}
 
-{{ if or  (eq .ctx.card.name "player")
-          (eq .ctx.card.name "summary")
-          (eq .ctx.card.name "summary_large_image") }}
-
-
+{{ if or (eq .ctx.card.name "player") (eq .ctx.card.name "summary") (eq .ctx.card.name "summary_large_image") }}
 {{ with .ctx.card.binding_values }}
-    <section 
-        class="card {{ if .summary_photo_image_large }} card_large {{ else }} card_small {{ end }}"
-    >
-        {{ $url := .card_url.string_value }}
-        <!-- Replace twitter url with expanded url  -->
-        {{ range $.ctx.entities.urls }}
-            {{ if (eq $url .url) }}
-                {{ $url = .expanded_url }}
-            {{ end }}
-        {{ end }}
+<section  class='card {{ if and .thumbnail_image_large (eq $.ctx.card.name "summary_large_image") }} card_large {{ else }} card_small {{ end }}'>
+{{ $url := .card_url.string_value }}
 
-        {{/*  Overlay to make div clickable  */}}
-        <a class="overlay" href="{{ $url }}" target="_blank" rel="noopener noreferrer"></a>
+<!-- Replace twitter url with expanded url  -->
+{{ range $.ctx.entities.urls }}
+    {{ if (eq $url .url) }}
+        {{ $url = .expanded_url }}
+    {{ end }}
+{{ end }}
 
-        {{/*  Summary Card  */}}
-        {{ if .thumbnail_image_large.image_value }}
-            {{ with .thumbnail_image_large.image_value }}
-                {{ $src := ""}}
-                {{ $img := resources.GetRemote .url }}
-                {{ $filename := print "/twitter/media/opengraph/" $.ctx.id_str "." $img.MediaType.SubType }}
-                {{ $img := $img.Content | resources.FromString $filename }}
+{{/*  Overlay to make div clickable  */}}
+<a class="overlay" href="{{ $url }}" target="_blank" rel="noopener noreferrer"></a>
 
-                {{ if not $img.Err }}
-                    {{ $src = $img.RelPermalink }}
-                    {{ $webp_src := replace $src  ".jpg" ".webp" }}
-                    {{ $avif_src := replace $src  ".jpg" ".avif" }}
-                    <picture>
-                        <source srcset="{{ $avif_src }}" type="image/avif">
-                        <source srcset="{{ $webp_src }}" type="image/webp">
-                        <img class="card_thumbnail" src="{{ .url }}" alt="{{.alt}}">
-                    </picture>
-                {{ else }}
-                    <img class="card_thumbnail" src="{{ .url }}" alt="">
-                {{ end }}
-            {{ end }}
-        {{/*  Player Card  */}}
-        {{ else if .player_image }}
-            {{ $src := ""}}
-            {{ $img := resources.GetRemote .player_image.image_value.url }}
-            {{ $filename := print "/twitter/media/opengraph/" $.ctx.id_str "." $img.MediaType.SubType }}
-            {{ $img := $img.Content | resources.FromString $filename }}
+{{/*  NO Thumbnail Image Available */}}
+{{ if and ( not .thumbnail_image_large.image_value ) ( not .player_image.image_value ) }}
+    <div class="card-no-image">
+        {{ partial "inline-svg" "twitter/document"}}
+    </div>
+{{ end }}
 
-            {{ if not $img.Err }}
-                {{/*  Change extension from jpeg  */}}
-                {{ $webp := replace $img.RelPermalink $img.MediaType.SubType ".webp" }}
-                {{ $avif := replace $img.RelPermalink $img.MediaType.SubType ".avif" }}
-                <picture>
-                    <source srcset="{{ $avif }}" type="image/avif">
-                    <source srcset="{{ $webp }}" type="image/webp">
-                    <img class="card_thumbnail" src="{{ $img.RelPermalink }}" alt="">
-                </picture>
-            {{ else }}
-                <img class="card_thumbnail player" src="{{ .player_image.image_value.url }}" alt="">
-            {{ end }}
-        {{/* Card Without Image */}}
+{{/*  Summary Card  */}}
+{{ with .thumbnail_image_large.image_value }}
+<picture>
+    {{ with resources.GetRemote .url }}
+        {{ with .Err }}
+            {{ warnf "Failed to load OpenGraph Image %v \n%v" $.ctx.id_str . }}
         {{ else }}
-            <div class="card-no-image">
-                {{ partial "inline-svg" "twitter/document"}}
-            </div>
+            {{ $filename := print "/twitter/media/opengraph/" $.ctx.id_str "." .MediaType.SubType }}
+            {{ $img := .Content | resources.FromString $filename }}
+            <source srcset="{{ .RelPermalink }}" type="{{ .MediaType }}">
         {{ end }}
+    {{ end }}
+    <img class="card_thumbnail" src="{{ .url }}" alt="">
+</picture>
+{{ end }}
 
-        <div class="card_content">
-            {{ if .vanity_url }}
-                <div class="vanity_url">{{.vanity_url.string_value}} </div>
+{{/*  Player Card  */}}
+{{ with .player_image.image_value }}
+    <picture>
+        {{ with resources.GetRemote .url }}
+            {{ with .Err }}
+                {{ warnf "Failed to load OpenGraph Image %v \n%v" $.ctx.id_str . }}
+            {{ else }}
+                {{ $filename := print "/twitter/media/opengraph/" $.ctx.id_str "." .MediaType.SubType }}
+                {{ $img := .Content | resources.FromString $filename }}
+                <source srcset="{{ .RelPermalink }}" type="{{ .MediaType }}">
             {{ end }}
-            {{ if .title }}
-                <div class="title {{ if not .description }}title-2{{ end }}">{{.title.string_value}} </div>
-            {{end}}
-            {{ if .description }}
-                <p class="description">{{.description.string_value }}</p>
-            {{ end }}
-    </section>
+        {{ end }}
+        <img class="card_thumbnail" src="{{ .url }}" alt="">
+    </picture>
+{{ end }}
+
+
+
+{{/*  Text Content  */}}
+<div class="card_content">
+
+    {{ if .vanity_url }}
+        <div class="vanity_url">{{.vanity_url.string_value}} </div>
+    {{ end }}
+
+    {{ if .title }}
+        <div class="title {{ if not .description }}title-2{{ end }}">{{.title.string_value}} </div>
+    {{ end }}
+
+    {{ if .description }}
+        <p class="description">{{.description.string_value }}</p>
+    {{ end }}
+</div>
+</section>
 {{ end }}
 {{ end }}

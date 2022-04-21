@@ -1,34 +1,25 @@
-<!--
-    Renders profile Picture
-
-    params:
-    "ctx" - valid tweet object
-    "use_base64" - flag to inline the image as base64 data uri
-    "size" size based on the following
-
-    valid size values:
-    '_mini'   -> '24x24' 
-    '_normal' -> '48x48'
-    '_bigger' -> '73x73'
-    ''        -> 'original' || 400x400
--->
-
 {{/*
-== TODO ==
-- avif & webp variants (via shell script)
-- save to 'assets/twitter/users/{user-id}.{png|webp|avif} 
-- multiple size variants
+Display profile picture
+
+
+TODO
+    - avif & webp variants
+    - multiple sizes
 */}}
 
 {{ with .ctx }}
 <picture>
-    {{/* Self host image */}}
     {{ $image_src := replace .user.profile_image_url_https "_normal" "" }}
+    {{/* Download & add image source if there's no error */}}
     {{ with resources.GetRemote $image_src }}
-        {{ $img := .}}
-        {{ $filename := print "/twitter/media/profile-photos/" $.ctx.user.id_str "." $img.MediaType.SubType }}
-        {{ $img := $img.Content | resources.FromString $filename }}
-        <source srcset="{{ $img.RelPermalink  }}" type="{{ $img.MediaType }}">
+        {{ with .Err }}
+            {{ warnf "Failed to load profile pic %v \n%v" $.ctx.id_str . }}
+        {{ else }}
+            {{/*  Rename Image` */}}
+            {{ $filename := print "/twitter/media/profile-photos/" $.ctx.user.id_str "." .MediaType.SubType }}
+            {{ $img := .Content | resources.FromString $filename }}
+            <source srcset="{{ $img.RelPermalink  }}" type="{{ $img.MediaType }}">
+        {{ end }}
     {{ end }}
 
     {{/* Fallback */}}

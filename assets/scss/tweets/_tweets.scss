@@ -37,6 +37,7 @@
   align-items: center;
 }
 
+
 .user-info {
   align-self: center;
   font-size: 1rem;
@@ -45,11 +46,11 @@
   grid-template-columns: auto auto;
 }
 
-.user-info > .name {
+.user-info>.name {
   grid-column: 1/2;
 }
 
-.user-info > .scr-name {
+.user-info>.scr-name {
   display: block;
   grid-column: 1/3;
 }
@@ -75,7 +76,7 @@
   --profile-pic-width: 1.2rem;
 }
 
-.quoted > .user-info {
+.quoted>.user-info {
   // Put everything on one row
   display: flex;
   // Reduce font size
@@ -84,20 +85,20 @@
 }
 
 // Make date visible
-.quoted > .user-info > .date-compact {
+.quoted>.user-info>.date-compact {
   display: initial;
 }
 
 // Reduce font size
-.quoted > .content > .text {
+.quoted>.content>.text {
   font-size: 1rem;
 }
 
-.thread > .profile-pic {
+.thread>.profile-pic {
   grid-row: span 2;
 }
 
-.thread > .user-info {
+.thread>.user-info {
   display: flex;
   align-items: baseline;
   gap: 0.4rem;
@@ -116,6 +117,7 @@
   align-items: center;
   text-decoration: none;
 }
+
 // Underline
 .user-info .name:hover {
   text-decoration-color: var(--text-secondary);
@@ -126,13 +128,13 @@
   display: inline-flex;
 }
 
-.checkmark > svg {
+.checkmark>svg {
   width: 1.1rem;
   color: var(--tw-checkmark);
   height: 1.1rem;
 }
 
-.thread > .content {
+.thread>.content {
   font-size: 1rem;
   grid-column: span 1;
 }
@@ -177,8 +179,7 @@
   overflow-wrap: break-word;
 }
 
-@media screen and (max-width: 200px) {
-}
+@media screen and (max-width: 200px) {}
 
 .thread .text {
   font-size: 1rem;
@@ -206,6 +207,7 @@ a.tw-place {
   color: var(--tw-text-secondary);
   text-decoration: none;
 }
+
 a.tw-date:hover,
 a.tw-place:hover {
   text-decoration: underline;
@@ -277,13 +279,28 @@ a.tw-place:hover {
 .quoted {
   padding: unset;
   padding-top: 8px;
+
   .profile-pic,
   .user-info,
   .text {
     margin-left: 8px;
   }
 
+  .content {
+    padding: unset;
+  }
+
+  .checkmark {
+    padding: unset;
+    padding: 0 3px;
+  }
+
+  picture {
+    display: contents;
+  }
+
   .user-info {
+    gap: 4px;
     margin-right: 8px;
   }
 
