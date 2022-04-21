@@ -9,14 +9,22 @@ TODO
 
 {{ with .ctx }}
 <picture>
+    {{/*  remove "https://pbs.twimg.com/profile_images/"  */}}
+    {{/*  remove "_normal"  */}}
     {{ $image_src := replace .user.profile_image_url_https "_normal" "" }}
+
+
     {{/* Download & add image source if there's no error */}}
     {{ with resources.GetRemote $image_src }}
         {{ with .Err }}
             {{ warnf "Failed to load profile pic %v \n%v" $.ctx.id_str . }}
         {{ else }}
+            {{/*  File Name  */}}
+            {{ $filename := replace $image_src "https://pbs.twimg.com/profile_images/" "" }}
+            {{ $filename := replace $filename "/" "_" }}
+            {{ $filename := print "/twitter/media/profile-photos/" $filename }}
+
             {{/*  Rename Image` */}}
-            {{ $filename := print "/twitter/media/profile-photos/" $.ctx.user.id_str "." .MediaType.SubType }}
             {{ $img := .Content | resources.FromString $filename }}
             <source srcset="{{ $img.RelPermalink  }}" type="{{ $img.MediaType }}">
         {{ end }}
