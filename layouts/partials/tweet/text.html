@@ -11,8 +11,17 @@
 {{ range .ctx.entities.urls }}
   {{ $new := printf "<a target='_blank' rel='noopener noreferrer' href='%s'>%s</a>" .expanded_url .display_url }}
   {{/* Remove link to quote tweet */}}
-  {{ if in .expanded_url $.ctx.quoted_tweet.id_str }} {{ $new = "" }} {{ end }}
+  {{ if in .expanded_url $.ctx.quoted_tweet.id_str }}
+    {{ $new = "" }}
+  {{end}}
+
+  {{/*  Remove link to twitter space  */}}
+  {{ if (in .expanded_url $.ctx.card.binding_values.id.string_value) }}
+   {{ $new = "" }}
+  {{end}}
+
   {{ $text = replace $text .url $new  }}
+
 {{ end }}
 
 {{/* Mentions */}}
@@ -66,4 +75,4 @@
   {{ end }}
 {{ end }}
 
-<p class="text">{{ $text | safeHTML }}</p>
+<p class="text">{{ $text | safeHTML -}}</p>

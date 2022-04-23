@@ -7,7 +7,11 @@ valid card.name values
   - promo_image_convo 
   - 3691233323:audiospace  */}}
 
-{{ if or (eq .ctx.card.name "player") (eq .ctx.card.name "summary") (eq .ctx.card.name "summary_large_image") }}
+
+{{ if or 
+    (eq .ctx.card.name "player")
+    (eq .ctx.card.name "summary")
+    (eq .ctx.card.name "summary_large_image") }}
 {{ with .ctx.card.binding_values }}
 <section  class='card {{ if and .thumbnail_image_large (eq $.ctx.card.name "summary_large_image") }} card_large {{ else }} card_small {{ end }}'>
 {{ $url := .card_url.string_value }}
@@ -38,7 +42,7 @@ valid card.name values
         {{ else }}
             {{ $filename := print "/twitter/media/opengraph/" $.ctx.id_str "." .MediaType.SubType }}
             {{ $img := .Content | resources.FromString $filename }}
-            <source srcset="{{ .RelPermalink }}" type="{{ .MediaType }}">
+            <source srcset="{{ $img.RelPermalink }}" type="{{ $img.MediaType }}">
         {{ end }}
     {{ end }}
     <img class="card_thumbnail" src="{{ .url }}" alt="">
@@ -54,7 +58,7 @@ valid card.name values
             {{ else }}
                 {{ $filename := print "/twitter/media/opengraph/" $.ctx.id_str "." .MediaType.SubType }}
                 {{ $img := .Content | resources.FromString $filename }}
-                <source srcset="{{ .RelPermalink }}" type="{{ .MediaType }}">
+                <source srcset="{{ $img.RelPermalink }}" type="{{ $img.MediaType }}">
             {{ end }}
         {{ end }}
         <img class="card_thumbnail" src="{{ .url }}" alt="">
@@ -80,4 +84,12 @@ valid card.name values
 </div>
 </section>
 {{ end }}
+{{ end }}
+
+
+
+{{/*  Spaces  */}}
+{{ if eq .ctx.card.name "3691233323:audiospace" }}
+{{ $id := .ctx.card.binding_values.id.string_value }}
+{{- partial "tweet/space"  (dict "id" $id "ctx" $.ctx) -}}
 {{ end }}
