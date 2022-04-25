@@ -28,14 +28,14 @@
 - Text:
   - [x] whitespace & newlines
   - [ ] twemoji
-  - [ ] entities
+  - [x] entities
     - [x] urls
     - [x] Hashtags
     - [x] Hashflags
       - [x] expired
       - [x] current
     - [x] Symbols
-    - [ ] User mentions (not case sensitive)
+    - [x] User mentions (not case sensitive)
   - [ ] in-reply-to
 
 - Photos:
@@ -56,8 +56,8 @@
     - [x] wide image
   - [x] Player
   - [ ] App
-  - [ ] Spaces: not-started & recording
-- [ ]  - Voice tweet
+  - [x] Spaces: not-started & recording
+- [x] - Voice tweet
 - [x] - Poll: final & not-final
 
 ### Quote tweet
@@ -114,3 +114,33 @@ interface tweet {
   selfHost?: string // video, img, gif, profile, all, none
 }
 ```
+
+
+		- hint?: picture, photo, text, icon, drawing
+		- crop?: bool
+		- sizes:
+			# Profile Pic (3)
+			- 25x
+			- 50x
+			- 100x
+
+			# Potrait tall
+			- x1200
+			- x640
+			- x512
+
+			# Landscape
+			- 640x
+			- 512x
+			- 320x
+
+			# 16/9
+			- 640x360
+			- 320x180
+			- 160x90
+
+			# 16/18
+			- 640x720
+			- 320x360
+			- 160x180
+

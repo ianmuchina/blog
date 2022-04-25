@@ -103,16 +103,19 @@
   border-right: solid 1px var(--border);
 }
 
+
+
 .spaces-card {
   display: flex;
   flex-direction: column;
   padding: 1rem;
   border-radius: 8px;
 
-  background-image: linear-gradient(60deg, #2d42ff -15%, #9c63fa 100%);
+  background-image: linear-gradient(60deg, hsl(230, 100%, 60%) -15%, hsl(260, 100%, 60%) 100%);
   color: white;
 
   .spaces-meta {
+    display: flex;
     font-size: 1rem;
   }
 
@@ -140,4 +143,8 @@
   .spaces-date {
     font-weight: bold;
   }
+}
+
+article.spaces-card.unavailable {
+  background-image: linear-gradient(60deg, hsl(230, 60%, 30%) -15%, hsl(260, 60%, 30%) 100%);
 }

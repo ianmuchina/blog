@@ -11,3 +11,6 @@ update:
 ci-build:
 	[ "$ENVIRONMENT" == "dev" ] && export ARGS="-D"
 	npm install hugo-extended && $(npm bin)/hugo $ARGS
+
+clean:
+	rm 'resources/filecache/getresource/15902302297382621871'
