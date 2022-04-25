@@ -1,42 +1,31 @@
-{{/*
-Display profile picture
-
-
-TODO
-    - avif & webp variants
-    - multiple sizes
-*/}}
-
+{{/* Display profile picture */}}
 {{ with .ctx }}
-<picture>
-    {{/*  remove "https://pbs.twimg.com/profile_images/"  */}}
-    {{/*  remove "_normal"  */}}
-    {{ $image_src := replace .user.profile_image_url_https "_normal" "" }}
+    {{/*  Generate Props  */}}
+    {{/*  Use 400x400 Image Source */}}
+    {{ $url := replace .user.profile_image_url_https "_normal" "" }}
+    {{/*  Filename */}}
+    {{ $filename := replace $url "https://pbs.twimg.com/profile_images/" "" }}
+    {{ $filename := replace $filename "/" "_" }}
+    {{ $filename := index (split $filename ".") 0  }}
+    {{ $filename := print "/twitter/media/profile-photos/" $filename }}
 
-
-    {{/* Download & add image source if there's no error */}}
-    {{ with resources.GetRemote $image_src }}
-        {{ with .Err }}
-            {{ warnf "Failed to load profile pic %v \n%v" $.ctx.id_str . }}
-        {{ else }}
-            {{/*  File Name  */}}
-            {{ $filename := replace $image_src "https://pbs.twimg.com/profile_images/" "" }}
-            {{ $filename := replace $filename "/" "_" }}
-            {{ $filename := print "/twitter/media/profile-photos/" $filename }}
-
-            {{/*  Rename Image` */}}
-            {{ $img := .Content | resources.FromString $filename }}
-            <source srcset="{{ $img.RelPermalink  }}" type="{{ $img.MediaType }}">
-        {{ end }}
+    {{/*  Sizes To resize to */}}
+    {{ $formats := slice  "100x webp q75" "100x" }}
+    {{/*  Use smaller size on quote tweets */}}
+    {{ if $.quoted }}
+        {{ $formats = slice "50x webp q75" "50x" }}
     {{ end }}
 
-    {{/* Fallback */}}
-    <img
-        width="42"
-        height="42"
-        loading="lazy"
-        alt=""
-        src="{{ $image_src }}"
-    />
-</picture>
+    {{/*  Display with Image Component */}}
+    {{- partial "image" (dict
+        "class" ""
+        "alt" ""
+        "formats" $formats
+        "url" $url
+        "filename" $filename
+        "loading" "lazy"
+        "width" 45
+        "height" 45
+    ) -}}
+
 {{ end }}

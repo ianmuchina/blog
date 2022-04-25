@@ -82,3 +82,9 @@ caches:
 staticDir:
   - static
   - img
+
+imaging:
+  anchor: Smart
+  hint: photo
+  quality: 80
+  resampleFilter: Lanczos

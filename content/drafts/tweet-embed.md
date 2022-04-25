@@ -22,18 +22,38 @@ I made a hugo shortcode to embed tweets and it looks close enough to the
 official one. It has most features of the tweet embed (_other than proper quote 
 tweet support_).
 
+## Images
 
-I added a few extra features not available with the official twitter embed.
+## Hashflags
 
-- Support for the `avif` and `webp` image encoding formats.
-- Self hosting pictures and videos
-- Hashflags
+Hashflags are emojis that appear after a twitter hashtag. Here's an example
 
-All this was a pain to write and made me consider migrating to a javascript 
-based static site genereator.
+{{<tweet id="1499276391157805058">}}
 
+To display hashflags I needed the data. There's an unofficial api to get active
+data on hashflags at
+{{<unsafe>}}
+    <a href="#" id="hashflag_link">https://pbs.twimg.com/hashflag/config-2022-03-22-18.json</a>
+    <script>
+        // Changes html link from js
+        function setHLink(){
+            let date = new Date().toISOString().split('T')[0];
 
-## Showcase
+            let url = `pbs.twimg.com/hashflag/config-${date}-00.json`
+
+            hashflag_link.innerText = url
+            hashflag_link.href = `https://${url}`
+        }
+        setHLink()
+    </script>
+{{</unsafe>}}
+
+The api only returns data for dates within the current month. To archive it, I 
+made a github repo containing all the data I could 
+find. I got past data from hashflags.io and got the recent data directly from the
+api. The repo uses github actions to update itself when there's a new hashflag.
+
+## Examples
 
 Here are some examples
 

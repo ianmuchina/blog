@@ -1,8 +1,8 @@
 {{- define "main" -}}
 
-{{- partial "nav.html" . -}}
-<main>
 
+{{- partial "nav.html" . -}}
+<main>  
   {{- .Site.Params.Description -}}
   {{- partial "social-links.html" . -}} 
 
@@ -17,5 +17,7 @@
       </article>
     {{- end -}} 
   </main>
+
+  
 
 {{- end }}

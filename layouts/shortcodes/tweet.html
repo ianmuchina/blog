@@ -26,7 +26,7 @@
       <article lang="{{.lang}}" class="tweet quoted" >
 
         <div class="profile-pic">
-          {{ partial "tweet/profile-pic" (dict "ctx" .)}}
+          {{ partial "tweet/profile-pic" (dict "ctx" . "quoted" true)}}
         </div>
 
         <div class="user-info">

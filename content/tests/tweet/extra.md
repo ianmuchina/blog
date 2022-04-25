@@ -1,5 +1,5 @@
 ---
-title: Extra Tweets
+title: Spaces
 date: 2022-04-01
 draft: true
 ---
@@ -9,7 +9,8 @@ Spaces Recording
 
 
 
-Space Ended 
+{{<tweet id="1513569873439326209">}}
+
+
+Details Unavailable
 {{<tweet id="1506727406609920003">}}
-
-

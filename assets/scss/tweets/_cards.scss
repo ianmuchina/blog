@@ -1,3 +1,5 @@
+@import "../colors/tailwind";
+
 .card {
   border: solid 1px var(--tw-border);
   border-radius: var(--tw-border-radius);
@@ -56,9 +58,11 @@
 .card_large {
   display: flex;
   flex-direction: column;
+
   picture {
     aspect-ratio: 16/9;
   }
+
   img {
     aspect-ratio: 16/9;
     object-fit: cover;
@@ -97,4 +101,50 @@
   display: grid;
   place-items: center;
   border-right: solid 1px var(--border);
+}
+
+
+
+.spaces-card {
+  display: flex;
+  flex-direction: column;
+  padding: 1rem;
+  border-radius: 8px;
+
+  background-image: linear-gradient(60deg, hsl(230, 100%, 60%) -15%, hsl(260, 100%, 60%) 100%);
+  color: white;
+
+  .spaces-meta {
+    display: flex;
+    font-size: 1rem;
+  }
+
+  .title {
+    color: white;
+    font-weight: 800;
+    font-size: 20px;
+  }
+
+  .spaces-btn {
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 1rem;
+    text-align: center;
+    padding: 10px;
+    border-radius: 3rem;
+    color: white;
+    background-color: #fff4;
+  }
+
+  .spaces-btn:hover {
+    background-color: #1114;
+  }
+
+  .spaces-date {
+    font-weight: bold;
+  }
+}
+
+article.spaces-card.unavailable {
+  background-image: linear-gradient(60deg, hsl(230, 60%, 30%) -15%, hsl(260, 60%, 30%) 100%);
 }

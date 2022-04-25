@@ -4,3 +4,5 @@ node_modules
 _vendor/
 .hugo_build.lock
 resources/_gen
+resources/filecache/getresource/15902302297382621871
+resources/filecache/images/
