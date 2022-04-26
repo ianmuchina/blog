@@ -74,9 +74,9 @@
 
 ### Extras
 
+- [ ] source labels
 - [ ] twitter logo
 - [ ] replace the tweet glyph in twitterchirp
-- [ ] source labels
 - [ ] x-govt official
 - [ ] x-affiliated site
 - [ ] restricted reply to x
