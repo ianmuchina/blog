@@ -4,7 +4,7 @@ description: Embeding tweets as plain html and css
 author: Ian Muchina
 date: 2022-04-20
 draft: false
-picture: "ianmuchina.com/img/og/tw.png"
+image: "https://ianmuchina.com/img/og/tw.png"
 ---
 
 
