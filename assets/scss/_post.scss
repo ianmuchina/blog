@@ -13,6 +13,7 @@
 html {
   transition: var(--transition);
 }
+
 // Globals
 body {
   color: var(--text);
@@ -40,21 +41,22 @@ header {
 }
 
 .site-name {
-  color: var(--accent);
+  color: var(--headers);
   font-size: 36px;
 }
+
 .social {
   display: flex;
   gap: 1rem;
   margin: 1rem 0;
 }
 
-.social a svg {
+.social a {
   transition: var(--transition);
   border-bottom: solid 2px transparent;
 }
 
-.social a svg:hover {
+.social a:hover {
   border-bottom: solid 2px var(--accent);
 }
 
@@ -73,15 +75,20 @@ a {
 }
 
 p code {
-  padding: 2px 4px;
+  padding: 4px 8px;
   background-color: var(--code-bg);
-  color: var(--accent-alt);
+  color: var(--headers);
   border-radius: 4px;
+  // outline: solid 1px var(--code-border);
 }
 
 .post a {
   text-decoration: underline;
   color: var(--accent);
+}
+
+.post a:visited {
+  color: var(--link-visited);
 }
 
 //Prose
@@ -99,17 +106,22 @@ h5 {
 
 blockquote {
   margin: 1.5rem 0;
-  padding: 0.2rem 0 0.2rem 1rem;
+  padding: 1rem;
+
   font-style: italic;
   background-color: var(--code-bg);
-  color: var(--text-secondary);
-  quotes: "\201C""\201D""\2018""\2019";
-  border-left: var(--accent) 2px solid;
+  border-left: var(--accent) 6px solid;
+  border-radius: 6px;
+
+  p {
+    margin: unset;
+  }
 }
 
 blockquote p:first-of-type::before {
   content: open-quote;
 }
+
 blockquote p:last-of-type::after {
   content: close-quote;
 }
@@ -121,7 +133,8 @@ blockquote p:last-of-type::after {
 //Images
 img {
   width: 100%;
-  border-radius: 4px;
+  height: auto;
+  border-radius: 8px;
 }
 
 table {
@@ -147,7 +160,7 @@ table {
 }
 
 article a h2 {
-  color: var(--accent);
+  color: var(--headers);
 }
 
 article p {
@@ -155,11 +168,8 @@ article p {
   margin: 0;
 }
 
-.tags {
-  background-color: var(--alt-bg);
-  font-family: var(--mono-font);
-  border-radius: 10px;
-  padding: 3px 10px;
+h1.title {
+  color: var(--headers);
 }
 
 footer {

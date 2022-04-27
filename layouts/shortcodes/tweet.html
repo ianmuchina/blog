@@ -1,46 +1,52 @@
+{{ $id := (.Get "id")}}
 {{/*  Get Data from API  */}}
-{{ $data := getJSON "https://cdn.syndication.twimg.com/tweet?id=" (.Get "id") }}
+{{ $d := getJSON "https://cdn.syndication.twimg.com/tweet?id=" $id }}
+
+{{ $props := (dict "ctx" $d "data" .Site.Data)}}
 
 {{ $mode := "focus" }}
 {{ if ne (.Get "mode") ""  }}
   {{ $mode = (.Get "mode") }}
 {{ end }}
 
-<article class="tweet {{ $mode }}">
+<article class="tweet {{ $mode }}" lang="{{$d.lang}}">
   <div class="profile-pic">
-    {{ partial "tweet/profile-pic" (dict "ctx" $data "size" "_bigger")}}
+  {{ partial "tweet/profile-pic" $props }}
   </div>
 
   <div class="user-info">
-    {{ partial "tweet/user-info" (dict "ctx" $data) }}
+    {{ partial "tweet/user-info" $props }}
   </div>
 
   <div class="content">
-    {{- partial "tweet/text" (dict "ctx" $data  "data" .Site.Data ) -}}
-    {{- partial "tweet/poll" (dict "ctx" $data) -}}
-    {{- partial "tweet/video" (dict "ctx" $data) -}}
-    {{- partial "tweet/gallery" (dict "ctx" $data) -}}
-    {{- partial "tweet/cards" (dict "ctx" $data) -}}
+    {{- partial "tweet/text"     $props -}}
+    {{- partial "tweet/cards"    $props -}}
+    {{- partial "tweet/gallery"  $props -}}
+    {{- partial "tweet/video"    $props -}}
+    {{- partial "tweet/poll"     $props -}}
 
-    {{ with $data.quoted_tweet }}
+    {{ with $d.quoted_tweet }}
+      {{/*  Update Props */}}
+      {{ $props := (dict "ctx" . "quoted" true "data" $.Site.Data) }}
+
       <article lang="{{.lang}}" class="tweet quoted" >
-
         <div class="profile-pic">
-          {{ partial "tweet/profile-pic" (dict "ctx" . "quoted" true)}}
+          {{ partial "tweet/profile-pic"  $props }}
         </div>
 
         <div class="user-info">
-          {{ partial "tweet/user-info" (dict "ctx" .) }}
+          {{ partial "tweet/user-info" $props }}
         </div>
 
         <div class="content">
-          {{- partial "tweet/text" (dict "ctx" . "data" $.Site.Data) -}}
-          {{- partial "tweet/gallery" (dict "ctx" .) -}}
-          {{- partial "tweet/video" (dict "ctx" .) -}}
+          {{- partial "tweet/text"    $props -}}
+          {{- partial "tweet/gallery" $props -}}
+          {{- partial "tweet/video"   $props -}}
         </div>
       </article>
     {{ end }}
 
-    {{ partial "tweet/meta" (dict "ctx" $data) }}
+    {{/*  Date, Likes, Link to tweet button */}}
+    {{ partial "tweet/meta" $props }}
   </div>
 </article>

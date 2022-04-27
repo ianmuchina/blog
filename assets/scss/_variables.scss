@@ -1,3 +1,6 @@
+@import "themes/light";
+@import "themes/dark";
+
 // Global Variables
 :root {
   --transition: color 0.1s ease-in-out;
@@ -6,41 +9,4 @@
   --mono-font: "Ubuntu Mono", Consolas, Menlo, Monaco, "Andale Mono", monospace;
   font-size: 15px;
   --vw: 720px;
-}
-// Color Variables
-// Light Theme
-.light {
-  --bg: #f7fafc;
-  --code-frame-bg: #f7f7f7;
-  --code-bg: #edf2f7;
-  --code-border: #e2e8f0;
-  --alt-bg: #e2e8f0;
-  --border: #e2e8f0;
-  --text: #2d3748;
-  --headers: #2d3748;
-  --text-secondary: #4a5568;
-  --accent: #4f46e5;
-  --accent-raw: 79, 70, 229;
-  --accent-alt: hsl(243, 74%, 67%);
-  --accent-800: hsl(256, 86%, 86%);
-}
-
-// Dark Theme (Default)
-.dark,
-html {
-  --bg: #171923;
-  --code-bg: #1a202c;
-  --alt-bg: #2d3748;
-  --code-frame-bg: #2f394b;
-  --code-text: white;
-  --code-border: #2d3748;
-  --border: #4a5568;
-  --text: #e2e8f0;
-  --headers: #edf2f7;
-  --text-secondary: #cbd5e0;
-
-  --accent: #9ae6b4;
-  --accent-raw: 154, 230, 180;
-  --accent-alt: #bde2cb;
-  --accent-800: #2a6449;
 }

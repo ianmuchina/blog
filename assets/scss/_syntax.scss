@@ -11,11 +11,13 @@ pre {
   padding: 0.625rem 1.4rem;
   max-width: 100%;
   border-radius: 8px;
+  border: solid 1px var(--code-border);
   background: var(--code-bg);
   white-space: pre-wrap;
 }
 
 .dark .chroma {
+
   // Background
   .bg {
     color: #f8f8f2;
@@ -23,8 +25,7 @@ pre {
   }
 
   // Other
-  .x {
-  }
+  .x {}
 
   // Error
   .err {
@@ -33,8 +34,7 @@ pre {
   }
 
   // CodeLine
-  .cl {
-  }
+  .cl {}
 
   // LineTableTD
   .lntd {
@@ -116,8 +116,7 @@ pre {
   }
 
   // Name
-  .n {
-  }
+  .n {}
 
   // NameAttribute
   .na {
@@ -125,12 +124,10 @@ pre {
   }
 
   // NameBuiltin
-  .nb {
-  }
+  .nb {}
 
   // NameBuiltinPseudo
-  .bp {
-  }
+  .bp {}
 
   // NameClass
   .nc {
@@ -148,8 +145,7 @@ pre {
   }
 
   // NameEntity
-  .ni {
-  }
+  .ni {}
 
   // NameException
   .ne {
@@ -162,16 +158,13 @@ pre {
   }
 
   // NameFunctionMagic
-  .fm {
-  }
+  .fm {}
 
   // NameLabel
-  .nl {
-  }
+  .nl {}
 
   // NameNamespace
-  .nn {
-  }
+  .nn {}
 
   // NameOther
   .nx {
@@ -179,8 +172,7 @@ pre {
   }
 
   // NameProperty
-  .py {
-  }
+  .py {}
 
   // NameTag
   .nt {
@@ -188,24 +180,19 @@ pre {
   }
 
   // NameVariable
-  .nv {
-  }
+  .nv {}
 
   // NameVariableClass
-  .vc {
-  }
+  .vc {}
 
   // NameVariableGlobal
-  .vg {
-  }
+  .vg {}
 
   // NameVariableInstance
-  .vi {
-  }
+  .vi {}
 
   // NameVariableMagic
-  .vm {
-  }
+  .vm {}
 
   // Literal
   .l {
@@ -333,47 +320,45 @@ pre {
   }
 
   // Punctuation
-  .p {
-  }
+  .p {}
 
   // Comment
   .c {
-    color: #838ca5;
+    color: #aaa;
   }
 
   // CommentHashbang
   .ch {
-    color: #838ca5;
+    color: #aaa;
   }
 
   // CommentMultiline
   .cm {
-    color: #838ca5;
+    color: #aaa;
   }
 
   // CommentSingle
   .c1 {
-    color: #838ca5;
+    color: #aaa;
   }
 
   // CommentSpecial
   .cs {
-    color: #838ca5;
+    color: #aaa;
   }
 
   // CommentPreproc
   .cp {
-    color: #838ca5;
+    color: #aaa;
   }
 
   // CommentPreprocFile
   .cpf {
-    color: #838ca5;
+    color: #aaa;
   }
 
   // Generic
-  .g {
-  }
+  .g {}
 
   // GenericDeleted
   .gd {
@@ -386,12 +371,10 @@ pre {
   }
 
   // GenericError
-  .gr {
-  }
+  .gr {}
 
   // GenericHeading
-  .gh {
-  }
+  .gh {}
 
   // GenericInserted
   .gi {
@@ -399,12 +382,10 @@ pre {
   }
 
   // GenericOutput
-  .go {
-  }
+  .go {}
 
   // GenericPrompt
-  .gp {
-  }
+  .gp {}
 
   // GenericStrong
   .gs {
@@ -413,23 +394,21 @@ pre {
 
   // GenericSubheading
   .gu {
-    color: #838ca5;
+    color: #aaa;
   }
 
   // GenericTraceback
-  .gt {
-  }
+  .gt {}
 
   // GenericUnderline
-  .gl {
-  }
+  .gl {}
 
   // TextWhitespace
-  .w {
-  }
+  .w {}
 }
 
 .light .chroma {
+
   // Background
   .bg {
     color: #f8f8f2;
@@ -437,8 +416,7 @@ pre {
   }
 
   // Other
-  .x {
-  }
+  .x {}
 
   // Error
   .err {
@@ -447,8 +425,7 @@ pre {
   }
 
   // CodeLine
-  .cl {
-  }
+  .cl {}
 
   // LineTableTD
   .lntd {
@@ -530,8 +507,7 @@ pre {
   }
 
   // Name
-  .n {
-  }
+  .n {}
 
   // NameAttribute
   .na {
@@ -539,12 +515,10 @@ pre {
   }
 
   // NameBuiltin
-  .nb {
-  }
+  .nb {}
 
   // NameBuiltinPseudo
-  .bp {
-  }
+  .bp {}
 
   // NameClass
   .nc {
@@ -562,8 +536,7 @@ pre {
   }
 
   // NameEntity
-  .ni {
-  }
+  .ni {}
 
   // NameException
   .ne {
@@ -576,16 +549,13 @@ pre {
   }
 
   // NameFunctionMagic
-  .fm {
-  }
+  .fm {}
 
   // NameLabel
-  .nl {
-  }
+  .nl {}
 
   // NameNamespace
-  .nn {
-  }
+  .nn {}
 
   // NameOther
   .nx {
@@ -593,8 +563,7 @@ pre {
   }
 
   // NameProperty
-  .py {
-  }
+  .py {}
 
   // NameTag
   .nt {
@@ -602,24 +571,19 @@ pre {
   }
 
   // NameVariable
-  .nv {
-  }
+  .nv {}
 
   // NameVariableClass
-  .vc {
-  }
+  .vc {}
 
   // NameVariableGlobal
-  .vg {
-  }
+  .vg {}
 
   // NameVariableInstance
-  .vi {
-  }
+  .vi {}
 
   // NameVariableMagic
-  .vm {
-  }
+  .vm {}
 
   // Literal
   .l {
@@ -747,8 +711,7 @@ pre {
   }
 
   // Punctuation
-  .p {
-  }
+  .p {}
 
   // Comment
   .c {
@@ -786,8 +749,7 @@ pre {
   }
 
   // Generic
-  .g {
-  }
+  .g {}
 
   // GenericDeleted
   .gd {
@@ -800,12 +762,10 @@ pre {
   }
 
   // GenericError
-  .gr {
-  }
+  .gr {}
 
   // GenericHeading
-  .gh {
-  }
+  .gh {}
 
   // GenericInserted
   .gi {
@@ -813,12 +773,10 @@ pre {
   }
 
   // GenericOutput
-  .go {
-  }
+  .go {}
 
   // GenericPrompt
-  .gp {
-  }
+  .gp {}
 
   // GenericStrong
   .gs {
@@ -831,14 +789,11 @@ pre {
   }
 
   // GenericTraceback
-  .gt {
-  }
+  .gt {}
 
   // GenericUnderline
-  .gl {
-  }
+  .gl {}
 
   // TextWhitespace
-  .w {
-  }
+  .w {}
 }

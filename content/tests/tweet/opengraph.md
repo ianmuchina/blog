@@ -1,5 +1,5 @@
 ---
-title: OpenGraph Tests
+title: OpenGraph Cards
 date: 2022-04-01
 draft: true
 ---

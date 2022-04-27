@@ -1,5 +1,5 @@
 ---
-title: Linux tweets
+title: Display Modes
 date: 2022-04-01
 draft: true
 ---

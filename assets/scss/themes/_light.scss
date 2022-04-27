@@ -1,0 +1,12 @@
+@import "../colors/tailwind";
+
+.light {
+    --bg: #{$slate-100};
+    --code-bg: #{$slate-050};
+    --code-border: #{$slate-200};
+    --text: #{$slate-700};
+    --headers: #{$slate-800};
+    --accent: #{$blue-700};
+    --link-visited: #{$purple-700};
+    --kb: #{$emerald-700};
+}

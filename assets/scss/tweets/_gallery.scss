@@ -8,7 +8,7 @@
   gap: 2px;
   overflow: clip;
   border-radius: var(--tw-border-radius);
-  outline: solid 1px var(--border);
+  outline: solid 1px var(--tw-border);
 }
 
 .gallery img {
@@ -25,6 +25,7 @@
 // 1 Image
 .gallery-1 {
   display: block;
+
   img {
     width: 100%;
     height: auto;
@@ -51,12 +52,13 @@
 
 // 3 Images
 .gallery-3 {
-  picture > img {
+  picture>img {
     aspect-ratio: 16/9;
   }
 
   picture:first-child {
     height: 100%;
+
     img {
       height: 100%;
       object-fit: cover;
@@ -68,6 +70,7 @@
 // 4 Images
 .gallery-4 picture {
   max-height: 180px;
+
   img {
     height: 100%;
   }

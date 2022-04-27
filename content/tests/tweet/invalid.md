@@ -1,5 +1,5 @@
 ---
-title: other
+title: Other
 date: 2022-04-01
 draft: true
 ---

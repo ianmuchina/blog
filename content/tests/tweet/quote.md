@@ -1,5 +1,5 @@
 ---
-title: Quote Tweets
+title: Quoted Tweets
 date: 2022-04-01
 draft: true
 ---

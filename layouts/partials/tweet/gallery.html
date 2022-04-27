@@ -9,13 +9,13 @@
         {{/*  Download Image. Block is skipped if not possible */}}
         {{ with resources.GetRemote .url }}
         {{ with .Err }}
-        {{ warnf "%s" . }}
+          {{ warnf "%s" . }}
         {{ else }}
-            {{ $img := . }}
-            {{ $filename := print "/twitter/media/photos/" $.ctx.id_str "-" $i "." $img.MediaType.SubType }}
-            {{ $img := $img.Content | resources.FromString $filename }}
-            <source srcset="{{ $img.RelPermalink }}" type="{{ $img.MediaType }}">
-            {{ end }}
+          {{ $img := . }}
+          {{ $filename := print "/twitter/media/photos/" $.ctx.id_str "-" $i "." $img.MediaType.SubType }}
+          {{ $img := $img.Content | resources.FromString $filename }}
+          <source srcset="{{ $img.RelPermalink }}" type="{{ $img.MediaType }}">
+        {{ end }}
         {{ end }}
 
         <img

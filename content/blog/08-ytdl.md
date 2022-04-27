@@ -4,51 +4,106 @@ description: Making youtube-dl easy to use
 permalink: /blog/youtube-dl-aliases
 author: Ian Muchina
 date: 2021-03-26 08:00:00 +03:00
-tags: [tips]
 comments: true
 ---
-## defaults
 
-```sh
-alias ydl='youtube-dl -o "./%(title)s.%(ext)s"'
+
+Setup some variables 
+
+```bash
+# Default Command
+CMD="youtube-dl"
+
+# Use yt-dlp if avaiable
+command -v yt-dlp >/dev/null &&
+  CMD="yt-dlp" ARGS=""
+
+# Quality Options
+Q_HD="720"
+Q_FHD="1080"
+Q_DEFAULT="$Q_HD"
 ```
-* Doesn't change much of the defaults. Only removes unnecessary info from filename  eg: `video-title-dQw4w9WgXcQ.mp4 `  to  `video-title.mp4`
 
-## 720p single video
+### Default command
 
+Saves video to `~/Videos/Channel/video.mp4` without video Id.
 ```sh
-alias yhd='youtube-dl -f "[height<=720]" -o "~/Videos/%(uploader)s/%(title)s.%(ext)s" --no-playlist '
+# Video
+ydl() {
+  "$CMD" "$ARGS" \
+    --no-playlist \
+    --embed-subs \
+    --format "[height<=$Q_DEFAULT]" \
+    --output "$HOME/Videos/%(uploader)s/%(title)s.%(ext)s" "$@"
+}
 ```
 
-* 720p
-* Single video. No playlist
-* Saves to `~/Videos/Uploader/Title.mp4`
+## 720p Video
+- Single video
+- No playlist
+- Saves to `~/Videos/Uploader/Title.mp4`
+
+```bash
+# Video (720p)
+yhd() {
+  "$CMD" "$ARGS" \
+    --no-playlist \
+    --embed-subs \
+    --format "[height<=$Q_HD]" \
+    --output "$HOME/Videos/%(uploader)s/%(title)s.%(ext)s" "$@"
+}
+```
 
 ## 720p video playlist
 
+- Download entire playlist
+- Saves to `~/Videos/Uploader/Playlist/Title.mp4`
+
 ```bash
-alias ypl='youtube-dl  -f "[height<=720]" -o "~/Videos/%(uploader)s/%(playlist)s/%(title)s.%(ext)s" '
+ypl() {
+  "$CMD" "$ARGS" \
+    --yes-playlist \
+    --format "[height<=$Q_DEFAULT]" \
+    --output "$HOME/Videos/%(uploader)s/%(playlist)s/%(title)s.%(ext)s" "$@"
+}
 ```
-* 720p
-* Downloads entire playlist
-* Saves to `~/Videos/Uploader/Playlist/Title.mp4`
 
 ## Audio
 
-```sh
-alias ymp3='youtube-dl -f "bestaudio" -o "~/Music/%(uploader)s/%(title)s.%(ext)s" --no-playlist -x --audio-format mp3 --embed-thumbnail ' 
+- Outputs to mp3
+- Does not download entire playlist
+- Saves to `~/Music/Uploader/Title.mp3`
+- Embeds Video thumbnail as cover art
+
+```bash
+# Audio
+ymp3() {
+  "$CMD" "$ARGS" \
+    --extract-audio \
+    --audio-format mp3 \
+    --no-playlist \
+    --embed-thumbnail \
+    --format "bestaudio" \
+    --output "$HOME/Music/%(uploader)s/%(title)s.%(ext)s" "$@"
+}
 ```
-* mp3
-* Single audio. No playlist
-* Saves to `~/Music/Uploader/Title.mp3`
-* Adds thumbnail as cover art
 
 ## Audio Playlist
 
-```sh
-alias ypl3='youtube-dl -f "bestaudio" -o "~/Music/%(uploader)s/%(playlist)s/%(title)s.%(ext)s" -x --audio-format mp3 --embed-thumbnail'
+- Saves to `~/Videos/Uploader/Playlist/Title.mp3`
+- Adds thumbnail as cover art
+
+```bash
+# Audio Playlist
+ypl3() {
+  "$CMD" "$ARGS" \
+    --extract-audio \
+    --audio-format mp3 \
+    --yes-playlist \
+    --embed-thumbnail \
+    --format "bestaudio" \
+    --output "$HOME/Music/%(uploader)s/%(playlist)s/%(title)s.%(ext)s" "$@"
+}
+
 ```
 
-* Downloads entire playlist
-* Saves to `~/Videos/Uploader/Playlist/Title.mp3`
-* Adds thumbnail as cover art

@@ -1,7 +1,7 @@
 @import "../colors/tailwind";
 
 .card {
-  border: solid 1px var(--tw-border);
+  border: solid 1px var(--tw-og-border);
   border-radius: var(--tw-border-radius);
   overflow: clip;
   position: relative;
@@ -18,7 +18,7 @@
 
 .vanity_url,
 .description {
-  color: var(--text-secondary);
+  color: var(--tw-txt-2);
 }
 
 // Truncate text
@@ -44,7 +44,7 @@
 }
 
 .title {
-  color: var(--text);
+  color: var(--tw-text);
 }
 
 .card .overlay {
@@ -66,22 +66,23 @@
   img {
     aspect-ratio: 16/9;
     object-fit: cover;
-    border-bottom: solid 1px var(--border);
+    border-bottom: solid 1px var(--tw-og-border);
   }
 }
 
 .card_small {
   display: grid;
-  grid-template-columns: 150px 1fr;
+  grid-template-columns: 130px 1fr;
 
   picture {
-    height: 150px;
+    height: 130px;
   }
 
   img {
+    height: 100%;
     aspect-ratio: 1/1;
     object-fit: cover;
-    border-right: solid 1px var(--border);
+    border-right: solid 1px var(--tw-og-border);
   }
 }
 
@@ -92,18 +93,23 @@
 }
 
 .card:hover {
-  background-color: var(--alt-bg);
+  background-color: var(--tw-og-hover);
 }
 
 .card-no-image {
   aspect-ratio: 1/1;
-  background-color: var(--og-no-img);
+  background-color: var(--tw-og-no-img);
   display: grid;
   place-items: center;
-  border-right: solid 1px var(--border);
+  border-right: solid 1px var(--tw-border);
+  height: 100%;
+
+  svg {
+    height: 32px;
+    width: 32px;
+    color: var(--tw-og-document);
+  }
 }
-
-
 
 .spaces-card {
   display: flex;
