@@ -28,7 +28,6 @@
         {{ end }}
 
         <section class='{{ $class }}'>
-            <a class="overlay" href="{{ $url }}" target="_blank" rel="noopener noreferrer"></a>
 
             {{ $img := .binding_values.thumbnail_image_original.image_value}}
             {{ if .binding_values.player_image_x_large }}
@@ -45,8 +44,8 @@
                         "formats"  $formats
                         "filename" $filename
                         "loading"  "lazy"
-                        "width"    ""
-                        "height"   ""
+                        "width"    .width
+                        "height"   .height
                         "alt"      ""
                 ) -}}
             {{ else }}
@@ -62,7 +61,15 @@
             {{ end }}
 
             {{ if .title }}
-                <div class="title {{ if not .description }}title-2{{ end }}">{{.title.string_value}} </div>
+                <div class="title {{ if not .description }}title-2{{ end }}">
+                    <a href="{{ $url }}"
+                       target="_blank"
+                       rel="noopener noreferrer">
+                        <!-- Overlay -->
+                       <div aria-hidden="true" class="overlay"></div>
+                       <span>{{.title.string_value}}</span>
+                    </a>
+                </div>
             {{ end }}
 
             {{ if .description }}

@@ -50,6 +50,7 @@
   - [x] Handle Multiple qualities: only using the best quality
 
 - Cards:
+  - [ ] Accessible Overlay
   - [x] Summary
     - [x] no image
     - [x] square image
@@ -59,6 +60,7 @@
   - [x] Spaces: not-started & recording
 - [x] - Voice tweet
 - [x] - Poll: final & not-final
+- [x] - Twitter Topics
 
 ### Quote tweet
 
@@ -219,5 +221,6 @@ download with youtube dl. I plan on using http2 for fast downloads and
 natively merging the aac files in go. I'm not sure about directly hosting the 
 space recordings on my site. Maybe uploading to a platform.
 
-I mostly got the cli idea from 
+I mostly got the cli idea from a
 [89z/mech](https://github.com/89z/mech/tree/master/twitter)
+

@@ -26,7 +26,7 @@ body {
 main {
   margin: auto;
   max-width: 40rem;
-  padding: 1rem;
+  padding: 4px;
   overflow: hidden;
   line-height: 1.7;
 }
@@ -36,7 +36,7 @@ header {
   display: grid;
   grid-template-columns: auto auto;
   margin: 2rem auto 1rem auto;
-  padding: 0 1rem;
+  padding: 0 4px;
   max-width: 40rem;
 }
 

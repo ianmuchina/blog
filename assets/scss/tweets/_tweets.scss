@@ -9,7 +9,7 @@
   display: grid;
   grid-template-columns: var(--profile-pic-width) auto;
   grid-template-rows: auto auto;
-  gap: 0 1rem;
+  gap: 0 8px;
   outline: solid 1px var(--tw-border);
   padding: 0.875rem;
   border-radius: var(--tw-border-radius);
@@ -17,25 +17,33 @@
   max-width: 640px;
   margin: 1rem 0;
 
+  // Reset
   a,
   a:visited {
     color: unset;
   }
+
+  p {
+    margin: unset;
+  }
+
+  // Link Colors
+  .text a,
+  .text a:visited {
+    color: var(--tw-link-text);
+  }
+
+  video {
+    width: 100%;
+    height: auto;
+    background-color: black;
+    max-height: 640px;
+    object-fit: contain;
+    border-radius: var(--tw-border-radius);
+  }
+
 }
 
-
-
-
-
-.text a,
-.text a:visited {
-  color: var(--tw-link-text);
-}
-
-// Reset
-.tweet p {
-  margin: unset;
-}
 
 // Default Layout is focus
 .profile-pic {
@@ -43,10 +51,14 @@
   grid-column: 1/2;
 }
 
-.focus .profile-pic,
-.quoted .profile-pic {
+.profile-pic {
   display: flex;
   align-items: center;
+  height: max-content;
+
+  picture {
+    display: contents;
+  }
 }
 
 .user-info {
@@ -54,21 +66,35 @@
   grid-template-columns: auto auto;
   align-self: center;
   font-size: 1rem;
+
+  .name {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    text-decoration: none;
+    font-weight: 800;
+
+    // Position
+    grid-column: 1/2;
+
+
+    span {
+      color: var(--tw-text);
+    }
+
+  }
+
+  .scr-name {
+    display: block;
+    grid-column: 1/3;
+  }
+
+  .checkmark {
+    // padding: 0 4px;
+    height: max-content;
+  }
 }
 
-.user-info>.name {
-  grid-column: 1/2;
-}
-
-.user-info>.scr-name {
-  display: block;
-  grid-column: 1/3;
-}
-
-.checkmark {
-  padding: 0 4px;
-  height: max-content;
-}
 
 .content {
   grid-column: span 2;
@@ -80,57 +106,42 @@
 }
 
 .quoted {
+  margin: unset;
   // Reduce gap
   gap: 2px 6px;
   // Reduce profile pic size
   --profile-pic-width: 1.2rem;
 }
 
-.quoted>.user-info {
-  // Put everything on one row
-  display: flex;
-  // Reduce font size
-  font-size: 1rem;
-  gap: 0.625rem;
-}
 
-// Make date visible
-.quoted>.user-info>.date-compact {
-  display: initial;
-}
 
-// Reduce font size
-.quoted>.content>.text {
-  font-size: 1rem;
-}
+.thread {
+  .profile-pic {
+    grid-row: span 2;
+  }
 
-.thread>.profile-pic {
-  grid-row: span 2;
-}
+  .user-info {
+    display: flex;
+    align-items: baseline;
+    gap: 0.4rem;
+  }
 
-.thread>.user-info {
-  display: flex;
-  align-items: baseline;
-  gap: 0.4rem;
-}
+  .content {
+    font-size: 1rem;
+    grid-column: span 1;
+  }
 
-.thread .meta,
-.thread .tw-date {
-  display: none;
+  .date-compact {
+    display: initial;
+  }
+
+  .meta,
+  .tw-date {
+    display: none;
+  }
 }
 
 // Center the checkmark
-a.name {
-  font-weight: bold;
-  font-weight: 800;
-  display: flex;
-  align-items: center;
-  text-decoration: none;
-
-  span {
-    color: var(--tw-text);
-  }
-}
 
 // Underline
 .user-info .name:hover {
@@ -147,14 +158,6 @@ a.name {
   height: 1.1rem;
 }
 
-.thread>.content {
-  font-size: 1rem;
-  grid-column: span 1;
-}
-
-.thread .date-compact {
-  display: initial;
-}
 
 // content
 .content {
@@ -217,7 +220,7 @@ a.name {
 a.tw-date,
 a.tw-place {
   font-size: 1rem;
-  color: var(--tw-txt-2);
+  color: var(--tw-txt-2) !important;
   text-decoration: none;
 }
 
@@ -259,7 +262,6 @@ a.tw-place:hover {
   color: var(--tw-txt-2);
 }
 
-
 a.likes:hover {
   color: var(--tw-likes-text-hover);
 
@@ -278,18 +280,43 @@ a.link:hover {
   }
 }
 
-.tweet video {
-  width: 100%;
-  height: auto;
-  background-color: black;
-  max-height: 640px;
-  object-fit: contain;
-  border-radius: var(--tw-border-radius);
+
+.thread .quoted {
+  .content {
+    grid-column: span 2;
+  }
 }
 
 .quoted {
   padding: unset;
   padding-top: 8px;
+
+  .profile-pic {
+    height: 100%;
+  }
+
+  .user-info {
+    .name {
+      gap: 0;
+    }
+
+    // Put everything on one row
+    display: flex;
+    // Reduce font size
+    font-size: 1rem;
+    gap: 0;
+  }
+
+  // Make date visible
+  .date-compact {
+    display: initial;
+  }
+
+  // Reduce font size
+  .text {
+    font-size: 1rem;
+  }
+
 
   .profile-pic,
   .user-info,
@@ -306,16 +333,5 @@ a.link:hover {
     padding: 0 3px;
   }
 
-  picture {
-    display: contents;
-  }
 
-  .user-info {
-    gap: 4px;
-    margin-right: 8px;
-  }
-
-  video {
-    border-radius: unset;
-  }
 }

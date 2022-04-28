@@ -35,13 +35,13 @@
         </div>
 
         <div class="user-info">
-          {{ partial "tweet/user-info" $props }}
+          {{ partial "tweet/user-info"    $props }}
         </div>
 
         <div class="content">
-          {{- partial "tweet/text"    $props -}}
-          {{- partial "tweet/gallery" $props -}}
-          {{- partial "tweet/video"   $props -}}
+          {{- partial "tweet/text"        $props -}}
+          {{- partial "tweet/gallery"     $props -}}
+          {{- partial "tweet/video"       $props -}}
         </div>
       </article>
     {{ end }}
