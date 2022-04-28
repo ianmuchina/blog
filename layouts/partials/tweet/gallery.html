@@ -1,37 +1,43 @@
 {{/* Renders a gallery of up to 4 photos */}}
 
 {{ with .ctx.photos }}
-{{ $photo_count := len . }}
-{{/*  Wrapper with a gallery-n class for styling purposes */}}
-<div class="gallery gallery-{{ $photo_count }}">
+  {{ $count := len . }}
+  {{/*  Wrapper with a gallery-n class for styling purposes */}}
+  <div class="gallery gallery-{{ $count }}">
   {{ range $i, $p :=  . }}
-      <picture>
-        {{/*  Download Image. Block is skipped if not possible */}}
-        {{ with resources.GetRemote .url }}
-        {{ with .Err }}
-          {{ warnf "%s" . }}
-        {{ else }}
-          {{ $img := . }}
-          {{ $filename := print "/twitter/media/photos/" $.ctx.id_str "-" $i "." $img.MediaType.SubType }}
-          {{ $img := $img.Content | resources.FromString $filename }}
-          <source srcset="{{ $img.RelPermalink }}" type="{{ $img.MediaType }}">
-        {{ end }}
-        {{ end }}
+    {{ $filename := print "/twitter/media/photos/" $.ctx.id_str "-" $i }}
+    {{ $w := "" }}
+    {{ $h := "" }}
+    {{/*  Default Width is 480px  */}}
+    {{ $formats := (slice "480x webp q80") }}
 
-        <img
-        src="{{ $p.url}}"
-        {{ if eq 1 $photo_count }}
-          width="{{ $p.width }}"
-          height="{{ $p.height }}"
-          style="aspect-ratio: {{ $p.width}}/{{ $p.height}}" 
-        {{ end }}
-        {{ if $p.accessibilityLabel}}
-          alt='{{ $p.accessibilityLabel }}'
-        {{ else }}
-          alt=""
-        {{ end }}
-        />
-      </picture>
+    {{/*  When there's only one photo  */}}
+    {{ if eq $count 1  }}
+      {{/*  Set Explicit width & height */}}
+      {{ $w = .width  }}
+      {{ $h = .height }}
+
+      {{ if gt .height .width }}
+          {{/*  Potrait: Set max height + class */}}
+        {{ $formats = (slice "x720 webp q80") }}
+      {{ else }}
+        {{/*  Landscape: Set max width */}}
+        {{ $formats = (slice "720x webp q80") }}
+      {{ end  }}
+    {{ end }}
+
+    {{/*  Render Photo */}}
+    {{- partial
+      "image" (dict
+        "class"    ""
+        "url"      .url
+        "loading"  "lazy"
+        "filename" $filename
+        "formats"  $formats
+        "width"    $w
+        "height"   $h
+        "alt"      ""
+    ) -}}
     {{ end }}
   </div>
 {{ end }}

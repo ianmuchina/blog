@@ -6,7 +6,6 @@
   grid-template-columns: 1fr 1fr;
   grid-template-rows: 1fr 1fr;
   gap: 2px;
-  overflow: clip;
   border-radius: var(--tw-border-radius);
   outline: solid 1px var(--tw-border);
 }
@@ -78,4 +77,37 @@
 
 .gallery-4 img {
   aspect-ratio: 16 / 9;
+}
+
+// Border Radius
+.gallery-1 img {
+  border-radius: var(--tw-border-radius);
+}
+
+.gallery-3 picture:first-child img,
+.gallery-2 picture:first-child img {
+  border-radius: var(--tw-border-radius) 0 0 var(--tw-border-radius);
+}
+
+.gallery-2 picture:last-child img {
+  border-radius: 0 var(--tw-border-radius) var(--tw-border-radius) 0;
+}
+
+
+.gallery-4 picture:first-child img {
+  border-radius: var(--tw-border-radius) 0 0 0;
+}
+
+.gallery-3 picture:nth-child(2) img,
+.gallery-4 picture:nth-child(2) img {
+  border-radius: 0 var(--tw-border-radius) 0 0;
+}
+
+.gallery-4 picture:nth-child(3) img {
+  border-radius: 0 0 0 var(--tw-border-radius);
+}
+
+.gallery-3 picture:last-child img,
+.gallery-4 picture:last-child img {
+  border-radius: 0 0 var(--tw-border-radius) 0;
 }

@@ -17,15 +17,16 @@
     {{ end }}
 
     {{/*  Display with Image Component */}}
-    {{- partial "image" (dict
-        "class" ""
-        "alt" ""
-        "formats" $formats
-        "url" $url
-        "filename" $filename
-        "loading" "lazy"
-        "width" 45
-        "height" 45
+    {{- partial 
+        "image" (dict
+            "formats"  $formats
+            "url"      $url
+            "filename" $filename
+            "loading"  "lazy"
+            "width"    45
+            "height"   45
+            "class"    ""
+            "alt"      ""
     ) -}}
 
 {{ end }}

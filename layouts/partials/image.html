@@ -30,15 +30,14 @@
 	{{- end -}}
 	{{/*  Fallback to Remote  Image + sizes */}}
 	<img
-		data-src="{{ .url }}"
-		data-copy="{{$original}}"
-		class="{{.class }}"	
+		class="{{ .class }}"
 		src="{{ .url }}"
 		loading="{{ .loading }}"
 		alt='{{ .alt }}'
 		width="{{ .width }}"
 		height="{{ .height }}"
-
+		data-source_url="{{ .url }}"
+		data-full_size="{{ $original }}"
 		style="aspect-ratio: {{ .width }}/{{ .height }}"
 	/>
 </picture>

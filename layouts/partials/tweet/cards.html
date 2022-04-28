@@ -10,13 +10,21 @@
     {{ end }}
 
     {{/*  Summary Card  */}}
-    {{ if or (eq .name "summary") (eq .name "summary_large_image") (eq .name "large_image") (eq .name "player") }}
+    {{ if or (eq .name "summary")
+             (eq .name "summary_large_image")
+             (eq .name "large_image")
+             (eq .name "player") }}
         {{/*  Set Class Name  */}}
         {{ $class := "card" }}
-        {{ if and .binding_values.thumbnail_image_large (eq .name "summary_large_image") }}
+        {{ $formats := slice }}
+        {{/*  Card Is Large Image with valid image source */}}
+        {{ if and (eq .name "summary_large_image") .binding_values.thumbnail_image_large }}
             {{ $class = "card card_large"}}
+            {{ $formats = (slice "x320 webp q75")}}
         {{ else }}
+            {{/*  Small Cards are 140px  */}}
             {{ $class = "card card_small"}}
+            {{ $formats = (slice "140x webp q75")}}
         {{ end }}
 
         <section class='{{ $class }}'>
@@ -30,13 +38,16 @@
             {{ with $img }}
                 {{ $filename := print "/twitter/media/opengraph/" $.ctx.id_str }}
                 {{/*  Image  */}}
-                {{- partial "image" (dict
-                    "class" "card_thumbnail"
-                    "formats" (slice "640x webp q75")
-                    "url" .url
-                    "filename" $filename
-                    "loading" "lazy"
-                    "alt" "" "width" "" "height" ""
+                {{- partial 
+                    "image" (dict
+                        "class"    "card_thumbnail"
+                        "url"      .url
+                        "formats"  $formats
+                        "filename" $filename
+                        "loading"  "lazy"
+                        "width"    ""
+                        "height"   ""
+                        "alt"      ""
                 ) -}}
             {{ else }}
                 {{/*  Image Placeholder  */}}

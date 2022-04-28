@@ -1,81 +1,65 @@
-{{ with .ctx }}
-<!-- Simplify the verbose poll schema to an array & some variables -->
-<!-- Initialize Variables -->
-{{ $pollVal1 := 0 }} {{ $pollStr1 := ""}}
-{{ $pollVal2 := 0 }} {{ $pollStr2 := ""}} 
-{{ $pollVal3 := 0 }} {{ $pollStr3 := ""}}
-{{ $pollVal4 := 0 }} {{ $pollStr4 := ""}}
+{{/*  Initialize variables  */}}
+{{ $polls   := slice }}
+{{ $isFinal := false }}
+{{ $max     := 0     }} 
+{{ $total   := 0     }}
 
-{{ $maxCount := 0 }} {{ $totalCount := 0 }}
+{{/*  Create Array of Poll Data */}}
+{{ with .ctx.card.binding_values }}
+  {{- $polls = (slice (dict "count" (int .choice1_count.string_value)
+                            "label" .choice1_label.string_value)
 
-{{ $isFinal := .card.binding_values.counts_are_final.boolean_value }}
-
-<!-- Slice of maps with a 'count' & 'label' key -->
-{{ $polls := slice }}
-
-<!-- If tweet has a poll, start adding data to $polls -->
-{{- if .card.binding_values.choice1_count.string_value -}}
-  <!-- 1 (Required) -->
-  {{ $pollVal1 = int .card.binding_values.choice1_count.string_value }}
-  {{ $pollStr1 = .card.binding_values.choice1_label.string_value }}
-  <!-- Make map & append to slice -->
-  {{ $polls = $polls | append (dict "count" $pollVal1 "label" $pollStr1) }}
-
-  <!-- 2 (Required) -->
-  {{ $pollVal2 = int .card.binding_values.choice2_count.string_value }}
-  {{ $pollStr2 = .card.binding_values.choice2_label.string_value }}
-  <!-- Make map & append to slice -->
-  {{ $polls = $polls | append (dict "count" $pollVal2 "label" $pollStr2) }}
-
-
-  <!-- 3 (Optional)  -->
-  {{ if .card.binding_values.choice3_count.string_value }}
-    {{ $pollVal3 = int .card.binding_values.choice3_count.string_value}}
-    {{ $pollStr3 = .card.binding_values.choice3_label.string_value }}
-    <!-- Make map & append to slice -->
-    {{ $polls = $polls | append (dict "count" $pollVal3 "label" $pollStr3) }}
+                      (dict "count" (int .choice2_count.string_value)
+                            "label" .choice2_label.string_value)) -}}
+  {{/* (Optional) 3rd choice   */}}
+  {{ if .choice3_count }}
+    {{- $polls = $polls | append (dict "count" (int .choice3_count.string_value)
+                                       "label" .choice3_label.string_value)  -}}
+  {{ end }}
+  {{/*  (Optional) 4th choice  */}}
+  {{ if .choice4_count }}
+    {{- $polls = $polls | append (dict "count" (int .choice4_count.string_value)
+                                       "label" .choice4_label.string_value)  -}}
   {{ end }}
 
-  <!--  4 (Optional)  -->
-  {{ if .card.binding_values.choice4_count.string_value }}
-    {{ $pollVal4 = int .card.binding_values.choice4_count.string_value}}
-    {{ $pollStr4 = .card.binding_values.choice4_label.string_value }}
-    <!-- Make map & append to slice -->
-    {{ $polls = $polls | append (dict "count" $pollVal4 "label" $pollStr4) }}
-  {{- end -}}
-{{- end -}}
-
-<!-- Poll voter count -->
-{{ $totalCount = (add (add $pollVal1 $pollVal2) (add $pollVal3 $pollVal4 )) }}
-<!-- Highest score -->
-{{ $maxCount =  int  (math.Max  (math.Max $pollVal1 $pollVal2) (math.Max $pollVal3 $pollVal4 ))}}
-
-<!-- Polls -->
-{{ if (gt (len $polls) 0) }}
-  <section class="polls">
-    {{ range $polls }}
-      {{ $percent := (math.Round ( mul ( div ( add .count 0.0 ) $totalCount) 100)) }}  
-      <div class="poll_container {{if eq .count $maxCount}}win{{end}}">
-      <!--  Text -->
-        <div class="progress_container_text">          
-          <!-- Label + Votes Count -->
-          <span> {{ .label }} &nbsp; {{ .count }} </span>  
-          <!-- Percentage -->
-          <span> {{ $percent }}%</span>
-        </div>
-        <!-- Progress bar -->
-        <!-- Inline style to set width, winner has 'win_bar' class -->
-        <div
-          style="width: {{$percent}}%;"
-          class="progress_bar {{if eq .count $maxCount}}win_bar{{end}}"
-          aria-hidden="true">
-        </div>
-      </div>
-    {{ end }}
-    <div class="total">
-      <!-- Total Votes Cast -->
-      {{ $totalCount }} votes {{ if $isFinal }} <span>· Final results</span> {{ end}}
-    </div>
-  </section>
+  {{ $isFinal = .counts_are_final.boolean_value }}
 {{ end }}
+
+{{ range $polls }}
+  {{/*  Update Max Value  */}}
+  {{ if gt .count $max  }}
+    {{ $max = .count }}
+  {{ end }}
+  {{/*  Update Totals  */}}
+  {{ $total = add $total .count }}
+{{ end }}
+
+{{ if .ctx.card.binding_values.choice1_label.string_value }}
+<section class="polls">
+  {{ range $polls }}
+    {{/*  Calculate Percentage */}}
+    {{ $percent := (math.Round (mul (div (float .count) $total) 100)) }}
+
+    <div class="poll_container {{ if eq .count $max }} win {{ end }}">
+      <div class="progress_container_text">
+        {{/*  Vote Count  */}}
+        <span> {{ .label }} &nbsp; {{ .count }} </span>
+        {{/*  Percentage  */}}
+        <span> {{ $percent }}%</spa>
+      </div>
+
+      {{/*  Progress bar */}}
+      <div class="progress_bar {{ if eq .count $max }} win_bar {{ end }}"
+         style="width: {{$percent}}%;"
+         aria-hidden="true"></div>
+    </div>
+  {{ end }}
+  {{/*  Total Votes Cast  */}}
+  <div class="total">
+    <span>{{ $total }} votes</span>
+    {{ if $isFinal }}
+      <span>· Final results</span>
+    {{ end}}
+  </div>
+</section>
 {{ end }}
