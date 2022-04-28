@@ -1,6 +1,6 @@
 ---
 title: Static twitter embed
-description: Embeding tweets as plain html and css
+description: Embedding tweets as plain HTML and CSS
 author: Ian Muchina
 date: 2022-04-20
 draft: false
@@ -29,13 +29,13 @@ Here's an example of the code twitter provides.
 This method of embedding tweets has some disadvantages:
 
 - Causes a lot of [layout shifting](https://web.dev/optimize-cls/)
-- Hard to style
+- Difficult to style
 - Does not preserve deleted tweets
 
 ## The solution
 
-A good solution would be to get the tweet data from the api then use plain HTML 
-& CSS to display it. This will give you perfect lighthouse scoes.
+A good solution would be to get the tweet data from the API then use plain HTML 
+& CSS to display it, which gives you the best lighthouse scores.
 
 I implemented one for this blog. Here's an example.
 
@@ -46,8 +46,7 @@ I implemented one for this blog. Here's an example.
 {{<tweet id="20">}}
 
 
-I had a lot of fun implementing it and I even added some features not available
-in the official embed.
+I had a lot of fun implementing it. I even added some features not available in the official embed.
 
 ## Features
 
@@ -71,8 +70,8 @@ Here's an example using an expired hashflag.
 
 {{<tweet id="1400374052087238658">}}
 
-There's no official hashflag api but  display hashflags on my embed I used an unofficial api that returns a list of
-the active hashflags. The url is {{<unsafe>}}<a href="#" id="hashflag_link">https://pbs.twimg.com/hashflag/config-2022-03-22-18.json</a>{{</unsafe>}}
+To display hashflags on my embed I used an unofficial API that returns a list of
+all active hashflags. The URL is {{<unsafe>}}<a href="#" id="hashflag_link">https://pbs.twimg.com/hashflag/config-2022-03-22-18.json</a>{{</unsafe>}}
 
 <!-- Script to update the link above with a valid url -->
 {{<unsafe>}}
@@ -90,27 +89,26 @@ the active hashflags. The url is {{<unsafe>}}<a href="#" id="hashflag_link">http
     </script>
 {{</unsafe>}}
 
-The api only returns data for dates within the current month. I made an archive
-repo on github that automatically updates itself using github actions. I was 
-able to get some useful data from the [hashflags.io](https://hashflags.io) website.
-
+The API only returns data for dates within the current month. To archive it, I created
+a GitHub repo with the image assets and JSON data. The repo automatically updates itself every hour.
+For the older hashflags, I was able to get the data and images from the [hashflags.io](https://hashflags.io) website.
 
 ## Spaces
 
 I also added a Twitter spaces card. It's simple and only links to the space page
-on twitter.com which is a better experience for users.
+on twitter.com.
 
 {{<tweet id="1508565972147326977">}}
 
 ## The ideal implementation
 
-My implementation only works on hugo. An ideal implementation would consist of 
+My implementation only works on Hugo. An ideal one would consist of 
 two parts:
 
-1. A publicly accessible api to return the plain html.
+1. A publicly accessible API to return the plain HTML.
 2. A customizable CSS file to style the markup
 
-This has some advantages:
+This method has some advantages:
 
 - Works on any static site generator/CMS
 - Websites are free to modify the styles
