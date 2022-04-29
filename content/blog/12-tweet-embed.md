@@ -124,7 +124,7 @@ on twitter.
 After the space expires it will display like this.
 {{<tweet id="1506727406609920003">}}
 
-More tests are available at [drafts.blog-byl.pages.dev](https://drafts.blog-byl.pages.dev/)
+More tests are available at [drafts.blog-byl.pages.dev/tests/tweet/](https://drafts.blog-byl.pages.dev/tests/tweet/)
 
 ## Further development
 
