@@ -62,6 +62,27 @@ I had a lot of fun implementing it. I even added some features not available in 
 
 {{<tweet id="1504102594192584705">}}
 
+  
+### Images
+  
+<!-- 2 -->
+{{<tweet id="1408575349286326272">}}
+<!-- 3 -->
+{{<tweet id="869317433814904832">}}
+<!-- 4 -->
+{{<tweet id="861627479294746624">}}
+
+### Gifs & Videos
+
+<!--  Gif  -->
+{{<tweet id"870042717589340160">}}
+
+<!--  The weekend  -->
+{{<tweet id="1509951833321578499">}}
+
+ <!--  Music  -->
+{{<tweet id="1513944715703504914">}}
+
 ### Hashflags
 
 One of the unreleased features I added were hashflags, the emojis that appear after a hashtag.
@@ -96,19 +117,17 @@ For the older hashflags, I was able to get the data and images from the [hashfla
 ## Spaces
 
 I also added a Twitter spaces card. It's simple and only links to the space page
-on twitter.com.
+on twitter.
 
 {{<tweet id="1508565972147326977">}}
 
-## The ideal implementation
+Here's a space where the details are not available
+{{<tweet id="1506727406609920003">}}
+  
 
-My implementation only works on Hugo. An ideal one would consist of 
-two parts:
+## Further development
 
-1. A publicly accessible API to return the plain HTML.
-2. A customizable CSS file to style the markup
-
-This method has some advantages:
-
-- Works on any static site generator/CMS
-- Websites are free to modify the styles
+- More Test cases
+- Threads
+- Image zooming
+- Image placeholders 
