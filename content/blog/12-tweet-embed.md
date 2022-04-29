@@ -121,10 +121,11 @@ on twitter.
 
 {{<tweet id="1513569873439326209">}}
 
-Here's a space where the details are not available
+After the space expires it will display like this.
 {{<tweet id="1506727406609920003">}}
-  
-{{<tweet id="1520174956310671364">}}
+
+More tests are available at [drafts.blog-byl.pages.dev](https://drafts.blog-byl.pages.dev/)
+
 ## Further development
 
 - More Test cases
