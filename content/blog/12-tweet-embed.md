@@ -75,7 +75,7 @@ I had a lot of fun implementing it. I even added some features not available in 
 ### Gifs & Videos
 
 <!--  Gif  -->
-{{<tweet id"870042717589340160">}}
+{{<tweet id="870042717589340160">}}
 
 <!--  The weekend  -->
 {{<tweet id="1509951833321578499">}}
