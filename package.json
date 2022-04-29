@@ -1,5 +1,6 @@
 {
 	"dependencies": {
-		"@squoosh/cli": "^0.7.2"
+		"@squoosh/cli": "^0.7.2",
+		"hugo-extended": "^0.98.0"
 	}
 }
