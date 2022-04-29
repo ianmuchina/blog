@@ -6,3 +6,4 @@ _vendor/
 resources/_gen
 resources/filecache/getresource/15902302297382621871
 resources/filecache/images/
+.vercel
