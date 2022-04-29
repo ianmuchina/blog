@@ -2,3 +2,9 @@
   Content-Type: image/avif
   Content-Disposition: inline
   Cache-Control: max-age=31536000, stale-while-revalidate
+
+/*.mp4
+  Cache-Control: public, max-age=31536000, stale-while-revalidate
+
+/*.webp
+  Cache-Control: public, max-age=31536000, stale-while-revalidate

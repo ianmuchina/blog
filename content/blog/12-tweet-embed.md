@@ -62,9 +62,11 @@ I had a lot of fun implementing it. I even added some features not available in 
 
 {{<tweet id="1504102594192584705">}}
 
-  
+
 ### Images
-  
+If supported, profile pictures & images are served as `webp`, which provides smaller sizes than 
+jpeg and is supported in [90% of browsers](https://caniuse.com/webp)
+
 <!-- 2 -->
 {{<tweet id="1408575349286326272">}}
 <!-- 3 -->
@@ -126,10 +128,15 @@ After the space expires it will display like this.
 
 More tests are available at [drafts.blog-byl.pages.dev/tests/tweet/](https://drafts.blog-byl.pages.dev/tests/tweet/)
 
+### Deleted tweets
+
+Tweets are still shown if they get deleted.
+{{<tweet id="1520174956310671364">}}
+
 ## Further development
 
 - More Test cases
-- Deleted Tweets
+- avif file format
 - Threads
 - Image zooming
 - Image placeholders 
