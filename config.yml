@@ -67,16 +67,16 @@ module:
 
 caches:
   getjson:
-    dir: :cacheDir/
+    dir: :resourceDir/
     maxAge: -1
   # modules:
   #   dir: :cacheDir/modules
   #   maxAge: 0
   getresource:
-    dir: :cacheDir/
+    dir: :resourceDir/
     maxAge: -1
   images:
-    dir: :cacheDir/
+    dir: :resourceDir/
     maxAge: -1
 
 staticDir:

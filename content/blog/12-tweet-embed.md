@@ -124,10 +124,11 @@ on twitter.
 Here's a space where the details are not available
 {{<tweet id="1506727406609920003">}}
   
-
+{{<tweet id="1520174956310671364">}}
 ## Further development
 
 - More Test cases
+- Deleted Tweets
 - Threads
 - Image zooming
 - Image placeholders 
