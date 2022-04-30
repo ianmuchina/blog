@@ -85,6 +85,10 @@ jpeg and is supported in [90% of browsers](https://caniuse.com/webp)
  <!--  Music  -->
 {{<tweet id="1513944715703504914">}}
 
+### Quote tweets
+
+{{<tweet id="1513827666406744064">}}
+
 ### Hashflags
 
 One of the unreleased features I added were hashflags, the emojis that appear after a hashtag.
