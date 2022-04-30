@@ -50,6 +50,10 @@ I had a lot of fun implementing it. I even added some features not available in 
 
 ## Features
 
+### Quote tweets
+
+{{<tweet id="1513827666406744064">}}
+
 ### OpenGraph Previews
 
 {{<tweet id="1459194182459961346">}}
@@ -85,9 +89,6 @@ jpeg and is supported in [90% of browsers](https://caniuse.com/webp)
  <!--  Music  -->
 {{<tweet id="1513944715703504914">}}
 
-### Quote tweets
-
-{{<tweet id="1513827666406744064">}}
 
 ### Hashflags
 
