@@ -7,28 +7,7 @@
   --profile-pic-width: 45px;
 }
 
-.light {
-  --tw-text: #{$gray100};
-  --tw-txt-2: #{$gray300};
-  --tw-bg: white;
-  --tw-border: #{$gray1100};
-  --tw-checkmark: #{$blue-500};
 
-  --tw-link-text: #{$blue-500};
-  --tw-link-text-hover: #{$blue500};
-  --tw-likes-text-hover: #{$red500};
-  --tw-likes-bg-hover: #{$red800}60;
-  --tw-link-bg-hover: #{$blue800}60;
-
-  --tw-og-border: #{$gray1100};
-  --tw-og-document: #{$gray600};
-  --tw-og-hover: #{$gray1000}50;
-  --tw-og-no-img: #{$gray1100};
-  --tw-poll-bar-win: #{$blue700};
-  --tw-poll-bar: #{$gray1000};
-}
-
-html,
 .dark {
   --tw-text: white;
   --tw-checkmark: white;
@@ -50,4 +29,25 @@ html,
 
   --tw-poll-bar-win: #{$blue-900};
   --tw-poll-bar: #{$zinc-700}90;
+}
+
+.light {
+  --tw-text: #{$gray100};
+  --tw-txt-2: #{$gray300};
+  --tw-bg: white;
+  --tw-border: #{$gray1100};
+  --tw-checkmark: #{$blue-500};
+
+  --tw-link-text: #{$blue-500};
+  --tw-link-text-hover: #{$blue500};
+  --tw-likes-text-hover: #{$red500};
+  --tw-likes-bg-hover: #{$red800}60;
+  --tw-link-bg-hover: #{$blue800}60;
+
+  --tw-og-border: #{$gray1100};
+  --tw-og-document: #{$gray600};
+  --tw-og-hover: #{$gray1000}50;
+  --tw-og-no-img: #{$gray1100};
+  --tw-poll-bar-win: #{$blue700};
+  --tw-poll-bar: #{$gray1000};
 }

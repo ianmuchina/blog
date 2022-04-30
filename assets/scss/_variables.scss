@@ -1,12 +1,32 @@
-@import "themes/light";
-@import "themes/dark";
+@import "colors/tailwind";
 
 // Global Variables
+
 :root {
-  --transition: color 0.1s ease-in-out;
-  --sans-font: -apple-system, BlinkMacSystemFont, avenir next, avenir, segoe ui,
-    helvetica neue, helvetica, Ubuntu, roboto, noto, arial, sans-serif;
-  --mono-font: "Ubuntu Mono", Consolas, Menlo, Monaco, "Andale Mono", monospace;
   font-size: 15px;
-  --vw: 720px;
+}
+
+.dark,
+:root {
+  --bg: #{$zinc-900};
+  --text: #{$zinc-300};
+  --headers: white;
+
+  --code-bg: #{$zinc-800};
+  --code-border: #{$zinc-700};
+  --code-text: white;
+  --accent: #{$blue-400};
+  --link-visited: #{$purple-400};
+  --kb: #{$green-300};
+}
+
+.light {
+  --bg: #{$slate-100};
+  --code-bg: #{$slate-050};
+  --code-border: #{$slate-200};
+  --text: #{$slate-700};
+  --headers: #{$slate-800};
+  --accent: #{$blue-700};
+  --link-visited: #{$purple-700};
+  --kb: #{$emerald-700};
 }

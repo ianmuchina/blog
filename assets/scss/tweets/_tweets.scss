@@ -1,8 +1,8 @@
+@import "variables";
 @import "cards";
 @import "gallery";
 @import "polls";
 @import "quote";
-@import "variables";
 
 // Layout (Macro)
 .tweet {
@@ -36,7 +36,7 @@
   video {
     width: 100%;
     height: auto;
-    background-color: black;
+    // background-color: black;
     max-height: 640px;
     object-fit: contain;
     border-radius: var(--tw-border-radius);
@@ -72,7 +72,7 @@
     align-items: center;
     gap: 4px;
     text-decoration: none;
-    font-weight: 800;
+    font-weight: 700;
 
     // Position
     grid-column: 1/2;
@@ -288,23 +288,19 @@ a.link:hover {
 }
 
 .quoted {
-  padding: unset;
-  padding-top: 8px;
+  padding: 10px;
 
   .profile-pic {
     height: 100%;
   }
 
   .user-info {
-    .name {
-      gap: 0;
-    }
 
     // Put everything on one row
     display: flex;
     // Reduce font size
     font-size: 1rem;
-    gap: 0;
+    gap: 8px;
   }
 
   // Make date visible
@@ -315,13 +311,6 @@ a.link:hover {
   // Reduce font size
   .text {
     font-size: 1rem;
-  }
-
-
-  .profile-pic,
-  .user-info,
-  .text {
-    margin-left: 8px;
   }
 
   .content {
