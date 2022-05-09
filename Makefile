@@ -17,3 +17,9 @@ clean:
 
 fmt:
 	yarn prettier -w .
+
+fmt-check:
+	yarn prettier --check .
+
+lint:
+	yarn stylelint "**/*.scss"

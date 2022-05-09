@@ -1,6 +1,6 @@
 {{/* Display profile picture */}}
 {{ with .ctx }}
-  {{/* Generate Props */}}
+{{/* Generate Props */}}
   {{/* Use 400x400 Image Source */}}
   {{ $url := replace .user.profile_image_url_https "_normal" "" }}
   {{/* Filename */}}
@@ -27,5 +27,5 @@
     "height"   45
     "class"    ""
     "alt"      "" )
-  -}}
-{{ end }}
+    -}}
+    {{ end }}

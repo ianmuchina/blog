@@ -1,0 +1,15 @@
+on:
+  - workflow_dispatch
+  - push
+
+jobs:
+  lint:
+    runs-on: ubuntu-20.04
+    steps:
+      - uses: actions/checkout@v2
+      - name: install Dependencies
+        run: npm install
+      - name: format check
+        run: npm run fmt-check
+      - name: css check
+        run: npm run lint

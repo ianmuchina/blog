@@ -53,8 +53,8 @@
       {{ $percent := (math.Round (mul (div (float .count) $total) 100)) }}
 
 
-      <div class="poll_container {{ if eq .count $max }}win{{ end }}">
-        <div class="progress_container_text">
+      <div class="poll-container {{ if eq .count $max }}win{{ end }}">
+        <div class="progress-container-text">
           {{/* Vote Count */}}
           <span> {{ .label }} &nbsp; {{ .count }} </span>
           {{/* Percentage */}}
@@ -63,7 +63,7 @@
 
         {{/* Progress bar */}}
         <div
-          class="progress_bar {{ if eq .count $max }}win_bar{{ end }}"
+          class="progress-bar {{ if eq .count $max }}win-bar{{ end }}"
           style="width: {{ $percent }}%;"
           aria-hidden="true"
         ></div>

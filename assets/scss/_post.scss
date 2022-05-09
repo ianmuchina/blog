@@ -10,6 +10,12 @@
   transition: all 0.3s;
 }
 
+// Remove all styling from Links
+a {
+  color: unset;
+  text-decoration: unset;
+}
+
 html {
   transition: var(--transition);
 }
@@ -45,6 +51,11 @@ header {
   font-size: 36px;
 }
 
+.post a {
+  text-decoration: underline;
+  color: var(--accent);
+}
+
 .social {
   display: flex;
   gap: 1rem;
@@ -60,6 +71,10 @@ header {
   border-bottom: solid 2px var(--accent);
 }
 
+.post a:visited {
+  color: var(--link-visited);
+}
+
 article {
   margin: 1rem 0;
 }
@@ -68,30 +83,14 @@ svg {
   color: var(--headers);
 }
 
-// Remove all styling from Links
-a {
-  color: unset;
-  text-decoration: unset;
-}
-
 p code {
   padding: 4px 8px;
   background-color: var(--code-bg);
   color: var(--headers);
   border-radius: 4px;
-  // outline: solid 1px var(--code-border);
 }
 
-.post a {
-  text-decoration: underline;
-  color: var(--accent);
-}
-
-.post a:visited {
-  color: var(--link-visited);
-}
-
-//Prose
+// Prose
 // Headers
 h1,
 h2,
@@ -105,32 +104,32 @@ h5 {
 }
 
 blockquote {
-  margin: 1.5rem 0;
-  padding: 1rem;
   background-color: var(--quote-bg);
   border-left: var(--accent) 6px solid;
   border-radius: 4px;
-  outline:  solid 1px var(--code-border);
+  margin: 1.5rem 0;
+  outline: solid 1px var(--code-border);
+  padding: 1rem;
 
   p {
     font-style: italic;
     margin: unset;
   }
-}
 
-blockquote p:first-of-type::before {
-  content: open-quote;
-}
+  p:first-of-type::before {
+    content: open-quote;
+  }
 
-blockquote p:last-of-type::after {
-  content: close-quote;
+  p:last-of-type::after {
+    content: close-quote;
+  }
 }
 
 .post :is(h1, h2, h3, h4, h5, h6) {
   margin: 1rem 0;
 }
 
-//Images
+// Images
 img {
   width: 100%;
   height: auto;

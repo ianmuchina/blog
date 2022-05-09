@@ -4,8 +4,8 @@ github.com/atisawd/boxicons v0.0.0-20220307201606-d644fb1f947c h1:/UVLPdxsDU5s/W
 github.com/atisawd/boxicons v0.0.0-20220307201606-d644fb1f947c/go.mod h1:ygnh2qb2fz3TUT2N16LSYbf408OWhtel05FRcUstJww=
 github.com/feathericons/feather v4.29.0+incompatible h1:vytfRPRkM6BUK+dhTrLgHcXYO5Uv1A/FFn7/tzxA0vI=
 github.com/feathericons/feather v4.29.0+incompatible/go.mod h1:+F8Ba9cmRHWu0pOVoZtid0iwkNJ8hr959HyPwj3hsRg=
-github.com/ianmuchina/hashflagArchive v0.0.0-20220509040027-16aaef60d2c0 h1:CCfFavOIBa1SFDRqbTOOKjBndayvA+lEaBL04d0Boc4=
-github.com/ianmuchina/hashflagArchive v0.0.0-20220509040027-16aaef60d2c0/go.mod h1:679zrGxLS2gi5SRReRjUgkQjJJBrSaV5NJtnxpxr4LY=
+github.com/ianmuchina/hashflagArchive v0.0.0-20220509084206-95d5990aee3b h1:JPDS1r+tZUBDJHxiyObWSTevk0+vISPqMeU+ud+T2Po=
+github.com/ianmuchina/hashflagArchive v0.0.0-20220509084206-95d5990aee3b/go.mod h1:679zrGxLS2gi5SRReRjUgkQjJJBrSaV5NJtnxpxr4LY=
 github.com/primer/octicons v17.1.0+incompatible h1:FqpD/bQiYVoNqVWLY8mElYKK4ljeFIOvvOKyjGXFc30=
 github.com/primer/octicons v17.1.0+incompatible/go.mod h1:DKmE8NtHt2TiG07HTgZlh+sQiZpIoWQgsNcjJh+ouYI=
 github.com/tailwindlabs/heroicons v1.0.6 h1:XquXj196+XH8+EUDC1wXKMCF6F2ziVKncN66bYgL/Eo=

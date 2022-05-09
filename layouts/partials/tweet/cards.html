@@ -24,11 +24,11 @@
       (eq .name "summary_large_image")
       .binding_values.thumbnail_image_large
     }}
-      {{ $class = "card card_large" }}
+      {{ $class = "card card-large" }}
       {{ $formats = (slice "x320 webp q75") }}
     {{ else }}
       {{/* Small Cards are 140px */}}
-      {{ $class = "card card_small" }}
+      {{ $class = "card card-small" }}
       {{ $formats = (slice "140x webp q75") }}
     {{ end }}
 
@@ -44,7 +44,7 @@
         {{ $filename := print "/twitter/media/opengraph/" $.ctx.id_str }}
         {{/* Image */}}
         {{- partial "image" (dict
-          "class"    "card_thumbnail"
+          "class"    "card-thumbnail"
           "url"      .url
           "formats"  $formats
           "filename" $filename
@@ -62,11 +62,11 @@
       {{ end }}
 
       {{/* Text Content */}}
-      <div class="card_content">
+      <div class="card-content">
         {{ with .binding_values }}
 
           {{ if .vanity_url }}
-            <div class="vanity_url">{{ .vanity_url.string_value }}</div>
+            <div class="vanity-url">{{ .vanity_url.string_value }}</div>
           {{ end }}
 
           {{ if .title }}

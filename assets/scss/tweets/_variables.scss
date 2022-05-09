@@ -1,9 +1,8 @@
-@import "colors/dark";
-@import "../colors/tailwind";
+@import "../colors";
 
 :root {
   --tw-border-radius: 8px;
-  --tw-poll-radius: 6px 6px 6px 6px;
+  --tw-poll-radius: 6px;
   --profile-pic-width: 45px;
 }
 
@@ -14,7 +13,7 @@
   --tw-bg: #000;
   --tw-border: #{$neutral-800};
   --tw-likes-bg-hover: #{$red-800}40;
-  --tw-likes-text-hover: #{$red600};
+  --tw-likes-text-hover: #f64b5c;
   --tw-link-bg-hover: #{$blue-800}40;
   --tw-link-text: #{$blue-400};
   --tw-link-text-hover: #{$blue-400};
@@ -27,20 +26,20 @@
 }
 
 .light {
-  --tw-text: #{$gray100};
-  --tw-txt-2: #{$gray300};
+  --tw-text: #{$gray-900};
+  --tw-txt-2: #{$gray-900};
   --tw-bg: white;
-  --tw-border: #{$gray1100};
+  --tw-border: #{$gray-200};
   --tw-checkmark: #{$blue-500};
   --tw-link-text: #{$blue-500};
-  --tw-link-text-hover: #{$blue500};
-  --tw-likes-text-hover: #{$red500};
-  --tw-likes-bg-hover: #{$red800}60;
-  --tw-link-bg-hover: #{$blue800}60;
-  --tw-og-border: #{$gray1100};
-  --tw-og-document: #{$gray600};
-  --tw-og-hover: #{$gray1000}50;
-  --tw-og-no-img: #{$gray1100};
-  --tw-poll-bar-win: #{$blue700};
-  --tw-poll-bar: #{$gray1000};
+  --tw-link-text-hover: #{$blue-500};
+  --tw-likes-text-hover: #{$red-500};
+  --tw-likes-bg-hover: #{$red-200}60;
+  --tw-link-bg-hover: #{$blue-200}60;
+  --tw-og-border: #{$gray-900};
+  --tw-og-document: #{$gray-600};
+  --tw-og-hover: #{$gray-100}50;
+  --tw-og-no-img: #{$gray-900};
+  --tw-poll-bar-win: #{$blue-700};
+  --tw-poll-bar: #{$gray-900};
 }
