@@ -35,7 +35,7 @@ main {
 header {
   display: grid;
   grid-template-columns: auto auto;
-  margin: 2rem auto 1rem auto;
+  margin: 2rem auto 1rem;
   padding: 0 4px;
   max-width: 40rem;
 }
@@ -107,13 +107,13 @@ h5 {
 blockquote {
   margin: 1.5rem 0;
   padding: 1rem;
-
-  font-style: italic;
-  background-color: var(--code-bg);
+  background-color: var(--quote-bg);
   border-left: var(--accent) 6px solid;
-  border-radius: 6px;
+  border-radius: 4px;
+  outline:  solid 1px var(--code-border);
 
   p {
+    font-style: italic;
     margin: unset;
   }
 }
@@ -160,7 +160,15 @@ table {
 }
 
 article a h2 {
-  color: var(--headers);
+  font-size: 1.7rem;
+  color: var(--accent);
+  text-decoration: solid underline 2px;
+}
+
+article a:visited h2 {
+  font-size: 1.5rem;
+  color: var(--link-visited);
+  text-decoration: solid underline 2px;
 }
 
 article p {

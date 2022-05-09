@@ -1,3 +1,7 @@
+p code {
+  border: solid 1px var(--code-border);
+}
+
 pre code {
   display: block;
   z-index: 1;
