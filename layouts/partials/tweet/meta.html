@@ -1,19 +1,19 @@
-{{/*  TODO: Likes & App used  */}}
-{{ with .ctx  }}
+{{/* TODO: Likes & App used */}}
+{{ with .ctx }}
   {{ $likes := .favorite_count }}
-  {{/*  Make Likes notation compact */}}
+  {{/* Make Likes notation compact */}}
 
   {{ $k := math.Floor	(div $likes 1000) }}
   {{ $h := math.Floor	(mul .01 (mod $likes 1000)) }}
 
   {{/* If Hundreds value is zero */}}
-  {{/* eg: 12,000 => 12K  */}}
+  {{/* eg: 12,000 => 12K */}}
   {{ if (gt $k 0) }}
     {{ $likes = print $k "K" }}
   {{ end }}
 
   {{/* If Hundreds value is >100 */}}
-  {{/* eg: 12,345 => 12.3K  */}}
+  {{/* eg: 12,345 => 12.3K */}}
   {{ if and (gt $k 0) (gt $h 0) }}
     {{ $likes = print $k "." $h "K" }}
   {{ end }}
@@ -22,13 +22,14 @@
     {{ $likes = print $k "." $h "K" }}
   {{ end }}
 
-  {{/*  1m+  */}}
+  {{/* 1m+ */}}
   {{ if gt (int .favorite_count) 1000000 }}
-    {{ $likes = .favorite_count}}
+    {{ $likes = .favorite_count }}
     {{ $likes = print (math.Floor (div $likes 1000000))
-                       "."
-                      (math.Round (div (mod $likes 1000000) 100000))
-                       "M"  }}
+      "."
+      (math.Round (div (mod $likes 1000000) 100000))
+      "M"
+    }}
     {{ $likes }}
   {{ end }}
 
@@ -44,38 +45,43 @@
   {{ $uts  := $uts.Unix }}
   <span>
     {{/* Link to date */}}
-    <a class="tw-date"
-       href="{{ $tweetUrl }}"
-       data-date="{{ $uts }}"
-       aria-label="Posted on {{ $date }}"
+    <a
+      class="tw-date"
+      href="{{ $tweetUrl }}"
+      data-date="{{ $uts }}"
+      aria-label="Posted on {{ $date }}"
     >
       {{ $date }}
     </a>
 
-    {{/*  (Optional) Geo Tag */}}
+    {{/* (Optional) Geo Tag */}}
     {{ with .place }}
-      <a class="tw-place"
-         href="https://twitter.com/places/{{ .id }}"
-      >
-         from {{.full_name}}
+      <a class="tw-place" href="https://twitter.com/places/{{ .id }}">
+        from
+        {{ .full_name }}
       </a>
     {{ end }}
   </span>
 
   <div class="meta">
-    <a class="likes"
-       href="{{ $likeUrl }}"
-       target="_blank" rel="noopener noreferrer"
+    <a
+      class="likes"
+      href="{{ $likeUrl }}"
+      target="_blank"
+      rel="noopener noreferrer"
     >
-      {{ partial "inline-svg" "twitter/like"}} {{ $likes }}
+      {{ partial "inline-svg" "twitter/like" }}
+      {{ $likes }}
     </a>
 
     {{/* Link To Tweet */}}
-    <a class="link"
-       href="{{ $tweetUrl }}"
-       target="_blank" rel="noopener noreferrer"
+    <a
+      class="link"
+      href="{{ $tweetUrl }}"
+      target="_blank"
+      rel="noopener noreferrer"
     >
-      {{ partial "inline-svg" "twitter/link"}} Link to Tweet
+      {{ partial "inline-svg" "twitter/link" }} Link to Tweet
     </a>
   </div>
 {{ end }}

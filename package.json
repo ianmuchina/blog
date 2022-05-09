@@ -1,6 +1,29 @@
 {
-	"dependencies": {
-		"@squoosh/cli": "^0.7.2",
-		"hugo-extended": "^0.98.0"
-	}
+  "devDependencies": {
+    "prettier": "^2.6.2",
+    "prettier-plugin-go-template": "^0.0.12",
+    "stylelint": "^14.8.2",
+    "stylelint-config-prettier-scss": "^0.0.1",
+    "stylelint-config-standard-scss": "^3.0.0"
+  },
+  "prettier": {
+    "overrides": [
+      {
+        "files": [
+          "*.html"
+        ],
+        "options": {
+          "parser": "go-template"
+        }
+      }
+    ],
+    "proseWrap": "always",
+    "htmlWhitespaceSensitivity": "css"
+  },
+  "stylelint": {
+    "extends": [
+      "stylelint-config-standard-scss",
+      "stylelint-config-prettier-scss"
+    ]
+  }
 }

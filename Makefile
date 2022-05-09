@@ -14,3 +14,6 @@ ci-build:
 
 clean:
 	rm 'resources/filecache/getresource/15902302297382621871'
+
+fmt:
+	yarn prettier -w .

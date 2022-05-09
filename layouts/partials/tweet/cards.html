@@ -1,88 +1,94 @@
 <!-- Replace twitter url with expanded url  -->
 
 {{ with .ctx.card }}
-    {{/*  Get Card Url */}}
-    {{ $url := .binding_values.card_url.string_value}}
-    {{ range $.ctx.entities.urls }}
-        {{ if (eq $url .url) }}
-            {{ $url = .expanded_url }}
-        {{ end }}
+  {{/* Get Card Url */}}
+  {{ $url := .binding_values.card_url.string_value }}
+  {{ range $.ctx.entities.urls }}
+    {{ if (eq $url .url) }}
+      {{ $url = .expanded_url }}
+    {{ end }}
+  {{ end }}
+
+  {{/* Summary Card */}}
+  {{ if or
+    (eq .name "summary")
+    (eq .name "summary_large_image")
+    (eq .name "large_image")
+    (eq .name "player")
+  }}
+    {{/* Set Class Name */}}
+    {{ $class := "card" }}
+    {{ $formats := slice }}
+    {{/* Card Is Large Image with valid image source */}}
+    {{ if and
+      (eq .name "summary_large_image")
+      .binding_values.thumbnail_image_large
+    }}
+      {{ $class = "card card_large" }}
+      {{ $formats = (slice "x320 webp q75") }}
+    {{ else }}
+      {{/* Small Cards are 140px */}}
+      {{ $class = "card card_small" }}
+      {{ $formats = (slice "140x webp q75") }}
     {{ end }}
 
-    {{/*  Summary Card  */}}
-    {{ if or (eq .name "summary")
-             (eq .name "summary_large_image")
-             (eq .name "large_image")
-             (eq .name "player") }}
-        {{/*  Set Class Name  */}}
-        {{ $class := "card" }}
-        {{ $formats := slice }}
-        {{/*  Card Is Large Image with valid image source */}}
-        {{ if and (eq .name "summary_large_image") .binding_values.thumbnail_image_large }}
-            {{ $class = "card card_large"}}
-            {{ $formats = (slice "x320 webp q75")}}
-        {{ else }}
-            {{/*  Small Cards are 140px  */}}
-            {{ $class = "card card_small"}}
-            {{ $formats = (slice "140x webp q75")}}
-        {{ end }}
 
-        <section class='{{ $class }}'>
+    <section class="{{ $class }}">
+      {{/* Select Image */}}
+      {{ $img := .binding_values.thumbnail_image_original.image_value }}
+      {{ if .binding_values.player_image_x_large }}
+        {{ $img = .binding_values.player_image_large.image_value }}
+      {{ end }}
 
-            {{ $img := .binding_values.thumbnail_image_original.image_value}}
-            {{ if .binding_values.player_image_x_large }}
-                {{ $img = .binding_values.player_image_large.image_value }}
-            {{ end }}
+      {{ with $img }}
+        {{ $filename := print "/twitter/media/opengraph/" $.ctx.id_str }}
+        {{/* Image */}}
+        {{- partial "image" (dict
+          "class"    "card_thumbnail"
+          "url"      .url
+          "formats"  $formats
+          "filename" $filename
+          "loading"  "lazy"
+          "width"    .width
+          "height"   .height
+          "alt"      ""
+          )
+        -}}
+      {{ else }}
+        {{/* Image Placeholder */}}
+        <div class="card-no-image">
+          {{ partial "inline-svg" "twitter/document" }}
+        </div>
+      {{ end }}
 
-            {{ with $img }}
-                {{ $filename := print "/twitter/media/opengraph/" $.ctx.id_str }}
-                {{/*  Image  */}}
-                {{- partial 
-                    "image" (dict
-                        "class"    "card_thumbnail"
-                        "url"      .url
-                        "formats"  $formats
-                        "filename" $filename
-                        "loading"  "lazy"
-                        "width"    .width
-                        "height"   .height
-                        "alt"      ""
-                ) -}}
-            {{ else }}
-                {{/*  Image Placeholder  */}}
-                <div class="card-no-image"> {{ partial "inline-svg" "twitter/document"}} </div>
-            {{ end }}
+      {{/* Text Content */}}
+      <div class="card_content">
+        {{ with .binding_values }}
 
-            {{/*  Text Content  */}}
-            <div class="card_content">
-            {{ with .binding_values }}
-            {{ if .vanity_url }}
-                <div class="vanity_url">{{.vanity_url.string_value}} </div>
-            {{ end }}
+          {{ if .vanity_url }}
+            <div class="vanity_url">{{ .vanity_url.string_value }}</div>
+          {{ end }}
 
-            {{ if .title }}
-                <div class="title {{ if not .description }}title-2{{ end }}">
-                    <a href="{{ $url }}"
-                       target="_blank"
-                       rel="noopener noreferrer">
-                        <!-- Overlay -->
-                       <div aria-hidden="true" class="overlay"></div>
-                       <span>{{.title.string_value}}</span>
-                    </a>
-                </div>
-            {{ end }}
-
-            {{ if .description }}
-                <p class="description">{{.description.string_value }}</p>
-            {{ end }}
-            {{ end }}
+          {{ if .title }}
+            <div class="title {{ if not .description }}title-2{{ end }}">
+              <a href="{{ $url }}" target="_blank" rel="noopener noreferrer">
+                <span>{{ .title.string_value }}</span>
+                <div class="overlay" aria-hidden="true"></div>
+              </a>
             </div>
-        </section>
-    {{ end }}
+          {{ end }}
 
-    {{/*  Spaces Card  */}}
-    {{ if eq .name "3691233323:audiospace" }}
-        {{ partial "tweet/space" (dict "id" .binding_values.id.string_value) -}}
-    {{ end }}
+          {{ if .description }}
+            <p class="description">{{ .description.string_value }}</p>
+          {{ end }}
+
+        {{ end }}
+      </div>
+    </section>
+  {{ end }}
+
+  {{/* Spaces Card */}}
+  {{ if eq .name "3691233323:audiospace" }}
+    {{ partial "tweet/space" (dict "id" .binding_values.id.string_value) -}}
+  {{ end }}
 {{ end }}
-

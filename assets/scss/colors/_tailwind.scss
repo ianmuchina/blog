@@ -1,4 +1,5 @@
 // Tailwind colors as scss variables
+
 // tailwindcss.com/docs/customizing-colors
 
 // Slate
@@ -12,6 +13,7 @@ $slate-600: #475569;
 $slate-700: #334155;
 $slate-800: #1e293b;
 $slate-900: #0f172a;
+
 // Gray
 $gray-050: #f9fafb;
 $gray-100: #f3f4f6;
@@ -23,6 +25,7 @@ $gray-600: #4b5563;
 $gray-700: #374151;
 $gray-800: #1f2937;
 $gray-900: #111827;
+
 // Zinc
 $zinc-050: #fafafa;
 $zinc-100: #f4f4f5;
@@ -34,6 +37,7 @@ $zinc-600: #52525b;
 $zinc-700: #3f3f46;
 $zinc-800: #27272a;
 $zinc-900: #18181b;
+
 // Neutral
 $neutral-050: #fafafa;
 $neutral-100: #f5f5f5;
@@ -45,6 +49,7 @@ $neutral-600: #525252;
 $neutral-700: #404040;
 $neutral-800: #262626;
 $neutral-900: #171717;
+
 // Stone
 $stone-050: #fafaf9;
 $stone-100: #f5f5f4;
@@ -81,6 +86,7 @@ $orange-700: #c2410c;
 $orange-800: #9a3412;
 $orange-900: #7c2d12;
 
+// Amber
 $amber-050: #fffbeb;
 $amber-100: #fef3c7;
 $amber-200: #fde68a;
@@ -92,6 +98,7 @@ $amber-700: #b45309;
 $amber-800: #92400e;
 $amber-900: #78350f;
 
+// Yellow
 $yellow-050: #fefce8;
 $yellow-100: #fef9c3;
 $yellow-200: #fef08a;
@@ -103,6 +110,7 @@ $yellow-700: #a16207;
 $yellow-800: #854d0e;
 $yellow-900: #713f12;
 
+// Lime
 $lime-050: #f7fee7;
 $lime-100: #ecfccb;
 $lime-200: #d9f99d;
@@ -114,6 +122,7 @@ $lime-700: #4d7c0f;
 $lime-800: #3f6212;
 $lime-900: #365314;
 
+// Green
 $green-050: #f0fdf4;
 $green-100: #dcfce7;
 $green-200: #bbf7d0;
@@ -125,6 +134,7 @@ $green-700: #15803d;
 $green-800: #166534;
 $green-900: #14532d;
 
+// Emerald
 $emerald-050: #ecfdf5;
 $emerald-100: #d1fae5;
 $emerald-200: #a7f3d0;
@@ -136,6 +146,7 @@ $emerald-700: #047857;
 $emerald-800: #065f46;
 $emerald-900: #064e3b;
 
+// Teal
 $teal-050: #f0fdfa;
 $teal-100: #ccfbf1;
 $teal-200: #99f6e4;
@@ -147,6 +158,7 @@ $teal-700: #0f766e;
 $teal-800: #115e59;
 $teal-900: #134e4a;
 
+// Cyan
 $cyan-050: #ecfeff;
 $cyan-100: #cffafe;
 $cyan-200: #a5f3fc;
@@ -158,6 +170,7 @@ $cyan-700: #0e7490;
 $cyan-800: #155e75;
 $cyan-900: #164e63;
 
+// LightBlue
 $lightBlue-050: #f0f9ff;
 $lightBlue-100: #e0f2fe;
 $lightBlue-200: #bae6fd;
@@ -169,6 +182,7 @@ $lightBlue-700: #0369a1;
 $lightBlue-800: #075985;
 $lightBlue-900: #0c4a6e;
 
+// Blue
 $blue-050: #eff6ff;
 $blue-100: #dbeafe;
 $blue-200: #bfdbfe;
@@ -180,6 +194,7 @@ $blue-700: #1d4ed8;
 $blue-800: #1e40af;
 $blue-900: #1e3a8a;
 
+// Indigo
 $indigo-050: #eef2ff;
 $indigo-100: #e0e7ff;
 $indigo-200: #c7d2fe;
@@ -191,6 +206,7 @@ $indigo-700: #4338ca;
 $indigo-800: #3730a3;
 $indigo-900: #312e81;
 
+// Violet
 $violet-050: #f5f3ff;
 $violet-100: #ede9fe;
 $violet-200: #ddd6fe;
@@ -202,6 +218,7 @@ $violet-700: #6d28d9;
 $violet-800: #5b21b6;
 $violet-900: #4c1d95;
 
+// Purple
 $purple-050: #faf5ff;
 $purple-100: #f3e8ff;
 $purple-200: #e9d5ff;
@@ -213,6 +230,7 @@ $purple-700: #7e22ce;
 $purple-800: #6b21a8;
 $purple-900: #581c87;
 
+// Fuchsia
 $fuchsia-050: #fdf4ff;
 $fuchsia-100: #fae8ff;
 $fuchsia-200: #f5d0fe;
@@ -224,6 +242,7 @@ $fuchsia-700: #a21caf;
 $fuchsia-800: #86198f;
 $fuchsia-900: #701a75;
 
+// Pink
 $pink-050: #fdf2f8;
 $pink-100: #fce7f3;
 $pink-200: #fbcfe8;
@@ -235,6 +254,7 @@ $pink-700: #be185d;
 $pink-800: #9d174d;
 $pink-900: #831843;
 
+// Rose
 $rose-050: #fff1f2;
 $rose-100: #ffe4e6;
 $rose-200: #fecdd3;

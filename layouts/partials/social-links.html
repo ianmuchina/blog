@@ -1,38 +1,41 @@
 <section class="social">
-    <!-- Github -->
-    <a  
-        aria-label="github"
-        href="https://github.com/{{.Site.Params.Github}}"
-        rel="noopener noreferrer" target="_blank"
-    >
-        {{ partial "inline-svg" "feather/github"}}
-    </a>
+  <!-- Github -->
+  <a
+    aria-label="github"
+    href="https://github.com/{{ .Site.Params.Github }}"
+    rel="noopener noreferrer"
+    target="_blank"
+  >
+    {{ partial "inline-svg" "feather/github" }}
+  </a>
 
-    <!-- Twitter -->
-    <a 
-        aria-label="Twitter"
-        href="https://twitter.com/{{.Site.Params.Twitter}}"
-        rel="noopener noreferrer" target="_blank"
-    >
-        {{ partial "inline-svg" "feather/twitter"}}
-    </a>
+  <!-- Twitter -->
+  <a
+    aria-label="Twitter"
+    href="https://twitter.com/{{ .Site.Params.Twitter }}"
+    rel="noopener noreferrer"
+    target="_blank"
+  >
+    {{ partial "inline-svg" "feather/twitter" }}
+  </a>
 
-    <!-- Email -->
-    <a 
-        aria-label="Email Link"
-        href="{{.Site.Params.Email}}"
-        target="_blank" rel="noopener noreferrer"
-    >
-        {{ partial "inline-svg" "feather/mail"}}
-    </a>
+  <!-- Email -->
+  <a
+    aria-label="Email Link"
+    href="{{ .Site.Params.Email }}"
+    target="_blank"
+    rel="noopener noreferrer"
+  >
+    {{ partial "inline-svg" "feather/mail" }}
+  </a>
 
-    <!-- RSS -->
-    <a 
-        aria-label="RSS Feed"
-        href="/index.xml"
-        rel="noopener noreferrer me"
-        target="_blank"
-    >
-        {{ partial "inline-svg" "feather/rss"}}
-    </a>
+  <!-- RSS -->
+  <a
+    aria-label="RSS Feed"
+    href="/index.xml"
+    rel="noopener noreferrer me"
+    target="_blank"
+  >
+    {{ partial "inline-svg" "feather/rss" }}
+  </a>
 </section>

@@ -1,23 +1,19 @@
 {{- define "main" -}}
+  {{- partial "nav.html" . -}}
+  <main>
+    {{- .Site.Params.Description -}}
+    {{- partial "social-links.html" . -}}
 
-
-{{- partial "nav.html" . -}}
-<main>  
-  {{- .Site.Params.Description -}}
-  {{- partial "social-links.html" . -}} 
 
     <h2>Posts</h2>
     {{- range .Site.RegularPages.ByDate.Reverse -}}
       <article>
         {{- partial "date.html" . -}}
-        <a href="{{- .RelPermalink -}}"> 
+        <a href="{{- .RelPermalink -}}">
           <h2>{{- .Title -}}</h2>
         </a>
         <p>{{- .Description -}}</p>
       </article>
-    {{- end -}} 
+    {{- end -}}
   </main>
-
-  
-
 {{- end }}

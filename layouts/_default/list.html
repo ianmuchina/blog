@@ -1,15 +1,15 @@
 {{- define "main" -}}
-    {{- partial "nav.html" . -}}
-    <main>
-        <h1>{{- .Title -}}</h1>
-        <p>{{- .Description -}}</p>
-        {{- range .Pages.ByPublishDate.Reverse -}}
-            <article>
-                <a href="{{- .RelPermalink -}}">
-                    {{- partial "date.html" . -}}
-                    <h2>{{- .Title -}}</h2>
-                </a>
-            </article>
-        {{- end -}}
-    </main>
+  {{- partial "nav.html" . -}}
+  <main>
+    <h1>{{- .Title -}}</h1>
+    <p>{{- .Description -}}</p>
+    {{- range .Pages.ByPublishDate.Reverse -}}
+      <article>
+        <a href="{{- .RelPermalink -}}">
+          {{- partial "date.html" . -}}
+          <h2>{{- .Title -}}</h2>
+        </a>
+      </article>
+    {{- end -}}
+  </main>
 {{- end -}}

@@ -41,9 +41,7 @@
     object-fit: contain;
     border-radius: var(--tw-border-radius);
   }
-
 }
-
 
 // Default Layout is focus
 .profile-pic {
@@ -77,11 +75,9 @@
     // Position
     grid-column: 1/2;
 
-
     span {
       color: var(--tw-text);
     }
-
   }
 
   .scr-name {
@@ -94,7 +90,6 @@
     height: max-content;
   }
 }
-
 
 .content {
   grid-column: span 2;
@@ -112,8 +107,6 @@
   // Reduce profile pic size
   --profile-pic-width: 1.2rem;
 }
-
-
 
 .thread {
   .profile-pic {
@@ -152,12 +145,11 @@
   display: inline-flex;
 }
 
-.checkmark>svg {
+.checkmark > svg {
   width: 1.1rem;
   color: var(--tw-checkmark);
   height: 1.1rem;
 }
-
 
 // content
 .content {
@@ -248,7 +240,7 @@ a.tw-place:hover {
   color: inherit;
 }
 
-.meta>a>svg {
+.meta > a > svg {
   border-radius: 100%;
   padding: 4px;
   width: 24px;
@@ -280,7 +272,6 @@ a.link:hover {
   }
 }
 
-
 .thread .quoted {
   .content {
     grid-column: span 2;
@@ -295,7 +286,6 @@ a.link:hover {
   }
 
   .user-info {
-
     // Put everything on one row
     display: flex;
     // Reduce font size
@@ -321,6 +311,4 @@ a.link:hover {
     padding: unset;
     padding: 0 3px;
   }
-
-
 }

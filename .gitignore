@@ -7,3 +7,8 @@ resources/_gen
 resources/filecache/getresource/15902302297382621871
 resources/filecache/images/
 .vercel
+.hugo_build.lock
+yarmn.lock
+yarn-error.log
+package-lock.json
+yarn.lock

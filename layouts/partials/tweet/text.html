@@ -1,8 +1,8 @@
-{{/*  TODO: Use slice instead of string replacement */}}
+{{/* TODO: Use slice instead of string replacement */}}
 {{ $seen_hashtag := newScratch }}
 {{ $text := .ctx.text }}
 
-{{/*  Remove Links to Media */}}
+{{/* Remove Links to Media */}}
 {{ range .ctx.entities.media }}
   {{ $text = replace $text .url "" }}
 {{ end }}
@@ -13,15 +13,14 @@
   {{/* Remove link to quote tweet */}}
   {{ if in .expanded_url $.ctx.quoted_tweet.id_str }}
     {{ $new = "" }}
-  {{end}}
+  {{ end }}
 
-  {{/*  Remove link to twitter space  */}}
+  {{/* Remove link to twitter space */}}
   {{ if (in .expanded_url $.ctx.card.binding_values.id.string_value) }}
-   {{ $new = "" }}
-  {{end}}
+    {{ $new = "" }}
+  {{ end }}
 
-  {{ $text = replace $text .url $new  }}
-
+  {{ $text = replace $text .url $new }}
 {{ end }}
 
 {{/* Mentions */}}
@@ -43,23 +42,23 @@
   {{ if not ($seen_hashtag.Get .text) }}
     {{ $hashflag_markup := "" }}
 
-    {{/*  Get tweet date*/}}
+    {{/* Get tweet date */}}
     {{ $date :=  time $.ctx.created_at }}
     {{ $hashtag := (lower .text) }}
     {{/* If hashtag has campaign(s) */}}
     {{ with index $.data.hashtags $hashtag }}
       {{ $campaign := "" }}
-      {{/*  Select campaign */}}
+      {{/* Select campaign */}}
       {{ range $c := . }}
         {{ with index $.data.campaigns $c }}
-          {{/*  If Tweet falls within campaign dates, use it */}}
+          {{/* If Tweet falls within campaign dates, use it */}}
           {{ if and ( lt .startingTimestampMs $date.UnixMilli ) ( gt .endingTimestampMs   $date.UnixMilli ) }}
             {{ $campaign = $c }}
           {{ end }}
         {{ end }}
       {{ end }}
 
-      {{/*  Select Image  */}}
+      {{/* Select Image */}}
       {{ with resources.Get (print "twitter/media/hashflags/" $campaign ".png") }}
         {{ $hashflag_markup = printf "<picture class='emoji'> <img src='%s' alt=''> </picture>" .RelPermalink }}
       {{ end }}
@@ -74,5 +73,6 @@
     {{ $seen_hashtag.Set .text "true" }}
   {{ end }}
 {{ end }}
+
 
 <p class="text">{{ $text | safeHTML -}}</p>

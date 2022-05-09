@@ -2,33 +2,32 @@
 
 {{ with .ctx.photos }}
   {{ $count := len . }}
-  {{/*  Wrapper with a gallery-n class for styling purposes */}}
+  {{/* Wrapper with a gallery-n class for styling purposes */}}
   <div class="gallery gallery-{{ $count }}">
-  {{ range $i, $p :=  . }}
-    {{ $filename := print "/twitter/media/photos/" $.ctx.id_str "-" $i }}
-    {{ $w := "" }}
-    {{ $h := "" }}
-    {{/*  Default Width is 480px  */}}
-    {{ $formats := (slice "480x webp q80") }}
+    {{ range $i, $p :=  . }}
+      {{ $filename := print "/twitter/media/photos/" $.ctx.id_str "-" $i }}
+      {{ $w := "" }}
+      {{ $h := "" }}
+      {{/* Default Width is 480px */}}
+      {{ $formats := (slice "480x webp q80") }}
 
-    {{/*  When there's only one photo  */}}
-    {{ if eq $count 1  }}
-      {{/*  Set Explicit width & height */}}
-      {{ $w = .width  }}
-      {{ $h = .height }}
+      {{/* When there's only one photo */}}
+      {{ if eq $count 1 }}
+        {{/* Set Explicit width & height */}}
+        {{ $w = .width }}
+        {{ $h = .height }}
 
-      {{ if gt .height .width }}
-          {{/*  Potrait: Set max height + class */}}
-        {{ $formats = (slice "x720 webp q80") }}
-      {{ else }}
-        {{/*  Landscape: Set max width */}}
-        {{ $formats = (slice "720x webp q80") }}
-      {{ end  }}
-    {{ end }}
+        {{ if gt .height .width }}
+          {{/* Potrait: Set max height + class */}}
+          {{ $formats = (slice "x720 webp q80") }}
+        {{ else }}
+          {{/* Landscape: Set max width */}}
+          {{ $formats = (slice "720x webp q80") }}
+        {{ end }}
+      {{ end }}
 
-    {{/*  Render Photo */}}
-    {{- partial
-      "image" (dict
+      {{/* Render Photo */}}
+      {{- partial "image" (dict
         "class"    ""
         "url"      .url
         "loading"  "lazy"
@@ -37,7 +36,8 @@
         "width"    $w
         "height"   $h
         "alt"      ""
-    ) -}}
+        )
+      -}}
     {{ end }}
   </div>
 {{ end }}

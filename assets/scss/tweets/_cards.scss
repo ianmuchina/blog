@@ -41,14 +41,11 @@
       -webkit-line-clamp: 2;
     }
 
-    .title>a {
+    .title > a {
       text-decoration: none;
     }
-
   }
-
 }
-
 
 .tweet .overlay {
   position: absolute;
@@ -121,10 +118,11 @@
   padding: 1rem;
   border-radius: 8px;
 
-  background-image:
-    linear-gradient(60deg,
-      hsl(230, 100%, 60%) -15%,
-      hsl(260, 100%, 60%) 100%);
+  background-image: linear-gradient(
+    60deg,
+    hsl(230, 100%, 60%) -15%,
+    hsl(260, 100%, 60%) 100%
+  );
   color: white;
 
   .spaces-meta {
@@ -159,7 +157,9 @@
 }
 
 .spaces-card.unavailable {
-  background-image: linear-gradient(60deg,
-      hsl(230, 60%, 30%) -15%,
-      hsl(260, 60%, 30%) 100%);
+  background-image: linear-gradient(
+    60deg,
+    hsl(230, 60%, 30%) -15%,
+    hsl(260, 60%, 30%) 100%
+  );
 }

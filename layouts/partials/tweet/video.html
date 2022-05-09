@@ -4,7 +4,7 @@
 -->
 
 {{- with .ctx.video -}}
-{{/*  Normal videos  */}}
+  {{/* Normal videos */}}
   {{ if eq .contentType "media_entity" }}
 
     {{- $maxW := 0 -}}
@@ -16,8 +16,10 @@
         <!-- Get quality using regex from the url --->
         {{- $quality := findRE `\d{3,4}x\d{3,4}` .src -}}
 
+
         <!-- Split to width & height  --->
         {{- $q := split (index $quality 0) "x" -}}
+
 
         <!-- Cast to int  --->
         {{- $w := int (index $q 0) -}}
@@ -32,11 +34,12 @@
       {{ end }}
     {{ end }}
 
+
     <!---  2. Get width & height --->
     {{- $width  := (index .aspectRatio 0) -}}
     {{- $height := (index .aspectRatio 1) -}}
 
-    {{/*  Self host Poster Image */}}
+    {{/* Self host Poster Image */}}
     {{ $poster := .poster }}
     {{ $img := resources.GetRemote .poster }}
 
@@ -46,9 +49,10 @@
       {{ $poster = $img.RelPermalink }}
     {{ end }}
 
+
     <!---  3. Render Video --->
     {{ with $best_video }}
-      {{/*  Self host Video */}}
+      {{/* Self host Video */}}
       {{ $src := .src }}
       {{/* a. Download video from twitter cdn */}}
       {{ $vid := resources.GetRemote .src }}
@@ -59,26 +63,25 @@
       {{ if not $vid.Err }}
         {{ $src = $vid.RelPermalink }}
       {{ else }}
-        {{ warnf "error loading tweet : %s" $.ctx.id_str}}
+        {{ warnf "error loading tweet : %s" $.ctx.id_str }}
         {{ warnf "%s" $vid.Err }}
       {{ end }}
 
-      {{/*  Render video  */}}
+      {{/* Render video */}}
       <video
         src="{{ $src }}"
         class="tweet-video"
-        style="aspect-ratio: {{$maxW}}/{{$maxH}}; width: 100%; height: auto;"
+        style="aspect-ratio: {{ $maxW }}/{{ $maxH }}; width: 100%; height: auto;"
         preload="metadata"
         controls
         poster="{{ $poster }}"
-        >
-      </video>
+      ></video>
     {{ end }}
   {{ end }}
 
-  {{ if eq .contentType "gif"}}
-    {{ $gif := ""}}
-    {{$src := ""}}
+  {{ if eq .contentType "gif" }}
+    {{ $gif := "" }}
+    {{ $src := "" }}
     {{ range .variants }}
       {{ $src = .src }}
     {{ end }}
@@ -87,24 +90,29 @@
     {{ $filename := print "/twitter/media/gifs/" $.ctx.id_str "." $gif.MediaType.SubType }}
     {{ $gif = $gif.Content | resources.FromString $filename }}
 
+
     <!---  2. Get width & height --->
-    {{- $width  := (index .aspectRatio 0)    -}}
-    {{- $height := (index .aspectRatio 1)    -}}
+    {{- $width  := (index .aspectRatio 0) -}}
+    {{- $height := (index .aspectRatio 1) -}}
 
     {{/* Change video source if there are no errors */}}
     {{ if not $gif.Err }}
       {{ $src = $gif.RelPermalink }}
     {{ else }}
-      {{ warnf "Tweet: Err Loading Gif for tweet with id:%s" $.ctx.id_str}}
+      {{ warnf "Tweet: Err Loading Gif for tweet with id:%s" $.ctx.id_str }}
       {{ warnf "%s" $gif.Err }}
     {{ end }}
 
-    <video 
-      style="aspect-ratio: {{$width}}/{{$height}}; width: 100%; height: auto;"
+
+    <video
+      style="aspect-ratio: {{ $width }}/{{ $height }}; width: 100%; height: auto;"
       width="{{ $width }}"
       height="{{ $height }}"
       src="{{ $src }}"
-      playsinline autoplay loop muted
-      ></video>
+      playsinline
+      autoplay
+      loop
+      muted
+    ></video>
   {{ end }}
 {{ end }}
