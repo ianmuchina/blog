@@ -386,3 +386,59 @@ a.link:hover {
     display:none;
   }
 }
+
+
+@media (max-width: 480px) {
+  .user-info .name span {
+    flex: 1;
+    max-width: 20ch;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  .tweet .date-compact {
+    display: none;
+  }
+}
+
+.tweet .user-info, .tweet .profile-pic {
+  z-index: 30;
+}
+
+.card, .text, .gallery {
+  z-index: 20;
+}
+
+.text {
+  pointer-events: none;
+}
+
+.tweet .content a {
+  pointer-events: all;
+}
+
+.tweet .card img {
+  pointer-events: all;
+  z-index: 60;
+}
+
+.tweet .overlay {
+  position: absolute;
+  z-index: 10;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+
+}
+
+.quoted .overlay {
+  position: absolute;
+  z-index: 25;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+
+}

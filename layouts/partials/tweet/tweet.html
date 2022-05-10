@@ -2,6 +2,7 @@
 
 
 <article class="tweet {{ .mode }}" lang="{{ .ctx.lang }}">
+  
   <div class="profile-pic">
     {{ partial "tweet/profile-pic" $props }}
   </div>
@@ -12,8 +13,6 @@
 
   <div class="content">
     {{/* Tweet urls */}}
-    {{- $host := "https://twitter.com/" -}}
-    {{- $tweetUrl := print $host .ctx.user.screen_name "/status/" .ctx.id_str -}}
     {{- partial "tweet/text"     $props -}}
     {{- partial "tweet/cards"    $props -}}
     {{- partial "tweet/gallery"  $props -}}
@@ -23,6 +22,7 @@
     {{ with .ctx.quoted_tweet }}
       {{ $props := (dict "ctx" . "quoted" true "data" $.Site.Data) }}
       <article class="tweet quoted" lang="{{ .lang }}">
+        <a class="overlay" href="https://twitter.com/{{.user.screen_name}}/status/{{.id_str}}"></a>
         <div class="profile-pic">
           {{ partial "tweet/profile-pic"  $props }}
         </div>
@@ -40,4 +40,5 @@
     {{/* Date, Likes, Link to tweet button */}}
     {{ partial "tweet/meta" $props }}
   </div>
+  <a aria-label="link to tweeet" target="_blank" rel="noopener noreferrer" class="overlay" href="https://twitter.com/{{.ctx.user.screen_name}}/status/{{.ctx.id_str}}"></a>
 </article>

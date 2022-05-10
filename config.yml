@@ -85,6 +85,6 @@ staticDir:
 
 imaging:
   anchor: Smart
-  hint: photo
+  hint: drawing
   quality: 80
   resampleFilter: Lanczos
