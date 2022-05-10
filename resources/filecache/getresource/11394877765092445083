@@ -1,0 +1,27 @@
+HTTP/2.0 200 OK
+Cache-Control: no-cache, no-store, must-revalidate, pre-check=0, post-check=0
+Content-Disposition: attachment; filename=json.json
+Content-Type: application/json; charset=utf-8
+Date: Tue, 10 May 2022 15:51:42 GMT
+Expires: Tue, 31 Mar 1981 05:00:00 GMT
+Last-Modified: Tue, 10 May 2022 15:51:42 GMT
+Pragma: no-cache
+Server: tsa_f
+Set-Cookie: guest_id_marketing=v1%3A165219790282502541; Max-Age=63072000; Expires=Thu, 09 May 2024 15:51:42 GMT; Path=/; Domain=.twitter.com; Secure; SameSite=None
+Set-Cookie: guest_id_ads=v1%3A165219790282502541; Max-Age=63072000; Expires=Thu, 09 May 2024 15:51:42 GMT; Path=/; Domain=.twitter.com; Secure; SameSite=None
+Set-Cookie: personalization_id="v1_PZF3T3GyJceNP2fS9evb7A=="; Max-Age=63072000; Expires=Thu, 09 May 2024 15:51:42 GMT; Path=/; Domain=.twitter.com; Secure; SameSite=None
+Set-Cookie: guest_id=v1%3A165219790282502541; Max-Age=63072000; Expires=Thu, 09 May 2024 15:51:42 GMT; Path=/; Domain=.twitter.com; Secure; SameSite=None
+Strict-Transport-Security: max-age=631138519
+Vary: Origin
+X-Connection-Hash: 3e56af3558dc06999e6d807ceb7623cddc696509d81c47db6243b10c8a44d128
+X-Content-Type-Options: nosniff
+X-Frame-Options: SAMEORIGIN
+X-Rate-Limit-Limit: 500
+X-Rate-Limit-Remaining: 498
+X-Rate-Limit-Reset: 1652198802
+X-Response-Time: 253
+X-Tfe-Preserve-Body: true
+X-Twitter-Response-Tags: BouncerCompliant
+X-Xss-Protection: 0
+
+{"data":{"audioSpace":{}}}

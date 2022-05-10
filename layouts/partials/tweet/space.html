@@ -25,8 +25,20 @@
 {{ $url := (printf "https://twitter.com/i/api/graphql/{spacePersistedQuery}/AudioSpaceById?variables=%%7B%%22id%%22%%3A%%22{space_id}%%22%%2C%%22isMetatagsQuery%%22%%3Afalse%%2C%%22withBirdwatchPivots%%22%%3Afalse%%2C%%22withDownvotePerspective%%22%%3Afalse%%2C%%22withReactionsMetadata%%22%%3Afalse%%2C%%22withReactionsPerspective%%22%%3Afalse%%2C%%22withReplays%%22%%3Afalse%%2C%%22withScheduledSpaces%%22%%3Afalse%%2C%%22withSuperFollowsTweetFields%%22%%3Afalse%%2C%%22withSuperFollowsUserFields%%22%%3Afalse%%7D") }}
 {{ $url := replace $url "{spacePersistedQuery}" $spacePersistedQuery }}
 {{ $url := replace $url "{space_id}" $id }}
-{{ $data := getJSON $url $headers }}
+{{ warnf "%s Downloading" .id }}
 
+{{ $data := resources.GetRemote $url ( dict
+  "method" "get"
+  "key" (printf "space-%s" .id)
+  "headers" (dict
+  "X-Guest-Token" (printf "%v" $GuestToken)
+  "Authorization" (print "Bearer " $Bearer)))
+}}
+
+
+
+{{ $data := $data.Content | transform.Unmarshal }}
+{{ warnf "%s Downloaded" .id }}
 {{ $m := $data.data.audioSpace.metadata }}
 
 {{ with $m }}
