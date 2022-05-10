@@ -372,6 +372,17 @@ a.link:hover {
 .date-compact {
   color: var(--tw-txt-2);
 }
+
 .focus .date-compact {
   display: none;
+}
+
+.quoted {
+
+  .profile-pic img {
+    outline: none;
+  }
+  .profile-pic::before {
+    display:none;
+  }
 }
