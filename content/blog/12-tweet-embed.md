@@ -112,7 +112,10 @@ all active hashflags. The URL is
 
 <!-- Script to update the link above with a valid url -->
 
-{{<unsafe>}} <script> // Changes html link from js function setHLink(){ let date
+{{<unsafe>}}
+<script>
+// Changes html link from js
+ function setHLink(){ let date
 = new Date().toISOString().split('T')[0];
 
     let url = `pbs.twimg.com/hashflag/config-${date}-00.json`
