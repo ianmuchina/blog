@@ -100,6 +100,15 @@
   display: none;
 }
 
+.thread-wrapper {
+  margin: 1rem 0;
+  border: solid 1px var(--tw-border);
+  article {
+    margin: 0;
+    border-radius: 0;
+  }
+}
+
 .quoted {
   margin: unset;
   align-items: start;
@@ -118,13 +127,6 @@
 
     picture {
       display: contents;
-    }
-
-    img {
-      position: sticky;
-      outline: solid 2px red;
-      top: 10px;
-      align-self: flex-start;
     }
 
     height: 100%;

@@ -6,6 +6,8 @@ github.com/feathericons/feather v4.29.0+incompatible h1:vytfRPRkM6BUK+dhTrLgHcXY
 github.com/feathericons/feather v4.29.0+incompatible/go.mod h1:+F8Ba9cmRHWu0pOVoZtid0iwkNJ8hr959HyPwj3hsRg=
 github.com/ianmuchina/hashflagArchive v0.0.0-20220509084206-95d5990aee3b h1:JPDS1r+tZUBDJHxiyObWSTevk0+vISPqMeU+ud+T2Po=
 github.com/ianmuchina/hashflagArchive v0.0.0-20220509084206-95d5990aee3b/go.mod h1:679zrGxLS2gi5SRReRjUgkQjJJBrSaV5NJtnxpxr4LY=
+github.com/ianmuchina/hashflagArchive v0.0.0-20220510030210-985f83daa160 h1:Sfriw4akUa8ja+HvBBuAkAY0w+YbcMsnKT/IU440/Ak=
+github.com/ianmuchina/hashflagArchive v0.0.0-20220510030210-985f83daa160/go.mod h1:679zrGxLS2gi5SRReRjUgkQjJJBrSaV5NJtnxpxr4LY=
 github.com/primer/octicons v17.1.0+incompatible h1:FqpD/bQiYVoNqVWLY8mElYKK4ljeFIOvvOKyjGXFc30=
 github.com/primer/octicons v17.1.0+incompatible/go.mod h1:DKmE8NtHt2TiG07HTgZlh+sQiZpIoWQgsNcjJh+ouYI=
 github.com/tailwindlabs/heroicons v1.0.6 h1:XquXj196+XH8+EUDC1wXKMCF6F2ziVKncN66bYgL/Eo=

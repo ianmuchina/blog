@@ -1,0 +1,7 @@
+{{ with getJSON "https://cdn.syndication.twimg.com/tweet?id=" .id }}
+  {{ if .parent }}
+    {{ partial "tweet/thread" (dict "id" .parent.id_str "data" .data) }}
+  {{ end }}
+
+  {{ partial "tweet/tweet" (dict "ctx" . "data" .data "mode" "thread") }}
+{{ end }}
