@@ -1,0 +1,42 @@
+.spaces-card {
+  display: flex;
+  flex-direction: column;
+  padding: 1rem;
+  border-radius: 8px;
+  background-image: linear-gradient(60deg, #35f -15%, #73f 100%);
+  color: white;
+
+  .spaces-meta {
+    display: flex;
+    font-size: 1rem;
+  }
+
+  .title {
+    color: white;
+    font-weight: 600;
+    font-size: 20px;
+  }
+
+  .spaces-btn {
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 1rem;
+    text-align: center;
+    padding: 10px;
+    border-radius: 3rem;
+    color: white;
+    background-color: #fff4;
+  }
+
+  .spaces-btn:hover {
+    background-color: #1114;
+  }
+
+  .spaces-date {
+    font-weight: bold;
+  }
+}
+
+.spaces-card.unavailable {
+  background-image: linear-gradient(60deg, #1f2e7a -15%, #3d1f7a 100%);
+}

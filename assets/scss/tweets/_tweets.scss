@@ -1,8 +1,9 @@
 @import "variables";
-@import "cards";
-@import "gallery";
-@import "polls";
 @import "quote";
+@import "cards";
+@import "polls";
+@import "spaces";
+@import "gallery";
 
 // Layout (Macro)
 .tweet {
@@ -36,7 +37,6 @@
   video {
     width: 100%;
     height: auto;
-    // background-color: black;
     max-height: 640px;
     object-fit: contain;
     border-radius: var(--tw-border-radius);
@@ -53,11 +53,10 @@
   display: flex;
   align-items: center;
   height: max-content;
-  
+
   picture {
     display: contents;
   }
-
 }
 
 .user-info {
@@ -65,27 +64,27 @@
   grid-template-columns: auto auto;
   align-self: center;
   font-size: 1rem;
-  
+
   .name {
     display: flex;
     align-items: center;
     gap: 4px;
     text-decoration: none;
     font-weight: 700;
-    
+
     // Position
     grid-column: 1/2;
-    
+
     span {
       color: var(--tw-text);
     }
   }
-  
+
   .scr-name {
     display: block;
     grid-column: 1/3;
   }
-  
+
   .checkmark {
     // padding: 0 4px;
     height: max-content;
@@ -107,7 +106,7 @@
 
   // Reduce gap
   gap: 2px 6px;
-  
+
   // Reduce profile pic size
   --profile-pic-width: 1.2rem;
 }
@@ -125,7 +124,7 @@
       position: sticky;
       outline: solid 2px red;
       top: 10px;
-      align-self: flex-start
+      align-self: flex-start;
     }
 
     height: 100%;
@@ -133,7 +132,6 @@
     display: flex;
     flex-direction: column;
   }
-
 
   .user-info {
     display: flex;
@@ -253,8 +251,8 @@ a.tw-place:hover {
 }
 
 .meta a {
-  margin: 0px;
-  padding: 0px;
+  margin: 0;
+  padding: 0;
   display: flex;
   align-items: center;
   gap: 4px;
@@ -265,8 +263,8 @@ a.tw-place:hover {
 .meta > a > svg {
   border-radius: 100%;
   padding: 4px;
-  width: 24px;
-  width: 24px;
+  width: 18px;
+  height: 18px;
   color: var(--tw-txt-2);
 }
 

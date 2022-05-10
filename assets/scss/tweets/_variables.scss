@@ -26,20 +26,20 @@
 }
 
 .light {
-  --tw-text: #{$gray-900};
-  --tw-txt-2: #{$gray-900};
+  --tw-text: #{$slate-900};
+  --tw-txt-2: #{$slate-700};
   --tw-bg: white;
-  --tw-border: #{$gray-200};
+  --tw-border: #{$slate-200};
   --tw-checkmark: #{$blue-500};
   --tw-link-text: #{$blue-500};
   --tw-link-text-hover: #{$blue-500};
   --tw-likes-text-hover: #{$red-500};
   --tw-likes-bg-hover: #{$red-200}60;
   --tw-link-bg-hover: #{$blue-200}60;
-  --tw-og-border: #{$gray-900};
-  --tw-og-document: #{$gray-600};
-  --tw-og-hover: #{$gray-100}50;
-  --tw-og-no-img: #{$gray-900};
+  --tw-og-border: #{$slate-300};
+  --tw-og-document: #{$slate-700};
+  --tw-og-hover: #{$slate-050};
+  --tw-og-no-img: #{$slate-100};
   --tw-poll-bar-win: #{$blue-700};
-  --tw-poll-bar: #{$gray-900};
+  --tw-poll-bar: #{$slate-900};
 }

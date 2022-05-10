@@ -11,10 +11,9 @@
 
 <article class="tweet {{ $mode }}" lang="{{ $d.lang }}">
   <div class="profile-pic">
-      {{ partial "tweet/profile-pic" $props }}
-    </div>
+    {{ partial "tweet/profile-pic" $props }}
   </div>
-  
+
   <div class="user-info">
     {{ partial "tweet/user-info" $props }}
   </div>
@@ -30,8 +29,7 @@
       {{/* Update Props */}}
       {{ $props := (dict "ctx" . "quoted" true "data" $.Site.Data) }}
 
-
-      <article lang="{{ .lang }}" class="tweet quoted">
+      <article class="tweet quoted" lang="{{ .lang }}">
         <div class="profile-pic">
           {{ partial "tweet/profile-pic"  $props }}
         </div>

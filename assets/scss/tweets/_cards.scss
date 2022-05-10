@@ -13,6 +13,10 @@
     padding: 1rem;
     font-size: 1rem;
 
+    .title {
+      color: var(--tw-text);
+    }
+
     .vanity-url,
     .description {
       color: var(--tw-txt-2);
@@ -25,7 +29,7 @@
       /* stylelint-disable-next-line value-no-vendor-prefix */
       display: -webkit-box;
       -webkit-box-orient: vertical;
-      word-break: var(--word-break, "none");
+      word-break: none;
       overflow: hidden;
       hyphens: auto;
       text-align: left;
@@ -101,7 +105,7 @@
   background-color: var(--tw-og-no-img);
   display: grid;
   place-items: center;
-  border-right: solid 1px var(--tw-border);
+  border-right: solid 1px var(--tw-og-border);
   height: 100%;
 
   svg {
@@ -124,7 +128,7 @@
     font-size: 1rem;
   }
 
-  .title {
+  .spaces-title {
     color: white;
     font-weight: 600;
     font-size: 20px;
