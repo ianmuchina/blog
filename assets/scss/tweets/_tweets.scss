@@ -338,13 +338,13 @@ a.link:hover {
     outline: solid 8px var(--tw-bg);
   }
 
-  position:relative;
+  position: relative;
   z-index: 10;
 }
 
 .thread .profile-pic::before {
   background: var(--tw-thread-line);
-  content: '';
+  content: "";
   position: absolute;
   min-width: 2px;
   border-radius: 0;
@@ -369,11 +369,9 @@ a.link:hover {
   height: 20px;
 }
 
-
 .date-compact {
   color: var(--tw-txt-2);
 }
 .focus .date-compact {
   display: none;
 }
-
