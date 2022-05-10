@@ -15,7 +15,9 @@
     "fmt": "prettier -w .",
     "fmt-check": "yarn prettier --check .",
     "lint": "yarn stylelint **/*.scss",
-    "build": "hugo"
+    "build": "hugo",
+    "build-drafts": "hugo -D",
+    "dev": "hugo server -D"
   },
   "devDependencies": {
     "autoprefixer": "^10.4.7",
