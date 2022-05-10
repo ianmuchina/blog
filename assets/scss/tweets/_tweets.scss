@@ -7,6 +7,7 @@
 
 // Layout (Macro)
 .tweet {
+  position: relative;
   display: grid;
   grid-template-columns: var(--profile-pic-width) auto;
   grid-template-rows: auto auto;
@@ -95,14 +96,10 @@
   grid-column: span 2;
 }
 
-// Hidden by default
-.date-compact {
-  display: none;
-}
-
 .thread-wrapper {
   margin: 1rem 0;
   border: solid 1px var(--tw-border);
+
   article {
     margin: 0;
     border-radius: 0;
@@ -334,3 +331,49 @@ a.link:hover {
     padding: 0 3px;
   }
 }
+
+.profile-pic {
+  img {
+    z-index: 20;
+    outline: solid 8px var(--tw-bg);
+  }
+
+  position:relative;
+  z-index: 10;
+}
+
+.thread .profile-pic::before {
+  background: var(--tw-thread-line);
+  content: '';
+  position: absolute;
+  min-width: 2px;
+  border-radius: 0;
+  left: 50%;
+  right: 50%;
+  z-index: 20;
+  pointer-events: none;
+}
+
+.thread-wrapper :not(.tweet:last-child).profile-pic::before {
+  top: -16px;
+  bottom: -16px;
+}
+
+.thread-wrapper .tweet:first-child .profile-pic::before {
+  top: 0;
+  bottom: -14px;
+}
+
+.thread-wrapper .tweet:last-child .profile-pic::before {
+  top: -14px;
+  height: 20px;
+}
+
+
+.date-compact {
+  color: var(--tw-txt-2);
+}
+.focus .date-compact {
+  display: none;
+}
+

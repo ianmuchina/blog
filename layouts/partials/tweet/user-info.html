@@ -22,8 +22,6 @@
   <span class="scr-name">@{{ .user.screen_name }}</span>
   <!-- Date Compact (Optional)  Mainly for quote tweets -->
 
-  {{ if $.date }}
-    {{ $date_compact :=  time.Format "Jan 2 2006" .created_at }}
-    <div class="date-compact">{{ $date_compact }}</div>
-  {{ end }}
+  {{ $date_compact :=  time.Format "· Jan 2 2006" .created_at }}
+  <div class="date-compact">{{ $date_compact }}</div>
 {{ end }}

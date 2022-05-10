@@ -23,9 +23,11 @@
   --tw-og-no-img: #{$neutral-800};
   --tw-poll-bar-win: #{$blue-900};
   --tw-poll-bar: #{$neutral-700}90;
+  --tw-thread-line: #{$zinc-700};
 }
 
 .light {
+  --tw-thread-line: #{$zinc-300};
   --tw-text: #{$slate-900};
   --tw-txt-2: #{$slate-700};
   --tw-bg: white;

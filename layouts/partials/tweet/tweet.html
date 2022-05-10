@@ -11,6 +11,9 @@
   </div>
 
   <div class="content">
+    {{/* Tweet urls */}}
+    {{- $host := "https://twitter.com/" -}}
+    {{- $tweetUrl := print $host .ctx.user.screen_name "/status/" .ctx.id_str -}}
     {{- partial "tweet/text"     $props -}}
     {{- partial "tweet/cards"    $props -}}
     {{- partial "tweet/gallery"  $props -}}
@@ -34,6 +37,7 @@
       </article>
     {{ end }}
 
+    
     {{/* Date, Likes, Link to tweet button */}}
     {{ partial "tweet/meta" $props }}
   </div>
