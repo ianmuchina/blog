@@ -1,6 +1,9 @@
+{{$start := .start }}
+
 {{ with getJSON "https://cdn.syndication.twimg.com/tweet?id=" .id }}
-  {{ if .parent }}
-    {{ partial "tweet/thread" (dict "id" .parent.id_str "data" .data) }}
+  {{ if and .parent (ne $start .id_str)  }}
+    {{ partial "tweet/thread" 
+    (dict "id" .parent.id_str "data" .data "start" $start) }}
   {{ end }}
 
   {{ partial "tweet/tweet" (dict "ctx" . "data" .data "mode" "thread") }}

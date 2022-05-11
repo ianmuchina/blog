@@ -179,7 +179,7 @@
 }
 
 .profile-pic img {
-    background-color: var(--tw-bg);
+  background-color: var(--tw-bg);
   width: var(--profile-pic-width);
   height: var(--profile-pic-width);
 }
@@ -379,15 +379,13 @@ a.link:hover {
 }
 
 .quoted {
-
   .profile-pic img {
     outline: none;
   }
   .profile-pic::before {
-    display:none;
+    display: none;
   }
 }
-
 
 @media (max-width: 480px) {
   .user-info .name span {
@@ -403,11 +401,14 @@ a.link:hover {
   }
 }
 
-.tweet .user-info, .tweet .profile-pic {
+.tweet .user-info,
+.tweet .profile-pic {
   z-index: 30;
 }
 
-.card, .text, .gallery {
+.card,
+.text,
+.gallery {
   z-index: 20;
 }
 
@@ -431,7 +432,6 @@ a.link:hover {
   bottom: 0;
   left: 0;
   right: 0;
-
 }
 
 .quoted .overlay {
@@ -441,5 +441,4 @@ a.link:hover {
   bottom: 0;
   left: 0;
   right: 0;
-
 }

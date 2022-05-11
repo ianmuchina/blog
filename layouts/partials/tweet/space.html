@@ -1,15 +1,15 @@
 {{/* Space Id */}}
 {{ $id := .id }}
 {{/* API Keys */}}
-{{ $GuestToken := 1517833280963416065 }}
+{{ $GuestToken := 0 }}
 {{ $Bearer := "AAAAAAAAAAAAAAAAAAAAANRILgAAAAAAnNwIzUejRCOuH5E6I8xnZz4puTs=1Zv7ttfk8LF81IUq16cHjhLTvJu4FA33AGWWjCpTnA" }}
 {{ $spacePersistedQuery := "lFpix9BgFDhAMjn9CrW6jQ" }}
 
 {{/* Get Guest Token */}}
-{{ $res := resources.GetRemote "https://api.twitter.com/1.1/guest/activate.json" ( dict
+{{ $res := resources.GetRemote
+  "https://api.twitter.com/1.1/guest/activate.json" (dict
   "method" "post"
-  "headers" (dict
-  "Authorization" (print "Bearer " $Bearer)))
+  "headers" (dict "Authorization" (print "Bearer " $Bearer)))
 }}
 
 {{ $GuestToken := $res.Content | transform.Unmarshal }}
@@ -22,26 +22,20 @@
 }}
 
 {{/* Get spaces Data */}}
-{{ $url := (printf "https://twitter.com/i/api/graphql/{spacePersistedQuery}/AudioSpaceById?variables=%%7B%%22id%%22%%3A%%22{space_id}%%22%%2C%%22isMetatagsQuery%%22%%3Afalse%%2C%%22withBirdwatchPivots%%22%%3Afalse%%2C%%22withDownvotePerspective%%22%%3Afalse%%2C%%22withReactionsMetadata%%22%%3Afalse%%2C%%22withReactionsPerspective%%22%%3Afalse%%2C%%22withReplays%%22%%3Afalse%%2C%%22withScheduledSpaces%%22%%3Afalse%%2C%%22withSuperFollowsTweetFields%%22%%3Afalse%%2C%%22withSuperFollowsUserFields%%22%%3Afalse%%7D") }}
-{{ $url := replace $url "{spacePersistedQuery}" $spacePersistedQuery }}
+{{ $url := (printf "https://twitter.com/i/api/graphql/lFpix9BgFDhAMjn9CrW6jQ/AudioSpaceById?variables=%%7B%%22id%%22%%3A%%22{space_id}%%22%%2C%%22isMetatagsQuery%%22%%3Afalse%%2C%%22withBirdwatchPivots%%22%%3Afalse%%2C%%22withDownvotePerspective%%22%%3Afalse%%2C%%22withReactionsMetadata%%22%%3Afalse%%2C%%22withReactionsPerspective%%22%%3Afalse%%2C%%22withReplays%%22%%3Afalse%%2C%%22withScheduledSpaces%%22%%3Afalse%%2C%%22withSuperFollowsTweetFields%%22%%3Afalse%%2C%%22withSuperFollowsUserFields%%22%%3Afalse%%7D") }}
 {{ $url := replace $url "{space_id}" $id }}
-{{ warnf "%s Downloading" .id }}
 
-{{ $data := resources.GetRemote $url ( dict
+{{ $data := resources.GetRemote $url
+  (dict
   "method" "get"
-  "key" (printf "space-%s" .id)
-  "headers" (dict
-  "X-Guest-Token" (printf "%v" $GuestToken)
-  "Authorization" (print "Bearer " $Bearer)))
+  "key"    (printf "space-%s" .id)
+  "headers" $headers)
 }}
 
-
-
 {{ $data := $data.Content | transform.Unmarshal }}
-{{ warnf "%s Downloaded" .id }}
-{{ $m := $data.data.audioSpace.metadata }}
+{{ $metadata := $data.data.audioSpace.metadata }}
 
-{{ with $m }}
+{{ with $metadata }}
   {{ $date :=  time.Format "Jan 2" (div (int .started_at) 1000) }}
   {{ $duration := div (sub (int .ended_at) (int .started_at)) 1000 }}
   {{ $hours := (div $duration 3600) }}
@@ -66,7 +60,7 @@
       </div>
       <div></div>
     </div>
-    <h3 class="spaces-title">{{ $m.title }}</h3>
+    <h3 class="spaces-title">{{ .title }}</h3>
     <a href="https://twitter.com/i/spaces/{{ $id }}" class="spaces-btn"
       >Open on Twitter</a
     >
