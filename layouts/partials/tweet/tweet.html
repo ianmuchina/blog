@@ -20,10 +20,6 @@
     {{ with .ctx.quoted_tweet }}
       {{ $props := (dict "ctx" . "quoted" true "data" .data) }}
       <article class="tweet quoted" lang="{{ .lang }}">
-        <a
-          class="overlay"
-          href="https://twitter.com/{{ .user.screen_name }}/status/{{ .id_str }}"
-        ></a>
         <div class="profile-pic">
           {{ partial "tweet/profile-pic"  $props }}
         </div>
