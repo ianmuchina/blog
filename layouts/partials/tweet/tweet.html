@@ -37,11 +37,4 @@
     {{/* Date, Likes, Link to tweet button */}}
     {{ partial "tweet/meta" $props }}
   </div>
-  <a
-    aria-label="link to tweeet"
-    target="_blank"
-    rel="noopener noreferrer"
-    class="overlay"
-    href="https://twitter.com/{{ .ctx.user.screen_name }}/status/{{ .ctx.id_str }}"
-  ></a>
 </article>
