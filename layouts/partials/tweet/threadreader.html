@@ -3,6 +3,7 @@
     {{ partial "tweet/threadreader" (dict "id" .parent.id_str "data" .data) }}
   {{ end }}
 
-  {{ partial "tweet/threadreader-content" 
-  (dict "ctx" . "data" .data "mode" "") }}
+  {{ partial "tweet/threadreader-content"
+    (dict "ctx" . "data" .data "mode" "")
+  }}
 {{ end }}

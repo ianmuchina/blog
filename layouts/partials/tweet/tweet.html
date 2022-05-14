@@ -1,5 +1,6 @@
 {{ $props := (dict "ctx" .ctx "data" .data) }}
 
+
 <article class="tweet {{ .mode }}" lang="{{ .ctx.lang }}">
   <div class="profile-pic">
     {{ partial "tweet/profile-pic" $props }}
@@ -35,6 +36,10 @@
     {{ end }}
 
     {{/* Date, Likes, Link to tweet button */}}
-    {{ partial "tweet/meta" $props }}
+    {{ if $.showButton }}
+      {{ partial "tweet/buttons" $props }}
+    {{ else }}
+      {{ partial "tweet/meta" $props }}
+    {{ end }}
   </div>
 </article>

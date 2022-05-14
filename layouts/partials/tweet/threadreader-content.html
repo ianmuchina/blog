@@ -1,6 +1,7 @@
 {{ $props := (dict "ctx" .ctx "data" .data) }}
 
-<p lang="{{ .ctx.lang }}">
+
+<article lang="{{ .ctx.lang }}">
   <div>
     {{/* Tweet urls */}}
     {{- partial "tweet/text"     $props -}}
@@ -20,4 +21,4 @@
       </blockquote>
     {{ end }}
   </div>
-</p>
+</article>

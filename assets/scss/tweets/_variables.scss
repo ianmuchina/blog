@@ -24,6 +24,21 @@
   --tw-poll-bar-win: #{$blue-900};
   --tw-poll-bar: #{$neutral-700}90;
   --tw-thread-line: #{$zinc-700};
+
+  .blue:hover {
+    --color: #{$sky-400};
+    --bg: #{$sky-500}1A;
+  }
+
+  .red:hover {
+    --color: #{$red-500};
+    --bg: #{$red-500}1A;
+  }
+
+  .green:hover {
+    --color: #{$green-400};
+    --bg: #{$green-500}1A;
+  }
 }
 
 .light {
@@ -44,4 +59,19 @@
   --tw-og-no-img: #{$slate-100};
   --tw-poll-bar: #{$slate-300};
   --tw-poll-bar-win: #{$blue-200};
+
+  .blue:hover {
+    --color: #{$sky-600};
+    --bg: #{$sky-100};
+  }
+
+  .red:hover {
+    --color: #{$red-600};
+    --bg: #{$red-100};
+  }
+
+  .green:hover {
+    --color: #{$green-600};
+    --bg: #{$green-100};
+  }
 }

@@ -44,6 +44,32 @@
   }
 }
 
+.tweet-buttons-thread {
+  display: flex;
+  justify-content: space-between;
+  max-width: 400px;
+
+  a {
+    --bg: var(--tw-bg);
+    --color: var(--tw-txt-2);
+
+    color: var(--color) !important;
+    display: flex;
+    text-decoration: none;
+    align-items: center;
+    gap: 2px;
+  }
+
+  svg {
+    color: var(--color);
+    background-color: var(--bg);
+    padding: 8px;
+    border-radius: 100%;
+    width: 18px;
+    height: 18px;
+  }
+}
+
 // Default Layout is focus
 .profile-pic {
   grid-row: 1/2;

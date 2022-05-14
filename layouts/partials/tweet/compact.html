@@ -1,0 +1,29 @@
+{{ $count := . }}
+
+{{ $k := math.Floor	(div $count 1_000) }}
+{{ $h := math.Floor	(mul .01 (mod $count 1_000)) }}
+
+{{ if (gt $k 0) }}
+  {{ $count = print $k "K" }}
+{{ end }}
+
+{{ if and (gt $k 0) (gt $h 0) }}
+  {{ $count = print $k "." $h "K" }}
+{{ end }}
+
+{{ if and (gt $k 0) (gt $h 0) }}
+  {{ $count = print $k "." $h "K" }}
+{{ end }}
+
+{{ if gt (int .) 1000000 }}
+  {{ $count = .favorite_count }}
+  {{ $millions := (math.Floor (div $count 1_000_000)) }}
+  {{ $decimal := (math.Round (div (mod $count 1_000_000) 100_000)) }}
+  {{ $count = print $millions "." $decimal "M" }}
+{{ end }}
+
+{{ if eq (int .) 0 }}
+  {{ $count = "" }}
+{{ end }}
+
+{{ $count }}
