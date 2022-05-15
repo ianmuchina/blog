@@ -1,0 +1,45 @@
+{{ $props := (dict "ctx" .ctx "data" .data) }}
+
+
+<article class="tweet {{ .mode }}" lang="{{ .ctx.lang }}">
+  <div class="profile-pic">
+    {{ partial "tweet/profile-pic" $props }}
+  </div>
+
+  <div class="user-info">
+    {{ partial "tweet/user-info" $props }}
+  </div>
+
+  <div class="content">
+    {{/* Tweet urls */}}
+    {{- partial "tweet/text"     $props -}}
+    {{- partial "tweet/cards"    $props -}}
+    {{- partial "tweet/gallery"  $props -}}
+    {{- partial "tweet/video"    $props -}}
+    {{- partial "tweet/poll"     $props -}}
+
+    {{ with .ctx.quoted_tweet }}
+      {{ $props := (dict "ctx" . "quoted" true "data" .data) }}
+      <article class="tweet quoted" lang="{{ .lang }}">
+        <div class="profile-pic">
+          {{ partial "tweet/profile-pic"  $props }}
+        </div>
+        <div class="user-info">
+          {{ partial "tweet/user-info"    $props }}
+        </div>
+        <div class="content">
+          {{- partial "tweet/text"        $props -}}
+          {{- partial "tweet/gallery"     $props -}}
+          {{- partial "tweet/video"       $props -}}
+        </div>
+      </article>
+    {{ end }}
+
+    {{/* Date, Likes, Link to tweet button */}}
+    {{ if $.showButton }}
+      {{ partial "tweet/buttons" $props }}
+    {{ else }}
+      {{ partial "tweet/meta" $props }}
+    {{ end }}
+  </div>
+</article>

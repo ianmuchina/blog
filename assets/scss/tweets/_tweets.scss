@@ -1,11 +1,13 @@
 @import "variables";
-@import "cards";
-@import "gallery";
-@import "polls";
 @import "quote";
+@import "cards";
+@import "polls";
+@import "spaces";
+@import "gallery";
 
 // Layout (Macro)
 .tweet {
+  position: relative;
   display: grid;
   grid-template-columns: var(--profile-pic-width) auto;
   grid-template-rows: auto auto;
@@ -17,10 +19,34 @@
   max-width: 640px;
   margin: 1rem 0;
 
-  // Reset
   a,
   a:visited {
     color: unset;
+  }
+
+  .text {
+    pointer-events: none;
+    color: var(--tw-text);
+    max-width: 80vw;
+    white-space: pre-wrap;
+    overflow-wrap: break-word;
+
+    a {
+      color: var(--tw-link-text);
+      text-decoration: none;
+    }
+
+    a:hover {
+      text-decoration: underline;
+    }
+
+    a.tw-url {
+      text-decoration: underline;
+    }
+
+    a:visited {
+      color: var(--tw-link-text);
+    }
   }
 
   p {
@@ -28,36 +54,67 @@
   }
 
   // Link Colors
-  .text a,
-  .text a:visited {
-    color: var(--tw-link-text);
-  }
 
   video {
     width: 100%;
     height: auto;
-    // background-color: black;
     max-height: 640px;
     object-fit: contain;
     border-radius: var(--tw-border-radius);
   }
-
 }
 
+.date-compact {
+  color: var(--tw-txt-2);
+}
 
-// Default Layout is focus
+.tweet-buttons-thread {
+  display: flex;
+  justify-content: space-between;
+  max-width: 400px;
+
+  /* stylelint-disable-next-line no-descending-specificity */
+  a {
+    --bg: var(--tw-bg);
+    --color: var(--tw-txt-2);
+
+    color: var(--color) !important;
+    display: flex;
+    text-decoration: none;
+    align-items: center;
+    gap: 2px;
+  }
+
+  svg {
+    color: var(--color);
+    background-color: var(--bg);
+    padding: 8px;
+    border-radius: 100%;
+    width: 18px;
+    height: 18px;
+  }
+}
+
 .profile-pic {
   grid-row: 1/2;
   grid-column: 1/2;
-}
-
-.profile-pic {
   display: flex;
   align-items: center;
   height: max-content;
+  position: relative;
+  z-index: 10;
 
   picture {
     display: contents;
+  }
+
+  img {
+    background-color: var(--tw-bg);
+    width: var(--profile-pic-width);
+    height: var(--profile-pic-width);
+    border-radius: 100%;
+    z-index: 20;
+    outline: solid 8px var(--tw-bg);
   }
 }
 
@@ -77,47 +134,134 @@
     // Position
     grid-column: 1/2;
 
-
     span {
       color: var(--tw-text);
     }
-
   }
 
   .scr-name {
+    color: var(--tw-txt-2);
     display: block;
     grid-column: 1/3;
   }
 
   .checkmark {
-    // padding: 0 4px;
+    display: inline-flex;
+    color: var(--tw-checkmark);
     height: max-content;
+  }
+
+  .checkmark > svg {
+    width: 1.1rem;
+    color: var(--tw-checkmark);
+    height: 1.1rem;
   }
 }
 
-
 .content {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding: 4px 0;
   grid-column: span 2;
+
+  .meta {
+    display: flex;
+    flex-direction: row;
+    align-content: center;
+    font-size: 1rem;
+    gap: 8px;
+    margin-left: -4px;
+
+    /* stylelint-disable-next-line no-descending-specificity */
+    a {
+      margin: 0;
+      padding: 0;
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      text-decoration: none;
+      color: inherit;
+    }
+
+    svg {
+      border-radius: 100%;
+      padding: 4px;
+      width: 18px;
+      height: 18px;
+      color: var(--tw-txt-2);
+    }
+  }
 }
 
-// Hidden by default
-.date-compact {
-  display: none;
+.thread-wrapper {
+  margin: 1rem 0;
+  border: solid 1px var(--tw-border);
+
+  article {
+    margin: 0;
+    border-radius: 0;
+  }
 }
 
 .quoted {
-  margin: unset;
-  // Reduce gap
-  gap: 2px 6px;
-  // Reduce profile pic size
   --profile-pic-width: 1.2rem;
+
+  margin: unset;
+  align-items: start;
+  gap: 2px 6px;
+  padding: 10px;
+
+  .profile-pic {
+    height: 100%;
+  }
+
+  .profile-pic::before {
+    display: none;
+  }
+
+  .profile-pic img {
+    outline: none;
+  }
+
+  .user-info {
+    display: flex;
+    font-size: 1rem;
+    gap: 8px;
+  }
+
+  // Make date visible
+  .date-compact {
+    display: initial;
+  }
+
+  // Reduce font size
+  .text {
+    font-size: 1rem;
+  }
+
+  .content {
+    padding: unset;
+  }
+
+  .checkmark {
+    padding: unset;
+    padding: 0 3px;
+  }
 }
 
-
-
 .thread {
+  outline: unset;
+
   .profile-pic {
-    grid-row: span 2;
+    height: 100%;
+    grid-row: 1/3;
+    display: flex;
+    flex-direction: column;
+
+    picture {
+      display: contents;
+    }
   }
 
   .user-info {
@@ -148,69 +292,8 @@
   text-decoration: underline;
 }
 
-.checkmark {
-  display: inline-flex;
-}
-
-.checkmark>svg {
-  width: 1.1rem;
-  color: var(--tw-checkmark);
-  height: 1.1rem;
-}
-
-
-// content
-.content {
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
-  padding: 4px 0;
-}
-
-.profile-pic img {
-  width: var(--profile-pic-width);
-  height: var(--profile-pic-width);
-}
-
-// Color & font sizes
-.profile-pic img {
-  border-radius: 100%;
-}
-
-.scr-name {
-  color: var(--tw-txt-2);
-}
-
-.date-compact {
-  color: var(--tw-date);
-}
-
-.checkmark {
-  color: var(--tw-checkmark);
-}
-
-.text {
-  color: var(--tw-text);
-  max-width: 80vw;
-  white-space: pre-wrap;
-  overflow-wrap: break-word;
-}
-
 .thread .text {
   font-size: 1rem;
-}
-
-.text a {
-  color: var(--tw-link-text);
-  text-decoration: none;
-}
-
-.text a.tw-url {
-  text-decoration: underline;
-}
-
-.text a:hover {
-  text-decoration: underline;
 }
 
 .text-secondary {
@@ -227,33 +310,6 @@ a.tw-place {
 a.tw-date:hover,
 a.tw-place:hover {
   text-decoration: underline;
-}
-
-.meta {
-  display: flex;
-  flex-direction: row;
-  align-content: center;
-  font-size: 1rem;
-  gap: 8px;
-  margin-left: -4px;
-}
-
-.meta a {
-  margin: 0px;
-  padding: 0px;
-  display: flex;
-  align-items: center;
-  gap: 4px;
-  text-decoration: none;
-  color: inherit;
-}
-
-.meta>a>svg {
-  border-radius: 100%;
-  padding: 4px;
-  width: 24px;
-  width: 24px;
-  color: var(--tw-txt-2);
 }
 
 // Likes
@@ -280,47 +336,53 @@ a.link:hover {
   }
 }
 
-
 .thread .quoted {
   .content {
     grid-column: span 2;
   }
 }
 
-.quoted {
-  padding: 10px;
+.thread .profile-pic::before {
+  background: var(--tw-thread-line);
+  content: "";
+  position: absolute;
+  min-width: 2px;
+  border-radius: 0;
+  left: 50%;
+  right: 50%;
+  z-index: 20;
+  pointer-events: none;
+}
 
-  .profile-pic {
-    height: 100%;
+.thread-wrapper :not(.tweet:last-child).profile-pic::before {
+  top: -16px;
+  bottom: -16px;
+}
+
+.thread-wrapper .tweet:first-child .profile-pic::before {
+  top: 0;
+  bottom: -14px;
+}
+
+.thread-wrapper .tweet:last-child .profile-pic::before {
+  top: -14px;
+  height: 20px;
+}
+
+.focus .date-compact {
+  display: none;
+}
+
+@media (max-width: 480px) {
+  .user-info .name span {
+    flex: 1;
+    max-width: 20ch;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
   }
 
-  .user-info {
-
-    // Put everything on one row
-    display: flex;
-    // Reduce font size
-    font-size: 1rem;
-    gap: 8px;
+  .tweet .date-compact {
+    display: none;
   }
-
-  // Make date visible
-  .date-compact {
-    display: initial;
-  }
-
-  // Reduce font size
-  .text {
-    font-size: 1rem;
-  }
-
-  .content {
-    padding: unset;
-  }
-
-  .checkmark {
-    padding: unset;
-    padding: 0 3px;
-  }
-
-
 }

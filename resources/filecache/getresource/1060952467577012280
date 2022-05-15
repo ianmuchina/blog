@@ -1,0 +1,29 @@
+HTTP/2.0 200 OK
+Cache-Control: no-cache, no-store, must-revalidate, pre-check=0, post-check=0
+Content-Disposition: attachment; filename=json.json
+Content-Type: application/json;charset=utf-8
+Date: Sat, 14 May 2022 18:05:35 GMT
+Expires: Tue, 31 Mar 1981 05:00:00 GMT
+Last-Modified: Sat, 14 May 2022 18:05:35 GMT
+Pragma: no-cache
+Server: tsa_f
+Set-Cookie: guest_id_marketing=v1%3A165255153571661527; Max-Age=63072000; Expires=Mon, 13 May 2024 18:05:35 GMT; Path=/; Domain=.twitter.com; Secure; SameSite=None
+Set-Cookie: guest_id_ads=v1%3A165255153571661527; Max-Age=63072000; Expires=Mon, 13 May 2024 18:05:35 GMT; Path=/; Domain=.twitter.com; Secure; SameSite=None
+Set-Cookie: personalization_id="v1_MUCZQ2F3tEp9n1v9X+TVjg=="; Max-Age=63072000; Expires=Mon, 13 May 2024 18:05:35 GMT; Path=/; Domain=.twitter.com; Secure; SameSite=None
+Set-Cookie: guest_id=v1%3A165255153571661527; Max-Age=63072000; Expires=Mon, 13 May 2024 18:05:35 GMT; Path=/; Domain=.twitter.com; Secure; SameSite=None
+Status: 200 OK
+Strict-Transport-Security: max-age=631138519
+X-Access-Level: read
+X-Client-Event-Enabled: true
+X-Connection-Hash: b21d480e681a040098d7877256b2b66d85eca21ff4abf9a9ae6fc0ec975aa2cd
+X-Content-Type-Options: nosniff
+X-Frame-Options: SAMEORIGIN
+X-Rate-Limit-Limit: 180
+X-Rate-Limit-Remaining: 130
+X-Rate-Limit-Reset: 1652551886
+X-Response-Time: 190
+X-Transaction: 6138d7f04448bbc7
+X-Twitter-Response-Tags: BouncerCompliant
+X-Xss-Protection: 0
+
+[{"created_at":"Fri Apr 29 17:15:44 +0000 2022","id":1520089464487436297,"id_str":"1520089464487436297","text":"Today, we\u2019re deprecating two features of the legacy v1.1 streaming endpoints, which we will retire on Oct 29, 2022:\u2026 https:\/\/t.co\/V6SYdG1ff9","truncated":true,"entities":{"hashtags":[],"symbols":[],"user_mentions":[],"urls":[{"url":"https:\/\/t.co\/V6SYdG1ff9","expanded_url":"https:\/\/twitter.com\/i\/web\/status\/1520089464487436297","display_url":"twitter.com\/i\/web\/status\/1\u2026","indices":[117,140]}]},"source":"\u003ca href=\"https:\/\/mobile.twitter.com\" rel=\"nofollow\"\u003eTwitter Web App\u003c\/a\u003e","in_reply_to_status_id":null,"in_reply_to_status_id_str":null,"in_reply_to_user_id":null,"in_reply_to_user_id_str":null,"in_reply_to_screen_name":null,"user":{"id":6253282,"id_str":"6253282","name":"Twitter API","screen_name":"TwitterAPI","location":"","description":"Tweets about changes and service issues. Follow @TwitterDev\u00a0for more.","url":"https:\/\/t.co\/8IkCzCDr19","entities":{"url":{"urls":[{"url":"https:\/\/t.co\/8IkCzCDr19","expanded_url":"https:\/\/developer.twitter.com","display_url":"developer.twitter.com","indices":[0,23]}]},"description":{"urls":[]}},"protected":false,"followers_count":6046808,"fast_followers_count":0,"normal_followers_count":6046808,"friends_count":37,"listed_count":12310,"created_at":"Wed May 23 06:01:13 +0000 2007","favourites_count":4,"utc_offset":null,"time_zone":null,"geo_enabled":false,"verified":true,"statuses_count":3733,"media_count":10,"lang":null,"contributors_enabled":false,"is_translator":false,"is_translation_enabled":false,"profile_background_color":"C0DEED","profile_background_image_url":"http:\/\/abs.twimg.com\/images\/themes\/theme1\/bg.png","profile_background_image_url_https":"https:\/\/abs.twimg.com\/images\/themes\/theme1\/bg.png","profile_background_tile":true,"profile_image_url":"http:\/\/pbs.twimg.com\/profile_images\/1445765299974795279\/ExVMkDHG_normal.jpg","profile_image_url_https":"https:\/\/pbs.twimg.com\/profile_images\/1445765299974795279\/ExVMkDHG_normal.jpg","profile_banner_url":"https:\/\/pbs.twimg.com\/profile_banners\/6253282\/1633532284","profile_link_color":"0084B4","profile_sidebar_border_color":"C0DEED","profile_sidebar_fill_color":"DDEEF6","profile_text_color":"333333","profile_use_background_image":true,"has_extended_profile":true,"default_profile":false,"default_profile_image":false,"pinned_tweet_ids":[1460324089726320643],"pinned_tweet_ids_str":["1460324089726320643"],"has_custom_timelines":false,"following":null,"follow_request_sent":null,"notifications":null,"advertiser_account_type":"promotable_user","advertiser_account_service_levels":["dso"],"business_profile_state":"none","translator_type":"regular","withheld_in_countries":[],"require_some_consent":false},"geo":null,"coordinates":null,"place":null,"contributors":null,"is_quote_status":false,"retweet_count":28,"favorite_count":56,"favorited":false,"retweeted":false,"possibly_sensitive":false,"possibly_sensitive_editable":true,"lang":"en","supplemental_language":null,"self_thread":{"id":1520089464487436297,"id_str":"1520089464487436297"}}]

@@ -1,38 +1,49 @@
 .card {
   position: relative;
-
   border: solid 1px var(--tw-og-border);
   border-radius: var(--tw-border-radius);
-
   overflow: clip;
 
   img {
     border-radius: unset;
   }
 
-  .card_content {
+  .card-content {
     padding: 1rem;
     font-size: 1rem;
 
-    .vanity_url,
+    a {
+      color: unset;
+    }
+
+    p {
+      margin: unset;
+    }
+
+    .title {
+      color: var(--tw-text);
+    }
+
+    .vanity-url,
     .description {
       color: var(--tw-txt-2);
     }
 
     // Truncate text
-    .vanity_url,
+    .vanity-url,
     .title,
     .description {
+      /* stylelint-disable-next-line value-no-vendor-prefix */
       display: -webkit-box;
       -webkit-box-orient: vertical;
-      word-break: var(--word-break, "none");
+      word-break: none;
       overflow: hidden;
       hyphens: auto;
       text-align: left;
     }
 
     .title,
-    .vanity_url {
+    .vanity-url {
       -webkit-line-clamp: 1;
     }
 
@@ -41,14 +52,11 @@
       -webkit-line-clamp: 2;
     }
 
-    .title>a {
+    .title > a {
       text-decoration: none;
     }
-
   }
-
 }
-
 
 .tweet .overlay {
   position: absolute;
@@ -58,7 +66,7 @@
   right: 0;
 }
 
-.card_large {
+.card-large {
   display: flex;
   flex-direction: column;
 
@@ -72,7 +80,7 @@
   }
 }
 
-.card_small {
+.card-small {
   display: grid;
   grid-template-columns: 130px 1fr;
 
@@ -88,7 +96,7 @@
   }
 }
 
-.card_small .card_content {
+.card-small .card-content {
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -104,7 +112,7 @@
   background-color: var(--tw-og-no-img);
   display: grid;
   place-items: center;
-  border-right: solid 1px var(--tw-border);
+  border-right: solid 1px var(--tw-og-border);
   height: 100%;
 
   svg {
@@ -114,17 +122,12 @@
   }
 }
 
-// Twitter Spaces
 .spaces-card {
   display: flex;
   flex-direction: column;
   padding: 1rem;
   border-radius: 8px;
-
-  background-image:
-    linear-gradient(60deg,
-      hsl(230, 100%, 60%) -15%,
-      hsl(260, 100%, 60%) 100%);
+  background-image: linear-gradient(60deg, #35f -15%, #73f 100%);
   color: white;
 
   .spaces-meta {
@@ -132,7 +135,7 @@
     font-size: 1rem;
   }
 
-  .title {
+  .spaces-title {
     color: white;
     font-weight: 600;
     font-size: 20px;
@@ -159,7 +162,5 @@
 }
 
 .spaces-card.unavailable {
-  background-image: linear-gradient(60deg,
-      hsl(230, 60%, 30%) -15%,
-      hsl(260, 60%, 30%) 100%);
+  background-image: linear-gradient(60deg, #1f2e7a -15%, #3d1f7a 100%);
 }

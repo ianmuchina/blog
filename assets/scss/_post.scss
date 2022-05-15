@@ -10,6 +10,12 @@
   transition: all 0.3s;
 }
 
+// Remove all styling from Links
+a {
+  color: unset;
+  text-decoration: unset;
+}
+
 html {
   transition: var(--transition);
 }
@@ -35,7 +41,7 @@ main {
 header {
   display: grid;
   grid-template-columns: auto auto;
-  margin: 2rem auto 1rem auto;
+  margin: 2rem auto 1rem;
   padding: 0 4px;
   max-width: 40rem;
 }
@@ -43,6 +49,11 @@ header {
 .site-name {
   color: var(--headers);
   font-size: 36px;
+}
+
+.post a {
+  text-decoration: underline;
+  color: var(--accent);
 }
 
 .social {
@@ -60,6 +71,10 @@ header {
   border-bottom: solid 2px var(--accent);
 }
 
+.post a:visited {
+  color: var(--link-visited);
+}
+
 article {
   margin: 1rem 0;
 }
@@ -68,30 +83,15 @@ svg {
   color: var(--headers);
 }
 
-// Remove all styling from Links
-a {
-  color: unset;
-  text-decoration: unset;
-}
-
 p code {
+  font-size: 1rem;
   padding: 4px 8px;
   background-color: var(--code-bg);
   color: var(--headers);
   border-radius: 4px;
-  // outline: solid 1px var(--code-border);
 }
 
-.post a {
-  text-decoration: underline;
-  color: var(--accent);
-}
-
-.post a:visited {
-  color: var(--link-visited);
-}
-
-//Prose
+// Prose
 // Headers
 h1,
 h2,
@@ -105,32 +105,32 @@ h5 {
 }
 
 blockquote {
+  background-color: var(--quote-bg);
+  border-left: var(--accent) 6px solid;
+  border-radius: 4px;
   margin: 1.5rem 0;
+  outline: solid 1px var(--code-border);
   padding: 1rem;
 
-  font-style: italic;
-  background-color: var(--code-bg);
-  border-left: var(--accent) 6px solid;
-  border-radius: 6px;
-
   p {
+    font-style: italic;
     margin: unset;
   }
-}
 
-blockquote p:first-of-type::before {
-  content: open-quote;
-}
+  p:first-of-type::before {
+    content: open-quote;
+  }
 
-blockquote p:last-of-type::after {
-  content: close-quote;
+  p:last-of-type::after {
+    content: close-quote;
+  }
 }
 
 .post :is(h1, h2, h3, h4, h5, h6) {
   margin: 1rem 0;
 }
 
-//Images
+// Images
 img {
   width: 100%;
   height: auto;
@@ -160,7 +160,15 @@ table {
 }
 
 article a h2 {
-  color: var(--headers);
+  font-size: 1.7rem;
+  color: var(--accent);
+  text-decoration: solid underline 2px;
+}
+
+article a:visited h2 {
+  font-size: 1.5rem;
+  color: var(--link-visited);
+  text-decoration: solid underline 2px;
 }
 
 article p {

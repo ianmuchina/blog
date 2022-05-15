@@ -1,6 +1,7 @@
 ---
 title: Why SSH certificates are awesome
-description: How Certificates are used by big tech companies to secure thousands of servers
+description:
+  How Certificates are used by big tech companies to secure thousands of servers
 url: blog/ssh-certificates
 author: Ian Muchina
 image: "https://i.imgur.com/3vXme79.jpg"
@@ -9,19 +10,24 @@ modified: 2020-05-15 10:30:00 +03:00
 comments: true
 ---
 
-Big Tech companies such as Facebook, Google, Netflix, Uber with thousands of users and servers use SSH Certificates to manage access. This post will go over why that's the case
+Big Tech companies such as Facebook, Google, Netflix, Uber with thousands of
+users and servers use SSH Certificates to manage access. This post will go over
+why that's the case
 
 ## What is SSH?
 
-SSH is a protocol used by system administrators and developers to communicate securely with a server. Authentication can be done with SSH keys or passwords.
+SSH is a protocol used by system administrators and developers to communicate
+securely with a server. Authentication can be done with SSH keys or passwords.
 
 ## Passwords and why they’re not recommended
 
-We all know passwords and have used them at some point. Those secret string of characters you have to remember to prove your identity.
+We all know passwords and have used them at some point. Those secret string of
+characters you have to remember to prove your identity.
 
 ![How many times have you forgotten your password?](/img/ssh_certs/2fYbsnl.png.webp)
 
-Passwords are good and better than nothing, but securing a server with just a password is not recommended especially on critical systems.
+Passwords are good and better than nothing, but securing a server with just a
+password is not recommended especially on critical systems.
 
 1. Weak passwords can be brute-forced
 2. Sometimes passwords have to be shared for group accounts.
@@ -29,37 +35,47 @@ Passwords are good and better than nothing, but securing a server with just a pa
 4. Revocation of compromised user passwords is not easy or convenient
 5. Without a second factor, they are a single point of failure
 
-You can improve the security by using tools like fail2ban to block IP addresses that have multiple failed login attempts.
+You can improve the security by using tools like fail2ban to block IP addresses
+that have multiple failed login attempts.
 
 ## Why use keys?
 
-Keys are the default authentication method on most cloud providers eg: Digital Ocean. There is a good reason for this. Keys are more secure than passwords
+Keys are the default authentication method on most cloud providers eg: Digital
+Ocean. There is a good reason for this. Keys are more secure than passwords
 
-> SSH keys are a matching set of cryptographic keys which can be used for authentication.
+> SSH keys are a matching set of cryptographic keys which can be used for
+> authentication.
 
 ![Keys are awesome](/img/ssh_certs/jC5HqKn.png.webp)
 
-> Each set contains a public and a private key. The public key can be shared freely without concern, while the private key must be vigilantly guarded and never exposed to anyone. source
+> Each set contains a public and a private key. The public key can be shared
+> freely without concern, while the private key must be vigilantly guarded and
+> never exposed to anyone. source
 
 ## Why SSH Keys are more secure
 
 - One user account can have multiple keys. This makes auditing easier
-- Keys can be password protected. Note the password is just for unlocking the key and never sent to the server
+- Keys can be password protected. Note the password is just for unlocking the
+  key and never sent to the server
 - Keys can be combined with passwords
 - Keys can be revoked
 
 Keys are created with the `ssh-keygen` command.
 
-When creating keys, it is a good idea to encrypt them with a password. So that even if the key is leaked, the password will add another layer of security.
+When creating keys, it is a good idea to encrypt them with a password. So that
+even if the key is leaked, the password will add another layer of security.
 
 ## Managing SSH keys
 
-To connect to a server using keys, a user’s public key has to be in the authorized_keys file on every server they want to connect to.
+To connect to a server using keys, a user’s public key has to be in the
+authorized_keys file on every server they want to connect to.
 
-This method of managing keys is the most common and works okay for small teams but it can be a burden for large organizations with many users.
+This method of managing keys is the most common and works okay for small teams
+but it can be a burden for large organizations with many users.
 ![Managing keys is a pain](/img/ssh_certs/RHoK5W9.png.webp)
 
-> But growth creeps upon you, and before you know it you are securing significant assets with sub-standard methods
+> But growth creeps upon you, and before you know it you are securing
+> significant assets with sub-standard methods
 
 Key management issues
 
@@ -67,16 +83,20 @@ Key management issues
 - Issuing a new key is a long process
 - Losing a key locks you out
 
-The task of updating the `authorized_keys` file can and should be automated for large companies. This method "works" but there is a much better alternative
+The task of updating the `authorized_keys` file can and should be automated for
+large companies. This method "works" but there is a much better alternative
 
 ## SSH Certificates
 
-This is where public keys are signed by a Certificate Authority(CA). This method scales very well across thousands of machines. It can be used for both user and host verification. This method eliminates the Trust on first use requirement.
+This is where public keys are signed by a Certificate Authority(CA). This method
+scales very well across thousands of machines. It can be used for both user and
+host verification. This method eliminates the Trust on first use requirement.
 ![Certificates are never talked about that much](/img/ssh_certs/KnaoAHm.png.webp)
 
 ### Advantages of certificates
 
-SSH certificates are underrated and awesome in my opinion. They have some good features:
+SSH certificates are underrated and awesome in my opinion. They have some good
+features:
 
 - Server configuration is done only once
 - Updating the `authorized_keys` file on every server is not needed.
@@ -91,25 +111,31 @@ The signed key can contain the following useful information
 ### 1. Key Expiry date & time
 
 This is how long a key is valid. The value can range from minutes to years.
-Netflix set their certificates to expire after two minutes. That's enough time for a developer to login into a server and start an ssh session. Note that the session does not terminate when a certificate expires, only when a user logs out
+Netflix set their certificates to expire after two minutes. That's enough time
+for a developer to login into a server and start an ssh session. Note that the
+session does not terminate when a certificate expires, only when a user logs out
 
 #### 2. Principals
 
-Principals control which user accounts and hosts a user has access to.
-For example, there can be a `root_staging` principal which allows users to login as root on a staging server
+Principals control which user accounts and hosts a user has access to. For
+example, there can be a `root_staging` principal which allows users to login as
+root on a staging server
 
 You can Parse this data offline with `ssh-keygen -Lf /Path/To/Signed_Cert`
 
-You can also use [this site](https://gravitational.com/resources/ssh-certificate-parser/)
+You can also use
+[this site](https://gravitational.com/resources/ssh-certificate-parser/)
 
 ## Open Source Implementations
 
-There are many solutions to giving users SSH access. All these are available on GitHub. Note that documentation is not that good for some tools though
+There are many solutions to giving users SSH access. All these are available on
+GitHub. Note that documentation is not that good for some tools though
 ![](/img/ssh_certs/uphOO5p.png.webp)
 
 ### 1. [Keybase Certificate Authority bot](https://keybase.io/blog/keybase-ssh-ca)
 
-This is a keybase chatbot that signs public keys. it is cli based. The bot doesn't need any ports open.
+This is a keybase chatbot that signs public keys. it is cli based. The bot
+doesn't need any ports open.
 
 - Used internaly @ Keybase
 - Only supports keybase Authentication
@@ -160,7 +186,8 @@ For those that prefer videos to blog posts
 
 ## Further Reading
 
-I'm not the first one to write about this topic, so here's related content covering it
+I'm not the first one to write about this topic, so here's related content
+covering it
 
 ### Blog Posts
 

@@ -1,3 +1,4 @@
+/* stylelint-disable no-descending-specificity */
 .gallery {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -23,6 +24,7 @@
   display: block;
 
   img {
+    border-radius: var(--tw-border-radius);
     width: 100%;
     height: auto;
     max-height: 640px;
@@ -44,9 +46,7 @@
   }
 }
 
-
 .gallery-3 {
-
   img {
     grid-row: span 1;
     aspect-ratio: 16/9;
@@ -75,11 +75,6 @@
       aspect-ratio: 16 / 9;
     }
   }
-}
-
-// Border Radius
-.gallery-1 img {
-  border-radius: var(--tw-border-radius);
 }
 
 .gallery-3 picture:first-child img,

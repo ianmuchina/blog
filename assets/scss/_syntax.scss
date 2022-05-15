@@ -1,3 +1,7 @@
+p code {
+  border: solid 1px var(--code-border);
+}
+
 pre code {
   display: block;
   z-index: 1;
@@ -12,29 +16,22 @@ pre {
   max-width: 100%;
   border-radius: 8px;
   border: solid 1px var(--code-border);
+  overflow-x: auto;
   background: var(--code-bg);
-  white-space: pre-wrap;
 }
 
 .dark .chroma {
-
   // Background
   .bg {
     color: #f8f8f2;
     background-color: var(--code-bg);
   }
 
-  // Other
-  .x {}
-
   // Error
   .err {
     color: #960050;
     background-color: #1e0010;
   }
-
-  // CodeLine
-  .cl {}
 
   // LineTableTD
   .lntd {
@@ -54,7 +51,7 @@ pre {
 
   // LineHighlight
   .hl {
-    background-color: #ffffcc;
+    background-color: #ffc;
   }
 
   // LineNumbersTable
@@ -62,7 +59,7 @@ pre {
     white-space: pre;
     user-select: none;
     margin-right: 0.4em;
-    padding: 0 0.4em 0 0.4em;
+    padding: 0 0.4em;
     color: #7f7f7f;
   }
 
@@ -71,7 +68,7 @@ pre {
     white-space: pre;
     user-select: none;
     margin-right: 0.4em;
-    padding: 0 0.4em 0 0.4em;
+    padding: 0 0.4em;
     color: #7f7f7f;
   }
 
@@ -115,19 +112,10 @@ pre {
     color: #9cd1bb;
   }
 
-  // Name
-  .n {}
-
   // NameAttribute
   .na {
     color: #bad761;
   }
-
-  // NameBuiltin
-  .nb {}
-
-  // NameBuiltinPseudo
-  .bp {}
 
   // NameClass
   .nc {
@@ -144,9 +132,6 @@ pre {
     color: #bad761;
   }
 
-  // NameEntity
-  .ni {}
-
   // NameException
   .ne {
     color: #bad761;
@@ -157,42 +142,15 @@ pre {
     color: #bad761;
   }
 
-  // NameFunctionMagic
-  .fm {}
-
-  // NameLabel
-  .nl {}
-
-  // NameNamespace
-  .nn {}
-
   // NameOther
   .nx {
     color: #bad761;
   }
 
-  // NameProperty
-  .py {}
-
   // NameTag
   .nt {
     color: #ff657a;
   }
-
-  // NameVariable
-  .nv {}
-
-  // NameVariableClass
-  .vc {}
-
-  // NameVariableGlobal
-  .vg {}
-
-  // NameVariableInstance
-  .vi {}
-
-  // NameVariableMagic
-  .vm {}
 
   // Literal
   .l {
@@ -319,9 +277,6 @@ pre {
     color: #ff657a;
   }
 
-  // Punctuation
-  .p {}
-
   // Comment
   .c {
     color: #aaa;
@@ -357,9 +312,6 @@ pre {
     color: #aaa;
   }
 
-  // Generic
-  .g {}
-
   // GenericDeleted
   .gd {
     color: #ff657a;
@@ -370,22 +322,10 @@ pre {
     font-style: italic;
   }
 
-  // GenericError
-  .gr {}
-
-  // GenericHeading
-  .gh {}
-
   // GenericInserted
   .gi {
     color: #bad761;
   }
-
-  // GenericOutput
-  .go {}
-
-  // GenericPrompt
-  .gp {}
 
   // GenericStrong
   .gs {
@@ -396,36 +336,20 @@ pre {
   .gu {
     color: #aaa;
   }
-
-  // GenericTraceback
-  .gt {}
-
-  // GenericUnderline
-  .gl {}
-
-  // TextWhitespace
-  .w {}
 }
 
 .light .chroma {
-
   // Background
   .bg {
     color: #f8f8f2;
     background-color: #272822;
   }
 
-  // Other
-  .x {}
-
   // Error
   .err {
     color: #960050;
     background-color: #1e0010;
   }
-
-  // CodeLine
-  .cl {}
 
   // LineTableTD
   .lntd {
@@ -453,7 +377,7 @@ pre {
     white-space: pre;
     user-select: none;
     margin-right: 0.4em;
-    padding: 0 0.4em 0 0.4em;
+    padding: 0 0.4em;
     color: #7f7f7f;
   }
 
@@ -462,7 +386,7 @@ pre {
     white-space: pre;
     user-select: none;
     margin-right: 0.4em;
-    padding: 0 0.4em 0 0.4em;
+    padding: 0 0.4em;
     color: #7f7f7f;
   }
 
@@ -506,19 +430,10 @@ pre {
     color: #4b69c6;
   }
 
-  // Name
-  .n {}
-
   // NameAttribute
   .na {
     color: #448c27;
   }
-
-  // NameBuiltin
-  .nb {}
-
-  // NameBuiltinPseudo
-  .bp {}
 
   // NameClass
   .nc {
@@ -535,9 +450,6 @@ pre {
     color: #448c27;
   }
 
-  // NameEntity
-  .ni {}
-
   // NameException
   .ne {
     color: #448c27;
@@ -548,42 +460,15 @@ pre {
     color: #448c27;
   }
 
-  // NameFunctionMagic
-  .fm {}
-
-  // NameLabel
-  .nl {}
-
-  // NameNamespace
-  .nn {}
-
   // NameOther
   .nx {
     color: #448c27;
   }
 
-  // NameProperty
-  .py {}
-
   // NameTag
   .nt {
     color: #aa3731;
   }
-
-  // NameVariable
-  .nv {}
-
-  // NameVariableClass
-  .vc {}
-
-  // NameVariableGlobal
-  .vg {}
-
-  // NameVariableInstance
-  .vi {}
-
-  // NameVariableMagic
-  .vm {}
 
   // Literal
   .l {
@@ -710,9 +595,6 @@ pre {
     color: #aa3731;
   }
 
-  // Punctuation
-  .p {}
-
   // Comment
   .c {
     color: #6d6d6d;
@@ -748,9 +630,6 @@ pre {
     color: #6d6d6d;
   }
 
-  // Generic
-  .g {}
-
   // GenericDeleted
   .gd {
     color: #aa3731;
@@ -761,22 +640,10 @@ pre {
     font-style: italic;
   }
 
-  // GenericError
-  .gr {}
-
-  // GenericHeading
-  .gh {}
-
   // GenericInserted
   .gi {
     color: #448c27;
   }
-
-  // GenericOutput
-  .go {}
-
-  // GenericPrompt
-  .gp {}
 
   // GenericStrong
   .gs {
@@ -787,13 +654,4 @@ pre {
   .gu {
     color: #6d6d6d;
   }
-
-  // GenericTraceback
-  .gt {}
-
-  // GenericUnderline
-  .gl {}
-
-  // TextWhitespace
-  .w {}
 }

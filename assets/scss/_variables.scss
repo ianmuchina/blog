@@ -1,6 +1,4 @@
-@import "colors/tailwind";
-
-// Global Variables
+@import "colors";
 
 :root {
   font-size: 15px;
@@ -8,21 +6,21 @@
 
 .dark,
 :root {
-  --bg: #{$zinc-900};
+  --bg: #000;
   --text: #{$zinc-300};
   --headers: white;
-
-  --code-bg: #{$zinc-800};
-  --code-border: #{$zinc-700};
+  --code-bg: #000;
+  --quote-bg: #080808;
+  --code-border: #{$zinc-800};
   --code-text: white;
   --accent: #{$blue-400};
-  --link-visited: #{$purple-400};
+  --link-visited: #{$violet-400};
   --kb: #{$green-300};
 }
 
 .light {
   --bg: #{$slate-100};
-  --code-bg: #{$slate-050};
+  --code-bg: white;
   --code-border: #{$slate-200};
   --text: #{$slate-700};
   --headers: #{$slate-800};

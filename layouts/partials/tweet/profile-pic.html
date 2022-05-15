@@ -1,32 +1,31 @@
 {{/* Display profile picture */}}
 {{ with .ctx }}
-    {{/*  Generate Props  */}}
-    {{/*  Use 400x400 Image Source */}}
-    {{ $url := replace .user.profile_image_url_https "_normal" "" }}
-    {{/*  Filename */}}
-    {{ $filename := replace $url "https://pbs.twimg.com/profile_images/" "" }}
-    {{ $filename := replace $filename "/" "_" }}
-    {{ $filename := index (split $filename ".") 0  }}
-    {{ $filename := print "/twitter/media/profile-photos/" $filename }}
+  {{/* Generate Props */}}
+  {{/* Use 400x400 Image Source */}}
+  {{ $url := replace .user.profile_image_url_https "_normal" "" }}
+  {{/* Filename */}}
+  {{ $filename := replace $url "https://pbs.twimg.com/profile_images/" "" }}
+  {{ $filename := replace $filename "/" "_" }}
+  {{ $filename := index (split $filename ".") 0 }}
+  {{ $filename := print "/twitter/media/profile-photos/" $filename }}
 
-    {{/*  Sizes To resize to */}}
-    {{ $formats := slice  "100x webp q75" "100x" }}
-    {{/*  Use smaller size on quote tweets */}}
-    {{ if $.quoted }}
-        {{ $formats = slice "50x webp q75" "50x" }}
-    {{ end }}
+  {{/* Sizes To resize to */}}
+  {{ $formats := slice  "100x webp q75" "100x" }}
+  {{/* Use smaller size on quote tweets */}}
+  {{ if $.quoted }}
+    {{ $formats = slice "50x webp q75" "50x" }}
+  {{ end }}
 
-    {{/*  Display with Image Component */}}
-    {{- partial 
-        "image" (dict
-            "formats"  $formats
-            "url"      $url
-            "filename" $filename
-            "loading"  "lazy"
-            "width"    45
-            "height"   45
-            "class"    ""
-            "alt"      ""
-    ) -}}
-
+  {{/* prettier-ignore */}}
+  {{- partial "image"
+    (dict
+    "formats"  $formats
+    "url"      $url
+    "filename" $filename
+    "loading"  "lazy"
+    "width"    45
+    "height"   45
+    "class"    ""
+    "alt"      "" )
+  -}}
 {{ end }}

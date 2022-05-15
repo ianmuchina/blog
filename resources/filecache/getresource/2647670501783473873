@@ -1,0 +1,29 @@
+HTTP/2.0 200 OK
+Cache-Control: no-cache, no-store, must-revalidate, pre-check=0, post-check=0
+Content-Disposition: attachment; filename=json.json
+Content-Type: application/json;charset=utf-8
+Date: Sat, 14 May 2022 18:05:42 GMT
+Expires: Tue, 31 Mar 1981 05:00:00 GMT
+Last-Modified: Sat, 14 May 2022 18:05:42 GMT
+Pragma: no-cache
+Server: tsa_f
+Set-Cookie: guest_id_marketing=v1%3A165255154288488804; Max-Age=63072000; Expires=Mon, 13 May 2024 18:05:42 GMT; Path=/; Domain=.twitter.com; Secure; SameSite=None
+Set-Cookie: guest_id_ads=v1%3A165255154288488804; Max-Age=63072000; Expires=Mon, 13 May 2024 18:05:42 GMT; Path=/; Domain=.twitter.com; Secure; SameSite=None
+Set-Cookie: personalization_id="v1_uN3XS6en83nlQMeAFHgM2g=="; Max-Age=63072000; Expires=Mon, 13 May 2024 18:05:42 GMT; Path=/; Domain=.twitter.com; Secure; SameSite=None
+Set-Cookie: guest_id=v1%3A165255154288488804; Max-Age=63072000; Expires=Mon, 13 May 2024 18:05:42 GMT; Path=/; Domain=.twitter.com; Secure; SameSite=None
+Status: 200 OK
+Strict-Transport-Security: max-age=631138519
+X-Access-Level: read
+X-Client-Event-Enabled: true
+X-Connection-Hash: b21d480e681a040098d7877256b2b66d85eca21ff4abf9a9ae6fc0ec975aa2cd
+X-Content-Type-Options: nosniff
+X-Frame-Options: SAMEORIGIN
+X-Rate-Limit-Limit: 180
+X-Rate-Limit-Remaining: 123
+X-Rate-Limit-Reset: 1652551886
+X-Response-Time: 123
+X-Transaction: b51e926850e7bc2b
+X-Twitter-Response-Tags: BouncerCompliant
+X-Xss-Protection: 0
+
+[{"created_at":"Wed May 05 23:22:16 +0000 2021","id":1390084461799170050,"id_str":"1390084461799170050","text":"It\u2019s based on esbuild\u2019s source, but written in Zig. Zig is an LLVM frontend (like Rust) with manual memory manageme\u2026 https:\/\/t.co\/09zmaHsGzi","truncated":true,"entities":{"hashtags":[],"symbols":[],"user_mentions":[],"urls":[{"url":"https:\/\/t.co\/09zmaHsGzi","expanded_url":"https:\/\/twitter.com\/i\/web\/status\/1390084461799170050","display_url":"twitter.com\/i\/web\/status\/1\u2026","indices":[117,140]}]},"source":"\u003ca href=\"http:\/\/twitter.com\/download\/iphone\" rel=\"nofollow\"\u003eTwitter for iPhone\u003c\/a\u003e","in_reply_to_status_id":1390084458724741121,"in_reply_to_status_id_str":"1390084458724741121","in_reply_to_user_id":2489440172,"in_reply_to_user_id_str":"2489440172","in_reply_to_screen_name":"jarredsumner","user":{"id":2489440172,"id_str":"2489440172","name":"Jarred Sumner","screen_name":"jarredsumner","location":"Oakland, CA","description":"building bun \ud83d\udc30. formerly: @stripe (twice) @thielfellowship. high school dropout \ud83c\udf08","url":"https:\/\/t.co\/XraXMxps3h","entities":{"url":{"urls":[{"url":"https:\/\/t.co\/XraXMxps3h","expanded_url":"https:\/\/bun.sh","display_url":"bun.sh","indices":[0,23]}]},"description":{"urls":[]}},"protected":false,"followers_count":11850,"fast_followers_count":0,"normal_followers_count":11850,"friends_count":780,"listed_count":136,"created_at":"Sun May 11 07:12:54 +0000 2014","favourites_count":8663,"utc_offset":null,"time_zone":null,"geo_enabled":true,"verified":false,"statuses_count":6348,"media_count":1196,"lang":null,"contributors_enabled":false,"is_translator":false,"is_translation_enabled":false,"profile_background_color":"C0DEED","profile_background_image_url":"http:\/\/abs.twimg.com\/images\/themes\/theme1\/bg.png","profile_background_image_url_https":"https:\/\/abs.twimg.com\/images\/themes\/theme1\/bg.png","profile_background_tile":false,"profile_image_url":"http:\/\/pbs.twimg.com\/profile_images\/1342417825483300864\/Vz4ChOFG_normal.jpg","profile_image_url_https":"https:\/\/pbs.twimg.com\/profile_images\/1342417825483300864\/Vz4ChOFG_normal.jpg","profile_link_color":"1DA1F2","profile_sidebar_border_color":"C0DEED","profile_sidebar_fill_color":"DDEEF6","profile_text_color":"333333","profile_use_background_image":true,"has_extended_profile":false,"default_profile":true,"default_profile_image":false,"pinned_tweet_ids":[1390084458724741121],"pinned_tweet_ids_str":["1390084458724741121"],"has_custom_timelines":true,"following":null,"follow_request_sent":null,"notifications":null,"advertiser_account_type":"promotable_user","advertiser_account_service_levels":[],"business_profile_state":"none","translator_type":"none","withheld_in_countries":[],"require_some_consent":false},"geo":null,"coordinates":null,"place":null,"contributors":null,"is_quote_status":false,"retweet_count":5,"favorite_count":172,"favorited":false,"retweeted":false,"lang":"en","supplemental_language":null,"self_thread":{"id":1390084458724741121,"id_str":"1390084458724741121"}}]

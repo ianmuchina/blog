@@ -7,8 +7,7 @@ date: 2021-03-26 08:00:00 +03:00
 comments: true
 ---
 
-
-Setup some variables 
+Setup some variables
 
 ```bash
 # Default Command
@@ -27,6 +26,7 @@ Q_DEFAULT="$Q_HD"
 ### Default command
 
 Saves video to `~/Videos/Channel/video.mp4` without video Id.
+
 ```sh
 # Video
 ydl() {
@@ -39,6 +39,7 @@ ydl() {
 ```
 
 ## 720p Video
+
 - Single video
 - No playlist
 - Saves to `~/Videos/Uploader/Title.mp4`
@@ -106,4 +107,3 @@ ypl3() {
 }
 
 ```
-

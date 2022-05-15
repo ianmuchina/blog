@@ -1,0 +1,24 @@
+{{ $props := (dict "ctx" .ctx "data" .data) }}
+
+
+<article lang="{{ .ctx.lang }}">
+  <div>
+    {{/* Tweet urls */}}
+    {{- partial "tweet/text"     $props -}}
+    {{- partial "tweet/cards"    $props -}}
+    {{- partial "tweet/gallery"  $props -}}
+    {{- partial "tweet/video"    $props -}}
+    {{- partial "tweet/poll"     $props -}}
+
+    {{ with .ctx.quoted_tweet }}
+      {{ $props := (dict "ctx" . "quoted" true "data" .data) }}
+      <blockquote lang="{{ .lang }}">
+        <div>
+          {{- partial "tweet/text"        $props -}}
+          {{- partial "tweet/gallery"     $props -}}
+          {{- partial "tweet/video"       $props -}}
+        </div>
+      </blockquote>
+    {{ end }}
+  </div>
+</article>

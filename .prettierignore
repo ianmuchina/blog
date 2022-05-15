@@ -1,0 +1,8 @@
+_vendor/
+.hugo_build.lock
+.vercel/
+components/
+node_modules
+public/
+resources/
+pnpm-lock.yaml

@@ -1,0 +1,3 @@
+<div class="thread-wrapper">
+  {{ partial "tweet/thread" (dict "id" (.Get "end") "start" (.Get "start") "data" .Site.Data) }}
+</div>

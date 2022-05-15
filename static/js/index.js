@@ -38,12 +38,9 @@ function toggleTheme() {
   applyTheme();
 }
 
-
 function compact(n) {
   return n.toLocaleString("en", {
     notation: "compact",
     compactDisplay: "short",
   });
 }
-
-

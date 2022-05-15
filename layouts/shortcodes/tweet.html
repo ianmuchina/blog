@@ -1,52 +1,11 @@
-{{ $id := (.Get "id")}}
-{{/*  Get Data from API  */}}
-{{ $d := getJSON "https://cdn.syndication.twimg.com/tweet?id=" $id }}
-
-{{ $props := (dict "ctx" $d "data" .Site.Data)}}
+{{ $id := (.Get "id") }}
 
 {{ $mode := "focus" }}
-{{ if ne (.Get "mode") ""  }}
+
+{{ if ne (.Get "mode") "" }}
   {{ $mode = (.Get "mode") }}
 {{ end }}
 
-<article class="tweet {{ $mode }}" lang="{{$d.lang}}">
-  <div class="profile-pic">
-  {{ partial "tweet/profile-pic" $props }}
-  </div>
-
-  <div class="user-info">
-    {{ partial "tweet/user-info" $props }}
-  </div>
-
-  <div class="content">
-    {{- partial "tweet/text"     $props -}}
-    {{- partial "tweet/cards"    $props -}}
-    {{- partial "tweet/gallery"  $props -}}
-    {{- partial "tweet/video"    $props -}}
-    {{- partial "tweet/poll"     $props -}}
-
-    {{ with $d.quoted_tweet }}
-      {{/*  Update Props */}}
-      {{ $props := (dict "ctx" . "quoted" true "data" $.Site.Data) }}
-
-      <article lang="{{.lang}}" class="tweet quoted" >
-        <div class="profile-pic">
-          {{ partial "tweet/profile-pic"  $props }}
-        </div>
-
-        <div class="user-info">
-          {{ partial "tweet/user-info"    $props }}
-        </div>
-
-        <div class="content">
-          {{- partial "tweet/text"        $props -}}
-          {{- partial "tweet/gallery"     $props -}}
-          {{- partial "tweet/video"       $props -}}
-        </div>
-      </article>
-    {{ end }}
-
-    {{/*  Date, Likes, Link to tweet button */}}
-    {{ partial "tweet/meta" $props }}
-  </div>
-</article>
+{{ with getJSON "https://cdn.syndication.twimg.com/tweet?id=" $id }}
+  {{ partial "tweet/tweet" (dict "ctx" . "data" $.Site.Data "mode" $mode) }}
+{{ end }}

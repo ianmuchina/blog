@@ -1,8 +1,10 @@
 ## Macro Layouts
+
 - Timeline/thread
 - Focus
 
 ## Components
+
 - 1 Image
 - 2 Images
 - 3 Images
@@ -11,6 +13,7 @@
 - video
 
 ## Other
+
 - geo tags
 - mention tags
 - in-reply-to
@@ -22,7 +25,7 @@
 - x-affiliated site
 - restricted reply to x
 - tweet is deleted
-- user is   suspended
+- user is suspended
 - tweet has sensitive media
 - user info on hover
 - private account

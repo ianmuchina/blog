@@ -13,7 +13,8 @@ comments: true
 
 ![Docker Logo](/img/docker-lab/docker.svg)
 
-Docker is a container platform that is similar to a Hypervisor like Virtualbox. Containers use less storage and RAM and are portable.
+Docker is a container platform that is similar to a Hypervisor like Virtualbox.
+Containers use less storage and RAM and are portable.
 
 Docker can run on:
 
@@ -21,7 +22,8 @@ Docker can run on:
 - Windows
 - Mac OS
 
-In this article I will go over how to set up a penetration testing lab entirely in docker
+In this article I will go over how to set up a penetration testing lab entirely
+in docker
 
 It will consist of two types of containers.
 
@@ -114,7 +116,8 @@ For this, I will use Parrot OS. It's docker images are better Kali Linux Images.
 
 ![](/img/docker-lab/cyberr.svg)
 
-First download the Parrot OS Docker image. This command will take a while depending on your internet connection.
+First download the Parrot OS Docker image. This command will take a while
+depending on your internet connection.
 
 ```console
 $ docker pull parrotsec/security:latest
@@ -150,9 +153,11 @@ $ sudo docker start -a parrot
 
 ![](/img/docker-lab/Target-pana.svg)
 
-This is a very vulnerable test machine. It is what I recommend for anyone starting out.
+This is a very vulnerable test machine. It is what I recommend for anyone
+starting out.
 
-Open another terminal and pull the metasploitable image. The image is around 500MB.
+Open another terminal and pull the metasploitable image. The image is around
+500MB.
 
 ```console
 $ docker pull tleemcjr/metasploitable2
@@ -210,13 +215,15 @@ There are tons of free guides out there on metasploitable.
 3. [Metasploitable 2 Exploitability Guide](https://metasploit.help.rapid7.com/docs/metasploitable-2-exploitability-guide)
 4. [Youtube Tutorials](https://www.youtube.com/results?search_query=metasploitable)
 
-If you don't know what guide to use, I recommend [this one](https://metasploit.help.rapid7.com/docs/metasploitable-2-exploitability-guide).
+If you don't know what guide to use, I recommend
+[this one](https://metasploit.help.rapid7.com/docs/metasploitable-2-exploitability-guide).
 
 ## More vulnerable containers 🧑‍💻
 
 ![](/img/docker-lab/hacker.svg)
 
-You can extend the lab with any of these containers depending on your learning goal.
+You can extend the lab with any of these containers depending on your learning
+goal.
 
 ### OWASP Juiceshop
 
@@ -263,7 +270,8 @@ docker start juiceshop
 
 ## OWASP Webgoat 🐐
 
-[Webgoat](<(https://owasp.org/www-project-webgoat/)>) is a ctf-style vulnerable container focused on web application security.
+[Webgoat](<(https://owasp.org/www-project-webgoat/)>) is a ctf-style vulnerable
+container focused on web application security.
 
 ![](/img/docker-lab/goat.svg)
 
@@ -304,7 +312,8 @@ $ docker ps -a
 
 ## Why I use docker for a pentest lab
 
-Two Operating systems make my computer painfully slow. Containers aren't resource-intensive and perform well. This fits my use case.
+Two Operating systems make my computer painfully slow. Containers aren't
+resource-intensive and perform well. This fits my use case.
 
 ![](/img/docker-lab/lab.svg)
 
@@ -312,7 +321,8 @@ If you have RAM to spare then it's really not that much of a difference.
 
 ## When not to use Docker
 
-If you want to run Windows containers on a Linux host. You can run linux containers on WIndows though
+If you want to run Windows containers on a Linux host. You can run linux
+containers on WIndows though
 
 ## Common Docker Commands
 
@@ -346,7 +356,8 @@ Docker has tab completion for each of these commands.
 
 Sometimes you may want to run a GUI tool like firefox or burpsuite.
 
-The Parrot OS commands above are already set for running graphical apps. You only need to install these packages
+The Parrot OS commands above are already set for running graphical apps. You
+only need to install these packages
 
 ```console
 $ apt install hicolor-icon-theme \
@@ -355,11 +366,13 @@ $ apt install hicolor-icon-theme \
     libpulse0 libv4l-0 fonts-symbola \
 ```
 
-You can run a few commands to avoid some errors encountered when running GUI apps
+You can run a few commands to avoid some errors encountered when running GUI
+apps
 
 ### Burpsuite
 
-Burp Suite is a web app pentesting tool for monitoring http requests and responses.
+Burp Suite is a web app pentesting tool for monitoring http requests and
+responses.
 
 ![](/img/docker-lab/burp.svg)
 
@@ -371,7 +384,8 @@ To install and run burpsuite inside the parrot os container.
 # java -jar -Xmx2G /usr/bin/burpsuite
 ```
 
-You can then point your browser to use `10.0.0.2:8080` as the proxy and burp will intercept everything
+You can then point your browser to use `10.0.0.2:8080` as the proxy and burp
+will intercept everything
 
 ### Firefox
 
@@ -391,4 +405,8 @@ Illustrations from [Freepik](https://stories.freepik.com/)
 
 ## Further reading/research
 
-Jess Frazelle has written an awesome [blog post](https://blog.jessfraz.com/post/docker-containers-on-the-desktop/) with details on running graphical apps inside Docker containers. She's also given this awesome [Talk/Demo](https://youtu.be/cYsVvV1aVss) on running various applications and retro games inside docker containers.
+Jess Frazelle has written an awesome
+[blog post](https://blog.jessfraz.com/post/docker-containers-on-the-desktop/)
+with details on running graphical apps inside Docker containers. She's also
+given this awesome [Talk/Demo](https://youtu.be/cYsVvV1aVss) on running various
+applications and retro games inside docker containers.
