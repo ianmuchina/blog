@@ -1,4 +1,3 @@
-/* stylelint-disable selector-class-pattern */
 .card {
   position: relative;
   border: solid 1px var(--tw-og-border);
@@ -16,6 +15,7 @@
     a {
       color: unset;
     }
+
     p {
       margin: unset;
     }
