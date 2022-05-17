@@ -54,7 +54,7 @@ the official embed.
 {{<tweet id="1513827666406744064">}}
 
 ### Threads
-  
+
 {{<tw-thread end="1520089470791557121">}}
 
 ### OpenGraph Previews

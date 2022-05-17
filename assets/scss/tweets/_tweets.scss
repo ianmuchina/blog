@@ -5,6 +5,11 @@
 @import "spaces";
 @import "gallery";
 
+img {
+  width: 100%;
+  height: auto;
+}
+
 // Layout (Macro)
 .tweet {
   position: relative;
@@ -195,10 +200,11 @@
 }
 
 .thread-wrapper {
+  max-width: 640px;
   margin: 1rem 0;
   border: solid 1px var(--tw-border);
 
-  article {
+  .tweet {
     margin: 0;
     border-radius: 0;
   }
