@@ -8,6 +8,7 @@
 :root {
   --bg: #000;
   --text: #{$zinc-300};
+  --text-secondary: #{$zinc-400};
   --headers: white;
   --code-bg: #000;
   --quote-bg: #080808;
@@ -21,6 +22,7 @@
 .light {
   --bg: #{$slate-100};
   --code-bg: white;
+  --quote-bg: #{$slate-200};
   --code-border: #{$slate-200};
   --text: #{$slate-700};
   --headers: #{$slate-800};

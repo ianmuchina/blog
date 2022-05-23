@@ -28,13 +28,14 @@
   {{- end -}}
   {{/* Fallback to Remote  Image + sizes */}}
   <img
-    class="{{ .class }}"
+    class="pic {{ .class }}"
     src="{{ .url }}"
     loading="{{ .loading }}"
     alt="{{ .alt }}"
     width="{{ .width }}"
     height="{{ .height }}"
     data-source_url="{{ .url }}"
+    data-zoom-src="{{ $original }}"
     data-full_size="{{ $original }}"
     style="aspect-ratio: {{ .width }}/{{ .height }}"
   />

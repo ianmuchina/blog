@@ -1,3 +1,5 @@
+@import "colors";
+
 p code {
   border: solid 1px var(--code-border);
 }
@@ -10,9 +12,14 @@ pre code {
   color: var(--headers);
 }
 
+.hl {
+  margin: 0 -18px;
+  padding: 0 18px;
+}
+
 .highlight .chroma,
 pre {
-  padding: 0.625rem 1.4rem;
+  padding: 8px 1rem;
   max-width: 100%;
   border-radius: 8px;
   border: solid 1px var(--code-border);
@@ -51,20 +58,11 @@ pre {
 
   // LineHighlight
   .hl {
-    background-color: #ffc;
+    background-color: #{$blue-900}30;
   }
 
   // LineNumbersTable
   .lnt {
-    white-space: pre;
-    user-select: none;
-    margin-right: 0.4em;
-    padding: 0 0.4em;
-    color: #7f7f7f;
-  }
-
-  // LineNumbers
-  .ln {
     white-space: pre;
     user-select: none;
     margin-right: 0.4em;
@@ -369,7 +367,7 @@ pre {
 
   // LineHighlight
   .hl {
-    background-color: #e4f6d4;
+    background-color: #{$yellow-050};
   }
 
   // LineNumbersTable
@@ -382,13 +380,6 @@ pre {
   }
 
   // LineNumbers
-  .ln {
-    white-space: pre;
-    user-select: none;
-    margin-right: 0.4em;
-    padding: 0 0.4em;
-    color: #7f7f7f;
-  }
 
   // Line
   .line {
@@ -654,4 +645,12 @@ pre {
   .gu {
     color: #6d6d6d;
   }
+}
+
+.ln {
+  color: var(--text-secondary);
+  white-space: pre;
+  user-select: none;
+  padding: 0 1rem;
+  margin-left: -1rem;
 }
