@@ -1,6 +1,6 @@
 ---
 title: Parse JSON with comments in Go
-draft: true
+draft: false
 date: 2022-05-23
 ---
 
