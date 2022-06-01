@@ -1,16 +1,15 @@
 build:
-	hugo -D
+	yarn hugo -D
 
 img: build
 	./scripts/gen_variants.sh
 
 update:
-	hugo mod get -u
-	hugo mod tidy
+	yarn hugo mod get -u
+	yarn hugo mod tidy
 
 ci-build:
-	[ "$ENVIRONMENT" == "dev" ] && export ARGS="-D"
-	npm install hugo-extended && $(npm bin)/hugo $ARGS
+	./scripts/build.sh
 
 clean:
 	rm 'resources/filecache/getresource/15902302297382621871'

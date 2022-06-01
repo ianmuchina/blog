@@ -24,9 +24,10 @@ pygmentsCodefences: true
 module:
   hugoVersion:
     extended: true
+    min: 0.100.0
 
   imports:
-    # Hasflags
+    # HashflagArchive
     - path: github.com/ianmuchina/hashflagArchive
       mounts:
         - source: img/
@@ -40,47 +41,11 @@ module:
         - target: assets/icons/feather/
           source: icons
 
-    # # Hero Icons
-    # - path: github.com/tailwindlabs/heroicons
-    #   mounts:
-    #     - source: optimized/
-    #       target: assets/icons/heroicons/
-    # # Octicons
-    # - path: github.com/primer/octicons
-    #   mounts:
-    #     - target: assets/icons/octicons/
-    #       source: icons
-    # # Box Icons
-    # - path: github.com/atisawd/boxicons
-    #   mounts:
-    #     - target: assets/icons/box/
-    #       source: svg
-    # # Font Awesome
-    # - path: github.com/FortAwesome/Font-Awesome
-    #   mounts:
-    #     - target: assets/icons/fa/
-    #       source: svgs/
-
 caches:
   getjson:
     dir: :resourceDir/
     maxAge: -1
-  # modules:
-  #   dir: :cacheDir/modules
-  #   maxAge: 0
+
   getresource:
     dir: :resourceDir/
     maxAge: -1
-  images:
-    dir: :resourceDir/
-    maxAge: -1
-
-staticDir:
-  - static
-  - img
-
-imaging:
-  anchor: Smart
-  hint: drawing
-  quality: 80
-  resampleFilter: Lanczos

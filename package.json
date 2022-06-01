@@ -15,18 +15,18 @@
     "fmt": "prettier -w .",
     "fmt-check": "yarn prettier --check .",
     "lint": "yarn stylelint **/*.scss",
+    "dev": "hugo server -D",
     "build": "hugo",
-    "build-drafts": "hugo -D",
-    "dev": "hugo server -D"
+    "build-drafts": "hugo -D"
   },
   "devDependencies": {
     "autoprefixer": "^10.4.7",
-    "hugo-extended": "^0.98.0",
-    "postcss": "^8.4.13",
+    "hugo-extended": "^0.100.0",
+    "postcss": "^8.4.14",
     "postcss-cli": "^9.1.0",
     "prettier": "^2.6.2",
     "prettier-plugin-go-template": "^0.0.12",
-    "stylelint": "^14.8.2",
+    "stylelint": "^14.8.5",
     "stylelint-config-prettier-scss": "^0.0.1",
     "stylelint-config-standard-scss": "^3.0.0"
   },

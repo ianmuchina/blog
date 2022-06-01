@@ -5,15 +5,31 @@
   {{ $url := replace .user.profile_image_url_https "_normal" "" }}
   {{/* Filename */}}
   {{ $filename := replace $url "https://pbs.twimg.com/profile_images/" "" }}
-  {{ $filename := replace $filename "/" "_" }}
   {{ $filename := index (split $filename ".") 0 }}
+  {{ $filename := replace $filename "/" "_" }}
   {{ $filename := print "/twitter/media/profile-photos/" $filename }}
 
   {{/* Sizes To resize to */}}
   {{ $formats := slice  "100x webp q75" "100x" }}
+
+  {{ $formats = (slice
+    (dict
+    "options"  "100x webp q75"
+    "extension" ".webp"
+    )
+    )
+  }}
+
   {{/* Use smaller size on quote tweets */}}
   {{ if $.quoted }}
-    {{ $formats = slice "50x webp q75" "50x" }}
+    {{/* {{ $formats = slice "50x webp q75" "50x" }} */}}
+    {{ $formats = (slice
+      (dict
+      "options"  "50x webp q75"
+      "extension" ".webp"
+      )
+      )
+    }}
   {{ end }}
 
   {{/* prettier-ignore */}}

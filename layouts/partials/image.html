@@ -1,29 +1,23 @@
-{{/* Component to Display responsive images */}}
-{{/* Params
-  - filename
-  - url
-  - alt
-  - width
-  - height
-*/}}
-
-
 <picture>
   {{ $original := "" }}
   {{/* Download Image */}}
   {{- with resources.GetRemote .url -}}
-    {{ $src := . }}
+    {{/* {{ $src := . | resources.Copy $.filename }} */}}
+    {{ $src := . | resources.Copy (print $.filename "." .MediaType.SubType) }}
     {{- with .Err -}}
       {{/* Log Error if 404 */}}
       {{- warnf "%v" . -}}
     {{- else -}}
       {{ range $.formats }}
-        {{- $p := $src.Resize . -}}
-        <source srcset="{{ $p.RelPermalink }}" type="{{ $p.MediaType }}" />
+        {{ $resized := $src.Resize .options | resources.Copy (print $.filename .extension) }}
+        <source
+          srcset="{{ $resized.RelPermalink }}"
+          type="{{ $resized.MediaType }}"
+        />
       {{ end }}
 
       {{/* Original Image */}}
-      {{ $original = .RelPermalink }}
+      {{ $original = $src.RelPermalink }}
     {{- end -}}
   {{- end -}}
   {{/* Fallback to Remote  Image + sizes */}}

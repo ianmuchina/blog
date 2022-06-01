@@ -25,11 +25,22 @@
       .binding_values.thumbnail_image_large
     }}
       {{ $class = "card card-large" }}
-      {{ $formats = (slice "x320 webp q75") }}
+      {{ $formats = (slice (dict
+        "options"  "x320 webp q75"
+        "extension" ".webp"
+        )
+        )
+      }}
     {{ else }}
       {{/* Small Cards are 140px */}}
       {{ $class = "card card-small" }}
-      {{ $formats = (slice "140x webp q75") }}
+      {{ $formats = (slice
+        (dict
+        "options"  "140x webp q75"
+        "extension" ".webp"
+        )
+        )
+      }}
     {{ end }}
 
 

@@ -1,35 +1,40 @@
-{{/* Space Id */}}
 {{ $id := .id }}
-{{/* API Keys */}}
-{{ $GuestToken := 0 }}
-{{ $Bearer := "AAAAAAAAAAAAAAAAAAAAANRILgAAAAAAnNwIzUejRCOuH5E6I8xnZz4puTs=1Zv7ttfk8LF81IUq16cHjhLTvJu4FA33AGWWjCpTnA" }}
-{{ $spacePersistedQuery := "lFpix9BgFDhAMjn9CrW6jQ" }}
+{{ $headers := partial "tweet/guest" }}
 
-{{/* Get Guest Token */}}
-{{ $res := resources.GetRemote
-  "https://api.twitter.com/1.1/guest/activate.json" (dict
-  "method" "post"
-  "headers" (dict "Authorization" (print "Bearer " $Bearer)))
+{{ $q := (dict
+  "variables"
+  (dict
+  "id"                          (print $id)
+  "isMetatagsQuery"             false
+  "withDownvotePerspective"     false
+  "withReactionsMetadata"       false
+  "withReactionsPerspective"    false
+  "withReplays"                 true
+  "withSuperFollowsTweetFields" true
+  "withSuperFollowsUserFields"  true)
+
+  "features"
+  (dict
+  "dont_mention_me_view_api_enabled"      true
+  "interactive_text_enabled"              true
+  "responsive_web_uc_gql_enabled"         false
+  "vibe_tweet_context_enabled"            false
+  "responsive_web_edit_tweet_api_enabled" false))
 }}
 
-{{ $GuestToken := $res.Content | transform.Unmarshal }}
-{{ $GuestToken := index $GuestToken "guest_token" }}
-
-{{/* Add Guest Token To Header */}}
-{{ $headers := (dict
-  "Authorization" (printf "Bearer %s" $Bearer)
-  "X-Guest-Token" (printf "%v" $GuestToken))
+{{ $queryStr := print
+  "?variables=" (urlquery (jsonify $q.variables))
+  "&features="  (urlquery (jsonify $q.features ))
 }}
 
-{{/* Get spaces Data */}}
+{{ $url := print "https://twitter.com/i/api/graphql/lFpix9BgFDhAMjn9CrW6jQ/AudioSpaceById" $queryStr }}
+
 {{ $url := (printf "https://twitter.com/i/api/graphql/lFpix9BgFDhAMjn9CrW6jQ/AudioSpaceById?variables=%%7B%%22id%%22%%3A%%22{space_id}%%22%%2C%%22isMetatagsQuery%%22%%3Afalse%%2C%%22withBirdwatchPivots%%22%%3Afalse%%2C%%22withDownvotePerspective%%22%%3Afalse%%2C%%22withReactionsMetadata%%22%%3Afalse%%2C%%22withReactionsPerspective%%22%%3Afalse%%2C%%22withReplays%%22%%3Afalse%%2C%%22withScheduledSpaces%%22%%3Afalse%%2C%%22withSuperFollowsTweetFields%%22%%3Afalse%%2C%%22withSuperFollowsUserFields%%22%%3Afalse%%7D") }}
 {{ $url := replace $url "{space_id}" $id }}
-
-{{ $data := resources.GetRemote $url
-  (dict
+{{ $data := resources.GetRemote $url (dict
   "method" "get"
   "key"    (printf "space-%s" .id)
-  "headers" $headers)
+  "headers" $headers )
 }}
 
 {{ $data := $data.Content | transform.Unmarshal }}
@@ -66,6 +71,7 @@
     >
   </article>
 {{ else }}
+  {{/* Space is unavailable */}}
   <article class="spaces-card unavailable">
     <div class="spaces-meta">Spaces</div>
     <span class="spaces-title">Details not available</span>

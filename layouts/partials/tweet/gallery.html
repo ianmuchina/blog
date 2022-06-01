@@ -9,8 +9,14 @@
       {{ $w := "" }}
       {{ $h := "" }}
       {{/* Default Width is 480px */}}
-      {{ $formats := (slice "480x webp q80") }}
-
+      {{/* {{ $formats := (slice "480x webp q80") }} */}}
+      {{ $formats := (slice
+        (dict
+        "options"   "480x webp q80"
+        "extension" ".webp"
+        )
+        )
+      }}
       {{/* When there's only one photo */}}
       {{ if eq $count 1 }}
         {{/* Set Explicit width & height */}}
@@ -19,10 +25,24 @@
 
         {{ if gt .height .width }}
           {{/* Potrait: Set max height + class */}}
-          {{ $formats = (slice "x720 webp q80") }}
+          {{/* {{ $formats = (slice "x720 webp q80") }} */}}
+          {{ $formats = (slice
+            (dict
+            "options"  "x720 webp q80"
+            "extension" ".webp"
+            )
+            )
+          }}
         {{ else }}
           {{/* Landscape: Set max width */}}
-          {{ $formats = (slice "720x webp q80") }}
+          {{/* {{ $formats = (slice "720x webp q80") }} */}}
+          {{ $formats = (slice
+            (dict
+            "options"  "720x webp q80"
+            "extension" ".webp"
+            )
+            )
+          }}
         {{ end }}
       {{ end }}
 

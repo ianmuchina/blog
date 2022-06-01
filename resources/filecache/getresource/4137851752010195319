@@ -1,0 +1,29 @@
+HTTP/2.0 200 OK
+Cache-Control: no-cache, no-store, must-revalidate, pre-check=0, post-check=0
+Content-Disposition: attachment; filename=json.json
+Content-Type: application/json;charset=utf-8
+Date: Wed, 01 Jun 2022 01:25:58 GMT
+Expires: Tue, 31 Mar 1981 05:00:00 GMT
+Last-Modified: Wed, 01 Jun 2022 01:25:58 GMT
+Pragma: no-cache
+Server: tsa_f
+Set-Cookie: guest_id_marketing=v1%3A165404675832183715; Max-Age=63072000; Expires=Fri, 31 May 2024 01:25:58 GMT; Path=/; Domain=.twitter.com; Secure; SameSite=None
+Set-Cookie: guest_id_ads=v1%3A165404675832183715; Max-Age=63072000; Expires=Fri, 31 May 2024 01:25:58 GMT; Path=/; Domain=.twitter.com; Secure; SameSite=None
+Set-Cookie: personalization_id="v1_kKVZ97g/wstKftlARY4G4g=="; Max-Age=63072000; Expires=Fri, 31 May 2024 01:25:58 GMT; Path=/; Domain=.twitter.com; Secure; SameSite=None
+Set-Cookie: guest_id=v1%3A165404675832183715; Max-Age=63072000; Expires=Fri, 31 May 2024 01:25:58 GMT; Path=/; Domain=.twitter.com; Secure; SameSite=None
+Status: 200 OK
+Strict-Transport-Security: max-age=631138519
+X-Access-Level: read
+X-Client-Event-Enabled: true
+X-Connection-Hash: 6f9a84c609dec434e2ed0ad1615944970ec3035c94769e9f5b7e1f953d61cb1d
+X-Content-Type-Options: nosniff
+X-Frame-Options: SAMEORIGIN
+X-Rate-Limit-Limit: 180
+X-Rate-Limit-Remaining: 178
+X-Rate-Limit-Reset: 1654047657
+X-Response-Time: 123
+X-Transaction: 454766c7289d20f2
+X-Twitter-Response-Tags: BouncerCompliant
+X-Xss-Protection: 0
+
+[{"created_at":"Tue Apr 12 10:35:34 +0000 2022","id":1513828164295802883,"id_str":"1513828164295802883","text":"It\u2019s as if we care more about what Google considers to be fast than actual UX.","truncated":false,"entities":{"hashtags":[],"symbols":[],"user_mentions":[],"urls":[]},"source":"\u003ca href=\"http:\/\/twitter.com\/download\/iphone\" rel=\"nofollow\"\u003eTwitter for iPhone\u003c\/a\u003e","in_reply_to_status_id":1513827666406744064,"in_reply_to_status_id_str":"1513827666406744064","in_reply_to_user_id":182821975,"in_reply_to_user_id_str":"182821975","in_reply_to_screen_name":"youyuxi","user":{"id":182821975,"id_str":"182821975","name":"Evan You","screen_name":"youyuxi","location":"Singapore","description":"Husband, father of two, independent open source developer. Creator \/ project lead of @vuejs, @vite_js and connoisseur of sushi. Chinese-only alt: @yuxiyou","url":"https:\/\/t.co\/J7DeiSwbYO","entities":{"url":{"urls":[{"url":"https:\/\/t.co\/J7DeiSwbYO","expanded_url":"https:\/\/github.com\/sponsors\/yyx990803","display_url":"github.com\/sponsors\/yyx99\u2026","indices":[0,23]}]},"description":{"urls":[]}},"protected":false,"followers_count":186604,"fast_followers_count":0,"normal_followers_count":186604,"friends_count":1410,"listed_count":2562,"created_at":"Wed Aug 25 13:45:01 +0000 2010","favourites_count":6000,"utc_offset":null,"time_zone":null,"geo_enabled":true,"verified":false,"statuses_count":8449,"media_count":288,"lang":null,"contributors_enabled":false,"is_translator":false,"is_translation_enabled":false,"profile_background_color":"C0DEED","profile_background_image_url":"http:\/\/abs.twimg.com\/images\/themes\/theme1\/bg.png","profile_background_image_url_https":"https:\/\/abs.twimg.com\/images\/themes\/theme1\/bg.png","profile_background_tile":true,"profile_image_url":"http:\/\/pbs.twimg.com\/profile_images\/1206997998900850688\/cTXTQiHm_normal.jpg","profile_image_url_https":"https:\/\/pbs.twimg.com\/profile_images\/1206997998900850688\/cTXTQiHm_normal.jpg","profile_banner_url":"https:\/\/pbs.twimg.com\/profile_banners\/182821975\/1576606001","profile_link_color":"2C3E50","profile_sidebar_border_color":"FFFFFF","profile_sidebar_fill_color":"DDEEF6","profile_text_color":"333333","profile_use_background_image":true,"has_extended_profile":true,"default_profile":false,"default_profile_image":false,"pinned_tweet_ids":[],"pinned_tweet_ids_str":[],"has_custom_timelines":true,"following":null,"follow_request_sent":null,"notifications":null,"advertiser_account_type":"promotable_user","advertiser_account_service_levels":[],"business_profile_state":"none","translator_type":"none","withheld_in_countries":[],"require_some_consent":false},"geo":null,"coordinates":null,"place":null,"contributors":null,"is_quote_status":false,"retweet_count":27,"favorite_count":421,"favorited":false,"retweeted":false,"lang":"en","supplemental_language":null,"self_thread":{"id":1513827666406744064,"id_str":"1513827666406744064"}}]

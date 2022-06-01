@@ -1,0 +1,12 @@
+{{/* returns guest headers */}}
+{{ $bearer := "AAAAAAAAAAAAAAAAAAAAANRILgAAAAAAnNwIzUejRCOuH5E6I8xnZz4puTs=1Zv7ttfk8LF81IUq16cHjhLTvJu4FA33AGWWjCpTnA" }}
+{{ $url := "https://api.twitter.com/1.1/guest/activate.json" }}
+{{ $headers := dict "Authorization" (print "Bearer " $bearer) }}
+{{ $response := resources.GetRemote $url (dict "method" "post" "headers"  $headers) }}
+{{ $json := $response.Content | transform.Unmarshal }}
+{{ $token := index $json "guest_token" }}
+{{ $headers := (dict
+  "Authorization" (printf "Bearer %s" $bearer)
+  "X-Guest-Token" (printf "%v" $token))
+}}
+{{ return $headers }}
