@@ -16,7 +16,7 @@
         "extension" ".webp"
         )
         )
-      }}
+        }}
       {{/* When there's only one photo */}}
       {{ if eq $count 1 }}
         {{/* Set Explicit width & height */}}
@@ -32,7 +32,7 @@
             "extension" ".webp"
             )
             )
-          }}
+            }}
         {{ else }}
           {{/* Landscape: Set max width */}}
           {{/* {{ $formats = (slice "720x webp q80") }} */}}
@@ -42,7 +42,7 @@
             "extension" ".webp"
             )
             )
-          }}
+            }}
         {{ end }}
       {{ end }}
 
