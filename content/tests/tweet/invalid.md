@@ -1,14 +1,17 @@
 ---
-title: Other
-date: 2022-04-01
+title: Invalid Tweets
+description: Tweets showing bugs
+date: 2022-06-01
 draft: true
 ---
 
-{{<tweet id="423897452354105344">}}
-
-{{<tweet id="73900865458683904">}}
+{{<tweet id="1535220315986374656">}}
 
 {{<tweet id="1509010532652699652">}}
+
+{{<tweet id="423897452354105344">}}
+
+Images with link {{<tweet id="73900865458683904">}}
 
 {{<tweet id="480024621454856192">}}
 
@@ -29,3 +32,5 @@ draft: true
 {{<tweet id="1309951041321013248">}}
 
 {{<tweet id="1520174956310671364">}}
+
+{{<tweet id="1532587960662515712">}}

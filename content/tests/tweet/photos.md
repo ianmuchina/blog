@@ -1,5 +1,6 @@
 ---
 title: Pictures
+description: Tweets with photos
 date: 2022-04-01
 draft: true
 ---
@@ -30,4 +31,4 @@ draft: true
 
 {{<tweet id="861627479294746624">}}
 
-<!-- TODO: Tagged people, Geotagging -->
+TODO: Tagged people, Geotagging

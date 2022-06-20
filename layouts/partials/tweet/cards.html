@@ -102,4 +102,51 @@
   {{ if eq .name "3691233323:audiospace" }}
     {{ partial "tweet/space" (dict "id" .binding_values.id.string_value) -}}
   {{ end }}
+
+  {{ if eq .name "promo_image_convo" }}
+    <div class="promo_image_convo">
+      {{ $formats := (slice (dict "options" "webp q80" "extension" ".webp")) }}
+      {{ with .binding_values.promo_image.image_value }}
+        {{- partial "image" (dict
+          "class"    "promo_image"
+          "url"      .url
+          "loading"  "lazy"
+          "filename" ""
+          "formats"  (slice)
+          "width"    .width
+          "height"   .height
+          "alt"      "" )
+        -}}
+      {{ end }}
+      {{ with .binding_values }}
+        {{ if .cta_one.string_value }}
+          <a class="cta-btn" href="#">
+            Tweet
+            {{ .cta_one.string_value }}
+          </a>
+        {{ end }}
+
+        {{ if .cta_two.string_value }}
+          <a class="cta-btn" href="#">
+            Tweet
+            {{ .cta_two.string_value }}
+          </a>
+        {{ end }}
+
+        {{ if .cta_three.string_value }}
+          <a class="cta-btn" href="#">
+            Tweet
+            {{ .cta_three.string_value }}
+          </a>
+        {{ end }}
+
+        {{ if .cta_four.string_value }}
+          <a class="cta-btn" href="#">
+            Tweet
+            {{ .cta_four.string_value }}
+          </a>
+        {{ end }}
+      {{ end }}
+    </div>
+  {{ end }}
 {{ end }}

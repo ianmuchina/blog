@@ -46,11 +46,38 @@
   {{ $total = add $total .count }}
 {{ end }}
 
+{{/* If poll has video */}}
+
+{{ if .ctx.card.binding_values.player_image }}
+  {{ with .ctx.card.binding_values }}
+    {{ $poster := .player_image.image_value.url }}
+    {{ with .player_stream_url.string_value }}
+      {{ with resources.GetRemote . | transform.Unmarshal }}
+        {{ range .Extensions.Extension.amplify.content.videoVariants.videoVariant }}
+          {{ $bit_rate := index . "-bit_rate" }}
+          {{ $content_type := index . "-content_type" }}
+          {{ $url := index . "-url" }}
+          {{ $url := replace $url "%3A" ":" }}
+          {{ $url := replace $url "%2F" "/" }}
+          {{/* Highest Quality Video */}}
+          {{ if eq "2176000" $bit_rate }}
+            <video src="{{ $url }}" poster="{{ $poster }}" controls></video>
+          {{ end }}
+        {{ end }}
+      {{ end }}
+    {{ end }}
+
+  {{ end }}
+{{ end }}
+
 {{ if .ctx.card.binding_values.choice1_label.string_value }}
   <section class="polls">
     {{ range $polls }}
       {{/* Calculate Percentage */}}
-      {{ $percent := (math.Round (mul (div (float .count) $total) 100)) }}
+      {{ $percent  := 0 }}
+      {{ if gt $total 0 }}
+        {{ $percent = (math.Round (mul (div (float .count) $total) 100)) }}
+      {{ end }}
 
 
       <div class="poll-container {{ if eq .count $max }}win{{ end }}">
@@ -64,7 +91,7 @@
         {{/* Progress bar */}}
         <div
           class="progress-bar {{ if eq .count $max }}win-bar{{ end }}"
-          style="width: {{ $percent }}%;"
+          style="width: {{ add $percent 1 }}%;"
           aria-hidden="true"
         ></div>
       </div>
