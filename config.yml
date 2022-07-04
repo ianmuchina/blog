@@ -40,7 +40,8 @@ module:
       mounts:
         - target: assets/icons/feather/
           source: icons
-
+        - target: static/img
+          source: img
 caches:
   getjson:
     dir: :resourceDir/
