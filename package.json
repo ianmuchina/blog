@@ -50,6 +50,5 @@
       "stylelint-config-prettier-scss"
     ]
   },
-  "dependencies": {
-  }
+  "dependencies": {}
 }

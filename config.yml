@@ -26,6 +26,12 @@ module:
     extended: true
     min: 0.100.0
 
+  mounts:
+    - source: static
+      target: static
+    - source: img
+      target: static/img
+
   imports:
     # HashflagArchive
     - path: github.com/ianmuchina/hashflagArchive
