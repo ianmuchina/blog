@@ -1,6 +1,3 @@
 #!/bin/bash
-[ "$ENVIRONMENT" == "dev" ] && export ARGS="-D"
-rm public/ -fr
-rm resources/_gen/ -fr
-npm install
-"$(npm bin)"/hugo $ARGS
+[ "$ENVIRONMENT" == "prod" ] && npm run build
+[ "$ENVIRONMENT" == "dev" ] && npm run build-drafts
