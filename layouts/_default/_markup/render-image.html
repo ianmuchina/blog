@@ -20,6 +20,8 @@
       width="{{ $img.Width }}"
       height="{{ $img.Height }}"
       class="post-img"
+      loading="lazy"
+      decoding="async"
       alt="{{ $.Text }}"
       {{ with .Title }}
         title="{{ . }}"
