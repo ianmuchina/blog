@@ -25,7 +25,11 @@ module:
   hugoVersion:
     extended: true
     min: 0.100.0
-
+  
+  mounts:
+    - source: img
+      source: static/img
+  
   imports:
     # HashflagArchive
     - path: github.com/ianmuchina/hashflagArchive
@@ -40,8 +44,7 @@ module:
       mounts:
         - target: assets/icons/feather/
           source: icons
-        - target: static/img
-          source: img
+
 caches:
   getjson:
     dir: :resourceDir/
