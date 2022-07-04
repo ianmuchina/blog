@@ -1,40 +1,18 @@
-{{/* Reading image data directly from "/img" folder */}}
-{{ with readFile .Destination | resources.FromString .Destination }}
-  {{ $img := . }}
+{{ $alt := .Text }}
+{{ $src := .Destination }}
+{{ $img := os.ReadFile $src | resources.FromString $src }}
 
-  {{/* If the file is an svg, include it directly in */}}
-  {{ if eq $img.MediaType.SubType "svg" }}
-    <img
-      src="{{ $.Destination | safeURL }}"
-      alt="{{ $.Text }}"
-      {{ with $.Title }}
-        title="{{ . }}"
-      {{ end }}
-    />
-  {{ end }}
-
-  {{/* If file is a Raster Image, add the width & height attributes */}}
-  {{ if ne $img.MediaType.SubType "svg" }}
-    <img
-      src="{{ $.Destination | safeURL }}"
-      width="{{ $img.Width }}"
-      height="{{ $img.Height }}"
-      class="post-img"
-      loading="lazy"
-      decoding="async"
-      alt="{{ $.Text }}"
-      {{ with .Title }}
-        title="{{ . }}"
-      {{ end }}
-    />
-  {{ end }}
-{{ else }}
-  {{/* If Reading image data directly fails, use default render hook */}}
+{{/* Set Dimensions on Raster Images */}}
+{{ if ne $img.MediaType.SubType "svg" }}
   <img
-    src="{{ $.Destination | safeURL }}"
-    alt="{{ $.Text }}"
-    {{ with $.Title }}
-      title="{{ . }}"
-    {{ end }}
+    alt="{{ $alt }}"
+    src="{{ $src | safeURL }}"
+    width="{{ $img.Width }}"
+    height="{{ $img.Height }}"
   />
+{{ end }}
+
+{{/* Svgs & Images that failed to load */}}
+{{ if or (not $img) (eq $img.MediaType.SubType "svg") }}
+  <img src="{{ $src | safeURL }}" alt="{{ $alt }}" />
 {{ end }}

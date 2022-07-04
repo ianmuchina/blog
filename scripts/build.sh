@@ -1,3 +1,2 @@
 #!/bin/bash
-[ "$ENVIRONMENT" == "prod" ] && npm run build
-[ "$ENVIRONMENT" == "dev" ] && npm run build-drafts
+[ "$ENVIRONMENT" == "prod" ] && npm run build || npm run build-drafts

@@ -55,3 +55,9 @@ caches:
   getresource:
     dir: :resourceDir/
     maxAge: -1
+markup:
+  goldmark:
+    parser:
+      attribute:
+        block: true
+        title: true
