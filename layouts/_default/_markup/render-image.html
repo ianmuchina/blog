@@ -4,13 +4,13 @@
 
   {{/* If the file is an svg, include it directly in */}}
   {{ if eq $img.MediaType.SubType "svg" }}
-  <img
-    src="{{ $.Destination | safeURL }}"
-    alt="{{ $.Text }}"
-    {{ with $.Title }}
-      title="{{ . }}"
-    {{ end }}
-  />
+    <img
+      src="{{ $.Destination | safeURL }}"
+      alt="{{ $.Text }}"
+      {{ with $.Title }}
+        title="{{ . }}"
+      {{ end }}
+    />
   {{ end }}
 
   {{/* If file is a Raster Image, add the width & height attributes */}}
