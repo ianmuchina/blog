@@ -28,7 +28,7 @@ module:
   
   mounts:
     - source: img
-      source: static/img
+      target: static/img
   
   imports:
     # HashflagArchive
