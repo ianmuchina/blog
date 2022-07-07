@@ -1,0 +1,47 @@
+{{ $id := . }}
+
+{{ $json := dict }}
+{{ $headers := partial "tweet/guest" }}
+
+{{ $endpoint := "https://twitter.com/i/api/graphql/83GHP_Yl63-bKQJcab-9Jg/TweetDetail" }}
+
+{{ $q := (dict
+  "variables"
+  (dict
+  "focalTweetId"                            $id
+  "withSuperFollowsTweetFields"             true
+  "withSuperFollowsUserFields"              true
+  "withCommunity"                           false
+  "withQuickPromoteEligibilityTweetFields"  false
+  "withV2Timeline"                          false
+  "with_rux_injections"                     false
+  "includePromotedContent"                  false
+  "withBirdwatchNotes"                      false
+  "withDownvotePerspective"                 false
+  "withReactionsMetadata"                   false
+  "withReactionsPerspective"                false
+  "withVoice"                               false
+  )
+
+  "features"
+  (dict
+  "interactive_text_enabled"                    true
+  "responsive_web_enhance_cards_enabled"        true
+  "dont_mention_me_view_api_enabled"            false
+  "responsive_web_uc_gql_enabled"               false
+  "vibe_tweet_context_enabled"                  false
+  "responsive_web_edit_tweet_api_enabled"       false
+  "standardized_nudges_misinfo"                 false
+  ))
+}}
+
+{{ $queryStr := print
+  "?variables=" (urlquery (jsonify $q.variables))
+  "&features="  (urlquery (jsonify $q.features ))
+}}
+
+{{ $url := print $endpoint $queryStr }}
+
+{{ $data := getJSON $url $headers }}
+
+{{ return $data }}

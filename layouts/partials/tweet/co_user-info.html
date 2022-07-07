@@ -1,0 +1,34 @@
+{{ $i := 0 }}
+{{/* Render a user's name & screen name */}}
+<span class="name-container">
+    {{ range $i, $_ := .coTweetData }}
+    {{ $url := .result.legacy.profile_image_url_https }}
+    {{ $host := "https://twitter.com/" -}}
+    {{ $userUrl  := print $host (printf "intent/user?user_id=%s" .result.rest_id) }}
+
+    <a class="name name-{{$i}}" href="{{ $userUrl }}">
+      <span>
+        {{ .result.legacy.screen_name }}
+      </span>
+
+      {{ if .result.legacy.verified }}
+        <span class="checkmark">
+          {{ partial "inline-svg" "twitter/checkmark" }}
+        </span>
+      {{ end }}
+
+      {{ if eq $i 0 }}
+        <span> & </span>
+      {{ end }}
+    </a>
+  {{ end }}
+</span>
+
+<span class="scr-name">
+  {{ range $i, $_ := .coTweetData }}
+    @{{ .result.legacy.name }}
+    {{ if eq $i 0 }}
+      &
+    {{ end }}
+  {{ end }}
+</span>
