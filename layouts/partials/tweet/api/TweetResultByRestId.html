@@ -1,0 +1,44 @@
+{{ $id := .id }}
+
+{{ $json := dict }}
+{{ $headers := partial "tweet/guest" }}
+
+{{ $endpoint := "https://twitter.com/i/api/graphql/cV1LAXUDi5uNYX5owCCgHA/TweetResultByRestId" }}
+
+{{ $q := (dict
+  "variables"
+  (dict
+  "tweetId"                       $id
+  "includePromotedContent"        false
+  "withVoice"                     false
+  "withCommunity"                 false
+  "withSuperFollowsUserFields"    true
+  "withSuperFollowsTweetFields"   true
+  "withBirdwatchNotes"            false
+  "withDownvotePerspective"       false
+  "withReactionsMetadata"         false
+  "withReactionsPerspective"      false
+  )
+
+  "features"
+  (dict
+  "dont_mention_me_view_api_enabled"       true
+  "interactive_text_enabled"               true
+  "responsive_web_uc_gql_enabled"          false
+  "vibe_tweet_context_enabled"             false
+  "responsive_web_edit_tweet_api_enabled"  false
+  "standardized_nudges_misinfo"            false
+  "responsive_web_enhance_cards_enabled"   false
+  ))
+}}
+
+{{ $queryStr := print
+  "?variables=" (urlquery (jsonify $q.variables))
+  "&features="  (urlquery (jsonify $q.features ))
+}}
+
+{{ $url := print $endpoint $queryStr }}
+
+{{ $data := getJSON $url $headers }}
+
+{{ return $data }}

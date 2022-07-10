@@ -1,0 +1,38 @@
+{{ $id := (.Get "id") }}
+{{ $mode := "focus" }}
+
+{{ if ne (.Get "mode") "" }}
+  {{ $mode = (.Get "mode") }}
+{{ end }}
+
+{{ $d := partial "tweet/api/TweetDetail" $id }}
+{{ $d := index $d.data.threaded_conversation_with_injections.instructions 0 }}
+{{ $coTweet := false }}
+{{ $coTweetQuote := false }}
+{{ $coTweetData := slice }}
+
+{{ range $d.entries }}
+  {{ if hasPrefix .entryId "tweet-" }}
+    {{ with .content.itemContent.tweet_results.result.legacy.collab_control.collaborators_results }}
+      {{ $coTweet = true }}
+      {{ $coTweetData = . }}
+    {{ end }}
+    {{ with .content.itemContent.tweet_results.result.quoted_status_result }}
+      {{ $coTweetQuote = true }}
+      {{ $coTweetData = .result.legacy.collab_control.collaborators_results }}
+    {{ end }}
+  {{ end }}
+{{ end }}
+
+{{ with getJSON "https://cdn.syndication.twimg.com/tweet?id=" $id }}
+  {{ partial "tweet/tweet"
+    (dict
+    "ctx"            .
+    "data"           $.Site.Data
+    "mode"           $mode
+    "isCoTweet"      $coTweet
+    "isCoTweetQuote" $coTweetQuote
+    "coTweetData"    $coTweetData
+    )
+  }}
+{{ end }}
