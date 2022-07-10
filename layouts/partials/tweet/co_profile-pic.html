@@ -5,10 +5,11 @@
     {{ $host := "https://twitter.com/" -}}
     {{ $userUrl  := print $host (printf "intent/user?user_id=%s" .result.rest_id) }}
 
+
     <a href="{{ $userUrl }}">
-        {{ with resources.GetRemote $url }}
-            <img src="{{ .RelPermalink }}" alt="" />
-        {{ end }}
+      {{ with resources.GetRemote $url }}
+        <img src="{{ .RelPermalink }}" alt="" />
+      {{ end }}
     </a>
   {{ end }}
 </div>

@@ -1,12 +1,13 @@
 {{ $i := 0 }}
 {{/* Render a user's name & screen name */}}
 <span class="name-container">
-    {{ range $i, $_ := .coTweetData }}
+  {{ range $i, $_ := .coTweetData }}
     {{ $url := .result.legacy.profile_image_url_https }}
     {{ $host := "https://twitter.com/" -}}
     {{ $userUrl  := print $host (printf "intent/user?user_id=%s" .result.rest_id) }}
 
-    <a class="name name-{{$i}}" href="{{ $userUrl }}">
+
+    <a class="name name-{{ $i }}" href="{{ $userUrl }}">
       <span>
         {{ .result.legacy.screen_name }}
       </span>

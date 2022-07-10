@@ -1,5 +1,6 @@
 {{ $props := (dict "ctx" .ctx "data" .data "coTweetData" .coTweetData) }}
 
+
 <article class="tweet {{ .mode }}" lang="{{ .ctx.lang }}">
   <div class="profile-pic">
     {{ if .isCoTweet }}
@@ -27,17 +28,25 @@
 
     {{ with .ctx.quoted_tweet }}
       {{ $props := (dict "ctx" . "quoted" true "data" .data "coTweetData" $.coTweetData) }}
-      
-      <article class="tweet {{ if $.isCoTweetQuote }} co-quote {{ else }} quoted {{ end }} " lang="{{ .lang }}">
 
+
+      <article
+        class="tweet {{ if $.isCoTweetQuote }}
+          co-quote
+        {{ else }}
+          quoted
+        {{ end }}
+         "
+        lang="{{ .lang }}"
+      >
         <div class="profile-pic">
-          {{ if $.isCoTweetQuote   }}
+          {{ if $.isCoTweetQuote }}
             {{ partial "tweet/co_profile-pic" $props }}
           {{ else }}
             {{ partial "tweet/profile-pic" $props }}
           {{ end }}
         </div>
-      
+
         <div class="user-info">
           {{ if $.isCoTweetQuote }}
             {{ partial "tweet/co_user-info" $props }}
@@ -45,7 +54,7 @@
             {{ partial "tweet/user-info" $props }}
           {{ end }}
         </div>
-      
+
         <div class="content">
           {{- partial "tweet/text"        $props -}}
           {{- partial "tweet/gallery"     $props -}}
