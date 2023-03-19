@@ -11,8 +11,8 @@
   {{ with getJSON "https://cdn.syndication.twimg.com/tweet?id=" $id }}
     {{ partial "tweet/tweet" (dict "ctx" . "data" $.Site.Data "mode" $mode) }}
   {{ end }}
-{{ else }} 
-  <!-- Musk Twitter API -->
+{{ else }}
+  <!-- 2023 Twitter API -->
   {{ with getJSON "https://cdn.syndication.twimg.com/tweet-result?id=" $id }}
     {{ partial "tweet/tweet" (dict "ctx" . "data" $.Site.Data "mode" $mode) }}
   {{ end }}
