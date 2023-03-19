@@ -6,6 +6,14 @@
   {{ $mode = (.Get "mode") }}
 {{ end }}
 
-{{ with getJSON "https://cdn.syndication.twimg.com/tweet?id=" $id }}
-  {{ partial "tweet/tweet" (dict "ctx" . "data" $.Site.Data "mode" $mode) }}
+{{ if eq (.Get "version") "2022" }}
+  <!-- Older Twitter -->
+  {{ with getJSON "https://cdn.syndication.twimg.com/tweet?id=" $id }}
+    {{ partial "tweet/tweet" (dict "ctx" . "data" $.Site.Data "mode" $mode) }}
+  {{ end }}
+{{ else }}
+  <!-- 2023 Twitter API -->
+  {{ with getJSON "https://cdn.syndication.twimg.com/tweet-result?id=" $id }}
+    {{ partial "tweet/tweet" (dict "ctx" . "data" $.Site.Data "mode" $mode) }}
+  {{ end }}
 {{ end }}

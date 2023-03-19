@@ -7,12 +7,20 @@ draft: true
 
 Spaces Recording
 
-{{<tweet id="1508565972147326977">}}
+<!-- Deleted Tweet -->
 
-{{<tweet id="1513569873439326209">}}
+{{<tweet version="2022" id="1508565972147326977">}}
+
+<!-- Note: Account Made Private -->
+
+{{<tweet version="2022" id="1513569873439326209">}}
 
 Details Unavailable
 
-{{<tweet id="1506727406609920003">}}
+<!-- Deleted Tweet -->
+
+{{<tweet version="2022" id="1506727406609920003">}}
+
+<!--  -->
 
 {{<tweet id="1525174776683274245">}}

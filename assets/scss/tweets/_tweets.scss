@@ -397,47 +397,7 @@ a.link:hover {
   }
 }
 
-.co-pic {
-  picture {
-    all: unset;
-    display: contents;
-  }
-
-  display: flex;
-  a {
-    max-width: max-content;
-    display: contents;
-  }
-
-  a:hover img {
-    z-index: 30;
-  }
-
-  img {
-    width: 32px;
-    height: 32px;
-    outline: solid 2px var(--bg);
-  }
-}
-
-.quoted {
-  .co-pic img {
-    width: 24px;
-    height: 24px;
-  }
-}
-
-.co-pic :last-child img {
-  margin-top: 1rem;
-  margin-left: -1rem;
-}
-
 .name-container {
   display: flex;
   gap: 2px;
-}
-
-.co-quote .profile-pic img {
-  width: 24px;
-  height: 24px;
 }

@@ -7,7 +7,8 @@ draft: false
 image: "https://ianmuchina.com/img/og/tw.png"
 ---
 
-> Update: This does not work anymore since Twitter shut down most of it's microservices. #RIP 
+> Update: This does not work anymore since Twitter shut down most of it's
+> microservices. #RIP
 
 [The official tweet embed](https://help.twitter.com/en/using-twitter/how-to-embed-a-tweet)
 provides you with a `<blockquote>` element containing the tweet text and a third
@@ -147,17 +148,20 @@ get the data and images from the [hashflags.io](https://hashflags.io) website.
 I also added a Twitter spaces card. It's simple and only links to the space page
 on twitter.
 
-{{<tweet id="1513569873439326209">}}
+<!-- Note: Deleted -->
+
+{{<tweet version="2022" id="1513569873439326209">}}
 
 After the space expires it will display like this.
-{{<tweet id="1506727406609920003">}}
+{{<tweet version="2022" id="1506727406609920003">}}
 
 More tests are available at
 [drafts.blog-byl.pages.dev/tests/tweet/](https://drafts.blog-byl.pages.dev/tests/tweet/)
 
 ### Deleted tweets
 
-Tweets are still shown if they get deleted. {{<tweet id="1520174956310671364">}}
+Tweets are still shown if they get deleted.
+{{<tweet version="2022" id="1520174956310671364">}}
 
 ## Further development
 
