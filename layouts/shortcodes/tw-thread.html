@@ -1,3 +1,4 @@
+<!-- Display a twitter thread -->
 <div class="thread-wrapper">
-  {{ partial "tweet/thread" (dict "id" (.Get "end") "start" (.Get "start") "data" .Site.Data) }}
+  {{ partial "tweet/thread" (dict "id" (.Get "end") "start" (.Get "start")) }}
 </div>

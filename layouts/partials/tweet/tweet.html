@@ -1,4 +1,4 @@
-{{ $props := (dict "ctx" .ctx "data" .data "coTweetData" .coTweetData) }}
+{{ $props := (dict "ctx" .ctx "coTweetData" .coTweetData) }}
 
 
 <article class="tweet {{ .mode }}" lang="{{ .ctx.lang }}">
@@ -27,7 +27,7 @@
     {{- partial "tweet/poll"     $props -}}
 
     {{ with .ctx.quoted_tweet }}
-      {{ $props := (dict "ctx" . "quoted" true "data" .data "coTweetData" $.coTweetData) }}
+      {{ $props := (dict "ctx" . "quoted" true "coTweetData" $.coTweetData) }}
 
 
       <article

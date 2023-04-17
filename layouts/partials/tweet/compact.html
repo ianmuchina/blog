@@ -1,4 +1,4 @@
-{{ $count := . }}
+{{ $count := (int .) }}
 
 {{ $k := math.Floor	(div $count 1_000) }}
 {{ $h := math.Floor	(mul .01 (mod $count 1_000)) }}
@@ -15,7 +15,7 @@
   {{ $count = print $k "." $h "K" }}
 {{ end }}
 
-{{ if gt (int .) 1000000 }}
+{{ if gt (int .) 1_000_000 }}
   {{ $count = .favorite_count }}
   {{ $millions := (math.Floor (div $count 1_000_000)) }}
   {{ $decimal := (math.Round (div (mod $count 1_000_000) 100_000)) }}
