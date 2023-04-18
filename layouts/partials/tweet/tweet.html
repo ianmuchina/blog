@@ -1,17 +1,17 @@
-{{ $props := (dict "ctx" .ctx "coTweetData" .coTweetData) }}
+{{ $props := (dict "ctx" .ctx) }}
 
 
 <article class="tweet {{ .mode }}" lang="{{ .ctx.lang }}">
   <div class="profile-pic">
-    {{ partial "tweet/profile-pic" $props }}
+    {{ partialCached "tweet/profile-pic" $props $props.ctx.id_str }}
   </div>
 
   <div class="user-info">
-    {{ partial "tweet/user-info" $props }}
+    {{ partialCached "tweet/user-info" $props $props.ctx.id_str }}
   </div>
 
   <div class="content">
-    {{/* Tweet urls */}}
+
     {{- partialCached "tweet/text"     $props $props.ctx.id_str -}}
     {{- partialCached "tweet/cards"    $props $props.ctx.id_str -}}
     {{- partialCached "tweet/gallery"  $props $props.ctx.id_str -}}
@@ -19,7 +19,7 @@
     {{- partialCached "tweet/poll"     $props $props.ctx.id_str -}}
 
     {{ with .ctx.quoted_tweet }}
-      {{ $props := (dict "ctx" . "quoted" true "coTweetData" $.coTweetData) }}
+      {{ $props := (dict "ctx" . "quoted" true) }}
 
 
       <article class="tweet quoted" lang="{{ .lang }}">
@@ -31,9 +31,9 @@
         </div>
 
         <div class="content">
-          {{- partial "tweet/text"        $props -}}
-          {{- partial "tweet/gallery"     $props -}}
-          {{- partial "tweet/video"       $props $props.ctx.id_str -}}
+          {{- partialCached "tweet/text"        $props $props.ctx.id_str -}}
+          {{- partialCached "tweet/gallery"     $props $props.ctx.id_str -}}
+          {{- partialCached "tweet/video"       $props $props.ctx.id_str -}}
         </div>
       </article>
     {{ end }}
