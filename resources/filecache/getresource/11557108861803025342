@@ -1,0 +1,28 @@
+HTTP/2.0 200 OK
+Cache-Control: no-cache, no-store, must-revalidate, pre-check=0, post-check=0
+Content-Disposition: attachment; filename=json.json
+Content-Type: application/json;charset=utf-8
+Date: Mon, 17 Apr 2023 22:47:53 GMT
+Expires: Tue, 31 Mar 1981 05:00:00 GMT
+Last-Modified: Mon, 17 Apr 2023 22:47:53 GMT
+Perf: 7626143928
+Pragma: no-cache
+Server: tsa_f
+Set-Cookie: guest_id=v1%3A168177167300307925; Max-Age=34214400; Expires=Fri, 17 May 2024 22:47:53 GMT; Path=/; Domain=.twitter.com; Secure; SameSite=None
+Status: 200 OK
+Strict-Transport-Security: max-age=631138519
+X-Access-Level: read
+X-Client-Event-Enabled: true
+X-Connection-Hash: c8f501ab261104ae57f4b02ec0b0b13992b81ff64df364b7141f02e9081ac3bd
+X-Content-Type-Options: nosniff
+X-Frame-Options: SAMEORIGIN
+X-Rate-Limit-Limit: 180
+X-Rate-Limit-Remaining: 175
+X-Rate-Limit-Reset: 1681772571
+X-Response-Time: 126
+X-Transaction: 53efc13693e2f723
+X-Transaction-Id: 53efc13693e2f723
+X-Twitter-Response-Tags: BouncerCompliant
+X-Xss-Protection: 0
+
+[{"created_at":"Thu Feb 09 15:26:26 +0000 2023","id":1623704885182226435,"id_str":"1623704885182226435","text":"@jyzg So, brotli has the 'compression-very-slow-but-ultra-compressed' option that zstd doesn't offer, right?\nI have\u2026 https:\/\/t.co\/oIsMTN9Oj5","truncated":true,"entities":{"hashtags":[],"symbols":[],"user_mentions":[{"screen_name":"jyzg","name":"Jyrki Alakuijala \ud83c\uddfa\ud83c\udde6","id":807786872,"id_str":"807786872","indices":[0,5]}],"urls":[{"url":"https:\/\/t.co\/oIsMTN9Oj5","expanded_url":"https:\/\/twitter.com\/i\/web\/status\/1623704885182226435","display_url":"twitter.com\/i\/web\/status\/1\u2026","indices":[117,140]}]},"source":"\u003ca href=\"https:\/\/mobile.twitter.com\" rel=\"nofollow\"\u003eTwitter Web App\u003c\/a\u003e","in_reply_to_status_id":1623694815727652864,"in_reply_to_status_id_str":"1623694815727652864","in_reply_to_user_id":807786872,"in_reply_to_user_id_str":"807786872","in_reply_to_screen_name":"jyzg","user":{"id":234769926,"id_str":"234769926","name":"\u97f3\u98a8\u666f\u306e\u7ba1\u7406\u4eba","screen_name":"kamedo2","location":"\u95a2\u6771","description":"Blind subjective codec tester.","url":"https:\/\/t.co\/JIk4ZrIyH5","entities":{"url":{"urls":[{"url":"https:\/\/t.co\/JIk4ZrIyH5","expanded_url":"https:\/\/kamedo2.hatenablog.jp\/","display_url":"kamedo2.hatenablog.jp","indices":[0,23]}]},"description":{"urls":[]}},"protected":false,"followers_count":419,"fast_followers_count":0,"normal_followers_count":419,"friends_count":344,"listed_count":18,"created_at":"Thu Jan 06 14:37:46 +0000 2011","favourites_count":29400,"utc_offset":null,"time_zone":null,"geo_enabled":true,"verified":false,"statuses_count":12061,"media_count":1231,"lang":null,"contributors_enabled":false,"is_translator":false,"is_translation_enabled":false,"profile_background_color":"131516","profile_background_image_url":"http:\/\/abs.twimg.com\/images\/themes\/theme14\/bg.gif","profile_background_image_url_https":"https:\/\/abs.twimg.com\/images\/themes\/theme14\/bg.gif","profile_background_tile":true,"profile_image_url":"http:\/\/pbs.twimg.com\/profile_images\/429283627751317504\/xx_ZOL2y_normal.png","profile_image_url_https":"https:\/\/pbs.twimg.com\/profile_images\/429283627751317504\/xx_ZOL2y_normal.png","profile_banner_url":"https:\/\/pbs.twimg.com\/profile_banners\/234769926\/1603401804","profile_link_color":"990000","profile_sidebar_border_color":"000000","profile_sidebar_fill_color":"000000","profile_text_color":"000000","profile_use_background_image":true,"has_extended_profile":false,"default_profile":false,"default_profile_image":false,"pinned_tweet_ids":[1535615266385952771],"pinned_tweet_ids_str":["1535615266385952771"],"has_custom_timelines":true,"following":null,"follow_request_sent":null,"notifications":null,"advertiser_account_type":"promotable_user","advertiser_account_service_levels":[],"business_profile_state":"none","translator_type":"none","withheld_in_countries":[],"require_some_consent":false},"geo":null,"coordinates":null,"place":null,"contributors":null,"is_quote_status":false,"retweet_count":0,"favorite_count":1,"favorited":false,"retweeted":false,"lang":"en","supplemental_language":null}]

@@ -1,5 +1,5 @@
 {{ $id := .id }}
-{{ $headers := partial "tweet/guest" }}
+{{ $headers := partialCached "tweet/guest" "g" }}
 
 {{ $q := (dict
   "variables"
@@ -31,49 +31,53 @@
 
 {{ $url := (printf "https://twitter.com/i/api/graphql/lFpix9BgFDhAMjn9CrW6jQ/AudioSpaceById?variables=%%7B%%22id%%22%%3A%%22{space_id}%%22%%2C%%22isMetatagsQuery%%22%%3Afalse%%2C%%22withBirdwatchPivots%%22%%3Afalse%%2C%%22withDownvotePerspective%%22%%3Afalse%%2C%%22withReactionsMetadata%%22%%3Afalse%%2C%%22withReactionsPerspective%%22%%3Afalse%%2C%%22withReplays%%22%%3Afalse%%2C%%22withScheduledSpaces%%22%%3Afalse%%2C%%22withSuperFollowsTweetFields%%22%%3Afalse%%2C%%22withSuperFollowsUserFields%%22%%3Afalse%%7D") }}
 {{ $url := replace $url "{space_id}" $id }}
-{{ $data := resources.GetRemote $url (dict
-  "method" "get"
-  "key"    (printf "space-%s" .id)
-  "headers" $headers )
-}}
-
-{{ $data := $data.Content | transform.Unmarshal }}
-{{ $metadata := $data.data.audioSpace.metadata }}
-
-{{ with $metadata }}
-  {{ $date :=  time.Format "Jan 2" (div (int .started_at) 1000) }}
-  {{ $duration := div (sub (int .ended_at) (int .started_at)) 1000 }}
-  {{ $hours := (div $duration 3600) }}
-  {{ $mins := printf "%02d" (mod (div $duration 60) 60) }}
-  {{ $sec := printf "%02d" (mod $duration 60) }}
-
-  {{ if eq $hours 0 }}
-    {{ $hours = "" }}
+{{ with resources.GetRemote $url (dict "method" "get" "key"    (printf "space-%s" .id) "headers" $headers ) }}
+  {{ with .Err }}
+    {{ warnf "%v" . }}
   {{ else }}
-    {{ $hours = printf "%d:" $hours }}
-  {{ end }}
+    {{ $data :=  . }}
+
+    {{ $data := $data.Content | transform.Unmarshal }}
+    {{ $metadata := $data.data.audioSpace.metadata }}
+
+    {{ with $metadata }}
+      {{ $date :=  time.Format "Jan 2" (div (int .started_at) 1000) }}
+      {{ $duration := div (sub (int .ended_at) (int .started_at)) 1000 }}
+      {{ $hours := (div $duration 3600) }}
+      {{ $mins := printf "%02d" (mod (div $duration 60) 60) }}
+      {{ $sec := printf "%02d" (mod $duration 60) }}
+
+      {{ if eq $hours 0 }}
+        {{ $hours = "" }}
+      {{ else }}
+        {{ $hours = printf "%d:" $hours }}
+      {{ end }}
 
 
-  <article class="spaces-card">
-    <div class="spaces-meta">
-      <div>
-        <span class="spaces-date">{{ $date }}</span>
-        <span class="spaces-name"
-          >{{ .creator_results.result.legacy.name }}</span
+      <article class="spaces-card">
+        <div class="spaces-meta">
+          <div>
+            <span class="spaces-date">{{ $date }}</span>
+            <span class="spaces-name"
+              >{{ .creator_results.result.legacy.name }}</span
+            >
+            <span class="spaces-length"
+              >{{ $hours }}{{ $mins }}:{{ $sec }}</span
+            >
+          </div>
+          <div></div>
+        </div>
+        <h3 class="spaces-title">{{ .title }}</h3>
+        <a href="https://twitter.com/i/spaces/{{ $id }}" class="spaces-btn"
+          >Open on Twitter</a
         >
-        <span class="spaces-length">{{ $hours }}{{ $mins }}:{{ $sec }}</span>
-      </div>
-      <div></div>
-    </div>
-    <h3 class="spaces-title">{{ .title }}</h3>
-    <a href="https://twitter.com/i/spaces/{{ $id }}" class="spaces-btn"
-      >Open on Twitter</a
-    >
-  </article>
-{{ else }}
-  {{/* Space is unavailable */}}
-  <article class="spaces-card unavailable">
-    <div class="spaces-meta">Spaces</div>
-    <span class="spaces-title">Details not available</span>
-  </article>
+      </article>
+    {{ else }}
+      {{/* Space is unavailable */}}
+      <article class="spaces-card unavailable">
+        <div class="spaces-meta">Spaces</div>
+        <span class="spaces-title">Details not available</span>
+      </article>
+    {{ end }}
+  {{ end }}
 {{ end }}

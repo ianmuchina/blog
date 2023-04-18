@@ -2,12 +2,11 @@
   {{ $original := "" }}
   {{/* Download Image */}}
   {{- with resources.GetRemote .url -}}
-    {{/* {{ $src := . | resources.Copy $.filename }} */}}
-    {{ $src := . | resources.Copy (print $.filename "." .MediaType.SubType) }}
     {{- with .Err -}}
       {{/* Log Error if 404 */}}
-      {{- warnf "%v" . -}}
+      {{- warnf "err fetching img %v" . -}}
     {{- else -}}
+      {{ $src := . | resources.Copy (print $.filename "." .MediaType.SubType) }}
       {{ range $.formats }}
         {{ $resized := $src.Resize .options | resources.Copy (print $.filename .extension) }}
         <source

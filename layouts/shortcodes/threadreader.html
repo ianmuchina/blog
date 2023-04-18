@@ -1,3 +1,3 @@
-{{ partial "tweet/threadreader" (dict  "id" (.Get "end") "data" .Site.Data) }}
+{{ partial "tweet/threadreader" (dict  "id" (.Get "end")) }}
 {{ $url := print "https://twitter.com/user/status/" (.Get "end") }}
 <a href="{{ $url }}"> Original Thread </a>

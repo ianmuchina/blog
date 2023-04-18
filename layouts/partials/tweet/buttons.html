@@ -5,7 +5,7 @@
 */}}
 
 {{ $json := dict }}
-{{ $headers := partial "tweet/guest" }}
+{{ $headers := partialCached "tweet/guest" "g" }}
 {{ $url  := print "https://api.twitter.com/1.1/statuses/lookup.json?include_entities=1&id=" .ctx.id_str }}
 
 {{ with resources.GetRemote $url (dict "method" "get" "key" (print "v1-lookup" .ctx.id_str) "headers"  $headers) }}
@@ -25,18 +25,18 @@
 
 <div class="tweet-buttons-thread">
   <a href="{{ $link }}" class="blue">
-    {{ partial "inline-svg" "twitter/comment" }}
+    {{ partialCached "inline-svg" "twitter/comment" "twitter/comment" }}
     {{ partial "tweet/compact" .ctx.conversation_count }}
   </a>
   <a href="{{ $link }}" class="green">
-    {{ partial "inline-svg" "twitter/retweet" }}
+    {{ partialCached "inline-svg" "twitter/retweet" "twitter/retweet" }}
     {{ partial "tweet/compact" $json.retweet_count }}
   </a>
   <a href="{{ $link }}" class="red">
-    {{ partial "inline-svg" "twitter/like" }}
+    {{ partialCached "inline-svg" "twitter/like" "twitter/like" }}
     {{ partial "tweet/compact" .ctx.favorite_count }}
   </a>
   <a href="{{ $link }}" class="blue">
-    {{ partial "inline-svg" "twitter/share" }}
+    {{ partialCached "inline-svg" "twitter/share" "twitter/share" }}
   </a>
 </div>

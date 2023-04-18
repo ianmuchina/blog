@@ -1,4 +1,4 @@
-{{ $props := (dict "ctx" .ctx "data" .data) }}
+{{ $props := (dict "ctx" .ctx ) }}
 
 
 <article lang="{{ .ctx.lang }}">
@@ -11,7 +11,7 @@
     {{- partial "tweet/poll"     $props -}}
 
     {{ with .ctx.quoted_tweet }}
-      {{ $props := (dict "ctx" . "quoted" true "data" .data) }}
+      {{ $props := (dict "ctx" . "quoted" true) }}
       <blockquote lang="{{ .lang }}">
         <div>
           {{- partial "tweet/text"        $props -}}

@@ -46,11 +46,11 @@
     {{ $date :=  time $.ctx.created_at }}
     {{ $hashtag := (lower .text) }}
     {{/* If hashtag has campaign(s) */}}
-    {{ with index $.data.hashtags $hashtag }}
+    {{ with index site.Data.hashtags $hashtag }}
       {{ $campaign := "" }}
       {{/* Select campaign */}}
       {{ range $c := . }}
-        {{ with index $.data.campaigns $c }}
+        {{ with index site.Data.campaigns $c }}
           {{/* If Tweet falls within campaign dates, use it */}}
           {{ if and ( lt .startingTimestampMs $date.UnixMilli ) ( gt .endingTimestampMs   $date.UnixMilli ) }}
             {{ $campaign = $c }}

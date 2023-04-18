@@ -1,7 +1,7 @@
 {{ $id := .id }}
 
 {{ $json := dict }}
-{{ $headers := partial "tweet/guest" }}
+{{ $headers := partialCached "tweet/guest" "g" }}
 
 {{ $endpoint := "https://twitter.com/i/api/graphql/cV1LAXUDi5uNYX5owCCgHA/TweetResultByRestId" }}
 

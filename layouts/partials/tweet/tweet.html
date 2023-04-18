@@ -1,64 +1,38 @@
-{{ $props := (dict "ctx" .ctx "data" .data "coTweetData" .coTweetData) }}
+{{ $props := (dict "ctx" .ctx) }}
 
 
 <article class="tweet {{ .mode }}" lang="{{ .ctx.lang }}">
   <div class="profile-pic">
-    {{ if .isCoTweet }}
-      {{ partial "tweet/co_profile-pic" $props }}
-    {{ else }}
-      {{ partial "tweet/profile-pic" $props }}
-    {{ end }}
+    {{ partialCached "tweet/profile-pic" $props $props.ctx.id_str }}
   </div>
 
   <div class="user-info">
-    {{ if .isCoTweet }}
-      {{ partial "tweet/co_user-info" $props }}
-    {{ else }}
-      {{ partial "tweet/user-info" $props }}
-    {{ end }}
+    {{ partialCached "tweet/user-info" $props $props.ctx.id_str }}
   </div>
 
   <div class="content">
-    {{/* Tweet urls */}}
-    {{- partial "tweet/text"     $props -}}
-    {{- partial "tweet/cards"    $props -}}
-    {{- partial "tweet/gallery"  $props -}}
-    {{- partial "tweet/video"    $props -}}
-    {{- partial "tweet/poll"     $props -}}
+    {{- partialCached "tweet/text"     $props $props.ctx.id_str -}}
+    {{- partialCached "tweet/cards"    $props $props.ctx.id_str -}}
+    {{- partialCached "tweet/gallery"  $props $props.ctx.id_str -}}
+    {{- partialCached "tweet/video"    $props $props.ctx.id_str -}}
+    {{- partialCached "tweet/poll"     $props $props.ctx.id_str -}}
 
     {{ with .ctx.quoted_tweet }}
-      {{ $props := (dict "ctx" . "quoted" true "data" .data "coTweetData" $.coTweetData) }}
+      {{ $props := (dict "ctx" . "quoted" true) }}
 
 
-      <article
-        class="tweet {{ if $.isCoTweetQuote }}
-          co-quote
-        {{ else }}
-          quoted
-        {{ end }}
-         "
-        lang="{{ .lang }}"
-      >
+      <article class="tweet quoted" lang="{{ .lang }}">
         <div class="profile-pic">
-          {{ if $.isCoTweetQuote }}
-            {{ partial "tweet/co_profile-pic" $props }}
-          {{ else }}
-            {{ partial "tweet/profile-pic" $props }}
-          {{ end }}
+          {{ partialCached "tweet/profile-pic" $props $props.user.id_str }}
         </div>
-
         <div class="user-info">
-          {{ if $.isCoTweetQuote }}
-            {{ partial "tweet/co_user-info" $props }}
-          {{ else }}
-            {{ partial "tweet/user-info" $props }}
-          {{ end }}
+          {{ partialCached "tweet/user-info" $props $props }}
         </div>
 
         <div class="content">
-          {{- partial "tweet/text"        $props -}}
-          {{- partial "tweet/gallery"     $props -}}
-          {{- partial "tweet/video"       $props -}}
+          {{- partialCached "tweet/text"        $props $props.ctx.id_str -}}
+          {{- partialCached "tweet/gallery"     $props $props.ctx.id_str -}}
+          {{- partialCached "tweet/video"       $props $props.ctx.id_str -}}
         </div>
       </article>
     {{ end }}

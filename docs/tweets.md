@@ -205,10 +205,10 @@ token.
 
 ## Tweet Data
 
-Make GET Request to `cdn.syndication.twimg.com/tweet?id=123456` with a valid
-tweet id. That's it. Does not require any auth. Does not have all the data eg:
-retweet count. The v2 or graphql is way better. Endpoint is used by the official
-embed.
+Make GET Request to `https://cdn.syndication.twimg.com/tweet-result?id=123456`
+with a valid tweet id. That's it. Does not require any auth. Does not have all
+the data eg: retweet count. The v2 or graphql is way better. Endpoint is used by
+the official embed.
 
 ## Spaces Data
 
