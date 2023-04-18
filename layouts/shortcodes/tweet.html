@@ -7,13 +7,14 @@
 {{ end }}
 
 {{ if eq (.Get "version") "2022" }}
-  <!-- Older Twitter -->
+  {{/* Workaround for tweets that used  Older Twitter API but are deleted */}}
+  {{/* FIXME: Write a script that caches tweet data to data/ and images to the images / assests folder */}}
   {{ with getJSON "https://cdn.syndication.twimg.com/tweet?id=" $id }}
     {{ partial "tweet/tweet" (dict "ctx" . "mode" $mode) }}
   {{ end }}
 {{ else }}
   <!-- 2023 Twitter API -->
   {{ with getJSON "https://cdn.syndication.twimg.com/tweet-result?id=" $id }}
-    {{ partial "tweet/tweet" (dict "ctx" . "mode" $mode) }}
+    {{ partialCached "tweet/tweet" (dict "ctx" . "mode" $mode) $id }}
   {{ end }}
 {{ end }}

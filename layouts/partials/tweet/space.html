@@ -1,5 +1,5 @@
 {{ $id := .id }}
-{{ $headers := partial "tweet/guest" }}
+{{ $headers := partialCached "tweet/guest" "g" }}
 
 {{ $q := (dict
   "variables"
