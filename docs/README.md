@@ -2,7 +2,7 @@
 
 Personal Blog. Built with hugo.
 
-## Directorty structure
+## Directory structure
 
 - [`content/*`](/content) - Posts in Markdown
 - [`layouts/*`](/layouts) - Layout templates.
@@ -20,6 +20,8 @@ Personal Blog. Built with hugo.
   hugo-extended versions via using npm
 - [Cloudflare Pages](https://pages.cloudflare.com/) - Hosting
 - [pnpm](https://pnpm.io/) - npm package manager. Faster than npm & yarn
+- [language-hugo-vscode](https://github.com/theNewDynamic/language-hugo-vscode)
+  Syntax highlighting for go templates
 - [prettier](https://prettier.io/) - An opinionated code formatter
 - [prettier-plugin-go-template](https://github.com/NiklasPor/prettier-plugin-go-template) -
   Formatting for go templates
@@ -28,5 +30,5 @@ Personal Blog. Built with hugo.
 
 ## Notes
 
-Run `make clean` when adding new tweets to reset the guest-token.
-Run `hugo --gc` to delete unused cache data
+Run `make clean` when adding new tweets to reset the guest-token. Run
+`hugo --gc` to delete unused cache data
