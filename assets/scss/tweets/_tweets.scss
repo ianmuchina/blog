@@ -383,6 +383,8 @@ a.link:hover {
   display: none;
 }
 
+/* stylelint-disable media-feature-range-notation */
+// FIXME: Why scss does not support certain media queries
 @media (max-width: 480px) {
   .user-info .name span {
     flex: 1;
