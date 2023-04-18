@@ -15,10 +15,6 @@ Personal Blog. Built with hugo.
 
 ## Tools used
 
-Using `hugo-extended` for sass support
-
-## Technologies used
-
 - [hugo](https://github.com/gohugoio/hugo) Static site generator.
 - [hugo-extended](https://www.npmjs.com/package/hugo-extended) manage
   hugo-extended versions via using npm
@@ -31,3 +27,6 @@ Using `hugo-extended` for sass support
 - [stylelint-config-standard-scss]() SCSS support for stylelint
 
 ## Notes
+
+Run `make clean` when adding new tweets to reset the guest-token.
+Run `hugo --gc` to delete unused cache data
