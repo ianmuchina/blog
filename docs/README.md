@@ -2,7 +2,7 @@
 
 Personal Blog. Built with hugo.
 
-## Directorty structure
+## Directory structure
 
 - [`content/*`](/content) - Posts in Markdown
 - [`layouts/*`](/layouts) - Layout templates.
