@@ -7,6 +7,7 @@ date: 2023-04-26
 There are 2 main things that affect the performance of network-based
 applications.
 
+
 1. Bandwidth
 2. Latency
 
@@ -129,6 +130,7 @@ You can perform test on your data at
 Check out the
 [chrome status page](https://chromestatus.com/feature/5124977788977152) &
 [bug tracker](https://bugs.chromium.org/p/chromium/issues/detail?id=1413922) for
+
 implementation status of custom dictionaries.
 
 Here's the script I used
@@ -209,6 +211,8 @@ everything.
 
 {{<tw-thread end="1346702130623737862">}}
 
+https://encode.su/threads/3544-JXL-reference-software-version-0-2-released?p=67989&viewfull=1#post67989
+
 {{<unsafe>}}
 <img loading='lazy' style='aspect-ratio:;border-radius:0' src='/D63zMYd.png'/>
 {{</unsafe>}}
@@ -230,6 +234,7 @@ There's several ways to reduce latency as a developer.
 Eliminating the server and doing everything on the client side is a common way
 to tackle performance problems.
 
+
 A good example is [squoosh.app](https://squoosh.app) an image compression web
 app. It uses webAssembly which is slower than native but overall much faster
 than using an online image compression service for one-off transformations.
@@ -247,11 +252,13 @@ SPAs. There's SPA frameworks like [elm](https://elm-lang.org/) with
 Here's a video from 2016 showing a bug (hopefully fixed?) when using github from
 airport wifi. Opening a new tab was faster than the client router.
 
+
 {{<unsafe>}}
 <video muted controls poster='/gh-screenshot.avif' preload='none' style='aspect-ratio:16/9;width:100%;border-radius:8px' src='/4zG0AZRZD6Q-640x360.webm'></video>
 {{</unsafe>}}
 
 [source: Youtube](https://www.youtube.com/watch?v=4zG0AZRZD6Q)
+
 
 SPAs need more work to function properly compared to simple MPAs, especially for
 document based sites. Doing a lot of things in the client can lead to more
@@ -266,6 +273,7 @@ much faster than anything a multi page app could ever do.
 
 Pre fetching things is not always good and could have a negative impact on users
 on low-end devices.
+
 
 ## Use modern protocols
 
@@ -293,8 +301,6 @@ I noticed the benefit of `http2` when I had to making more than 10,000 http
 requests to the twitter api for my archive-browser application. I did some tests
 using curl and the difference is big
 
-browser application. Since twitetr thannk
-
 Move the servers closer to the user for dynamic applications eg: game servers
 CDNs
 
@@ -303,6 +309,7 @@ Improve the hardware
 Build a own private fiber optic cable network eg:
 [Cloudflare Backbone](https://blog.cloudflare.com/cloudflare-backbone-internet-fast-lane/)
 and directly lower the latency
+
 
 ## Measurments & analytics
 

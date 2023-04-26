@@ -1,5 +1,7 @@
 # Blog
 
+![GitHub repo size](https://img.shields.io/github/repo-size/ianmuchina/blog?color=blue)
+
 Personal Blog. Built with hugo.
 
 ## Directory structure

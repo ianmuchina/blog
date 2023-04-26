@@ -7,9 +7,6 @@ draft: false
 image: "https://ianmuchina.com/img/og/tw.png"
 ---
 
-> Update: This does not work anymore since Twitter shut down most of it's
-> microservices. #RIP
-
 [The official tweet embed](https://help.twitter.com/en/using-twitter/how-to-embed-a-tweet)
 provides you with a `<blockquote>` element containing the tweet text and a third
 party script to replace it with an `<iframe>` containing a better UI.
