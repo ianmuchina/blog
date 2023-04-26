@@ -7,7 +7,6 @@ date: 2023-04-26
 There are 2 main things that affect the performance of network-based
 applications.
 
-
 1. Bandwidth
 2. Latency
 
@@ -234,7 +233,6 @@ There's several ways to reduce latency as a developer.
 Eliminating the server and doing everything on the client side is a common way
 to tackle performance problems.
 
-
 A good example is [squoosh.app](https://squoosh.app) an image compression web
 app. It uses webAssembly which is slower than native but overall much faster
 than using an online image compression service for one-off transformations.
@@ -252,13 +250,11 @@ SPAs. There's SPA frameworks like [elm](https://elm-lang.org/) with
 Here's a video from 2016 showing a bug (hopefully fixed?) when using github from
 airport wifi. Opening a new tab was faster than the client router.
 
-
 {{<unsafe>}}
 <video muted controls poster='/gh-screenshot.avif' preload='none' style='aspect-ratio:16/9;width:100%;border-radius:8px' src='/4zG0AZRZD6Q-640x360.webm'></video>
 {{</unsafe>}}
 
 [source: Youtube](https://www.youtube.com/watch?v=4zG0AZRZD6Q)
-
 
 SPAs need more work to function properly compared to simple MPAs, especially for
 document based sites. Doing a lot of things in the client can lead to more
@@ -273,7 +269,6 @@ much faster than anything a multi page app could ever do.
 
 Pre fetching things is not always good and could have a negative impact on users
 on low-end devices.
-
 
 ## Use modern protocols
 
@@ -309,7 +304,6 @@ Improve the hardware
 Build a own private fiber optic cable network eg:
 [Cloudflare Backbone](https://blog.cloudflare.com/cloudflare-backbone-internet-fast-lane/)
 and directly lower the latency
-
 
 ## Measurments & analytics
 
