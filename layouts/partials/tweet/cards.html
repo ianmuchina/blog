@@ -118,35 +118,70 @@
           "alt"      "" )
         -}}
       {{ end }}
-      {{ with .binding_values }}
-        {{ if .cta_one.string_value }}
-          <a class="cta-btn" href="#">
-            Tweet
-            {{ .cta_one.string_value }}
-          </a>
-        {{ end }}
+      <div class="promo_image_content">
+        {{ with .binding_values }}
+          {{ if .cta_one.string_value }}
+            <a class="cta-btn" href="#">
+              Tweet
+              {{ .cta_one.string_value }}
+            </a>
+          {{ end }}
 
-        {{ if .cta_two.string_value }}
-          <a class="cta-btn" href="#">
-            Tweet
-            {{ .cta_two.string_value }}
-          </a>
-        {{ end }}
+          {{ if .cta_two.string_value }}
+            <a class="cta-btn" href="#">
+              Tweet
+              {{ .cta_two.string_value }}
+            </a>
+          {{ end }}
 
-        {{ if .cta_three.string_value }}
-          <a class="cta-btn" href="#">
-            Tweet
-            {{ .cta_three.string_value }}
-          </a>
-        {{ end }}
+          {{ if .cta_three.string_value }}
+            <a class="cta-btn" href="#">
+              Tweet
+              {{ .cta_three.string_value }}
+            </a>
+          {{ end }}
 
-        {{ if .cta_four.string_value }}
-          <a class="cta-btn" href="#">
-            Tweet
-            {{ .cta_four.string_value }}
-          </a>
+          {{ if .cta_four.string_value }}
+            <a class="cta-btn" href="#">
+              Tweet
+              {{ .cta_four.string_value }}
+            </a>
+          {{ end }}
         {{ end }}
-      {{ end }}
+      </div>
     </div>
+  {{ end }}
+
+  {{ if eq .name "2586390716:message_me" }}
+    {{ $url := "" }}
+    {{ range $.ctx.entities.urls }}
+      {{ if eq .url $.ctx.card.url }}
+        {{ $url = .expanded_url }}
+      {{ end }}
+    {{ end }}
+
+
+    <a
+      class="cta-btn"
+      href="{{ $url }}"
+      target="_blank"
+      rel="noopener noreferrer"
+    >
+      {{ partial "inline-svg" "twitter/message" }}
+      Send us a Private Message
+    </a>
+  {{ end }}
+
+  {{ if eq .name "amplify" }}
+    {{ with .binding_values }}
+      {{ $url := .amplify_url_vmap.string_value }}
+      {{ partial "tweet/vmap.html" (dict
+        "url"    $url
+        "poster" .player_image.image_value
+        "width"  .player_width.string_value
+        "height" .player_height.string_value
+        )
+      }}
+    {{ end }}
   {{ end }}
 {{ end }}
