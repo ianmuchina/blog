@@ -1,0 +1,49 @@
+HTTP/2.0 200 OK
+Access-Control-Allow-Origin: *
+Access-Control-Expose-Headers: Content-Length
+Cache-Control: max-age=120, must-revalidate
+Content-Type: text/xml
+Date: Mon, 20 Jun 2022 19:17:37 GMT
+Last-Modified: Mon, 20 Jun 2022 19:17:37 GMT
+Server: tsa_b
+Server-Timing: x-cache;desc= MISS,x-tw-cdn;desc=VZ,edge;dur=279
+Surrogate-Key: amplify_video amplify_video/bucket/6 amplify_video/739264125914775552
+X-Cache: MISS
+X-Connection-Hash: 4ff394f034d670f7d90aa1686d9f560e5a8e1343fadc7d4527dfee68b36cc1e4
+X-Content-Type-Options: nosniff
+X-Response-Time: 12
+X-Tw-Cdn: VZ
+X-Tw-Cdn: VZ
+X-Tw-Cdn: VZ
+
+
+<vmap:VMAP xmlns:tw="http://twitter.com/schema/videoVMapV2.xsd" xmlns:vmap="http://www.iab.net/vmap-1.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:esi="http://www.edge-delivery.org/esi/1.0" xsi:noNamespaceSchemaLocation="vast3.xsd">
+ <vmap:Extensions>
+   <vmap:Extension>
+    <tw:amplify>
+     <tw:content ownerId="16184358" contentId="13_739264125914775552" stitched="false">
+      <MediaFiles>
+        <MediaFile>
+          <![CDATA[ https://video.twimg.com/amplify_video/739264125914775552/vid/1280x720/95tnCmUt1LC8B2bm.mp4 ]]>
+        </MediaFile>
+      </MediaFiles>
+      <tw:videoVariants>
+        <tw:videoVariant url="https%3A%2F%2Fvideo.twimg.com%2Famplify_video%2F739264125914775552%2Fvid%2F1280x720%2F95tnCmUt1LC8B2bm.mp4" content_type="video/mp4" bit_rate="2176000"/>
+<tw:videoVariant url="https%3A%2F%2Fvideo.twimg.com%2Famplify_video%2F739264125914775552%2Fvid%2F640x360%2FTy5bUEq-Juqf-SqM.mp4" content_type="video/mp4" bit_rate="832000"/>
+<tw:videoVariant url="https%3A%2F%2Fvideo.twimg.com%2Famplify_video%2F739264125914775552%2Fvid%2F320x180%2F7BB9nAhhJnycHyM7.mp4" content_type="video/mp4" bit_rate="320000"/>
+<tw:videoVariant url="https%3A%2F%2Fvideo.twimg.com%2Famplify_video%2F739264125914775552%2Fpl%2FHBSuysILFAvJlI-J.m3u8" content_type="application/x-mpegURL"/>
+      </tw:videoVariants>
+     </tw:content>
+    </tw:amplify>
+  </vmap:Extension>
+ </vmap:Extensions>
+ <!--  We only support linear start (preroll) for now  -->
+ <vmap:AdBreak breakType="linear" breakId="preroll3" timeOffset="start">
+ <vmap:AdSource id="0" allowMultipleAds="false" followRedirects="false">
+ <vmap:VASTData>
+ <VAST></VAST>
+ </vmap:VASTData>
+ </vmap:AdSource>
+ </vmap:AdBreak>
+</vmap:VMAP>
+     

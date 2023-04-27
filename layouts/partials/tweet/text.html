@@ -15,9 +15,17 @@
     {{ $new = "" }}
   {{ end }}
 
-  {{/* Remove link to twitter space */}}
-  {{ if (in .expanded_url $.ctx.card.binding_values.id.string_value) }}
-    {{ $new = "" }}
+  {{/* Remove Card Links */}}
+  {{- if (eq .url $.ctx.card.url ) -}}
+    {{ if
+      or
+      (eq $.ctx.card.name "2586390716:message_me")
+      (eq $.ctx.card.name "3691233323:audiospace")
+      (eq $.ctx.card.name "amplify")
+      (eq $.ctx.card.name "promo_image_convo")
+    }}
+      {{ $new = "" }}
+    {{ end }}
   {{ end }}
 
   {{ $text = replace $text .url $new }}

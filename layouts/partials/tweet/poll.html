@@ -47,26 +47,11 @@
 {{ end }}
 
 {{/* If poll has video */}}
-
 {{ if .ctx.card.binding_values.player_image }}
   {{ with .ctx.card.binding_values }}
-    {{ $poster := .player_image.image_value.url }}
     {{ with .player_stream_url.string_value }}
-      {{ with resources.GetRemote . | transform.Unmarshal }}
-        {{ range .Extensions.Extension.amplify.content.videoVariants.videoVariant }}
-          {{ $bit_rate := index . "-bit_rate" }}
-          {{ $content_type := index . "-content_type" }}
-          {{ $url := index . "-url" }}
-          {{ $url := replace $url "%3A" ":" }}
-          {{ $url := replace $url "%2F" "/" }}
-          {{/* Highest Quality Video */}}
-          {{ if eq "2176000" $bit_rate }}
-            <video src="{{ $url }}" poster="{{ $poster }}" controls></video>
-          {{ end }}
-        {{ end }}
-      {{ end }}
+      {{ partial "tweet/vmap.html" (dict "url" .) }}
     {{ end }}
-
   {{ end }}
 {{ end }}
 
