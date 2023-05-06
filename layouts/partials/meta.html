@@ -125,10 +125,10 @@
         "@type": "imageObject",
         "url": "{{ .Site.BaseURL }}favicons/android-chrome-512x512.png"
       }
-    },
+    }
 
     {{ with .Params.image }}
-      "image": {
+      , "image": {
         "@type": "imageObject",
         "url": "{{ . }}"
       }

@@ -112,33 +112,8 @@ Here's an example using an expired hashflag.
 
 {{<tweet id="1400374052087238658">}}
 
-To display hashflags on my embed I used an unofficial API that returns a list of
-all active hashflags. The URL is
-{{<unsafe>}}<a href="#" id="hashflag_link">https://pbs.twimg.com/hashflag/config-2022-03-22-18.json</a>{{</unsafe>}}
-
-<!-- Script to update the link above with a valid url -->
-
-{{<unsafe>}}
-
-<script>
-// Changes html link from js
- function setHLink(){ let date
-= new Date().toISOString().split('T')[0];
-
-    let url = `pbs.twimg.com/hashflag/config-${date}-00.json`
-
-    hashflag_link.innerText = url
-    hashflag_link.href = `https://${url}`
-    }
-    setHLink()
-    </script>
-
-{{</unsafe>}}
-
-The API only returns data for dates within the current month. To archive it, I
-created a GitHub repo with the image assets and JSON data. The repo
-automatically updates itself every hour. For the older hashflags, I was able to
-get the data and images from the [hashflags.io](https://hashflags.io) website.
+The code that archives deleted hashflags can be found at [github.com/ianmuchina/HashflagArchive](https://github.com/ianmuchina/HashflagArchive)
+repo. It updates itself via github actions and a script.
 
 ## Spaces
 
@@ -153,6 +128,7 @@ After the space expires it will display like this.
 {{<tweet version="2022" id="1506727406609920003">}}
 
 More tests are available at
+
 [drafts.blog-byl.pages.dev/tests/tweet/](https://drafts.blog-byl.pages.dev/tests/tweet/)
 
 ### Deleted tweets
