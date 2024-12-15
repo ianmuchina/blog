@@ -32,21 +32,6 @@ module:
     - source: img
       target: static/img
 
-  imports:
-    # HashflagArchive
-    - path: github.com/ianmuchina/hashflagArchive
-      mounts:
-        - source: img/
-          target: assets/twitter/media/hashflags
-        - source: data
-          target: data
-
-    # Feather Icons
-    - path: github.com/feathericons/feather
-      mounts:
-        - target: assets/icons/feather/
-          source: icons
-
 caches:
   getjson:
     dir: :resourceDir/

@@ -4,10 +4,6 @@ build:
 img: build
 	./scripts/gen_variants.sh
 
-update:
-	yarn hugo mod get -u
-	yarn hugo mod tidy
-
 ci-build:
 	./scripts/build.sh
 
@@ -22,3 +18,8 @@ fmt-check:
 
 lint:
 	yarn stylelint "**/*.scss"
+
+# Hashflags
+hf:
+	wget -O data/campaigns.json https://ianmuchina.github.io/HashflagArchive/data/campaigns.json
+	wget -O data/hashtags.json https://ianmuchina.github.io/HashflagArchive/data/hashtags.json

@@ -66,10 +66,13 @@
         {{ end }}
       {{ end }}
 
-      {{/* Select Image */}}
-      {{ with resources.Get (print "twitter/media/hashflags/" $campaign ".png") }}
-        {{ $hashflag_markup = printf "<picture class='emoji'> <img src='%s' alt=''> </picture>" .RelPermalink }}
+      {{/* Fetch and cache campaign image from github.io mirror */}}
+      {{ if ne 0 (len $campaign)}}
+        {{ with resources.GetRemote (print "https://ianmuchina.github.io/HashflagArchive/img/" $campaign ".png") }}
+          {{ $hashflag_markup = printf "<picture class='emoji'> <img src='%s' alt=''> </picture>" .RelPermalink }}
+        {{ end }}
       {{ end }}
+
     {{ end }}
 
     {{ $old := (slicestr $.ctx.text (index .indices 0) (index .indices 1)) }}
