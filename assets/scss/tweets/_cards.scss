@@ -52,7 +52,7 @@
       -webkit-line-clamp: 2;
     }
 
-    .title > a {
+    .title>a {
       text-decoration: none;
     }
   }
@@ -215,7 +215,7 @@
   background-color: var(--tw-link-bg-hover);
 }
 
-.amplify_video {
+.amplify-video {
   border: solid 1px var(--tw-border);
   padding: 1px;
   border-radius: var(--tw-border-radius);
