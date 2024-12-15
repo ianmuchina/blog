@@ -6,3 +6,4 @@ node_modules
 public/
 resources/
 pnpm-lock.yaml
+data/

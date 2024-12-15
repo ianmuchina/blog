@@ -67,7 +67,7 @@
       {{ end }}
 
       {{/* Fetch and cache campaign image from github.io mirror */}}
-      {{ if ne 0 (len $campaign)}}
+      {{ if ne 0 (len $campaign) }}
         {{ with resources.GetRemote (print "https://ianmuchina.github.io/HashflagArchive/img/" $campaign ".png") }}
           {{ $hashflag_markup = printf "<picture class='emoji'> <img src='%s' alt=''> </picture>" .RelPermalink }}
         {{ end }}

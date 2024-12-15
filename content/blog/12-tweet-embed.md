@@ -112,7 +112,8 @@ Here's an example using an expired hashflag.
 
 {{<tweet id="1400374052087238658">}}
 
-The code that archives deleted hashflags can be found at [github.com/ianmuchina/HashflagArchive](https://github.com/ianmuchina/HashflagArchive)
+The code that archives deleted hashflags can be found at
+[github.com/ianmuchina/HashflagArchive](https://github.com/ianmuchina/HashflagArchive)
 repo. It updates itself via github actions and a script.
 
 ## Spaces
