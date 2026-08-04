@@ -54,11 +54,11 @@
     {{ $date :=  time $.ctx.created_at }}
     {{ $hashtag := (lower .text) }}
     {{/* If hashtag has campaign(s) */}}
-    {{ with index site.Data.hashtags $hashtag }}
+    {{ with index hugo.Data.hashtags $hashtag }}
       {{ $campaign := "" }}
       {{/* Select campaign */}}
       {{ range $c := . }}
-        {{ with index site.Data.campaigns $c }}
+        {{ with index hugo.Data.campaigns $c }}
           {{/* If Tweet falls within campaign dates, use it */}}
           {{ if and ( lt .startingTimestampMs $date.UnixMilli ) ( gt .endingTimestampMs   $date.UnixMilli ) }}
             {{ $campaign = $c }}
@@ -68,7 +68,8 @@
 
       {{/* Fetch and cache campaign image from github.io mirror */}}
       {{ if ne 0 (len $campaign) }}
-        {{ with resources.GetRemote (print "https://ianmuchina.github.io/HashflagArchive/img/" $campaign ".png") }}
+        {{ $hashflagURL := print "https://ianmuchina.github.io/HashflagArchive/img/" $campaign ".png" }}
+        {{ with resources.GetRemote $hashflagURL }}
           {{ $hashflag_markup = printf "<picture class='emoji'> <img src='%s' alt=''> </picture>" .RelPermalink }}
         {{ end }}
       {{ end }}

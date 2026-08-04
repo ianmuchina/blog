@@ -44,6 +44,8 @@ I implemented one for this blog. Here's an example.
 
 {{<tweet id="20">}}
 
+{{<tweet id="40">}}
+
 I had a lot of fun implementing it. I even added some features not available in
 the official embed.
 
@@ -99,7 +101,7 @@ smaller sizes than jpeg and is supported in
 
 {{<tweet id="1509951833321578499">}}
 
- <!--  Music  -->
+<!--  Music  -->
 
 {{<tweet id="1513944715703504914">}}
 

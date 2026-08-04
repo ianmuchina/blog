@@ -1,0 +1,8 @@
+{{- $data := "" -}}
+{{- with index hugo.Data.api.endpoints . -}}
+  {{- $entry := . -}}
+  {{- $path := print "data/" $entry.file -}}
+  {{- $records := readFile $path | transform.Unmarshal -}}
+  {{- $data = index $records $entry.key -}}
+{{- end -}}
+{{- return $data -}}

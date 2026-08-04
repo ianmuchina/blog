@@ -13,7 +13,7 @@ draft: false
 Debian is a good operating system. Forming the basis for Ubuntu, Kali Linux and
 many others it is one of the most stable operating systems out there.
 
-![Image of the Debian Logo](/img/deb-updates/debian.png)
+![Image of the Debian Logo](img/deb-updates/debian.png)
 
 In this post, I will go over how to configure automatic security updates on
 Debian, which are not enabled by default.
@@ -39,7 +39,7 @@ All the infected computers had one thing in common. They weren't updated.
 
 Updating a system regularly can prevent lots of attacks.
 
-![Ilustration of a Hacker](/img/deb-updates/hacker.webp)
+![Ilustration of a Hacker](img/deb-updates/hacker.webp)
 
 ## Why Automate?
 
@@ -156,7 +156,7 @@ this method because I can revoke app passwords in case of compromise.
 3. Generate a custom App password, name it to something relevant like _server-x
    email alerts_ and copy it. We'll need it later.
 
-![](/img/deb-updates/app-passwords.webp)
+![](img/deb-updates/app-passwords.webp)
 
 ### Install and Configure Postfix
 
@@ -171,7 +171,7 @@ $ apt install postfix libsasl2-modules bsd-mailx
 
 When prompted, select Internet site.
 
-![](/img/deb-updates/postfix.webp)
+![](img/deb-updates/postfix.webp)
 
 ### Configure postfix
 

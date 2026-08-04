@@ -1,4 +1,4 @@
-{{ with getJSON "https://cdn.syndication.twimg.com/tweet-result?id=" .id }}
+{{ with partialCached "tweet/api/syndication.html" (dict "id" .id) .id }}
   {{ if .parent }}
     {{ partial "tweet/threadreader" (dict "id" .parent.id_str ) }}
   {{ end }}

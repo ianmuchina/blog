@@ -38,9 +38,9 @@
 
     {{/* Self host Poster Image */}}
     {{ $poster := .poster }}
-    {{ $img := resources.GetRemote .poster }}
+    {{ $img := partialCached "local-resource.html" .poster .poster }}
 
-    {{ if not $img.Err }}
+    {{ with $img }}
       {{ $filename := print "/twitter/media/posters/" $.ctx.id_str "." $img.MediaType.SubType }}
       {{ $img = $img.Content | resources.FromString $filename }}
       {{ $poster = $img.RelPermalink }}
@@ -52,16 +52,9 @@
       {{/* Self host Video */}}
       {{ $src := .src }}
       {{/* a. Download video from twitter cdn */}}
-      {{ $vid := resources.GetRemote .src }}
-      {{ $filename := print "/twitter/media/video/" $.ctx.id_str "." $vid.MediaType.SubType }}
-      {{ $vid = $vid.Content | resources.FromString $filename }}
-
-      {{/* b. Change video source if there are no errors */}}
-      {{ if not $vid.Err }}
+      {{ $vid := partialCached "local-resource.html" .src .src }}
+      {{ with $vid }}
         {{ $src = $vid.RelPermalink }}
-      {{ else }}
-        {{ warnf "error loading tweet : %s" $.ctx.id_str }}
-        {{ warnf "%s" $vid.Err }}
       {{ end }}
 
       {{/* Render video */}}
@@ -83,9 +76,7 @@
       {{ $src = .src }}
     {{ end }}
 
-    {{ $gif = resources.GetRemote $src }}
-    {{ $filename := print "/twitter/media/gifs/" $.ctx.id_str "." $gif.MediaType.SubType }}
-    {{ $gif = $gif.Content | resources.FromString $filename }}
+    {{ $gif = partialCached "local-resource.html" $src $src }}
 
 
     <!---  2. Get width & height --->
@@ -93,11 +84,8 @@
     {{- $height := (index .aspectRatio 1) -}}
 
     {{/* Change video source if there are no errors */}}
-    {{ if not $gif.Err }}
+    {{ with $gif }}
       {{ $src = $gif.RelPermalink }}
-    {{ else }}
-      {{ warnf "Tweet: Err Loading Gif for tweet with id:%s" $.ctx.id_str }}
-      {{ warnf "%s" $gif.Err }}
     {{ end }}
 
 

@@ -1,23 +1,18 @@
 <picture>
   {{ $original := "" }}
   {{/* Download Image */}}
-  {{- with resources.GetRemote .url -}}
-    {{- with .Err -}}
-      {{/* Log Error if 404 */}}
-      {{- warnf "err fetching img %v" . -}}
-    {{- else -}}
-      {{ $src := . | resources.Copy (print $.filename "." .MediaType.SubType) }}
-      {{ range $.formats }}
-        {{ $resized := $src.Resize .options | resources.Copy (print $.filename .extension) }}
-        <source
-          srcset="{{ $resized.RelPermalink }}"
-          type="{{ $resized.MediaType }}"
-        />
-      {{ end }}
+  {{- with partialCached "local-resource.html" .url .url -}}
+    {{ $src := . | resources.Copy (print $.filename "." .MediaType.SubType) }}
+    {{ range $.formats }}
+      {{ $resized := $src.Resize .options | resources.Copy (print $.filename .extension) }}
+      <source
+        srcset="{{ $resized.RelPermalink }}"
+        type="{{ $resized.MediaType }}"
+      />
+    {{ end }}
 
-      {{/* Original Image */}}
-      {{ $original = $src.RelPermalink }}
-    {{- end -}}
+    {{/* Original Image */}}
+    {{ $original = $src.RelPermalink }}
   {{- end -}}
   {{/* Fallback to Remote  Image + sizes */}}
   <img

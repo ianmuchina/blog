@@ -11,7 +11,7 @@ comments: true
 
 ## What is Docker?
 
-![Docker Logo](/img/docker-lab/docker.svg)
+![Docker Logo](img/docker-lab/docker.svg)
 
 Docker is a container platform that is similar to a Hypervisor like Virtualbox.
 Containers use less storage and RAM and are portable.
@@ -36,7 +36,7 @@ The Docker engine is in the official repositories of most Linux distributions.
 
 ### Ubuntu/Debian
 
-![](/img/docker-lab/ubuntu.svg)
+![](img/docker-lab/ubuntu.svg)
 
 Anything that uses `apt` to install software is Debian based.
 
@@ -98,7 +98,7 @@ $ sudo docker run hello-world
 
 If it completes successfully, you can follow along
 
-![](/img/docker-lab/Server status-pana.svg)
+![](img/docker-lab/Server status-pana.svg)
 
 ## The Network
 
@@ -114,7 +114,7 @@ $ sudo docker network create vulnerable --attachable --subnet 10.0.0.0/24
 
 For this, I will use Parrot OS. It's docker images are better Kali Linux Images.
 
-![](/img/docker-lab/cyberr.svg)
+![](img/docker-lab/cyberr.svg)
 
 First download the Parrot OS Docker image. This command will take a while
 depending on your internet connection.
@@ -151,7 +151,7 @@ $ sudo docker start -a parrot
 
 ## Target container:Metasploitable2
 
-![](/img/docker-lab/Target-pana.svg)
+![](img/docker-lab/Target-pana.svg)
 
 This is a very vulnerable test machine. It is what I recommend for anyone
 starting out.
@@ -208,7 +208,7 @@ root@metasploitable2:/# services.sh
 
 There are tons of free guides out there on metasploitable.
 
-![](/img/docker-lab/read.svg)
+![](img/docker-lab/read.svg)
 
 1. [The Easiest Metasploit Guide You’ll Ever Read](https://www.exploit-db.com/docs/english/44040-the-easiest-metasploit-guide-you%E2%80%99ll-ever-read.pdf)
 2. [Metasploit Unleashed](https://www.offensive-security.com/metasploit-unleashed/)
@@ -220,7 +220,7 @@ If you don't know what guide to use, I recommend
 
 ## More vulnerable containers 🧑‍💻
 
-![](/img/docker-lab/hacker.svg)
+![](img/docker-lab/hacker.svg)
 
 You can extend the lab with any of these containers depending on your learning
 goal.
@@ -229,7 +229,7 @@ goal.
 
 This container focusses on web application security.
 
-![](/img/docker-lab/juiceshop.svg)
+![](img/docker-lab/juiceshop.svg)
 
 To create and start the juiceshop container for the first time
 
@@ -273,7 +273,7 @@ docker start juiceshop
 [Webgoat](<(https://owasp.org/www-project-webgoat/)>) is a ctf-style vulnerable
 container focused on web application security.
 
-![](/img/docker-lab/goat.svg)
+![](img/docker-lab/goat.svg)
 
 Create and run the container for the first time
 
@@ -315,7 +315,7 @@ $ docker ps -a
 Two Operating systems make my computer painfully slow. Containers aren't
 resource-intensive and perform well. This fits my use case.
 
-![](/img/docker-lab/lab.svg)
+![](img/docker-lab/lab.svg)
 
 If you have RAM to spare then it's really not that much of a difference.
 
@@ -374,7 +374,7 @@ apps
 Burp Suite is a web app pentesting tool for monitoring http requests and
 responses.
 
-![](/img/docker-lab/burp.svg)
+![](img/docker-lab/burp.svg)
 
 To install and run burpsuite inside the parrot os container.
 
@@ -391,7 +391,7 @@ will intercept everything
 
 Firefox, is a free and open-source web browser.
 
-![](/img/docker-lab/firefox.svg)
+![](img/docker-lab/firefox.svg)
 
 To install and run firefox:
 

@@ -1,0 +1,22 @@
+HTTP/2.0 404 Not Found
+Accept-Ranges: bytes
+Access-Control-Allow-Origin: *
+Access-Control-Expose-Headers: Content-Length
+Cache-Control: max-age=300, must-revalidate
+Content-Type: image/jpeg
+Cross-Origin-Resource-Policy: cross-origin
+Date: Fri, 31 Jul 2026 07:31:41 GMT
+Perf: 7402827104
+Server-Timing: x-cache;desc=MISS, x-tw-cdn;desc=FT
+Strict-Transport-Security: max-age=631138519; includeSubdomains
+Timing-Allow-Origin: https://twitter.com, https://mobile.twitter.com
+Vary: origin
+X-Cache: MISS, MISS
+X-Content-Type-Options: nosniff
+X-Etags-1: d41d8cd98f00b204e9800998ecf8427e
+X-Etags-2: d41d8cd98f00b204e9800998ecf8427e
+X-Served-By: t4_a, cache-lcy-eglc8600061-LCY, cache-ams-eham8680047-AMS, cache-tw-ZZZ1
+X-Transaction-Id: deb32001560a0bd7
+X-Tw-Cdn: FT
+Content-Length: 0
+

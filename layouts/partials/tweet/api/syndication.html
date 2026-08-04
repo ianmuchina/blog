@@ -1,0 +1,8 @@
+{{- $id := printf "%v" .id -}}
+{{- $resultURL := print "https://cdn.syndication.twimg.com/tweet-result?id=" $id -}}
+{{- $tweetURL := print "https://cdn.syndication.twimg.com/tweet?id=" $id -}}
+{{- $tweet := partialCached "local-api.html" $resultURL $resultURL -}}
+{{- if not $tweet -}}
+  {{- $tweet = partialCached "local-api.html" $tweetURL $tweetURL -}}
+{{- end -}}
+{{- return $tweet -}}

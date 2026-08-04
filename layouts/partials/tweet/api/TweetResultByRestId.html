@@ -1,8 +1,5 @@
 {{ $id := .id }}
 
-{{ $json := dict }}
-{{ $headers := partialCached "tweet/guest" "g" }}
-
 {{ $endpoint := "https://twitter.com/i/api/graphql/cV1LAXUDi5uNYX5owCCgHA/TweetResultByRestId" }}
 
 {{ $q := (dict
@@ -39,6 +36,4 @@
 
 {{ $url := print $endpoint $queryStr }}
 
-{{ $data := getJSON $url $headers }}
-
-{{ return $data }}
+{{ return (partialCached "local-api.html" $url $url) }}

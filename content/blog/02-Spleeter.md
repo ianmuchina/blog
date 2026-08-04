@@ -22,7 +22,7 @@ party websites to process the music.
 
 The only requirement is a browser.
 
-1.  Go to <a href="https://moises.ai/" target="_blank">moises.ai</a>
+1.  Go to [moises.ai](https://moises.ai/)
 2.  Create an account
 3.  Upload a song
 4.  Wait for the isolation to be done
@@ -39,23 +39,22 @@ The only requirement is a browser.
 - Only 5 uploads per month
 - There's a queue that may affect your waiting time
 
-You can use <a href="https://ezstems.com" target="_blank">ezstems.com</a> as an
-alternative for more upload options and it works in a simmilar way.
+You can use [https://ezstems.com](ezstems.com) as an alternative for more upload
+options and it works in a simmilar way.
 
 ## 2. The App Method
 
 This second method is simmilar to the first, but only uses the computer's
-resources. ![Screenshot of image](/img/spleeter/uJrx7GI.jpg)
+resources. ![Screenshot of image](img/spleeter/uJrx7GI.jpg)
 
 ### Steps
 
 This method only works on windows
 
 1. Download and install the latest version of
-   <a href="https://www.python.org/downloads/" target="_blank">Python</a>
+   [Python](https://www.python.org/downloads/)
 2. During the installation make sure add to path checkbox is selected.
-3. Download
-   <a href="https://github.com/lazydevyo/SpleetGUI/releases" target="_blank">SpleetGUI</a>
+3. Download [SpleetGUI](https://github.com/lazydevyo/SpleetGUI/releases)
 4. Extract the zip file
 5. Install SpleetGUI
 
@@ -82,7 +81,7 @@ $ python3 -m spleeter -i your_song.mp3 -p spleeter:2stems -o output
 
 ## How Does it Work?
 
-![xkcd comic](/img/spleeter/machine-learning.webp)
+![xkcd comic](img/spleeter/machine-learning.webp)
 
 Machine learning is artificial intelligence that can automatically learn from
 past data. You give it enough data and it can literally learn like humans,

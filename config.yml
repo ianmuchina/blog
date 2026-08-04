@@ -1,5 +1,6 @@
 baseURL: "/"
-languageCode: en-us
+relativeURLs: true
+locale: en-us
 title: "Ian's blog"
 
 pluralizeListTitles: false
@@ -24,18 +25,13 @@ pygmentsCodefences: true
 module:
   hugoVersion:
     extended: true
-    min: 0.100.0
+    min: 0.164.0
 
   mounts:
     - source: static
       target: static
     - source: img
       target: static/img
-
-caches:
-  getjson:
-    dir: :resourceDir/
-    maxAge: -1
 
   getresource:
     dir: :resourceDir/

@@ -9,6 +9,7 @@ ci-build:
 
 clean:
 	rm 'resources/filecache/getresource/15902302297382621871'
+	rm 'resources/filecache/getresource/8799473491402513412'
 
 fmt:
 	yarn prettier -w .

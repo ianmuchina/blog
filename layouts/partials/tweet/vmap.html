@@ -1,5 +1,5 @@
-{{ with resources.GetRemote .url }}
-  {{ with transform.Unmarshal .Content }}
+{{ with partialCached "local-api.html" .url .url }}
+  {{ with . }}
     {{ range .Extensions.Extension.amplify.content.videoVariants.videoVariant }}
       {{ $bit_rate := index . "-bit_rate" }}
       {{ $content_type := index . "-content_type" }}

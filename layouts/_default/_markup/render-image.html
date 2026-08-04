@@ -1,18 +1,15 @@
 {{ $alt := .Text }}
 {{ $src := .Destination }}
-{{ $img := os.ReadFile $src | resources.FromString $src }}
+{{ $url := $src | relURL }}
+{{ $resource := resources.Get $src }}
 
-{{/* Set Dimensions on Raster Images */}}
-{{ if ne $img.MediaType.SubType "svg" }}
+{{ if reflect.IsImageResourceProcessable $resource }}
   <img
+    src="{{ $resource.RelPermalink }}"
+    width="{{ $resource.Width }}"
+    height="{{ $resource.Height }}"
     alt="{{ $alt }}"
-    src="{{ $src | safeURL }}"
-    width="{{ $img.Width }}"
-    height="{{ $img.Height }}"
   />
-{{ end }}
-
-{{/* Svgs & Images that failed to load */}}
-{{ if or (not $img) (eq $img.MediaType.SubType "svg") }}
-  <img src="{{ $src | safeURL }}" alt="{{ $alt }}" />
+{{ else }}
+  <img src="{{ $url | safeURL }}" alt="{{ $alt }}" />
 {{ end }}

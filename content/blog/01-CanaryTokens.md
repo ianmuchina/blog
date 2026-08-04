@@ -25,7 +25,7 @@ In this article, I will go over how to create and deploy these tokens.
 
 ### 1. Creating the file
 
-- Go to <a href="http://canarytokens.org" target="_blank">canarytokens.org</a>
+- Go to [canarytokens.org](https://canarytokens.org)
 - Choose either a Word Document or an Adobe PDF token
 - Enter an email address where alerts will be sent
 - Choose an appropriate reminder eg: "Opened"
@@ -54,5 +54,4 @@ within seconds.
 
 ## Further Reading
 
-<a href="https://docs.canarytokens.org/guide/" target="_blank">Official
-Documentation</a>
+[Official Documentation](https://docs.canarytokens.org/guide/)

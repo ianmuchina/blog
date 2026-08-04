@@ -8,21 +8,19 @@
     "build-drafts": "hugo -D"
   },
   "devDependencies": {
-    "autoprefixer": "^10.4.14",
-    "hugo-extended": "^0.111.3",
-    "postcss": "^8.4.22",
-    "postcss-cli": "^10.1.0",
-    "prettier": "^2.8.7",
-    "prettier-plugin-go-template": "^0.0.13",
-    "stylelint": "^15.5.0",
-    "stylelint-config-standard-scss": "^8.0.0"
+    "@types/node": "^26.1.2",
+    "autoprefixer": "^10.5.4",
+    "hugo-extended": "^0.164.0",
+    "postcss": "^8.5.25",
+    "postcss-cli": "^11.0.1",
+    "prettier": "^3.9.6",
+    "prettier-plugin-go-template": "^0.0.15",
+    "stylelint": "^17.14.1",
+    "stylelint-config-standard-scss": "^17.0.0"
   },
   "stylelint": {
     "extends": [
       "stylelint-config-standard-scss"
     ]
-  },
-  "dependencies": {
-    "@tailwindcss/forms": "^0.5.3"
   }
 }

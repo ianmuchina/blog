@@ -1,0 +1,31 @@
+HTTP/2.0 200 OK
+Cache-Control: no-cache, no-store, must-revalidate, pre-check=0, post-check=0
+Cf-Cache-Status: DYNAMIC
+Cf-Ray: a23aebf8de7add69-JNB
+Content-Disposition: attachment; filename=json.json
+Content-Type: application/json; charset=utf-8
+Date: Fri, 31 Jul 2026 07:34:38 GMT
+Expires: Tue, 31 Mar 1981 05:00:00 GMT
+Last-Modified: Fri, 31 Jul 2026 07:34:38 GMT
+Origin-Cf-Ray: a23aebf8de7add69-JNB
+Perf: 7402827104
+Pragma: no-cache
+Server: cloudflare envoy
+Set-Cookie: guest_id_marketing=v1%3A178548327836488406; Max-Age=63072000; Expires=Sun, 30 Jul 2028 07:34:38 GMT; Path=/; Domain=.twitter.com; Secure; SameSite=None
+Set-Cookie: guest_id_ads=v1%3A178548327836488406; Max-Age=63072000; Expires=Sun, 30 Jul 2028 07:34:38 GMT; Path=/; Domain=.twitter.com; Secure; SameSite=None
+Set-Cookie: personalization_id="v1_5a8/y2LVmfNTKgQZmoJAgw=="; Max-Age=63072000; Expires=Sun, 30 Jul 2028 07:34:38 GMT; Path=/; Domain=.twitter.com; Secure; SameSite=None
+Set-Cookie: guest_id=v1%3A178548327836488406; Max-Age=63072000; Expires=Sun, 30 Jul 2028 07:34:38 GMT; Path=/; Domain=.twitter.com; Secure; SameSite=None
+Set-Cookie: __cf_bm=J6fwt9.o86TmhgMeLMlijmymgUbveLHP_PIzJDpAoT8-1785483278.2205195-1.0.1.1-Sywg5auFMCbJKHcod5ee7UfzPISa6yY3toLb5vDOseLkNqOIaOu1EvDVxiLgR3L57Ps_X2rfgn5CSfb8d09YVjx.Tqwbm4ewjNJdFSo.OXV1TUrX5Uil6vb4lUY84L.k; HttpOnly; SameSite=None; Secure; Path=/; Domain=twitter.com; Expires=Fri, 31 Jul 2026 08:04:38 GMT
+Strict-Transport-Security: max-age=631138519; includeSubdomains
+Vary: accept-encoding
+X-Content-Type-Options: nosniff
+X-Etags-1: 7a7b6f24795fa43a9ee668ec310cb29e
+X-Etags-2: 7a7b6f24795fa43a9ee668ec310cb29e
+X-Frame-Options: SAMEORIGIN
+X-Response-Time: 11
+X-Served-By: t4_a
+X-Transaction-Id: f9100d12c1c52d27
+X-Twitter-Response-Tags: BouncerCompliant
+X-Xss-Protection: 0
+
+{"guest_token":"2083093966858166413"}

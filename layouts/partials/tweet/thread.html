@@ -1,6 +1,6 @@
 {{ $start := .start }}
 
-{{ with getJSON "https://cdn.syndication.twimg.com/tweet-result?id=" .id }}
+{{ with partialCached "tweet/api/syndication.html" (dict "id" .id) .id }}
   {{ if and .parent (ne $start .id_str) }}
     {{ partial "tweet/thread" (dict "id" .parent.id_str "start" $start) }}
   {{ end }}
